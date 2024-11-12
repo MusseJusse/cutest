@@ -73,7 +73,7 @@ export default function HomePage() {
               <div className="flex flex-col items-center gap-4" key={index}>
                 <img
                   src="https://raw.githubusercontent.com/PokeAPI/sprites/52427d467f3e3b22af3c9cefc807a7452196ccd7/sprites/pokemon/0.png"
-                  className="h-64 w-64"
+                  className="h-32 w-32 sm:h-64 sm:w-64"
                 />
                 <div className="text-center">
                   <span className="text-lg text-gray-500">#0</span>
