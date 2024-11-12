@@ -1,6 +1,7 @@
 import { cookies } from "next/headers";
 import { Suspense } from "react";
 import { getTwoPokemon, PokemonPair } from "~/sdk/pokemon";
+import { recordBattle } from "~/sdk/vote";
 import PokemonSprite from "~/utils/PokemonSprite";
 
 async function VoteContent() {
@@ -41,6 +42,8 @@ async function VoteContent() {
                   if (!loser) {
                     throw new Error("Loser pokemon not found in current pair");
                   }
+
+                  recordBattle(pokemon.dexNumber, loser.dexNumber);
 
                   const jar = await cookies();
                   jar.set("currentPair", JSON.stringify(nextPair));
