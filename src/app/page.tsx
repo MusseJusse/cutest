@@ -1,5 +1,4 @@
 import { cookies } from "next/headers";
-import Link from "next/link";
 import { Suspense } from "react";
 import { getTwoPokemon, PokemonPair } from "~/sdk/pokemon";
 import PokemonSprite from "~/utils/PokemonSprite";
@@ -60,8 +59,10 @@ async function VoteContent() {
 
 export default function HomePage() {
   return (
-    <Suspense fallback={<div>Loading...</div>}>
-      <VoteContent />
-    </Suspense>
+    <div className="container mx-auto px-4">
+      <Suspense fallback={<div>Loading...</div>}>
+        <VoteContent />
+      </Suspense>
+    </div>
   );
 }
