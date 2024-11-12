@@ -10,17 +10,6 @@ export async function voteAction(
   nextPair: PokemonPair,
 ) {
   const loser = currentPair[index === 0 ? 1 : 0];
-  if (!loser) {
-    throw new Error("Loser pokemon not found in current pair");
-  }
-
-  if (!currentPair[index]) {
-    throw new Error("Loser pokemon not found in current pair");
-  }
-
-  if (!currentPair[index]?.dexNumber) {
-    throw new Error("Winner pokemon not found in current pair");
-  }
 
   recordBattle(currentPair[index]!.dexNumber, loser.dexNumber);
 

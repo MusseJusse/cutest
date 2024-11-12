@@ -18,7 +18,7 @@ export default function FormButton(props: {
       }
       disabled={pending}
       className={`w-32 rounded-lg px-8 py-3 text-lg font-semibold text-white transition-colors ${
-        pending ? "bg-gray-600" : "bg-blue-500 hover:bg-blue-600"
+        pending ? "animate-pulse bg-gray-600" : "bg-blue-500 hover:bg-blue-600"
       } disabled:opacity-40`}
     >
       {pending ? "Voting..." : "Vote"}
