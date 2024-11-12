@@ -29,7 +29,10 @@ async function VoteContent() {
           key={pokemon.dexNumber}
           className="flex flex-col items-center gap-4"
         >
-          <PokemonSprite pokemon={pokemon} className="h-64 w-64" />
+          <PokemonSprite
+            pokemon={pokemon}
+            className="h-32 w-32 sm:h-64 sm:w-64"
+          />
           <div className="text-center">
             <span className="text-lg text-gray-500">#{pokemon.dexNumber}</span>
             <h2 className="text-2xl font-bold capitalize">{pokemon.name}</h2>
