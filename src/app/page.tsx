@@ -2,6 +2,7 @@ import { cookies } from "next/headers";
 import Link from "next/link";
 import { Suspense } from "react";
 import { getTwoPokemon, PokemonPair } from "~/sdk/pokemon";
+import PokemonSprite from "~/utils/PokemonSprite";
 
 async function VoteContent() {
   const currentPairJSON = (await cookies()).get("currentPair")?.value;
@@ -13,11 +14,22 @@ async function VoteContent() {
 
   return (
     <div className="flex min-h-[80vh] items-center justify-center gap-16">
+      {/* Render next two images in hidden divs so they load faster */}
+      <div className="hidden">
+        {nextPair.map((pokemon) => (
+          <PokemonSprite
+            key={pokemon.dexNumber}
+            pokemon={pokemon}
+            className="h-64 w-64"
+          />
+        ))}
+      </div>
       {currentPair.map((pokemon, index) => (
         <div
           key={pokemon.dexNumber}
           className="flex flex-col items-center gap-4"
         >
+          <PokemonSprite pokemon={pokemon} className="h-64 w-64" />
           <div className="text-center">
             <span className="text-lg text-gray-500">#{pokemon.dexNumber}</span>
             <h2 className="text-2xl font-bold capitalize">{pokemon.name}</h2>
