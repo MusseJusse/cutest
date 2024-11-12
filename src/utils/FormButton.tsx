@@ -17,7 +17,9 @@ export default function FormButton(props: {
         voteAction(props.currentPair, props.index, props.nextPair)
       }
       disabled={pending}
-      className="rounded-lg bg-blue-500 px-8 py-3 text-lg font-semibold text-white transition-colors hover:bg-blue-600 disabled:opacity-50"
+      className={`w-32 rounded-lg px-8 py-3 text-lg font-semibold text-white transition-colors ${
+        pending ? "bg-gray-600" : "bg-blue-500 hover:bg-blue-600"
+      } disabled:opacity-40`}
     >
       {pending ? "Voting..." : "Vote"}
     </button>
