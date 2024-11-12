@@ -66,7 +66,29 @@ async function VoteContent() {
 export default function HomePage() {
   return (
     <div className="container mx-auto px-4">
-      <Suspense fallback={<div>Loading...</div>}>
+      <Suspense
+        fallback={
+          <div className="flex min-h-[80vh] items-center justify-center gap-16">
+            {[1, 2].map((index) => (
+              <div className="flex flex-col items-center gap-4" key={index}>
+                <img
+                  src="https://raw.githubusercontent.com/PokeAPI/sprites/52427d467f3e3b22af3c9cefc807a7452196ccd7/sprites/pokemon/0.png"
+                  className="h-64 w-64"
+                />
+                <div className="text-center">
+                  <span className="text-lg text-gray-500">#0</span>
+                  <h2 className="text-2xl font-bold capitalize">Loading</h2>
+                  <form className="mt-4">
+                    <button className="rounded-lg bg-gray-500 px-8 py-3 text-lg font-semibold text-white transition-colors hover:bg-blue-600">
+                      Vote
+                    </button>
+                  </form>
+                </div>
+              </div>
+            ))}
+          </div>
+        }
+      >
         <VoteContent />
       </Suspense>
     </div>
