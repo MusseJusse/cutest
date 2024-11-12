@@ -38,7 +38,7 @@ export default function RootLayout({
 
         <main className="flex-1">{children}</main>
 
-        <footer className="py-3 text-center font-light text-gray-500">
+        <footer className="py-3 text-center font-light text-gray-400">
           <a
             href="https://github.com/mussejusse/roundest-cache"
             target="_blank"

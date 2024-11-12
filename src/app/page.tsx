@@ -1,7 +1,6 @@
 import { cookies } from "next/headers";
 import { Suspense } from "react";
 import { getTwoPokemon, PokemonPair } from "~/sdk/pokemon";
-import { recordBattle } from "~/sdk/vote";
 import FormButton from "~/utils/FormButton";
 import PokemonSprite from "~/utils/PokemonSprite";
 
@@ -14,7 +13,7 @@ async function VoteContent() {
   const nextPair = await getTwoPokemon();
 
   return (
-    <div className="flex min-h-[80vh] items-center justify-center gap-16">
+    <div className="flex min-h-[80vh] items-center justify-center gap-8 sm:gap-12">
       {/* Render next two images in hidden divs so they load faster */}
       <div className="hidden">
         {nextPair.map((pokemon) => (
@@ -28,16 +27,20 @@ async function VoteContent() {
       {currentPair.map((pokemon, index) => (
         <div
           key={pokemon.dexNumber}
-          className="flex flex-col items-center gap-4"
+          className="flex flex-col items-center gap-2 sm:gap-4"
         >
           <PokemonSprite
             pokemon={pokemon}
             className="h-32 w-32 sm:h-64 sm:w-64"
           />
           <div className="text-center">
-            <span className="text-lg text-gray-500">#{pokemon.dexNumber}</span>
-            <h2 className="text-2xl font-bold capitalize">{pokemon.name}</h2>
-            <form className="mt-4">
+            <span className="text-base text-gray-600 sm:text-lg">
+              #{pokemon.dexNumber}
+            </span>
+            <h2 className="text-xl font-bold capitalize sm:text-2xl">
+              {pokemon.name}
+            </h2>
+            <form className="mt-2 sm:mt-4">
               <FormButton
                 currentPair={currentPair}
                 nextPair={nextPair}
@@ -64,10 +67,10 @@ export default function HomePage() {
                   className="h-32 w-32 sm:h-64 sm:w-64"
                 />
                 <div className="text-center">
-                  <span className="text-lg text-gray-500">#0</span>
+                  <span className="text-lg text-gray-600">#0</span>
                   <h2 className="text-2xl font-bold capitalize">Loading</h2>
                   <form className="mt-4">
-                    <button className="rounded-lg bg-gray-500 px-8 py-3 text-lg font-semibold text-white transition-colors hover:bg-blue-600">
+                    <button className="animate-pulse rounded-lg bg-gray-600 px-8 py-3 text-lg font-semibold text-white">
                       Vote
                     </button>
                   </form>
