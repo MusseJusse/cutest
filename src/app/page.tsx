@@ -59,9 +59,12 @@ export default function HomePage() {
     <div className="container mx-auto px-4">
       <Suspense
         fallback={
-          <div className="flex min-h-[80vh] items-center justify-center gap-16">
+          <div className="flex min-h-[80vh] items-center justify-center gap-8 sm:gap-12">
             {[1, 2].map((index) => (
-              <div className="flex flex-col items-center gap-4" key={index}>
+              <div
+                className="flex flex-col items-center gap-2 sm:gap-4"
+                key={index}
+              >
                 <img
                   src="https://raw.githubusercontent.com/PokeAPI/sprites/52427d467f3e3b22af3c9cefc807a7452196ccd7/sprites/pokemon/0.png"
                   className="h-32 w-32 sm:h-64 sm:w-64"
@@ -71,8 +74,8 @@ export default function HomePage() {
                   <h2 className="text-xl font-bold capitalize sm:text-2xl">
                     Loading
                   </h2>
-                  <form className="mt-4">
-                    <button className="w-24 animate-pulse rounded-lg bg-gray-600 px-8 py-3 text-lg font-semibold text-white sm:w-32">
+                  <form className="mt-2 sm:mt-4">
+                    <button className="w-24 animate-pulse rounded-lg bg-gray-600 px-4 py-2 text-base font-semibold text-white sm:w-32 sm:px-8 sm:py-3 sm:text-lg">
                       Vote
                     </button>
                   </form>
