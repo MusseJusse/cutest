@@ -2,6 +2,7 @@ import { cookies } from "next/headers";
 import { Suspense } from "react";
 import { getTwoPokemon, PokemonPair } from "~/sdk/pokemon";
 import { recordBattle } from "~/sdk/vote";
+import FormButton from "~/utils/FormButton";
 import PokemonSprite from "~/utils/PokemonSprite";
 
 async function VoteContent() {
@@ -37,24 +38,11 @@ async function VoteContent() {
             <span className="text-lg text-gray-500">#{pokemon.dexNumber}</span>
             <h2 className="text-2xl font-bold capitalize">{pokemon.name}</h2>
             <form className="mt-4">
-              <button
-                formAction={async () => {
-                  "use server";
-
-                  const loser = currentPair[index === 0 ? 1 : 0];
-                  if (!loser) {
-                    throw new Error("Loser pokemon not found in current pair");
-                  }
-
-                  recordBattle(pokemon.dexNumber, loser.dexNumber);
-
-                  const jar = await cookies();
-                  jar.set("currentPair", JSON.stringify(nextPair));
-                }}
-                className="rounded-lg bg-blue-500 px-8 py-3 text-lg font-semibold text-white transition-colors hover:bg-blue-600"
-              >
-                Vote
-              </button>
+              <FormButton
+                currentPair={currentPair}
+                nextPair={nextPair}
+                index={index}
+              />
             </form>
           </div>
         </div>

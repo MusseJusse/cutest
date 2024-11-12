@@ -60,5 +60,5 @@ export async function getTwoPokemon() {
   await connection();
   const allPokemon = await getAllPokemon();
   const shuffled = allPokemon.sort(() => 0.5 - Math.random());
-  return shuffled.slice(0, 2);
+  return shuffled.slice(0, 2) as PokemonPair;
 }
