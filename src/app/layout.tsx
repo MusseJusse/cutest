@@ -3,6 +3,7 @@ import "~/styles/globals.css";
 import { GeistSans } from "geist/font/sans";
 import { type Metadata } from "next";
 import Link from "next/link";
+import { Toaster } from "~/components/ui/sonner";
 
 export const metadata: Metadata = {
   title: "Roundest-Cache",
@@ -37,6 +38,8 @@ export default function RootLayout({
         </header>
 
         <main className="flex-1">{children}</main>
+
+        <Toaster richColors />
 
         <footer className="py-3 text-center font-light text-gray-400">
           <a
