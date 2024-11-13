@@ -11,7 +11,6 @@ export async function voteAction(
   nextPair: PokemonPair,
 ) {
   const headersList = await headers();
-
   const ip = headersList.get("x-forwarded-for") ?? "127.0.0.1";
 
   const { success } = await ratelimit.limit(ip);

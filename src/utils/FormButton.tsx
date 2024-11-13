@@ -3,7 +3,7 @@
 import { PokemonPair } from "~/sdk/pokemon";
 import { voteAction } from "./action";
 import { useFormStatus } from "react-dom";
-import { useState } from "react";
+import { useState, useRef, useEffect } from "react";
 
 export default function FormButton(props: {
   currentPair: PokemonPair;
@@ -12,9 +12,16 @@ export default function FormButton(props: {
 }) {
   const { pending } = useFormStatus();
   const [error, setError] = useState<string | null>(null);
+  const dialogRef = useRef<HTMLDialogElement>(null);
+
+  useEffect(() => {
+    if (error && dialogRef.current) {
+      dialogRef.current.showModal();
+    }
+  }, [error]);
 
   return (
-    <div className="flex flex-col items-center gap-2">
+    <>
       <button
         formAction={async () => {
           try {
@@ -37,7 +44,22 @@ export default function FormButton(props: {
       >
         {pending ? "Voting..." : "Vote"}
       </button>
-      {error && <p className="animate-fade-in text-sm text-red-500">{error}</p>}
-    </div>
+
+      <dialog
+        ref={dialogRef}
+        className="rounded-lg p-4 backdrop:bg-gray-500/50"
+        onClick={() => dialogRef.current?.close()}
+      >
+        <div className="flex flex-col items-center gap-4">
+          <p className="text-red-500">{error}</p>
+          <button
+            className="rounded bg-blue-500 px-4 py-2 text-white hover:bg-blue-600"
+            onClick={() => dialogRef.current?.close()}
+          >
+            Close
+          </button>
+        </div>
+      </dialog>
+    </>
   );
 }
