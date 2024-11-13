@@ -1,7 +1,7 @@
 "use client";
 
 import { PokemonPair } from "~/sdk/pokemon";
-import { voteAction } from "./action";
+import { voteAction } from "~sdk/action";
 import { useFormStatus } from "react-dom";
 import { toast } from "sonner";
 
