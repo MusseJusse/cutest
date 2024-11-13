@@ -1,6 +1,6 @@
 import { Suspense } from "react";
 import { getRankings } from "~/sdk/vote";
-import PokemonSprite from "~/utils/PokemonSprite";
+import PokemonSprite from "~/components/ui/PokemonSprite";
 
 export async function Results() {
   "use cache";

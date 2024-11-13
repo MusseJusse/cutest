@@ -1,8 +1,8 @@
 import { cookies } from "next/headers";
 import { Suspense } from "react";
 import { getTwoPokemon, PokemonPair } from "~/sdk/pokemon";
-import FormButton from "~/utils/FormButton";
-import PokemonSprite from "~/utils/PokemonSprite";
+import FormButton from "~/components/ui/FormButton";
+import PokemonSprite from "~/components/ui/PokemonSprite";
 
 async function VoteContent() {
   const currentPairJSON = (await cookies()).get("currentPair")?.value;
