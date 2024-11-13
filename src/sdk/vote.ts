@@ -1,6 +1,7 @@
 import { kv } from "@vercel/kv";
 import { waitUntil } from "@vercel/functions";
 import { getAllPokemon } from "./pokemon";
+import { ratelimit } from "~/utils/ratelimit";
 
 export async function recordBattle(winner: number, loser: number) {
   const recordPromises = Promise.all([
