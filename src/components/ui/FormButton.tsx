@@ -1,7 +1,7 @@
 "use client";
 
 import { PokemonPair } from "~/sdk/pokemon";
-import { voteAction } from "~sdk/action.ts";
+import { voteAction } from "~/sdk/action";
 import { useFormStatus } from "react-dom";
 import { toast } from "sonner";
 
@@ -19,6 +19,7 @@ export default function FormButton(props: {
           await voteAction(props.currentPair, props.index, props.nextPair);
         } catch (e) {
           if (e instanceof Error) {
+            // setError(e.message);
             toast.error("Rate limit exceeded");
           } else {
             toast.error("Something went wrong");
