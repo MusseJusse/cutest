@@ -4,6 +4,7 @@ import { GeistSans } from "geist/font/sans";
 import { type Metadata } from "next";
 import Link from "next/link";
 import { Toaster } from "~/components/ui/sonner";
+import { PHProvider } from "~/utils/providers";
 
 export const metadata: Metadata = {
   title: "Roundest-Cache",
@@ -16,41 +17,43 @@ export default function RootLayout({
 }: Readonly<{ children: React.ReactNode }>) {
   return (
     <html lang="en" className={`${GeistSans.variable}`}>
-      <body
-        className={`flex min-h-screen flex-col justify-between border-t-2 border-blue-300 text-gray-600 antialiased`}
-      >
-        <header className="px-8 py-4">
-          <div className="flex items-center justify-between">
-            <div className="flex items-baseline">
-              <Link href="/" className="text-3xl font-bold">
-                round<span className="text-blue-300">est</span>
-                <span className="hidden pl-2 text-2xl font-extralight text-gray-400 sm:inline">
-                  (React Server Components)
-                </span>
-              </Link>
+      <PHProvider>
+        <body
+          className={`flex min-h-screen flex-col justify-between border-t-2 border-blue-300 text-gray-600 antialiased`}
+        >
+          <header className="px-8 py-4">
+            <div className="flex items-center justify-between">
+              <div className="flex items-baseline">
+                <Link href="/" className="text-3xl font-bold">
+                  round<span className="text-blue-300">est</span>
+                  <span className="hidden pl-2 text-2xl font-extralight text-gray-400 sm:inline">
+                    (React Server Components)
+                  </span>
+                </Link>
+              </div>
+              <nav className="flex flex-row items-center gap-8">
+                <Link href="/results" className="text-lg hover:underline">
+                  Results
+                </Link>
+              </nav>
             </div>
-            <nav className="flex flex-row items-center gap-8">
-              <Link href="/results" className="text-lg hover:underline">
-                Results
-              </Link>
-            </nav>
-          </div>
-        </header>
+          </header>
 
-        <main className="flex-1">{children}</main>
+          <main className="flex-1">{children}</main>
 
-        <Toaster richColors />
+          <Toaster richColors />
 
-        <footer className="py-3 text-center font-light text-gray-400">
-          <a
-            href="https://github.com/mussejusse/roundest-cache"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            GitHub
-          </a>
-        </footer>
-      </body>
+          <footer className="py-3 text-center font-light text-gray-400">
+            <a
+              href="https://github.com/mussejusse/roundest-cache"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              GitHub
+            </a>
+          </footer>
+        </body>
+      </PHProvider>
     </html>
   );
 }
