@@ -1,7 +1,7 @@
 import { kv } from "@vercel/kv";
 import { waitUntil } from "@vercel/functions";
 import { getAllPokemon } from "./pokemon";
-import { ratelimit } from "~/utils/ratelimit";
+import posthog from "posthog-js";
 
 export async function recordBattle(winner: number, loser: number) {
   const recordPromises = Promise.all([
@@ -21,6 +21,7 @@ export async function recordBattle(winner: number, loser: number) {
   ]);
 
   void waitUntil(recordPromises);
+  posthog.capture("battle", { winner, loser, timestamp: Date.now() });
 }
 
 export async function getRankings() {
