@@ -10,13 +10,11 @@ export async function voteAction(
   nextPair: PokemonPair,
   index: number,
 ) {
-  const start2 = performance.now();
-
   // 60-70ms
-  const { success } = await ratelimit.limit("battle");
-  if (!success) {
-    throw new Error("Rate limit exceeded");
-  }
+  // const { success } = await ratelimit.limit("battle");
+  // if (!success) {
+  //   throw new Error("Rate limit exceeded");
+  // }
 
   const loser = currentPair[index === 0 ? 1 : 0];
 
@@ -25,7 +23,4 @@ export async function voteAction(
 
   const jar = await cookies();
   jar.set("currentPair", JSON.stringify(nextPair));
-
-  const end2 = performance.now();
-  console.log(`Vote Request: ${(end2 - start2).toFixed(2)}ms`);
 }

@@ -26,12 +26,7 @@ async function getFilteredRankings(sortType: SortType) {
 }
 
 async function Results() {
-  const start = performance.now();
-
   const rankings = await getFilteredRankings("elo");
-  const end = performance.now();
-
-  console.log(`Ranking Request: ${(end - start).toFixed(2)}ms`);
 
   return (
     <div className="contents">

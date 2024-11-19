@@ -6,8 +6,6 @@ import VoteButton from "~/components/ui/vote-button";
 import { getTwoPokemon, PokemonPair } from "~/sdk/pokemon";
 
 export async function VoteContent() {
-  const start = performance.now();
-
   const currentPairCookie = (await cookies()).get("currentPair")?.value;
 
   const [currentPair, nextPair] = await Promise.all([
@@ -16,8 +14,6 @@ export async function VoteContent() {
       : getTwoPokemon(),
     getTwoPokemon(),
   ]);
-
-  console.log(`Pokemon Request: ${(performance.now() - start).toFixed(2)}ms`);
 
   return (
     <div className="flex min-h-[80vh] flex-col items-center justify-center gap-4 sm:flex-row sm:gap-12">
