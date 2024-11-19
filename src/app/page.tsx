@@ -1,6 +1,6 @@
 import { cookies } from "next/headers";
 import { Suspense } from "react";
-import { VoteFallback } from "~/components/ui/Fallback";
+import { VoteFallback } from "~/components/ui/fallbacks";
 import PokemonSprite from "~/components/ui/pokemon-sprite";
 import VoteButton from "~/components/ui/vote-button";
 import { getTwoPokemon, PokemonPair } from "~/sdk/pokemon";
