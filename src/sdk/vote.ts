@@ -1,27 +1,22 @@
 import { kv } from "@vercel/kv";
+import { getAllPokemon, Pokemon } from "./pokemon";
 import { waitUntil } from "@vercel/functions";
-import { getAllPokemon } from "./pokemon";
-import posthog from "posthog-js";
 
 export async function recordBattle(winner: number, loser: number) {
-  const recordPromises = Promise.all([
-    // Record battle
-    kv.lpush(
-      "battles:all",
-      JSON.stringify({
-        winner,
-        loser,
-        timestamp: Date.now(),
-      }),
-    ),
+  const battle = {
+    winner,
+    loser,
+    timestamp: Date.now(),
+  };
 
-    // Increment win/loss counters
-    kv.incr(`pokemon:${winner}:wins`),
-    kv.incr(`pokemon:${loser}:losses`),
-  ]);
-
-  void waitUntil(recordPromises);
-  posthog.capture("battle", { winner, loser, timestamp: Date.now() });
+  void waitUntil(
+    kv
+      .pipeline()
+      .lpush("battles:all", JSON.stringify(battle))
+      .incr(`pokemon:${winner}:wins`)
+      .incr(`pokemon:${loser}:losses`)
+      .exec(),
+  );
 }
 
 export async function getRankings() {
@@ -40,19 +35,17 @@ export async function getRankings() {
     const totalWins = wins[index] ?? 0;
     const totalLosses = losses[index] ?? 0;
     const totalBattles = totalWins + totalLosses;
+    const winRate = totalBattles > 0 ? totalWins / totalBattles : 0;
 
     return {
       ...pokemon,
       stats: {
         wins: totalWins,
         losses: totalLosses,
-        winRate: totalBattles > 0 ? totalWins / totalBattles : 0,
+        winRate: winRate,
+        elo: totalWins * 0.3 + winRate * 0.7 - totalLosses * 0.3,
       },
     };
   });
-  return stats.sort((a, b) => {
-    const winRateDiff = b.stats.winRate - a.stats.winRate;
-    if (winRateDiff !== 0) return winRateDiff;
-    return b.stats.wins - a.stats.wins;
-  });
+  return stats;
 }

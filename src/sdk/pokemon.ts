@@ -1,6 +1,5 @@
 import { unstable_cacheLife } from "next/cache";
 import { connection } from "next/server";
-import "server-only";
 
 export type Pokemon = {
   name: string;
@@ -9,25 +8,19 @@ export type Pokemon = {
 
 export type PokemonPair = [Pokemon, Pokemon];
 
-/**
- * Fetches all Pokemon from Gen 1-9 (up to #1025) from the PokeAPI GraphQL endpoint.
- * Each Pokemon includes their name, Pokedex number, and sprite URL.
- */
-
 export async function getAllPokemon() {
   "use cache";
   unstable_cacheLife("forever");
-
   const query = `
-      query GetAllPokemon {
-        pokemon_v2_pokemon(where: {id: {_lte: 1025}}) {
-          id
-          pokemon_v2_pokemonspecy {
-            name
+        query GetAllPokemon {
+          pokemon_v2_pokemon(where: {id: {_lte: 1025}}) {
+            id
+            pokemon_v2_pokemonspecy {
+              name
+            }
           }
         }
-      }
-    `;
+      `;
 
   const response = await fetch("https://beta.pokeapi.co/graphql/v1beta", {
     method: "POST",
@@ -52,10 +45,6 @@ export async function getAllPokemon() {
   }));
 }
 
-/**
- * Randomly reorder all objects in the Pokemon array
- * Returns the first two Pokemon in the shuffled array.
- */
 export async function getTwoPokemon() {
   await connection();
   const allPokemon = await getAllPokemon();
