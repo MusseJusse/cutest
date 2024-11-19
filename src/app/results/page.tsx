@@ -1,5 +1,5 @@
 import { Suspense } from "react";
-import { ResultsFallback } from "~/components/ui/fallback";
+import { ResultsFallback } from "~/components/ui/fallbacks";
 import PokemonSprite from "~/components/ui/pokemon-sprite";
 import { getRankings } from "~/sdk/vote";
 
