@@ -23,7 +23,7 @@ export default function RootLayout({
           <div className="flex items-center justify-between">
             <div className="flex items-baseline">
               <Link href="/" className="text-3xl font-bold">
-                round<span className="text-blue-300">est</span>
+                cute<span className="text-blue-300">est</span>
                 <span className="hidden pl-2 text-2xl font-extralight text-gray-400 sm:inline">
                   (React Server Components)
                 </span>

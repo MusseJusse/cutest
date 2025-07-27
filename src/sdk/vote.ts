@@ -12,9 +12,9 @@ export async function recordBattle(winner: number, loser: number) {
   void waitUntil(
     kv
       .pipeline()
-      .lpush("battles:all", JSON.stringify(battle))
-      .incr(`pokemon:${winner}:wins`)
-      .incr(`pokemon:${loser}:losses`)
+      .lpush("cute-battles:all", JSON.stringify(battle))
+      .incr(`cute-pokemon:${winner}:wins`)
+      .incr(`cite-pokemon:${loser}:losses`)
       .exec(),
   );
 }
@@ -23,8 +23,8 @@ export async function getRankings() {
   const pokemonList = await getAllPokemon();
 
   // Construct win/loss keys directly from pokemon list
-  const winKeys = pokemonList.map((p) => `pokemon:${p.dexNumber}:wins`);
-  const lossKeys = pokemonList.map((p) => `pokemon:${p.dexNumber}:losses`);
+  const winKeys = pokemonList.map((p) => `cute-pokemon:${p.dexNumber}:wins`);
+  const lossKeys = pokemonList.map((p) => `cute-pokemon:${p.dexNumber}:losses`);
 
   const [wins, losses] = await Promise.all([
     kv.mget<number[]>(...winKeys),
