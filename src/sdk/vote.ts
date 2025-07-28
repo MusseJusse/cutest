@@ -24,7 +24,7 @@ export async function getRankings() {
 
   // Construct win/loss keys directly from pokemon list
   const winKeys = pokemonList.map((p) => `cute-pokemon:${p.dexNumber}:wins`);
-  const lossKeys = pokemonList.map((p) => `cute-pokemon:${p.dexNumber}:losses`);
+  const lossKeys = pokemonList.map((p) => `cite-pokemon:${p.dexNumber}:losses`);
 
   const [wins, losses] = await Promise.all([
     kv.mget<number[]>(...winKeys),
