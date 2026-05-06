@@ -1,4 +1,4 @@
-import { unstable_cacheLife } from "next/cache";
+import { cacheLife } from "next/cache";
 import { connection } from "next/server";
 
 export type Pokemon = {
@@ -10,7 +10,7 @@ export type PokemonPair = [Pokemon, Pokemon];
 
 export async function getAllPokemon() {
   "use cache";
-  unstable_cacheLife("forever");
+  cacheLife("forever");
   const query = `
         query GetAllPokemon {
           pokemon_v2_pokemon(where: {id: {_lte: 1025}}) {
