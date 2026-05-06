@@ -1,9 +1,8 @@
 "use server";
 
 import { recordBattle } from "~/sdk/vote";
-import { ratelimit } from "./ratelimit";
 import { cookies } from "next/headers";
-import { PokemonPair } from "~/sdk/pokemon";
+import type { PokemonPair } from "~/sdk/pokemon";
 
 export async function voteAction(
   currentPair: PokemonPair,
@@ -19,7 +18,7 @@ export async function voteAction(
   const loser = currentPair[index === 0 ? 1 : 0];
 
   // 2-3ms
-  recordBattle(currentPair[index]!.dexNumber, loser.dexNumber);
+  void recordBattle(currentPair[index]!.dexNumber, loser.dexNumber);
 
   const jar = await cookies();
   jar.set("currentPair", JSON.stringify(nextPair));

@@ -8,6 +8,17 @@ export type Pokemon = {
 
 export type PokemonPair = [Pokemon, Pokemon];
 
+type PokemonGraphqlResponse = {
+  data: {
+    pokemon_v2_pokemon: {
+      id: number;
+      pokemon_v2_pokemonspecy: {
+        name: string;
+      };
+    }[];
+  };
+};
+
 export async function getAllPokemon() {
   "use cache";
   cacheLife("forever");
@@ -30,14 +41,7 @@ export async function getAllPokemon() {
     body: JSON.stringify({ query }),
   });
 
-  const data = (await response.json()).data as {
-    pokemon_v2_pokemon: {
-      id: number;
-      pokemon_v2_pokemonspecy: {
-        name: string;
-      };
-    }[];
-  };
+  const { data } = (await response.json()) as PokemonGraphqlResponse;
 
   return data.pokemon_v2_pokemon.map((pokemon) => ({
     name: pokemon.pokemon_v2_pokemonspecy.name,

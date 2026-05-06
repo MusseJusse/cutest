@@ -1,5 +1,5 @@
 import { kv } from "@vercel/kv";
-import { getAllPokemon, Pokemon } from "./pokemon";
+import { getAllPokemon } from "./pokemon";
 import { waitUntil } from "@vercel/functions";
 
 export async function recordBattle(winner: number, loser: number) {
