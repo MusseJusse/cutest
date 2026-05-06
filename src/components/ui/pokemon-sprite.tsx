@@ -1,4 +1,4 @@
-import { Pokemon } from "~/sdk/pokemon";
+import type { Pokemon } from "~/sdk/pokemon";
 
 export default function PokemonSprite(props: {
   pokemon: Pokemon;
@@ -6,6 +6,7 @@ export default function PokemonSprite(props: {
   lazy?: boolean;
 }) {
   return (
+    // eslint-disable-next-line @next/next/no-img-element
     <img
       src={`https://raw.githubusercontent.com/PokeAPI/sprites/refs/heads/master/sprites/pokemon/${props.pokemon.dexNumber}.png`}
       alt={props.pokemon.name}
