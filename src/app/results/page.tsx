@@ -84,7 +84,7 @@ function PokemonDetails({
           <div className="flex min-w-0 items-center gap-2 sm:gap-4">
             <PokemonSprite
               pokemon={pokemon}
-              className="h-32 w-32 shrink-0 sm:h-40 sm:w-40"
+              className="h-32 w-32 shrink-0 scale-115 sm:h-40 sm:w-40"
               lazy
               priority="low"
             />
