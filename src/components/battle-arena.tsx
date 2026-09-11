@@ -124,7 +124,6 @@ export default function BattleArena({
 
   const current = pairs[index];
   const next = pairs[index + 1];
-  const queued = Math.max(pairs.length - index - 1, 0);
 
   useEffect(() => {
     if (!mounted.current) {
@@ -233,14 +232,6 @@ export default function BattleArena({
             onVote={() => vote(1)}
           />
         </section>
-        <p
-          className={cn(
-            "m-0 text-center font-mono text-[11px] tracking-[0.14em] text-broadcast-dim uppercase",
-            queued === 0 && "opacity-0",
-          )}
-        >
-          {queued} {queued === 1 ? "pair" : "pairs"} queued
-        </p>
       </div>
     </div>
   );

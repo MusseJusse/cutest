@@ -46,11 +46,10 @@ export default function FinalHomepage() {
   return (
     <section className="broadcast-surface min-h-screen overflow-x-hidden px-4 py-5 text-broadcast-ink sm:px-6 lg:px-10">
       <div className="mx-auto flex max-w-6xl flex-col gap-4">
-        <h1 className="sr-only">Which Pokémon is rounder?</h1>
+        <h1 className="sr-only">Which Pokémon is cutest?</h1>
         <BroadcastBar
-          slate="Vote open · new pair every vote"
           href="/results"
-          linkLabel="Standings"
+          linkLabel="Rankings"
           transitionTypes={["nav-forward"]}
         />
         <Suspense fallback={<VoteFallback />}>

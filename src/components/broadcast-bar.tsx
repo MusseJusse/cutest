@@ -6,23 +6,22 @@ export default function BroadcastBar({
   linkLabel,
   transitionTypes,
 }: {
-  slate: string;
+  slate?: string;
   href: string;
   linkLabel: string;
   transitionTypes?: string[];
 }) {
   return (
-    <header className="broadcast-bar flex items-center gap-3 rounded-xl border border-broadcast-dim/25 bg-white/[0.03] px-4 py-3">
-      <p className="m-0 flex items-center gap-2 font-display text-[13px] tracking-[0.2em] text-broadcast-dim uppercase">
-        <b className="-skew-x-6 bg-broadcast-gold px-2 py-0.5 text-lg font-normal tracking-[0.04em] text-[#0a0e18]">
-          RC
+    <header className="broadcast-bar flex flex-wrap items-center gap-3 rounded-xl border border-broadcast-dim/25 bg-white/[0.03] px-4 py-3">
+      <p className="m-0 flex w-full items-center gap-3 font-display uppercase sm:w-auto sm:flex-1">
+        <b className="shrink-0 -skew-x-6 bg-broadcast-gold px-2 py-0.5 text-xl font-normal tracking-[0.04em] text-[#0a0e18]">
+          CSL
         </b>
-        Sports
+        <span className="text-base tracking-[0.07em] text-broadcast-ink sm:text-lg">
+          Cuteness Super League
+        </span>
       </p>
-      <p className="m-0 hidden flex-1 text-[11px] tracking-[0.15em] text-broadcast-dim uppercase sm:block">
-        {slate}
-      </p>
-      <p className="m-0 ml-auto flex items-center gap-1.5 text-[11px] tracking-[0.15em] text-broadcast-gold uppercase sm:ml-0">
+      <p className="m-0 mr-auto flex shrink-0 items-center gap-1.5 text-[11px] tracking-[0.15em] text-broadcast-gold uppercase sm:mr-0">
         <i
           aria-hidden="true"
           className="live-dot h-[7px] w-[7px] rounded-full bg-broadcast-gold"
@@ -36,6 +35,11 @@ export default function BroadcastBar({
       >
         {linkLabel}
       </Link>
+      {slate && (
+        <p className="m-0 w-full text-center text-[11px] tracking-[0.1em] text-broadcast-dim">
+          {slate}
+        </p>
+      )}
     </header>
   );
 }
