@@ -25,7 +25,6 @@ export default function RootLayout({
   return (
     <html lang="en" className={`${GeistSans.variable} ${anton.variable}`}>
       <body className="flex min-h-screen flex-col justify-between bg-broadcast-night font-sans text-broadcast-ink antialiased">
-        <link rel="preconnect" href="https://cdn.jsdelivr.net" />
         <main className="flex-1">{children}</main>
 
         <DeferredToaster />

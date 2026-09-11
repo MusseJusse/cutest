@@ -4,7 +4,7 @@ import BattleArena from "~/components/battle-arena";
 import BattleTicker from "~/components/battle-ticker";
 import BroadcastBar from "~/components/broadcast-bar";
 import { VoteFallback } from "~/components/ui/fallbacks";
-import { selectPokemonPairs } from "~/sdk/pokemon";
+import { parsePokemonPair, selectPokemonPairs } from "~/sdk/pokemon";
 import { getContenderStats } from "~/sdk/vote";
 import type { PokemonPair } from "~/sdk/pokemon";
 
@@ -13,18 +13,7 @@ const QUEUE_SIZE = 6;
 function parsePair(value: string | undefined): PokemonPair | undefined {
   if (!value) return undefined;
   try {
-    const parsed = JSON.parse(value) as unknown;
-    if (!Array.isArray(parsed) || parsed.length !== 2) return undefined;
-    const [first, second] = parsed as PokemonPair;
-    if (
-      typeof first?.dexNumber !== "number" ||
-      typeof first.name !== "string" ||
-      typeof second?.dexNumber !== "number" ||
-      typeof second.name !== "string"
-    ) {
-      return undefined;
-    }
-    return [first, second];
+    return parsePokemonPair(JSON.parse(value) as unknown);
   } catch {
     return undefined;
   }
