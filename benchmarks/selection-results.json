@@ -1,0 +1,51 @@
+{
+  "measuredAt": "2026-09-11T12:59:13.930Z",
+  "node": "v22.23.2",
+  "platform": "darwin 24.1.0",
+  "cpu": "Apple M4",
+  "baselineCommit": "f8d07ad1486192a4b8f262d51c20bb7fa23c03c9",
+  "helperSha256": "334fbdc0255a51e12c39ddfd73f573fee3ea6ba4d8975773a54687fd7d0a348c",
+  "catalogueSize": 1025,
+  "samples": 11,
+  "warmupIterations": {
+    "before": 1000,
+    "after": 100000
+  },
+  "iterationsPerSample": {
+    "before": 3000,
+    "after": 1000000
+  },
+  "beforeMicrosecondsPerSelection": [
+    120.53805533333335,
+    122.92066666666669,
+    122.51170833333337,
+    120.7775416666666,
+    122.78533333333333,
+    123.54323599999998,
+    120.59551399999995,
+    130.0985276666667,
+    126.7604446666666,
+    125.88373633333336,
+    123.18676400000004
+  ],
+  "afterMicrosecondsPerSelection": [
+    0.021175958000000036,
+    0.021241540999999982,
+    0.02134137499999997,
+    0.02153891700000008,
+    0.021983040999999957,
+    0.022095958000000335,
+    0.021643167000000175,
+    0.02114779200000021,
+    0.022096542000000226,
+    0.021425792000000003,
+    0.0217871669999995
+  ],
+  "beforeMedianMicroseconds": 122.92066666666669,
+  "afterMedianMicroseconds": 0.02153891700000008,
+  "savedMicroseconds": 122.89912774966669,
+  "percentReduction": 99.98247738351566,
+  "speedup": 5706.91027161051,
+  "checksum": 11422165955,
+  "scope": "Synchronous pair selection only; excludes catalogue fetch/cache, Next.js connection, rendering, browser and network work. Both use native Math.random. Baseline sorts the shared catalogue in place as in production."
+}

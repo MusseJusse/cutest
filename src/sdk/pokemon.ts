@@ -1,5 +1,6 @@
 import { connection } from "next/server";
 import catalogue from "~/data/pokemon.json";
+import { selectTwoPokemon } from "./pokemon-pair";
 
 export type Pokemon = {
   name: string;
@@ -16,6 +17,5 @@ export async function getAllPokemon() {
 export async function getTwoPokemon() {
   await connection();
   const allPokemon = await getAllPokemon();
-  const shuffled = allPokemon.sort(() => 0.5 - Math.random());
-  return shuffled.slice(0, 2) as PokemonPair;
+  return selectTwoPokemon(allPokemon);
 }
