@@ -2,7 +2,7 @@ import type { ImgHTMLAttributes } from "react";
 import type { Pokemon } from "~/sdk/pokemon";
 
 const spriteUrl = (dexNumber: number) =>
-  `https://cdn.jsdelivr.net/gh/PokeAPI/sprites@master/sprites/pokemon/${dexNumber}.png`;
+  `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${dexNumber}.png`;
 
 type SpritePriority = "high" | "low";
 
