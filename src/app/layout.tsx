@@ -2,7 +2,15 @@ import "~/styles/globals.css";
 
 import { GeistSans } from "geist/font/sans";
 import { type Metadata } from "next";
+import { Anton } from "next/font/google";
 import { DeferredToaster } from "~/components/ui/deferred-toaster";
+
+const anton = Anton({
+  subsets: ["latin"],
+  weight: "400",
+  variable: "--font-anton",
+  display: "swap",
+});
 
 export const metadata: Metadata = {
   title: "Roundest Cache",
@@ -15,7 +23,7 @@ export default function RootLayout({
   children,
 }: Readonly<{ children: React.ReactNode }>) {
   return (
-    <html lang="en" className={`${GeistSans.variable}`}>
+    <html lang="en" className={`${GeistSans.variable} ${anton.variable}`}>
       <body className="flex min-h-screen flex-col justify-between bg-broadcast-night font-sans text-broadcast-ink antialiased">
         <link rel="preconnect" href="https://cdn.jsdelivr.net" />
         <main className="flex-1">{children}</main>

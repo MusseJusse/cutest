@@ -63,7 +63,8 @@
     var(--font-geist-sans), ui-sans-serif, system-ui, sans-serif,
     "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol",
     "Noto Color Emoji";
-  --font-display: Impact, "Arial Narrow", "Helvetica Neue", sans-serif;
+  --font-display:
+    Impact, var(--font-anton), "Arial Narrow", "Helvetica Neue", sans-serif;
 
   --radius-sm: calc(var(--radius) - 4px);
   --radius-md: calc(var(--radius) - 2px);
