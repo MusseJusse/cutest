@@ -1,4 +1,3 @@
-import { connection } from "next/server";
 import catalogue from "~/data/pokemon.json";
 import { selectTwoPokemon } from "./pokemon-pair";
 
@@ -14,8 +13,7 @@ export async function getAllPokemon() {
   return [...catalogue];
 }
 
-export async function getTwoPokemon() {
-  await connection();
+export async function selectPokemonPairs(count: number): Promise<PokemonPair[]> {
   const allPokemon = await getAllPokemon();
-  return selectTwoPokemon(allPokemon);
+  return Array.from({ length: count }, () => selectTwoPokemon(allPokemon));
 }

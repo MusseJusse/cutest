@@ -1,23 +1,23 @@
 import { kv } from "@vercel/kv";
 import { getAllPokemon } from "./pokemon";
-import { waitUntil } from "@vercel/functions";
+import { after } from "next/server";
 import { cacheLife } from "next/cache";
 
-export async function recordBattle(winner: number, loser: number) {
+export function recordBattle(winner: number, loser: number) {
   const battle = {
     winner,
     loser,
     timestamp: Date.now(),
   };
 
-  void waitUntil(
-    kv
+  after(async () => {
+    await kv
       .pipeline()
       .lpush("cute-battles:all", JSON.stringify(battle))
       .incr(`cute-pokemon:${winner}:wins`)
       .incr(`cite-pokemon:${loser}:losses`)
-      .exec(),
-  );
+      .exec();
+  });
 }
 
 async function getBattleCounts(dexNumbers: number[]) {
@@ -36,7 +36,9 @@ async function getBattleCounts(dexNumbers: number[]) {
 
 export async function getRankings() {
   const pokemonList = await getAllPokemon();
-  const [wins, losses] = await getBattleCounts(pokemonList.map((p) => p.dexNumber));
+  const [wins, losses] = await getBattleCounts(
+    pokemonList.map((p) => p.dexNumber),
+  );
 
   const stats = pokemonList.map((pokemon, index) => {
     const totalWins = wins[index] ?? 0;
