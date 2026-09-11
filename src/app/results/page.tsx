@@ -307,7 +307,8 @@ async function ResultsContent({
       <Pager page={page} totalPages={totalPages} />
       <div className="flex flex-col gap-1.5">
         <StandingsHeader />
-        <div className="grid gap-1.5 [&>article:not(:has(details[open]))]:[contain-intrinsic-size:auto_64px] [&>article:not(:has(details[open]))]:[content-visibility:auto]">
+        {/* Keep content-visibility on open rows too. Flipping it on collapse leaves WebKit painting the stale expanded height. */}
+        <div className="grid gap-1.5 [&>article]:[contain-intrinsic-size:auto_64px] [&>article]:[content-visibility:auto]">
           {visible.map((pokemon) => (
             <StandingsRow key={pokemon.dexNumber} pokemon={pokemon} />
           ))}
