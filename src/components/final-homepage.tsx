@@ -1,101 +1,41 @@
 import { cookies } from "next/headers";
 import Link from "next/link";
 import { Suspense } from "react";
+import BattleArena from "~/components/battle-arena";
 import { VoteFallback } from "~/components/ui/fallbacks";
-import PokemonSprite from "~/components/ui/pokemon-sprite";
-import VoteButton from "~/components/ui/vote-button";
-import { cn } from "~/lib/utils";
-import { getTwoPokemon } from "~/sdk/pokemon";
+import { selectPokemonPairs } from "~/sdk/pokemon";
 import type { PokemonPair } from "~/sdk/pokemon";
 
-function HiddenPrefetch({ nextPair }: { nextPair: PokemonPair }) {
-  return (
-    <div className="hidden">
-      {nextPair.map((pokemon) => (
-        <PokemonSprite
-          key={pokemon.dexNumber}
-          pokemon={pokemon}
-          className="h-64 w-64"
-        />
-      ))}
-    </div>
-  );
-}
+const QUEUE_SIZE = 6;
 
-function PokemonVoteForm({
-  currentPair,
-  nextPair,
-  index,
-}: {
-  currentPair: PokemonPair;
-  nextPair: PokemonPair;
-  index: number;
-}) {
-  return (
-    <form>
-      <VoteButton
-        currentPair={currentPair}
-        nextPair={nextPair}
-        index={index}
-        label="Choose"
-        pendingLabel="Casting..."
-        className="w-full rounded-none bg-[#3ef3c6] font-black uppercase text-[#101014] hover:bg-[#ffdc48]"
-      />
-    </form>
-  );
+function parsePair(value: string | undefined): PokemonPair | undefined {
+  if (!value) return undefined;
+  try {
+    const parsed = JSON.parse(value) as unknown;
+    if (!Array.isArray(parsed) || parsed.length !== 2) return undefined;
+    const [first, second] = parsed as PokemonPair;
+    if (
+      typeof first?.dexNumber !== "number" ||
+      typeof first.name !== "string" ||
+      typeof second?.dexNumber !== "number" ||
+      typeof second.name !== "string"
+    ) {
+      return undefined;
+    }
+    return [first, second];
+  } catch {
+    return undefined;
+  }
 }
 
 async function FinalHomepageContent() {
   const currentPairCookie = (await cookies()).get("currentPair")?.value;
 
-  const [currentPair, nextPair] = await Promise.all([
-    currentPairCookie
-      ? Promise.resolve(JSON.parse(currentPairCookie) as PokemonPair)
-      : getTwoPokemon(),
-    getTwoPokemon(),
-  ]);
+  const pairs = await selectPokemonPairs(QUEUE_SIZE);
+  const cookiePair = parsePair(currentPairCookie);
+  if (cookiePair) pairs[0] = cookiePair;
 
-  return (
-    <>
-      <HiddenPrefetch nextPair={nextPair} />
-      <div className="relative grid gap-6 lg:grid-cols-2">
-        <div className="pointer-events-none absolute left-1/2 top-1/2 z-10 hidden -translate-x-1/2 -translate-y-1/2 border border-white/20 bg-[#ffdc48] px-5 py-3 text-3xl font-black text-[#101014] lg:block">
-          VS
-        </div>
-        {currentPair.map((pokemon, index) => (
-          <article
-            key={pokemon.dexNumber}
-            className={cn(
-              "relative min-h-[520px] overflow-hidden border border-white/20 bg-white/[0.05] p-6",
-              index === 0 ? "lg:text-left" : "lg:text-right",
-            )}
-          >
-            <div className="flex h-full flex-col justify-between">
-              <div>
-                <p className="text-xs font-black uppercase tracking-[0.35em] text-[#ff5d8f]">
-                  #{pokemon.dexNumber}
-                </p>
-                <h2 className="mt-2 text-6xl font-black uppercase leading-none">
-                  {pokemon.name}
-                </h2>
-              </div>
-              <div className="my-6 grid place-items-center bg-[radial-gradient(circle,#31313b_0_2px,transparent_2px)] [background-size:18px_18px]">
-                <PokemonSprite
-                  pokemon={pokemon}
-                  className={cn("h-80 w-80", index === 1 && "lg:scale-x-[-1]")}
-                />
-              </div>
-              <PokemonVoteForm
-                currentPair={currentPair}
-                nextPair={nextPair}
-                index={index}
-              />
-            </div>
-          </article>
-        ))}
-      </div>
-    </>
-  );
+  return <BattleArena initialPairs={pairs} />;
 }
 
 export default function FinalHomepage() {

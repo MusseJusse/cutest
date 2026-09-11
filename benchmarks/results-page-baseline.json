@@ -1,0 +1,187 @@
+{
+  "date": "2026-09-11T13:38:34.839Z",
+  "node": "v22.23.2",
+  "machine": "darwin arm64 Apple M4",
+  "url": "http://127.0.0.1:4313/results",
+  "label": "baseline-full",
+  "expectedArticles": 1025,
+  "scenario": "local next start, warm ranking cache, fixture with zero added delay",
+  "samples": 15,
+  "medianHeadersMs": 2.6250420000001213,
+  "medianTotalMs": 111.1002910000002,
+  "p95TotalMs": 119.92195800000002,
+  "medianDecodedBytes": 3219532,
+  "medianGzipBytes": 106372,
+  "articles": 1025,
+  "images": 1025,
+  "hosts": [
+    "raw.githubusercontent.com"
+  ],
+  "raw": [
+    {
+      "headersMs": 3.3204580000000306,
+      "totalMs": 119.92195800000002,
+      "decodedBytes": 3219532,
+      "gzipBytes": 106372,
+      "articles": 1025,
+      "images": 1025,
+      "hosts": [
+        "raw.githubusercontent.com"
+      ]
+    },
+    {
+      "headersMs": 2.668875000000071,
+      "totalMs": 115.42712500000005,
+      "decodedBytes": 3219532,
+      "gzipBytes": 106372,
+      "articles": 1025,
+      "images": 1025,
+      "hosts": [
+        "raw.githubusercontent.com"
+      ]
+    },
+    {
+      "headersMs": 4.910624999999982,
+      "totalMs": 116.29516699999999,
+      "decodedBytes": 3219532,
+      "gzipBytes": 106372,
+      "articles": 1025,
+      "images": 1025,
+      "hosts": [
+        "raw.githubusercontent.com"
+      ]
+    },
+    {
+      "headersMs": 3.0133749999999964,
+      "totalMs": 112.68829200000016,
+      "decodedBytes": 3219532,
+      "gzipBytes": 106372,
+      "articles": 1025,
+      "images": 1025,
+      "hosts": [
+        "raw.githubusercontent.com"
+      ]
+    },
+    {
+      "headersMs": 2.8869999999999436,
+      "totalMs": 111.09779100000014,
+      "decodedBytes": 3219532,
+      "gzipBytes": 106372,
+      "articles": 1025,
+      "images": 1025,
+      "hosts": [
+        "raw.githubusercontent.com"
+      ]
+    },
+    {
+      "headersMs": 3.5919169999999667,
+      "totalMs": 110.27874999999995,
+      "decodedBytes": 3219532,
+      "gzipBytes": 106372,
+      "articles": 1025,
+      "images": 1025,
+      "hosts": [
+        "raw.githubusercontent.com"
+      ]
+    },
+    {
+      "headersMs": 1.372583000000077,
+      "totalMs": 114.57904100000019,
+      "decodedBytes": 3219532,
+      "gzipBytes": 106372,
+      "articles": 1025,
+      "images": 1025,
+      "hosts": [
+        "raw.githubusercontent.com"
+      ]
+    },
+    {
+      "headersMs": 2.7462910000001557,
+      "totalMs": 111.53933299999994,
+      "decodedBytes": 3219532,
+      "gzipBytes": 106372,
+      "articles": 1025,
+      "images": 1025,
+      "hosts": [
+        "raw.githubusercontent.com"
+      ]
+    },
+    {
+      "headersMs": 2.4110829999999623,
+      "totalMs": 108.62308299999995,
+      "decodedBytes": 3219532,
+      "gzipBytes": 106372,
+      "articles": 1025,
+      "images": 1025,
+      "hosts": [
+        "raw.githubusercontent.com"
+      ]
+    },
+    {
+      "headersMs": 2.5385409999998956,
+      "totalMs": 110.51383299999998,
+      "decodedBytes": 3219532,
+      "gzipBytes": 106372,
+      "articles": 1025,
+      "images": 1025,
+      "hosts": [
+        "raw.githubusercontent.com"
+      ]
+    },
+    {
+      "headersMs": 2.527665999999954,
+      "totalMs": 110.05533299999979,
+      "decodedBytes": 3219532,
+      "gzipBytes": 106372,
+      "articles": 1025,
+      "images": 1025,
+      "hosts": [
+        "raw.githubusercontent.com"
+      ]
+    },
+    {
+      "headersMs": 2.6250420000001213,
+      "totalMs": 110.17170899999996,
+      "decodedBytes": 3219532,
+      "gzipBytes": 106372,
+      "articles": 1025,
+      "images": 1025,
+      "hosts": [
+        "raw.githubusercontent.com"
+      ]
+    },
+    {
+      "headersMs": 2.5639579999997295,
+      "totalMs": 112.08649999999989,
+      "decodedBytes": 3219532,
+      "gzipBytes": 106372,
+      "articles": 1025,
+      "images": 1025,
+      "hosts": [
+        "raw.githubusercontent.com"
+      ]
+    },
+    {
+      "headersMs": 2.560958000000028,
+      "totalMs": 111.1002910000002,
+      "decodedBytes": 3219532,
+      "gzipBytes": 106372,
+      "articles": 1025,
+      "images": 1025,
+      "hosts": [
+        "raw.githubusercontent.com"
+      ]
+    },
+    {
+      "headersMs": 1.1161660000002485,
+      "totalMs": 110.92662500000006,
+      "decodedBytes": 3219532,
+      "gzipBytes": 106372,
+      "articles": 1025,
+      "images": 1025,
+      "hosts": [
+        "raw.githubusercontent.com"
+      ]
+    }
+  ]
+}

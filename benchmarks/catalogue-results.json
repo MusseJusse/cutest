@@ -1,0 +1,162 @@
+{
+  "node": "v22.23.2",
+  "arch": "arm64",
+  "platform": "darwin",
+  "methodology": "15 independent Node processes per implementation, interleaved; process startup excluded. Remote fetch, JSON decode and map; local require JSON and array copy. OS disk cache uncontrolled. Asserted each remote result equals bundled catalogue.",
+  "remote": {
+    "n": 15,
+    "medianMs": 187.31645799999998,
+    "p95Ms": 590.117125,
+    "minMs": 178.029166,
+    "maxMs": 590.117125
+  },
+  "local": {
+    "n": 15,
+    "medianMs": 0.9889170000000043,
+    "p95Ms": 1.0403330000000004,
+    "minMs": 0.8916669999999982,
+    "maxMs": 1.0403330000000004
+  },
+  "samples": {
+    "remote": [
+      {
+        "elapsed": 495.67208400000004,
+        "bytes": 59061,
+        "count": 1025
+      },
+      {
+        "elapsed": 180.0875,
+        "bytes": 59061,
+        "count": 1025
+      },
+      {
+        "elapsed": 590.117125,
+        "bytes": 59061,
+        "count": 1025
+      },
+      {
+        "elapsed": 180.112459,
+        "bytes": 59061,
+        "count": 1025
+      },
+      {
+        "elapsed": 180.11391700000001,
+        "bytes": 59061,
+        "count": 1025
+      },
+      {
+        "elapsed": 185.355208,
+        "bytes": 59061,
+        "count": 1025
+      },
+      {
+        "elapsed": 178.029166,
+        "bytes": 59061,
+        "count": 1025
+      },
+      {
+        "elapsed": 495.284208,
+        "bytes": 59061,
+        "count": 1025
+      },
+      {
+        "elapsed": 191.83645800000002,
+        "bytes": 59061,
+        "count": 1025
+      },
+      {
+        "elapsed": 187.31645799999998,
+        "bytes": 59061,
+        "count": 1025
+      },
+      {
+        "elapsed": 190.65225,
+        "bytes": 59061,
+        "count": 1025
+      },
+      {
+        "elapsed": 187.504834,
+        "bytes": 59061,
+        "count": 1025
+      },
+      {
+        "elapsed": 184.03941600000002,
+        "bytes": 59061,
+        "count": 1025
+      },
+      {
+        "elapsed": 183.884666,
+        "bytes": 59061,
+        "count": 1025
+      },
+      {
+        "elapsed": 187.33625,
+        "bytes": 59061,
+        "count": 1025
+      }
+    ],
+    "local": [
+      {
+        "elapsed": 0.9425829999999991,
+        "count": 1025
+      },
+      {
+        "elapsed": 0.9914169999999984,
+        "count": 1025
+      },
+      {
+        "elapsed": 0.9889170000000043,
+        "count": 1025
+      },
+      {
+        "elapsed": 1.0328750000000042,
+        "count": 1025
+      },
+      {
+        "elapsed": 1.0165000000000006,
+        "count": 1025
+      },
+      {
+        "elapsed": 0.9777500000000003,
+        "count": 1025
+      },
+      {
+        "elapsed": 0.9752499999999955,
+        "count": 1025
+      },
+      {
+        "elapsed": 1.0403330000000004,
+        "count": 1025
+      },
+      {
+        "elapsed": 0.9982919999999993,
+        "count": 1025
+      },
+      {
+        "elapsed": 1.017041000000006,
+        "count": 1025
+      },
+      {
+        "elapsed": 0.8916669999999982,
+        "count": 1025
+      },
+      {
+        "elapsed": 0.9277079999999955,
+        "count": 1025
+      },
+      {
+        "elapsed": 0.9480420000000009,
+        "count": 1025
+      },
+      {
+        "elapsed": 0.9238329999999948,
+        "count": 1025
+      },
+      {
+        "elapsed": 1.010667000000005,
+        "count": 1025
+      }
+    ]
+  },
+  "medianReductionPercent": 99.47206080524968
+}

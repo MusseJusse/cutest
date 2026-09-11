@@ -1,0 +1,18 @@
+{
+  "date": "2026-09-11T13:41:39.126Z",
+  "cold": {
+    "requests": 1,
+    "commands": 2,
+    "keys": 2050
+  },
+  "afterFiveWarmRequests": {
+    "requests": 1,
+    "commands": 2,
+    "keys": 2050
+  },
+  "afterExpiry": {
+    "requests": 2,
+    "commands": 4,
+    "keys": 4100
+  }
+}

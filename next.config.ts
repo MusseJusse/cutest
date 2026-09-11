@@ -1,9 +1,6 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
-  typescript: {
-    ignoreBuildErrors: true,
-  },
   cacheComponents: true,
   cacheLife: {
     default: {
@@ -15,6 +12,19 @@ const nextConfig: NextConfig = {
       expire: 999999999,
       revalidate: 999999999,
     },
+  },
+  async headers() {
+    return [
+      {
+        source: "/:path*",
+        headers: [
+          {
+            key: "Link",
+            value: "<https://cdn.jsdelivr.net>; rel=preconnect",
+          },
+        ],
+      },
+    ];
   },
 };
 

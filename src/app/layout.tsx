@@ -2,7 +2,7 @@ import "~/styles/globals.css";
 
 import { GeistSans } from "geist/font/sans";
 import { type Metadata } from "next";
-import { Toaster } from "~/components/ui/sonner";
+import { DeferredToaster } from "~/components/ui/deferred-toaster";
 
 export const metadata: Metadata = {
   title: "Roundest Cache",
@@ -18,9 +18,10 @@ export default function RootLayout({
       <body
         className={`flex min-h-screen flex-col justify-between text-gray-600 antialiased`}
       >
+        <link rel="preconnect" href="https://cdn.jsdelivr.net" />
         <main className="flex-1">{children}</main>
 
-        <Toaster richColors />
+        <DeferredToaster richColors />
       </body>
     </html>
   );

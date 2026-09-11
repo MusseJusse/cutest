@@ -1,0 +1,88 @@
+{
+  "date": "2026-09-11",
+  "methodology": "Chromium 1280x800 (mobile spot-check at 390x844) against local next start production builds backed by the local KV fixture. Before is commit 9b03128 in ../roundest-prehints on port 4315; after is the working tree on port 4316. Forced layout is measured by hiding document.body, forcing style, re-showing it, and timing a scrollHeight read; 3 warmups and 10 samples per round, 3 alternating rounds. Paint entries are reported for completeness but vary with tab focus and are not a reliable comparison here. All values are local, not production measurements.",
+  "serverHints": {
+    "before": {
+      "linkPreconnectHeader": false,
+      "preconnectLinkInHead": false,
+      "homeCurrentPairFetchPriority": null,
+      "homeHiddenPrefetchFetchPriority": "low"
+    },
+    "after": {
+      "linkPreconnectHeader": true,
+      "preconnectLinkInHead": true,
+      "homeCurrentPairFetchPriority": "high",
+      "homeHiddenPrefetchFetchPriority": "low"
+    }
+  },
+  "homepage": {
+    "before": {
+      "label": "4315, visibility visible",
+      "dclMs": 13.2,
+      "loadMs": 76.2,
+      "fcpMs": 44,
+      "lcp": { "startMs": 44, "tag": "H2", "text": "slither-wing" },
+      "domNodes": 68,
+      "imagePriorities": ["low", "low", null, null],
+      "sprites": [
+        { "file": "736.png", "startMs": 11.5, "durationMs": 64.4, "transferBytes": 682 },
+        { "file": "464.png", "startMs": 11.7, "durationMs": 41.9, "transferBytes": 1766 },
+        { "file": "561.png", "startMs": 11.7, "durationMs": 55.3, "transferBytes": 1501 },
+        { "file": "988.png", "startMs": 11.7, "durationMs": 55.6, "transferBytes": 3115 }
+      ]
+    },
+    "after": {
+      "label": "4316, visibility visible",
+      "dclMs": 16.2,
+      "loadMs": 47.8,
+      "fcpMs": 60,
+      "lcp": { "startMs": 60, "tag": "H1", "text": "BATTLE" },
+      "domNodes": 69,
+      "imagePriorities": ["low", "low", "high", "high"],
+      "sprites": [
+        { "file": "504.png", "startMs": 14.3, "durationMs": 28.2, "transferBytes": 940 },
+        { "file": "932.png", "startMs": 14.4, "durationMs": 2.1, "transferBytes": 0 },
+        { "file": "734.png", "startMs": 14.4, "durationMs": 30.1, "transferBytes": 831 },
+        { "file": "135.png", "startMs": 14.4, "durationMs": 33.2, "transferBytes": 1021 }
+      ]
+    },
+    "note": "The preconnect header and head link are present only in the after build. Cold-connection savings could not be isolated because the shared Chromium profile already had a warm HTTP/3 connection to cdn.jsdelivr.net. Both pages paint the headline before the sprites complete, so the sprite priority hint does not move LCP on this machine."
+  },
+  "resultsLayout": {
+    "before": {
+      "contentVisibility": "visible",
+      "documentHeightPx": 3382,
+      "domNodes": 877,
+      "forcedLayoutMedianMs": [3.5, 3.45, 3.55],
+      "forcedLayoutRaw": [
+        [5.4, 4.8, 4.1, 3.7, 3.6, 3.4, 3.3, 3.1, 3.4, 3.2],
+        [5.5, 4.8, 4.1, 3.9, 3.5, 3.4, 3.3, 3.2, 3.1, 2.9],
+        [5.4, 4.9, 4.1, 3.8, 3.6, 3.5, 3.3, 3.4, 3.2, 2.9]
+      ]
+    },
+    "after": {
+      "contentVisibility": "auto",
+      "containIntrinsicSizeDesktop": "auto 65px",
+      "containIntrinsicSizeMobile": "auto 411px",
+      "documentHeightPx": 3382,
+      "domNodes": 878,
+      "forcedLayoutMedianMs": [1.1, 1.15, 1.5],
+      "forcedLayoutRaw": [
+        [1.5, 1.5, 1.1, 1.2, 1.1, 1, 1.1, 0.9, 1, 0.8],
+        [1.4, 1.4, 1.9, 1.3, 1.1, 1.2, 1.1, 1, 1, 0.9],
+        [1.6, 1.9, 1.5, 1.5, 1.2, 1.4, 1.5, 1.3, 1.1, 1.7]
+      ]
+    },
+    "rowGeometry": {
+      "desktop1280": { "renderedBorderBoxPx": 91, "offscreenBorderBoxPx": 91 },
+      "mobile390": { "renderedBorderBoxPx": 437, "offscreenBorderBoxPx": 437 }
+    },
+    "note": "Forced-layout medians drop from about 3.5 ms to about 1.2 ms (roughly 66% less) with the same document height, so the intrinsic-size estimates do not introduce scrollbar jitter. This is a full-document relayout probe, not a page-load trace."
+  },
+  "clickToPairVisibleMs": {
+    "label": "after build, 10 alternating clicks 300 ms apart",
+    "samples": [6.6, 2.8, 2.9, 3, 2.5, 2.1, 2.5, 2.7, 2.5, 2.6],
+    "medianMs": 2.65,
+    "priorMeasurement": 2.65
+  }
+}

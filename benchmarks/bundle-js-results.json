@@ -1,0 +1,20 @@
+{
+  "date": "2026-09-11",
+  "source": ".next/diagnostics/route-bundle-stats.json firstLoadUncompressedJsBytes, default Turbopack production build",
+  "note": "Build output no longer prints First Load JS in Next 16; these are the diagnostic equivalents. Moving sonner and next-themes behind a dynamic import removes them from every route's first load.",
+  "before": {
+    "/": 580177,
+    "/results": 558947,
+    "/_not-found": 553158
+  },
+  "after": {
+    "/": 550804,
+    "/results": 527312,
+    "/_not-found": 521523
+  },
+  "delta": {
+    "/": -29373,
+    "/results": -31635,
+    "/_not-found": -31635
+  }
+}

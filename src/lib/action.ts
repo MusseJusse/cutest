@@ -2,6 +2,7 @@
 
 import { recordBattle } from "~/sdk/vote";
 import { cookies } from "next/headers";
+import { selectPokemonPairs } from "~/sdk/pokemon";
 import type { PokemonPair } from "~/sdk/pokemon";
 
 export async function voteAction(
@@ -22,4 +23,9 @@ export async function voteAction(
 
   const jar = await cookies();
   jar.set("currentPair", JSON.stringify(nextPair));
+}
+
+export async function getMorePairsAction(count: number) {
+  const size = Math.min(Math.max(Math.trunc(count) || 1, 1), 10);
+  return selectPokemonPairs(size);
 }

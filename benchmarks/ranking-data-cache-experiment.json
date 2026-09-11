@@ -1,0 +1,802 @@
+{
+  "date": "2026-09-11T13:05:38.688Z",
+  "node": "v22.23.2",
+  "machine": "darwin arm64 Apple M4",
+  "methodology": "Alternating sequential HTTP GETs to local next start builds; 3 warmups and 30 samples per variant per scenario. Total response time includes full decoded HTML body, excludes images/browser layout. Fixed deterministic 1025-Pokémon fixture; 50 ms scenario is simulated upstream delay, not production latency.",
+  "scenarios": [
+    {
+      "delayMs": 0,
+      "elapsedMs": 6691.610375,
+      "baseline": {
+        "samples": 30,
+        "medianMs": 101.64670850000039,
+        "p95Ms": 108.86370800000077,
+        "minMs": 98.79266699999789,
+        "maxMs": 110.25233300000036,
+        "meanDecodedBytes": 3118693
+      },
+      "optimized": {
+        "samples": 30,
+        "medianMs": 113.14352100000178,
+        "p95Ms": 123.35337499999878,
+        "minMs": 107.9933340000025,
+        "maxMs": 124.92004200000156,
+        "meanDecodedBytes": 3218398
+      },
+      "medianReductionPercent": -11.310560538220816,
+      "fixture": {
+        "delayMs": 0,
+        "counters": {
+          "baseline": {
+            "requests": 30,
+            "commands": 60,
+            "keys": 61500
+          }
+        }
+      },
+      "raw": {
+        "baseline": [
+          {
+            "headersMs": 3.9996659999997064,
+            "totalMs": 108.86370800000077,
+            "decodedBytes": 3118693,
+            "articleHash": "e90b2d83db621c74e1c4948459c1be7117b054a6be651575e9feca74423b2f39"
+          },
+          {
+            "headersMs": 3.3716669999994338,
+            "totalMs": 108.00183299999844,
+            "decodedBytes": 3118693,
+            "articleHash": "e90b2d83db621c74e1c4948459c1be7117b054a6be651575e9feca74423b2f39"
+          },
+          {
+            "headersMs": 3.17991599999732,
+            "totalMs": 104.57491599999776,
+            "decodedBytes": 3118693,
+            "articleHash": "e90b2d83db621c74e1c4948459c1be7117b054a6be651575e9feca74423b2f39"
+          },
+          {
+            "headersMs": 2.6161670000001322,
+            "totalMs": 102.55004199999894,
+            "decodedBytes": 3118693,
+            "articleHash": "e90b2d83db621c74e1c4948459c1be7117b054a6be651575e9feca74423b2f39"
+          },
+          {
+            "headersMs": 2.676583999997092,
+            "totalMs": 101.57929199999853,
+            "decodedBytes": 3118693,
+            "articleHash": "e90b2d83db621c74e1c4948459c1be7117b054a6be651575e9feca74423b2f39"
+          },
+          {
+            "headersMs": 2.7196660000008706,
+            "totalMs": 101.17950000000201,
+            "decodedBytes": 3118693,
+            "articleHash": "e90b2d83db621c74e1c4948459c1be7117b054a6be651575e9feca74423b2f39"
+          },
+          {
+            "headersMs": 2.7851249999985157,
+            "totalMs": 100.4173329999976,
+            "decodedBytes": 3118693,
+            "articleHash": "e90b2d83db621c74e1c4948459c1be7117b054a6be651575e9feca74423b2f39"
+          },
+          {
+            "headersMs": 2.6398750000007567,
+            "totalMs": 106.63858400000026,
+            "decodedBytes": 3118693,
+            "articleHash": "e90b2d83db621c74e1c4948459c1be7117b054a6be651575e9feca74423b2f39"
+          },
+          {
+            "headersMs": 1.711542000000918,
+            "totalMs": 102.85908299999937,
+            "decodedBytes": 3118693,
+            "articleHash": "e90b2d83db621c74e1c4948459c1be7117b054a6be651575e9feca74423b2f39"
+          },
+          {
+            "headersMs": 2.7265840000000026,
+            "totalMs": 101.60833400000047,
+            "decodedBytes": 3118693,
+            "articleHash": "e90b2d83db621c74e1c4948459c1be7117b054a6be651575e9feca74423b2f39"
+          },
+          {
+            "headersMs": 1.1532919999990554,
+            "totalMs": 98.79266699999789,
+            "decodedBytes": 3118693,
+            "articleHash": "e90b2d83db621c74e1c4948459c1be7117b054a6be651575e9feca74423b2f39"
+          },
+          {
+            "headersMs": 1.6103750000002037,
+            "totalMs": 99.73624999999811,
+            "decodedBytes": 3118693,
+            "articleHash": "e90b2d83db621c74e1c4948459c1be7117b054a6be651575e9feca74423b2f39"
+          },
+          {
+            "headersMs": 2.5868329999975685,
+            "totalMs": 101.12262499999997,
+            "decodedBytes": 3118693,
+            "articleHash": "e90b2d83db621c74e1c4948459c1be7117b054a6be651575e9feca74423b2f39"
+          },
+          {
+            "headersMs": 2.8029160000005504,
+            "totalMs": 110.25233300000036,
+            "decodedBytes": 3118693,
+            "articleHash": "e90b2d83db621c74e1c4948459c1be7117b054a6be651575e9feca74423b2f39"
+          },
+          {
+            "headersMs": 1.7374579999996058,
+            "totalMs": 103.91429100000096,
+            "decodedBytes": 3118693,
+            "articleHash": "e90b2d83db621c74e1c4948459c1be7117b054a6be651575e9feca74423b2f39"
+          },
+          {
+            "headersMs": 2.645874999998341,
+            "totalMs": 101.8493750000016,
+            "decodedBytes": 3118693,
+            "articleHash": "e90b2d83db621c74e1c4948459c1be7117b054a6be651575e9feca74423b2f39"
+          },
+          {
+            "headersMs": 2.5729169999976875,
+            "totalMs": 101.00729199999842,
+            "decodedBytes": 3118693,
+            "articleHash": "e90b2d83db621c74e1c4948459c1be7117b054a6be651575e9feca74423b2f39"
+          },
+          {
+            "headersMs": 2.683375000000524,
+            "totalMs": 100.03433399999994,
+            "decodedBytes": 3118693,
+            "articleHash": "e90b2d83db621c74e1c4948459c1be7117b054a6be651575e9feca74423b2f39"
+          },
+          {
+            "headersMs": 2.693250000000262,
+            "totalMs": 99.88033400000131,
+            "decodedBytes": 3118693,
+            "articleHash": "e90b2d83db621c74e1c4948459c1be7117b054a6be651575e9feca74423b2f39"
+          },
+          {
+            "headersMs": 2.5384999999987485,
+            "totalMs": 99.79629199999908,
+            "decodedBytes": 3118693,
+            "articleHash": "e90b2d83db621c74e1c4948459c1be7117b054a6be651575e9feca74423b2f39"
+          },
+          {
+            "headersMs": 2.7232500000027358,
+            "totalMs": 101.55170800000269,
+            "decodedBytes": 3118693,
+            "articleHash": "e90b2d83db621c74e1c4948459c1be7117b054a6be651575e9feca74423b2f39"
+          },
+          {
+            "headersMs": 2.6406669999996666,
+            "totalMs": 101.97429199999897,
+            "decodedBytes": 3118693,
+            "articleHash": "e90b2d83db621c74e1c4948459c1be7117b054a6be651575e9feca74423b2f39"
+          },
+          {
+            "headersMs": 2.6450000000004366,
+            "totalMs": 101.890625,
+            "decodedBytes": 3118693,
+            "articleHash": "e90b2d83db621c74e1c4948459c1be7117b054a6be651575e9feca74423b2f39"
+          },
+          {
+            "headersMs": 2.9145000000025902,
+            "totalMs": 106.70987500000047,
+            "decodedBytes": 3118693,
+            "articleHash": "e90b2d83db621c74e1c4948459c1be7117b054a6be651575e9feca74423b2f39"
+          },
+          {
+            "headersMs": 3.0913330000003043,
+            "totalMs": 107.00954099999944,
+            "decodedBytes": 3118693,
+            "articleHash": "e90b2d83db621c74e1c4948459c1be7117b054a6be651575e9feca74423b2f39"
+          },
+          {
+            "headersMs": 2.776792000000569,
+            "totalMs": 101.6850830000003,
+            "decodedBytes": 3118693,
+            "articleHash": "e90b2d83db621c74e1c4948459c1be7117b054a6be651575e9feca74423b2f39"
+          },
+          {
+            "headersMs": 2.5941249999996217,
+            "totalMs": 102.91558299999815,
+            "decodedBytes": 3118693,
+            "articleHash": "e90b2d83db621c74e1c4948459c1be7117b054a6be651575e9feca74423b2f39"
+          },
+          {
+            "headersMs": 2.667042000000947,
+            "totalMs": 100.20508399999744,
+            "decodedBytes": 3118693,
+            "articleHash": "e90b2d83db621c74e1c4948459c1be7117b054a6be651575e9feca74423b2f39"
+          },
+          {
+            "headersMs": 1.7504580000022543,
+            "totalMs": 100.51045800000065,
+            "decodedBytes": 3118693,
+            "articleHash": "e90b2d83db621c74e1c4948459c1be7117b054a6be651575e9feca74423b2f39"
+          },
+          {
+            "headersMs": 2.6269590000010794,
+            "totalMs": 101.25800000000163,
+            "decodedBytes": 3118693,
+            "articleHash": "e90b2d83db621c74e1c4948459c1be7117b054a6be651575e9feca74423b2f39"
+          }
+        ],
+        "optimized": [
+          {
+            "headersMs": 2.782415999998193,
+            "totalMs": 114.66804099999717,
+            "decodedBytes": 3218398,
+            "articleHash": "e90b2d83db621c74e1c4948459c1be7117b054a6be651575e9feca74423b2f39"
+          },
+          {
+            "headersMs": 3.6345000000001164,
+            "totalMs": 121.28258300000016,
+            "decodedBytes": 3218398,
+            "articleHash": "e90b2d83db621c74e1c4948459c1be7117b054a6be651575e9feca74423b2f39"
+          },
+          {
+            "headersMs": 3.593666000000667,
+            "totalMs": 114.45341600000029,
+            "decodedBytes": 3218398,
+            "articleHash": "e90b2d83db621c74e1c4948459c1be7117b054a6be651575e9feca74423b2f39"
+          },
+          {
+            "headersMs": 2.8688750000001164,
+            "totalMs": 110.46237499999916,
+            "decodedBytes": 3218398,
+            "articleHash": "e90b2d83db621c74e1c4948459c1be7117b054a6be651575e9feca74423b2f39"
+          },
+          {
+            "headersMs": 3.0756250000013097,
+            "totalMs": 113.24154200000339,
+            "decodedBytes": 3218398,
+            "articleHash": "e90b2d83db621c74e1c4948459c1be7117b054a6be651575e9feca74423b2f39"
+          },
+          {
+            "headersMs": 4.759125000000495,
+            "totalMs": 114.90245900000082,
+            "decodedBytes": 3218398,
+            "articleHash": "e90b2d83db621c74e1c4948459c1be7117b054a6be651575e9feca74423b2f39"
+          },
+          {
+            "headersMs": 3.2524579999990237,
+            "totalMs": 119.67341700000179,
+            "decodedBytes": 3218398,
+            "articleHash": "e90b2d83db621c74e1c4948459c1be7117b054a6be651575e9feca74423b2f39"
+          },
+          {
+            "headersMs": 2.527874999999767,
+            "totalMs": 116.69995899999776,
+            "decodedBytes": 3218398,
+            "articleHash": "e90b2d83db621c74e1c4948459c1be7117b054a6be651575e9feca74423b2f39"
+          },
+          {
+            "headersMs": 2.632792000000336,
+            "totalMs": 124.92004200000156,
+            "decodedBytes": 3218398,
+            "articleHash": "e90b2d83db621c74e1c4948459c1be7117b054a6be651575e9feca74423b2f39"
+          },
+          {
+            "headersMs": 2.449292000001151,
+            "totalMs": 113.04550000000017,
+            "decodedBytes": 3218398,
+            "articleHash": "e90b2d83db621c74e1c4948459c1be7117b054a6be651575e9feca74423b2f39"
+          },
+          {
+            "headersMs": 2.57666700000118,
+            "totalMs": 117.7636670000029,
+            "decodedBytes": 3218398,
+            "articleHash": "e90b2d83db621c74e1c4948459c1be7117b054a6be651575e9feca74423b2f39"
+          },
+          {
+            "headersMs": 2.7411659999997937,
+            "totalMs": 112.73449999999866,
+            "decodedBytes": 3218398,
+            "articleHash": "e90b2d83db621c74e1c4948459c1be7117b054a6be651575e9feca74423b2f39"
+          },
+          {
+            "headersMs": 2.6376669999990554,
+            "totalMs": 117.02587499999936,
+            "decodedBytes": 3218398,
+            "articleHash": "e90b2d83db621c74e1c4948459c1be7117b054a6be651575e9feca74423b2f39"
+          },
+          {
+            "headersMs": 2.5437910000000556,
+            "totalMs": 108.99254100000326,
+            "decodedBytes": 3218398,
+            "articleHash": "e90b2d83db621c74e1c4948459c1be7117b054a6be651575e9feca74423b2f39"
+          },
+          {
+            "headersMs": 1.15625,
+            "totalMs": 107.9933340000025,
+            "decodedBytes": 3218398,
+            "articleHash": "e90b2d83db621c74e1c4948459c1be7117b054a6be651575e9feca74423b2f39"
+          },
+          {
+            "headersMs": 2.5811670000002778,
+            "totalMs": 115.21633400000064,
+            "decodedBytes": 3218398,
+            "articleHash": "e90b2d83db621c74e1c4948459c1be7117b054a6be651575e9feca74423b2f39"
+          },
+          {
+            "headersMs": 2.8022909999999683,
+            "totalMs": 113.30329100000017,
+            "decodedBytes": 3218398,
+            "articleHash": "e90b2d83db621c74e1c4948459c1be7117b054a6be651575e9feca74423b2f39"
+          },
+          {
+            "headersMs": 2.595540999998775,
+            "totalMs": 110.66370800000004,
+            "decodedBytes": 3218398,
+            "articleHash": "e90b2d83db621c74e1c4948459c1be7117b054a6be651575e9feca74423b2f39"
+          },
+          {
+            "headersMs": 2.495167000000947,
+            "totalMs": 111.05566700000054,
+            "decodedBytes": 3218398,
+            "articleHash": "e90b2d83db621c74e1c4948459c1be7117b054a6be651575e9feca74423b2f39"
+          },
+          {
+            "headersMs": 2.5587090000008175,
+            "totalMs": 109.73945900000035,
+            "decodedBytes": 3218398,
+            "articleHash": "e90b2d83db621c74e1c4948459c1be7117b054a6be651575e9feca74423b2f39"
+          },
+          {
+            "headersMs": 2.5088749999995343,
+            "totalMs": 110.00700000000143,
+            "decodedBytes": 3218398,
+            "articleHash": "e90b2d83db621c74e1c4948459c1be7117b054a6be651575e9feca74423b2f39"
+          },
+          {
+            "headersMs": 2.562333000001672,
+            "totalMs": 109.9108750000014,
+            "decodedBytes": 3218398,
+            "articleHash": "e90b2d83db621c74e1c4948459c1be7117b054a6be651575e9feca74423b2f39"
+          },
+          {
+            "headersMs": 1.4191670000000158,
+            "totalMs": 111.0434580000001,
+            "decodedBytes": 3218398,
+            "articleHash": "e90b2d83db621c74e1c4948459c1be7117b054a6be651575e9feca74423b2f39"
+          },
+          {
+            "headersMs": 2.5466249999990396,
+            "totalMs": 111.6941250000018,
+            "decodedBytes": 3218398,
+            "articleHash": "e90b2d83db621c74e1c4948459c1be7117b054a6be651575e9feca74423b2f39"
+          },
+          {
+            "headersMs": 2.534250000000611,
+            "totalMs": 123.35337499999878,
+            "decodedBytes": 3218398,
+            "articleHash": "e90b2d83db621c74e1c4948459c1be7117b054a6be651575e9feca74423b2f39"
+          },
+          {
+            "headersMs": 2.5928339999991294,
+            "totalMs": 112.52066700000069,
+            "decodedBytes": 3218398,
+            "articleHash": "e90b2d83db621c74e1c4948459c1be7117b054a6be651575e9feca74423b2f39"
+          },
+          {
+            "headersMs": 2.5094160000007832,
+            "totalMs": 115.46149999999761,
+            "decodedBytes": 3218398,
+            "articleHash": "e90b2d83db621c74e1c4948459c1be7117b054a6be651575e9feca74423b2f39"
+          },
+          {
+            "headersMs": 2.4697500000002037,
+            "totalMs": 110.86766700000226,
+            "decodedBytes": 3218398,
+            "articleHash": "e90b2d83db621c74e1c4948459c1be7117b054a6be651575e9feca74423b2f39"
+          },
+          {
+            "headersMs": 2.664708000000246,
+            "totalMs": 110.97537499999817,
+            "decodedBytes": 3218398,
+            "articleHash": "e90b2d83db621c74e1c4948459c1be7117b054a6be651575e9feca74423b2f39"
+          },
+          {
+            "headersMs": 2.4851659999985714,
+            "totalMs": 115.59329100000105,
+            "decodedBytes": 3218398,
+            "articleHash": "e90b2d83db621c74e1c4948459c1be7117b054a6be651575e9feca74423b2f39"
+          }
+        ]
+      }
+    },
+    {
+      "delayMs": 50,
+      "elapsedMs": 8480.662292,
+      "baseline": {
+        "samples": 30,
+        "medianMs": 158.32012499999837,
+        "p95Ms": 164.10837499999616,
+        "minMs": 155.10912500000268,
+        "maxMs": 166.78287500000442,
+        "meanDecodedBytes": 3118693
+      },
+      "optimized": {
+        "samples": 30,
+        "medianMs": 116.5993750000016,
+        "p95Ms": 119.17991600000096,
+        "minMs": 114.42079199999716,
+        "maxMs": 120.843541000002,
+        "meanDecodedBytes": 3218398
+      },
+      "medianReductionPercent": 26.352145692152018,
+      "fixture": {
+        "delayMs": 50,
+        "counters": {
+          "baseline": {
+            "requests": 30,
+            "commands": 60,
+            "keys": 61500
+          }
+        }
+      },
+      "raw": {
+        "baseline": [
+          {
+            "headersMs": 3.0888340000019525,
+            "totalMs": 166.78287500000442,
+            "decodedBytes": 3118693,
+            "articleHash": "e90b2d83db621c74e1c4948459c1be7117b054a6be651575e9feca74423b2f39"
+          },
+          {
+            "headersMs": 3.0878329999977723,
+            "totalMs": 163.91354200000205,
+            "decodedBytes": 3118693,
+            "articleHash": "e90b2d83db621c74e1c4948459c1be7117b054a6be651575e9feca74423b2f39"
+          },
+          {
+            "headersMs": 3.1154999999998836,
+            "totalMs": 160.46758299999783,
+            "decodedBytes": 3118693,
+            "articleHash": "e90b2d83db621c74e1c4948459c1be7117b054a6be651575e9feca74423b2f39"
+          },
+          {
+            "headersMs": 2.6367499999978463,
+            "totalMs": 157.0546669999967,
+            "decodedBytes": 3118693,
+            "articleHash": "e90b2d83db621c74e1c4948459c1be7117b054a6be651575e9feca74423b2f39"
+          },
+          {
+            "headersMs": 2.6080829999991693,
+            "totalMs": 158.2591670000038,
+            "decodedBytes": 3118693,
+            "articleHash": "e90b2d83db621c74e1c4948459c1be7117b054a6be651575e9feca74423b2f39"
+          },
+          {
+            "headersMs": 2.6617499999993015,
+            "totalMs": 161.75895799999853,
+            "decodedBytes": 3118693,
+            "articleHash": "e90b2d83db621c74e1c4948459c1be7117b054a6be651575e9feca74423b2f39"
+          },
+          {
+            "headersMs": 3.029540999996243,
+            "totalMs": 161.19262499999604,
+            "decodedBytes": 3118693,
+            "articleHash": "e90b2d83db621c74e1c4948459c1be7117b054a6be651575e9feca74423b2f39"
+          },
+          {
+            "headersMs": 2.706207999995968,
+            "totalMs": 157.16729099999793,
+            "decodedBytes": 3118693,
+            "articleHash": "e90b2d83db621c74e1c4948459c1be7117b054a6be651575e9feca74423b2f39"
+          },
+          {
+            "headersMs": 2.4905839999992168,
+            "totalMs": 156.64608399999997,
+            "decodedBytes": 3118693,
+            "articleHash": "e90b2d83db621c74e1c4948459c1be7117b054a6be651575e9feca74423b2f39"
+          },
+          {
+            "headersMs": 2.5812909999949625,
+            "totalMs": 162.0258329999997,
+            "decodedBytes": 3118693,
+            "articleHash": "e90b2d83db621c74e1c4948459c1be7117b054a6be651575e9feca74423b2f39"
+          },
+          {
+            "headersMs": 3.0704580000019632,
+            "totalMs": 162.67012499999691,
+            "decodedBytes": 3118693,
+            "articleHash": "e90b2d83db621c74e1c4948459c1be7117b054a6be651575e9feca74423b2f39"
+          },
+          {
+            "headersMs": 2.6727499999979045,
+            "totalMs": 158.09108399999968,
+            "decodedBytes": 3118693,
+            "articleHash": "e90b2d83db621c74e1c4948459c1be7117b054a6be651575e9feca74423b2f39"
+          },
+          {
+            "headersMs": 2.6233330000031856,
+            "totalMs": 156.43362500000512,
+            "decodedBytes": 3118693,
+            "articleHash": "e90b2d83db621c74e1c4948459c1be7117b054a6be651575e9feca74423b2f39"
+          },
+          {
+            "headersMs": 2.7644579999978305,
+            "totalMs": 157.36570799999754,
+            "decodedBytes": 3118693,
+            "articleHash": "e90b2d83db621c74e1c4948459c1be7117b054a6be651575e9feca74423b2f39"
+          },
+          {
+            "headersMs": 2.533084000002418,
+            "totalMs": 163.8323339999988,
+            "decodedBytes": 3118693,
+            "articleHash": "e90b2d83db621c74e1c4948459c1be7117b054a6be651575e9feca74423b2f39"
+          },
+          {
+            "headersMs": 3.236040999996476,
+            "totalMs": 161.53608299999905,
+            "decodedBytes": 3118693,
+            "articleHash": "e90b2d83db621c74e1c4948459c1be7117b054a6be651575e9feca74423b2f39"
+          },
+          {
+            "headersMs": 2.660583000004408,
+            "totalMs": 155.51520800000435,
+            "decodedBytes": 3118693,
+            "articleHash": "e90b2d83db621c74e1c4948459c1be7117b054a6be651575e9feca74423b2f39"
+          },
+          {
+            "headersMs": 2.6304999999993015,
+            "totalMs": 158.23949999999604,
+            "decodedBytes": 3118693,
+            "articleHash": "e90b2d83db621c74e1c4948459c1be7117b054a6be651575e9feca74423b2f39"
+          },
+          {
+            "headersMs": 2.5194160000028205,
+            "totalMs": 157.5663330000025,
+            "decodedBytes": 3118693,
+            "articleHash": "e90b2d83db621c74e1c4948459c1be7117b054a6be651575e9feca74423b2f39"
+          },
+          {
+            "headersMs": 2.794291999998677,
+            "totalMs": 157.29933299999539,
+            "decodedBytes": 3118693,
+            "articleHash": "e90b2d83db621c74e1c4948459c1be7117b054a6be651575e9feca74423b2f39"
+          },
+          {
+            "headersMs": 2.620958999999857,
+            "totalMs": 158.32129200000054,
+            "decodedBytes": 3118693,
+            "articleHash": "e90b2d83db621c74e1c4948459c1be7117b054a6be651575e9feca74423b2f39"
+          },
+          {
+            "headersMs": 2.6481669999993755,
+            "totalMs": 155.10912500000268,
+            "decodedBytes": 3118693,
+            "articleHash": "e90b2d83db621c74e1c4948459c1be7117b054a6be651575e9feca74423b2f39"
+          },
+          {
+            "headersMs": 2.5025410000016564,
+            "totalMs": 158.0784580000036,
+            "decodedBytes": 3118693,
+            "articleHash": "e90b2d83db621c74e1c4948459c1be7117b054a6be651575e9feca74423b2f39"
+          },
+          {
+            "headersMs": 2.6916669999991427,
+            "totalMs": 159.80279199999495,
+            "decodedBytes": 3118693,
+            "articleHash": "e90b2d83db621c74e1c4948459c1be7117b054a6be651575e9feca74423b2f39"
+          },
+          {
+            "headersMs": 2.7058749999996508,
+            "totalMs": 159.46887500000594,
+            "decodedBytes": 3118693,
+            "articleHash": "e90b2d83db621c74e1c4948459c1be7117b054a6be651575e9feca74423b2f39"
+          },
+          {
+            "headersMs": 2.6598749999975553,
+            "totalMs": 158.3189579999962,
+            "decodedBytes": 3118693,
+            "articleHash": "e90b2d83db621c74e1c4948459c1be7117b054a6be651575e9feca74423b2f39"
+          },
+          {
+            "headersMs": 2.4822080000012647,
+            "totalMs": 164.10837499999616,
+            "decodedBytes": 3118693,
+            "articleHash": "e90b2d83db621c74e1c4948459c1be7117b054a6be651575e9feca74423b2f39"
+          },
+          {
+            "headersMs": 3.1591669999979786,
+            "totalMs": 160.64829199999804,
+            "decodedBytes": 3118693,
+            "articleHash": "e90b2d83db621c74e1c4948459c1be7117b054a6be651575e9feca74423b2f39"
+          },
+          {
+            "headersMs": 2.768499999998312,
+            "totalMs": 158.89362500000425,
+            "decodedBytes": 3118693,
+            "articleHash": "e90b2d83db621c74e1c4948459c1be7117b054a6be651575e9feca74423b2f39"
+          },
+          {
+            "headersMs": 2.779499999996915,
+            "totalMs": 157.63941599999816,
+            "decodedBytes": 3118693,
+            "articleHash": "e90b2d83db621c74e1c4948459c1be7117b054a6be651575e9feca74423b2f39"
+          }
+        ],
+        "optimized": [
+          {
+            "headersMs": 2.63916700000118,
+            "totalMs": 119.00616699999955,
+            "decodedBytes": 3218398,
+            "articleHash": "e90b2d83db621c74e1c4948459c1be7117b054a6be651575e9feca74423b2f39"
+          },
+          {
+            "headersMs": 2.674084000005678,
+            "totalMs": 116.1196670000063,
+            "decodedBytes": 3218398,
+            "articleHash": "e90b2d83db621c74e1c4948459c1be7117b054a6be651575e9feca74423b2f39"
+          },
+          {
+            "headersMs": 2.68974999999773,
+            "totalMs": 116.89370900000358,
+            "decodedBytes": 3218398,
+            "articleHash": "e90b2d83db621c74e1c4948459c1be7117b054a6be651575e9feca74423b2f39"
+          },
+          {
+            "headersMs": 2.606500000001688,
+            "totalMs": 116.54650000000402,
+            "decodedBytes": 3218398,
+            "articleHash": "e90b2d83db621c74e1c4948459c1be7117b054a6be651575e9feca74423b2f39"
+          },
+          {
+            "headersMs": 2.7046249999984866,
+            "totalMs": 116.65224999999919,
+            "decodedBytes": 3218398,
+            "articleHash": "e90b2d83db621c74e1c4948459c1be7117b054a6be651575e9feca74423b2f39"
+          },
+          {
+            "headersMs": 2.579875000003085,
+            "totalMs": 116.03216699999757,
+            "decodedBytes": 3218398,
+            "articleHash": "e90b2d83db621c74e1c4948459c1be7117b054a6be651575e9feca74423b2f39"
+          },
+          {
+            "headersMs": 2.7139590000006137,
+            "totalMs": 116.0460000000021,
+            "decodedBytes": 3218398,
+            "articleHash": "e90b2d83db621c74e1c4948459c1be7117b054a6be651575e9feca74423b2f39"
+          },
+          {
+            "headersMs": 2.5920829999959096,
+            "totalMs": 117.19750000000204,
+            "decodedBytes": 3218398,
+            "articleHash": "e90b2d83db621c74e1c4948459c1be7117b054a6be651575e9feca74423b2f39"
+          },
+          {
+            "headersMs": 2.6590419999993173,
+            "totalMs": 117.41720799999894,
+            "decodedBytes": 3218398,
+            "articleHash": "e90b2d83db621c74e1c4948459c1be7117b054a6be651575e9feca74423b2f39"
+          },
+          {
+            "headersMs": 2.5534590000024764,
+            "totalMs": 115.50733400000172,
+            "decodedBytes": 3218398,
+            "articleHash": "e90b2d83db621c74e1c4948459c1be7117b054a6be651575e9feca74423b2f39"
+          },
+          {
+            "headersMs": 1.7837090000030003,
+            "totalMs": 114.42079199999716,
+            "decodedBytes": 3218398,
+            "articleHash": "e90b2d83db621c74e1c4948459c1be7117b054a6be651575e9feca74423b2f39"
+          },
+          {
+            "headersMs": 2.6165409999957774,
+            "totalMs": 116.2609999999986,
+            "decodedBytes": 3218398,
+            "articleHash": "e90b2d83db621c74e1c4948459c1be7117b054a6be651575e9feca74423b2f39"
+          },
+          {
+            "headersMs": 1.2594580000004498,
+            "totalMs": 116.69458299999678,
+            "decodedBytes": 3218398,
+            "articleHash": "e90b2d83db621c74e1c4948459c1be7117b054a6be651575e9feca74423b2f39"
+          },
+          {
+            "headersMs": 2.598375000001397,
+            "totalMs": 115.51816600000166,
+            "decodedBytes": 3218398,
+            "articleHash": "e90b2d83db621c74e1c4948459c1be7117b054a6be651575e9feca74423b2f39"
+          },
+          {
+            "headersMs": 2.7314580000020214,
+            "totalMs": 116.47845799999777,
+            "decodedBytes": 3218398,
+            "articleHash": "e90b2d83db621c74e1c4948459c1be7117b054a6be651575e9feca74423b2f39"
+          },
+          {
+            "headersMs": 2.475291999995534,
+            "totalMs": 118.2366669999974,
+            "decodedBytes": 3218398,
+            "articleHash": "e90b2d83db621c74e1c4948459c1be7117b054a6be651575e9feca74423b2f39"
+          },
+          {
+            "headersMs": 2.626791000002413,
+            "totalMs": 119.17991600000096,
+            "decodedBytes": 3218398,
+            "articleHash": "e90b2d83db621c74e1c4948459c1be7117b054a6be651575e9feca74423b2f39"
+          },
+          {
+            "headersMs": 2.5592499999984284,
+            "totalMs": 115.56266699999833,
+            "decodedBytes": 3218398,
+            "articleHash": "e90b2d83db621c74e1c4948459c1be7117b054a6be651575e9feca74423b2f39"
+          },
+          {
+            "headersMs": 2.675999999999476,
+            "totalMs": 116.78404199999932,
+            "decodedBytes": 3218398,
+            "articleHash": "e90b2d83db621c74e1c4948459c1be7117b054a6be651575e9feca74423b2f39"
+          },
+          {
+            "headersMs": 1.5166249999965657,
+            "totalMs": 117.34674999999697,
+            "decodedBytes": 3218398,
+            "articleHash": "e90b2d83db621c74e1c4948459c1be7117b054a6be651575e9feca74423b2f39"
+          },
+          {
+            "headersMs": 2.7706249999973807,
+            "totalMs": 120.843541000002,
+            "decodedBytes": 3218398,
+            "articleHash": "e90b2d83db621c74e1c4948459c1be7117b054a6be651575e9feca74423b2f39"
+          },
+          {
+            "headersMs": 2.592832999995153,
+            "totalMs": 117.45779200000106,
+            "decodedBytes": 3218398,
+            "articleHash": "e90b2d83db621c74e1c4948459c1be7117b054a6be651575e9feca74423b2f39"
+          },
+          {
+            "headersMs": 2.648709000000963,
+            "totalMs": 116.34550000000309,
+            "decodedBytes": 3218398,
+            "articleHash": "e90b2d83db621c74e1c4948459c1be7117b054a6be651575e9feca74423b2f39"
+          },
+          {
+            "headersMs": 2.4852499999979045,
+            "totalMs": 116.04891700000007,
+            "decodedBytes": 3218398,
+            "articleHash": "e90b2d83db621c74e1c4948459c1be7117b054a6be651575e9feca74423b2f39"
+          },
+          {
+            "headersMs": 2.6161670000001322,
+            "totalMs": 117.27900000000227,
+            "decodedBytes": 3218398,
+            "articleHash": "e90b2d83db621c74e1c4948459c1be7117b054a6be651575e9feca74423b2f39"
+          },
+          {
+            "headersMs": 2.619417000001704,
+            "totalMs": 117.68491699999868,
+            "decodedBytes": 3218398,
+            "articleHash": "e90b2d83db621c74e1c4948459c1be7117b054a6be651575e9feca74423b2f39"
+          },
+          {
+            "headersMs": 2.6344160000007832,
+            "totalMs": 116.95245799999975,
+            "decodedBytes": 3218398,
+            "articleHash": "e90b2d83db621c74e1c4948459c1be7117b054a6be651575e9feca74423b2f39"
+          },
+          {
+            "headersMs": 2.565042000001995,
+            "totalMs": 116.53583300000173,
+            "decodedBytes": 3218398,
+            "articleHash": "e90b2d83db621c74e1c4948459c1be7117b054a6be651575e9feca74423b2f39"
+          },
+          {
+            "headersMs": 2.6582090000010794,
+            "totalMs": 115.38570900000195,
+            "decodedBytes": 3218398,
+            "articleHash": "e90b2d83db621c74e1c4948459c1be7117b054a6be651575e9feca74423b2f39"
+          },
+          {
+            "headersMs": 2.5786669999943115,
+            "totalMs": 116.42812499999854,
+            "decodedBytes": 3218398,
+            "articleHash": "e90b2d83db621c74e1c4948459c1be7117b054a6be651575e9feca74423b2f39"
+          }
+        ]
+      }
+    }
+  ]
+}

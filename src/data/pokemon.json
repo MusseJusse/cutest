@@ -1,0 +1,4102 @@
+[
+  {
+    "name": "bulbasaur",
+    "dexNumber": 1
+  },
+  {
+    "name": "ivysaur",
+    "dexNumber": 2
+  },
+  {
+    "name": "venusaur",
+    "dexNumber": 3
+  },
+  {
+    "name": "charmander",
+    "dexNumber": 4
+  },
+  {
+    "name": "charmeleon",
+    "dexNumber": 5
+  },
+  {
+    "name": "charizard",
+    "dexNumber": 6
+  },
+  {
+    "name": "squirtle",
+    "dexNumber": 7
+  },
+  {
+    "name": "wartortle",
+    "dexNumber": 8
+  },
+  {
+    "name": "blastoise",
+    "dexNumber": 9
+  },
+  {
+    "name": "caterpie",
+    "dexNumber": 10
+  },
+  {
+    "name": "metapod",
+    "dexNumber": 11
+  },
+  {
+    "name": "butterfree",
+    "dexNumber": 12
+  },
+  {
+    "name": "weedle",
+    "dexNumber": 13
+  },
+  {
+    "name": "kakuna",
+    "dexNumber": 14
+  },
+  {
+    "name": "beedrill",
+    "dexNumber": 15
+  },
+  {
+    "name": "pidgey",
+    "dexNumber": 16
+  },
+  {
+    "name": "pidgeotto",
+    "dexNumber": 17
+  },
+  {
+    "name": "pidgeot",
+    "dexNumber": 18
+  },
+  {
+    "name": "rattata",
+    "dexNumber": 19
+  },
+  {
+    "name": "raticate",
+    "dexNumber": 20
+  },
+  {
+    "name": "spearow",
+    "dexNumber": 21
+  },
+  {
+    "name": "fearow",
+    "dexNumber": 22
+  },
+  {
+    "name": "ekans",
+    "dexNumber": 23
+  },
+  {
+    "name": "arbok",
+    "dexNumber": 24
+  },
+  {
+    "name": "pikachu",
+    "dexNumber": 25
+  },
+  {
+    "name": "raichu",
+    "dexNumber": 26
+  },
+  {
+    "name": "sandshrew",
+    "dexNumber": 27
+  },
+  {
+    "name": "sandslash",
+    "dexNumber": 28
+  },
+  {
+    "name": "nidoran-f",
+    "dexNumber": 29
+  },
+  {
+    "name": "nidorina",
+    "dexNumber": 30
+  },
+  {
+    "name": "nidoqueen",
+    "dexNumber": 31
+  },
+  {
+    "name": "nidoran-m",
+    "dexNumber": 32
+  },
+  {
+    "name": "nidorino",
+    "dexNumber": 33
+  },
+  {
+    "name": "nidoking",
+    "dexNumber": 34
+  },
+  {
+    "name": "clefairy",
+    "dexNumber": 35
+  },
+  {
+    "name": "clefable",
+    "dexNumber": 36
+  },
+  {
+    "name": "vulpix",
+    "dexNumber": 37
+  },
+  {
+    "name": "ninetales",
+    "dexNumber": 38
+  },
+  {
+    "name": "jigglypuff",
+    "dexNumber": 39
+  },
+  {
+    "name": "wigglytuff",
+    "dexNumber": 40
+  },
+  {
+    "name": "zubat",
+    "dexNumber": 41
+  },
+  {
+    "name": "golbat",
+    "dexNumber": 42
+  },
+  {
+    "name": "oddish",
+    "dexNumber": 43
+  },
+  {
+    "name": "gloom",
+    "dexNumber": 44
+  },
+  {
+    "name": "vileplume",
+    "dexNumber": 45
+  },
+  {
+    "name": "paras",
+    "dexNumber": 46
+  },
+  {
+    "name": "parasect",
+    "dexNumber": 47
+  },
+  {
+    "name": "venonat",
+    "dexNumber": 48
+  },
+  {
+    "name": "venomoth",
+    "dexNumber": 49
+  },
+  {
+    "name": "diglett",
+    "dexNumber": 50
+  },
+  {
+    "name": "dugtrio",
+    "dexNumber": 51
+  },
+  {
+    "name": "meowth",
+    "dexNumber": 52
+  },
+  {
+    "name": "persian",
+    "dexNumber": 53
+  },
+  {
+    "name": "psyduck",
+    "dexNumber": 54
+  },
+  {
+    "name": "golduck",
+    "dexNumber": 55
+  },
+  {
+    "name": "mankey",
+    "dexNumber": 56
+  },
+  {
+    "name": "primeape",
+    "dexNumber": 57
+  },
+  {
+    "name": "growlithe",
+    "dexNumber": 58
+  },
+  {
+    "name": "arcanine",
+    "dexNumber": 59
+  },
+  {
+    "name": "poliwag",
+    "dexNumber": 60
+  },
+  {
+    "name": "poliwhirl",
+    "dexNumber": 61
+  },
+  {
+    "name": "poliwrath",
+    "dexNumber": 62
+  },
+  {
+    "name": "abra",
+    "dexNumber": 63
+  },
+  {
+    "name": "kadabra",
+    "dexNumber": 64
+  },
+  {
+    "name": "alakazam",
+    "dexNumber": 65
+  },
+  {
+    "name": "machop",
+    "dexNumber": 66
+  },
+  {
+    "name": "machoke",
+    "dexNumber": 67
+  },
+  {
+    "name": "machamp",
+    "dexNumber": 68
+  },
+  {
+    "name": "bellsprout",
+    "dexNumber": 69
+  },
+  {
+    "name": "weepinbell",
+    "dexNumber": 70
+  },
+  {
+    "name": "victreebel",
+    "dexNumber": 71
+  },
+  {
+    "name": "tentacool",
+    "dexNumber": 72
+  },
+  {
+    "name": "tentacruel",
+    "dexNumber": 73
+  },
+  {
+    "name": "geodude",
+    "dexNumber": 74
+  },
+  {
+    "name": "graveler",
+    "dexNumber": 75
+  },
+  {
+    "name": "golem",
+    "dexNumber": 76
+  },
+  {
+    "name": "ponyta",
+    "dexNumber": 77
+  },
+  {
+    "name": "rapidash",
+    "dexNumber": 78
+  },
+  {
+    "name": "slowpoke",
+    "dexNumber": 79
+  },
+  {
+    "name": "slowbro",
+    "dexNumber": 80
+  },
+  {
+    "name": "magnemite",
+    "dexNumber": 81
+  },
+  {
+    "name": "magneton",
+    "dexNumber": 82
+  },
+  {
+    "name": "farfetchd",
+    "dexNumber": 83
+  },
+  {
+    "name": "doduo",
+    "dexNumber": 84
+  },
+  {
+    "name": "dodrio",
+    "dexNumber": 85
+  },
+  {
+    "name": "seel",
+    "dexNumber": 86
+  },
+  {
+    "name": "dewgong",
+    "dexNumber": 87
+  },
+  {
+    "name": "grimer",
+    "dexNumber": 88
+  },
+  {
+    "name": "muk",
+    "dexNumber": 89
+  },
+  {
+    "name": "shellder",
+    "dexNumber": 90
+  },
+  {
+    "name": "cloyster",
+    "dexNumber": 91
+  },
+  {
+    "name": "gastly",
+    "dexNumber": 92
+  },
+  {
+    "name": "haunter",
+    "dexNumber": 93
+  },
+  {
+    "name": "gengar",
+    "dexNumber": 94
+  },
+  {
+    "name": "onix",
+    "dexNumber": 95
+  },
+  {
+    "name": "drowzee",
+    "dexNumber": 96
+  },
+  {
+    "name": "hypno",
+    "dexNumber": 97
+  },
+  {
+    "name": "krabby",
+    "dexNumber": 98
+  },
+  {
+    "name": "kingler",
+    "dexNumber": 99
+  },
+  {
+    "name": "voltorb",
+    "dexNumber": 100
+  },
+  {
+    "name": "electrode",
+    "dexNumber": 101
+  },
+  {
+    "name": "exeggcute",
+    "dexNumber": 102
+  },
+  {
+    "name": "exeggutor",
+    "dexNumber": 103
+  },
+  {
+    "name": "cubone",
+    "dexNumber": 104
+  },
+  {
+    "name": "marowak",
+    "dexNumber": 105
+  },
+  {
+    "name": "hitmonlee",
+    "dexNumber": 106
+  },
+  {
+    "name": "hitmonchan",
+    "dexNumber": 107
+  },
+  {
+    "name": "lickitung",
+    "dexNumber": 108
+  },
+  {
+    "name": "koffing",
+    "dexNumber": 109
+  },
+  {
+    "name": "weezing",
+    "dexNumber": 110
+  },
+  {
+    "name": "rhyhorn",
+    "dexNumber": 111
+  },
+  {
+    "name": "rhydon",
+    "dexNumber": 112
+  },
+  {
+    "name": "chansey",
+    "dexNumber": 113
+  },
+  {
+    "name": "tangela",
+    "dexNumber": 114
+  },
+  {
+    "name": "kangaskhan",
+    "dexNumber": 115
+  },
+  {
+    "name": "horsea",
+    "dexNumber": 116
+  },
+  {
+    "name": "seadra",
+    "dexNumber": 117
+  },
+  {
+    "name": "goldeen",
+    "dexNumber": 118
+  },
+  {
+    "name": "seaking",
+    "dexNumber": 119
+  },
+  {
+    "name": "staryu",
+    "dexNumber": 120
+  },
+  {
+    "name": "starmie",
+    "dexNumber": 121
+  },
+  {
+    "name": "mr-mime",
+    "dexNumber": 122
+  },
+  {
+    "name": "scyther",
+    "dexNumber": 123
+  },
+  {
+    "name": "jynx",
+    "dexNumber": 124
+  },
+  {
+    "name": "electabuzz",
+    "dexNumber": 125
+  },
+  {
+    "name": "magmar",
+    "dexNumber": 126
+  },
+  {
+    "name": "pinsir",
+    "dexNumber": 127
+  },
+  {
+    "name": "tauros",
+    "dexNumber": 128
+  },
+  {
+    "name": "magikarp",
+    "dexNumber": 129
+  },
+  {
+    "name": "gyarados",
+    "dexNumber": 130
+  },
+  {
+    "name": "lapras",
+    "dexNumber": 131
+  },
+  {
+    "name": "ditto",
+    "dexNumber": 132
+  },
+  {
+    "name": "eevee",
+    "dexNumber": 133
+  },
+  {
+    "name": "vaporeon",
+    "dexNumber": 134
+  },
+  {
+    "name": "jolteon",
+    "dexNumber": 135
+  },
+  {
+    "name": "flareon",
+    "dexNumber": 136
+  },
+  {
+    "name": "porygon",
+    "dexNumber": 137
+  },
+  {
+    "name": "omanyte",
+    "dexNumber": 138
+  },
+  {
+    "name": "omastar",
+    "dexNumber": 139
+  },
+  {
+    "name": "kabuto",
+    "dexNumber": 140
+  },
+  {
+    "name": "kabutops",
+    "dexNumber": 141
+  },
+  {
+    "name": "aerodactyl",
+    "dexNumber": 142
+  },
+  {
+    "name": "snorlax",
+    "dexNumber": 143
+  },
+  {
+    "name": "articuno",
+    "dexNumber": 144
+  },
+  {
+    "name": "zapdos",
+    "dexNumber": 145
+  },
+  {
+    "name": "moltres",
+    "dexNumber": 146
+  },
+  {
+    "name": "dratini",
+    "dexNumber": 147
+  },
+  {
+    "name": "dragonair",
+    "dexNumber": 148
+  },
+  {
+    "name": "dragonite",
+    "dexNumber": 149
+  },
+  {
+    "name": "mewtwo",
+    "dexNumber": 150
+  },
+  {
+    "name": "mew",
+    "dexNumber": 151
+  },
+  {
+    "name": "chikorita",
+    "dexNumber": 152
+  },
+  {
+    "name": "bayleef",
+    "dexNumber": 153
+  },
+  {
+    "name": "meganium",
+    "dexNumber": 154
+  },
+  {
+    "name": "cyndaquil",
+    "dexNumber": 155
+  },
+  {
+    "name": "quilava",
+    "dexNumber": 156
+  },
+  {
+    "name": "typhlosion",
+    "dexNumber": 157
+  },
+  {
+    "name": "totodile",
+    "dexNumber": 158
+  },
+  {
+    "name": "croconaw",
+    "dexNumber": 159
+  },
+  {
+    "name": "feraligatr",
+    "dexNumber": 160
+  },
+  {
+    "name": "sentret",
+    "dexNumber": 161
+  },
+  {
+    "name": "furret",
+    "dexNumber": 162
+  },
+  {
+    "name": "hoothoot",
+    "dexNumber": 163
+  },
+  {
+    "name": "noctowl",
+    "dexNumber": 164
+  },
+  {
+    "name": "ledyba",
+    "dexNumber": 165
+  },
+  {
+    "name": "ledian",
+    "dexNumber": 166
+  },
+  {
+    "name": "spinarak",
+    "dexNumber": 167
+  },
+  {
+    "name": "ariados",
+    "dexNumber": 168
+  },
+  {
+    "name": "crobat",
+    "dexNumber": 169
+  },
+  {
+    "name": "chinchou",
+    "dexNumber": 170
+  },
+  {
+    "name": "lanturn",
+    "dexNumber": 171
+  },
+  {
+    "name": "pichu",
+    "dexNumber": 172
+  },
+  {
+    "name": "cleffa",
+    "dexNumber": 173
+  },
+  {
+    "name": "igglybuff",
+    "dexNumber": 174
+  },
+  {
+    "name": "togepi",
+    "dexNumber": 175
+  },
+  {
+    "name": "togetic",
+    "dexNumber": 176
+  },
+  {
+    "name": "natu",
+    "dexNumber": 177
+  },
+  {
+    "name": "xatu",
+    "dexNumber": 178
+  },
+  {
+    "name": "mareep",
+    "dexNumber": 179
+  },
+  {
+    "name": "flaaffy",
+    "dexNumber": 180
+  },
+  {
+    "name": "ampharos",
+    "dexNumber": 181
+  },
+  {
+    "name": "bellossom",
+    "dexNumber": 182
+  },
+  {
+    "name": "marill",
+    "dexNumber": 183
+  },
+  {
+    "name": "azumarill",
+    "dexNumber": 184
+  },
+  {
+    "name": "sudowoodo",
+    "dexNumber": 185
+  },
+  {
+    "name": "politoed",
+    "dexNumber": 186
+  },
+  {
+    "name": "hoppip",
+    "dexNumber": 187
+  },
+  {
+    "name": "skiploom",
+    "dexNumber": 188
+  },
+  {
+    "name": "jumpluff",
+    "dexNumber": 189
+  },
+  {
+    "name": "aipom",
+    "dexNumber": 190
+  },
+  {
+    "name": "sunkern",
+    "dexNumber": 191
+  },
+  {
+    "name": "sunflora",
+    "dexNumber": 192
+  },
+  {
+    "name": "yanma",
+    "dexNumber": 193
+  },
+  {
+    "name": "wooper",
+    "dexNumber": 194
+  },
+  {
+    "name": "quagsire",
+    "dexNumber": 195
+  },
+  {
+    "name": "espeon",
+    "dexNumber": 196
+  },
+  {
+    "name": "umbreon",
+    "dexNumber": 197
+  },
+  {
+    "name": "murkrow",
+    "dexNumber": 198
+  },
+  {
+    "name": "slowking",
+    "dexNumber": 199
+  },
+  {
+    "name": "misdreavus",
+    "dexNumber": 200
+  },
+  {
+    "name": "unown",
+    "dexNumber": 201
+  },
+  {
+    "name": "wobbuffet",
+    "dexNumber": 202
+  },
+  {
+    "name": "girafarig",
+    "dexNumber": 203
+  },
+  {
+    "name": "pineco",
+    "dexNumber": 204
+  },
+  {
+    "name": "forretress",
+    "dexNumber": 205
+  },
+  {
+    "name": "dunsparce",
+    "dexNumber": 206
+  },
+  {
+    "name": "gligar",
+    "dexNumber": 207
+  },
+  {
+    "name": "steelix",
+    "dexNumber": 208
+  },
+  {
+    "name": "snubbull",
+    "dexNumber": 209
+  },
+  {
+    "name": "granbull",
+    "dexNumber": 210
+  },
+  {
+    "name": "qwilfish",
+    "dexNumber": 211
+  },
+  {
+    "name": "scizor",
+    "dexNumber": 212
+  },
+  {
+    "name": "shuckle",
+    "dexNumber": 213
+  },
+  {
+    "name": "heracross",
+    "dexNumber": 214
+  },
+  {
+    "name": "sneasel",
+    "dexNumber": 215
+  },
+  {
+    "name": "teddiursa",
+    "dexNumber": 216
+  },
+  {
+    "name": "ursaring",
+    "dexNumber": 217
+  },
+  {
+    "name": "slugma",
+    "dexNumber": 218
+  },
+  {
+    "name": "magcargo",
+    "dexNumber": 219
+  },
+  {
+    "name": "swinub",
+    "dexNumber": 220
+  },
+  {
+    "name": "piloswine",
+    "dexNumber": 221
+  },
+  {
+    "name": "corsola",
+    "dexNumber": 222
+  },
+  {
+    "name": "remoraid",
+    "dexNumber": 223
+  },
+  {
+    "name": "octillery",
+    "dexNumber": 224
+  },
+  {
+    "name": "delibird",
+    "dexNumber": 225
+  },
+  {
+    "name": "mantine",
+    "dexNumber": 226
+  },
+  {
+    "name": "skarmory",
+    "dexNumber": 227
+  },
+  {
+    "name": "houndour",
+    "dexNumber": 228
+  },
+  {
+    "name": "houndoom",
+    "dexNumber": 229
+  },
+  {
+    "name": "kingdra",
+    "dexNumber": 230
+  },
+  {
+    "name": "phanpy",
+    "dexNumber": 231
+  },
+  {
+    "name": "donphan",
+    "dexNumber": 232
+  },
+  {
+    "name": "porygon2",
+    "dexNumber": 233
+  },
+  {
+    "name": "stantler",
+    "dexNumber": 234
+  },
+  {
+    "name": "smeargle",
+    "dexNumber": 235
+  },
+  {
+    "name": "tyrogue",
+    "dexNumber": 236
+  },
+  {
+    "name": "hitmontop",
+    "dexNumber": 237
+  },
+  {
+    "name": "smoochum",
+    "dexNumber": 238
+  },
+  {
+    "name": "elekid",
+    "dexNumber": 239
+  },
+  {
+    "name": "magby",
+    "dexNumber": 240
+  },
+  {
+    "name": "miltank",
+    "dexNumber": 241
+  },
+  {
+    "name": "blissey",
+    "dexNumber": 242
+  },
+  {
+    "name": "raikou",
+    "dexNumber": 243
+  },
+  {
+    "name": "entei",
+    "dexNumber": 244
+  },
+  {
+    "name": "suicune",
+    "dexNumber": 245
+  },
+  {
+    "name": "larvitar",
+    "dexNumber": 246
+  },
+  {
+    "name": "pupitar",
+    "dexNumber": 247
+  },
+  {
+    "name": "tyranitar",
+    "dexNumber": 248
+  },
+  {
+    "name": "lugia",
+    "dexNumber": 249
+  },
+  {
+    "name": "ho-oh",
+    "dexNumber": 250
+  },
+  {
+    "name": "celebi",
+    "dexNumber": 251
+  },
+  {
+    "name": "treecko",
+    "dexNumber": 252
+  },
+  {
+    "name": "grovyle",
+    "dexNumber": 253
+  },
+  {
+    "name": "sceptile",
+    "dexNumber": 254
+  },
+  {
+    "name": "torchic",
+    "dexNumber": 255
+  },
+  {
+    "name": "combusken",
+    "dexNumber": 256
+  },
+  {
+    "name": "blaziken",
+    "dexNumber": 257
+  },
+  {
+    "name": "mudkip",
+    "dexNumber": 258
+  },
+  {
+    "name": "marshtomp",
+    "dexNumber": 259
+  },
+  {
+    "name": "swampert",
+    "dexNumber": 260
+  },
+  {
+    "name": "poochyena",
+    "dexNumber": 261
+  },
+  {
+    "name": "mightyena",
+    "dexNumber": 262
+  },
+  {
+    "name": "zigzagoon",
+    "dexNumber": 263
+  },
+  {
+    "name": "linoone",
+    "dexNumber": 264
+  },
+  {
+    "name": "wurmple",
+    "dexNumber": 265
+  },
+  {
+    "name": "silcoon",
+    "dexNumber": 266
+  },
+  {
+    "name": "beautifly",
+    "dexNumber": 267
+  },
+  {
+    "name": "cascoon",
+    "dexNumber": 268
+  },
+  {
+    "name": "dustox",
+    "dexNumber": 269
+  },
+  {
+    "name": "lotad",
+    "dexNumber": 270
+  },
+  {
+    "name": "lombre",
+    "dexNumber": 271
+  },
+  {
+    "name": "ludicolo",
+    "dexNumber": 272
+  },
+  {
+    "name": "seedot",
+    "dexNumber": 273
+  },
+  {
+    "name": "nuzleaf",
+    "dexNumber": 274
+  },
+  {
+    "name": "shiftry",
+    "dexNumber": 275
+  },
+  {
+    "name": "taillow",
+    "dexNumber": 276
+  },
+  {
+    "name": "swellow",
+    "dexNumber": 277
+  },
+  {
+    "name": "wingull",
+    "dexNumber": 278
+  },
+  {
+    "name": "pelipper",
+    "dexNumber": 279
+  },
+  {
+    "name": "ralts",
+    "dexNumber": 280
+  },
+  {
+    "name": "kirlia",
+    "dexNumber": 281
+  },
+  {
+    "name": "gardevoir",
+    "dexNumber": 282
+  },
+  {
+    "name": "surskit",
+    "dexNumber": 283
+  },
+  {
+    "name": "masquerain",
+    "dexNumber": 284
+  },
+  {
+    "name": "shroomish",
+    "dexNumber": 285
+  },
+  {
+    "name": "breloom",
+    "dexNumber": 286
+  },
+  {
+    "name": "slakoth",
+    "dexNumber": 287
+  },
+  {
+    "name": "vigoroth",
+    "dexNumber": 288
+  },
+  {
+    "name": "slaking",
+    "dexNumber": 289
+  },
+  {
+    "name": "nincada",
+    "dexNumber": 290
+  },
+  {
+    "name": "ninjask",
+    "dexNumber": 291
+  },
+  {
+    "name": "shedinja",
+    "dexNumber": 292
+  },
+  {
+    "name": "whismur",
+    "dexNumber": 293
+  },
+  {
+    "name": "loudred",
+    "dexNumber": 294
+  },
+  {
+    "name": "exploud",
+    "dexNumber": 295
+  },
+  {
+    "name": "makuhita",
+    "dexNumber": 296
+  },
+  {
+    "name": "hariyama",
+    "dexNumber": 297
+  },
+  {
+    "name": "azurill",
+    "dexNumber": 298
+  },
+  {
+    "name": "nosepass",
+    "dexNumber": 299
+  },
+  {
+    "name": "skitty",
+    "dexNumber": 300
+  },
+  {
+    "name": "delcatty",
+    "dexNumber": 301
+  },
+  {
+    "name": "sableye",
+    "dexNumber": 302
+  },
+  {
+    "name": "mawile",
+    "dexNumber": 303
+  },
+  {
+    "name": "aron",
+    "dexNumber": 304
+  },
+  {
+    "name": "lairon",
+    "dexNumber": 305
+  },
+  {
+    "name": "aggron",
+    "dexNumber": 306
+  },
+  {
+    "name": "meditite",
+    "dexNumber": 307
+  },
+  {
+    "name": "medicham",
+    "dexNumber": 308
+  },
+  {
+    "name": "electrike",
+    "dexNumber": 309
+  },
+  {
+    "name": "manectric",
+    "dexNumber": 310
+  },
+  {
+    "name": "plusle",
+    "dexNumber": 311
+  },
+  {
+    "name": "minun",
+    "dexNumber": 312
+  },
+  {
+    "name": "volbeat",
+    "dexNumber": 313
+  },
+  {
+    "name": "illumise",
+    "dexNumber": 314
+  },
+  {
+    "name": "roselia",
+    "dexNumber": 315
+  },
+  {
+    "name": "gulpin",
+    "dexNumber": 316
+  },
+  {
+    "name": "swalot",
+    "dexNumber": 317
+  },
+  {
+    "name": "carvanha",
+    "dexNumber": 318
+  },
+  {
+    "name": "sharpedo",
+    "dexNumber": 319
+  },
+  {
+    "name": "wailmer",
+    "dexNumber": 320
+  },
+  {
+    "name": "wailord",
+    "dexNumber": 321
+  },
+  {
+    "name": "numel",
+    "dexNumber": 322
+  },
+  {
+    "name": "camerupt",
+    "dexNumber": 323
+  },
+  {
+    "name": "torkoal",
+    "dexNumber": 324
+  },
+  {
+    "name": "spoink",
+    "dexNumber": 325
+  },
+  {
+    "name": "grumpig",
+    "dexNumber": 326
+  },
+  {
+    "name": "spinda",
+    "dexNumber": 327
+  },
+  {
+    "name": "trapinch",
+    "dexNumber": 328
+  },
+  {
+    "name": "vibrava",
+    "dexNumber": 329
+  },
+  {
+    "name": "flygon",
+    "dexNumber": 330
+  },
+  {
+    "name": "cacnea",
+    "dexNumber": 331
+  },
+  {
+    "name": "cacturne",
+    "dexNumber": 332
+  },
+  {
+    "name": "swablu",
+    "dexNumber": 333
+  },
+  {
+    "name": "altaria",
+    "dexNumber": 334
+  },
+  {
+    "name": "zangoose",
+    "dexNumber": 335
+  },
+  {
+    "name": "seviper",
+    "dexNumber": 336
+  },
+  {
+    "name": "lunatone",
+    "dexNumber": 337
+  },
+  {
+    "name": "solrock",
+    "dexNumber": 338
+  },
+  {
+    "name": "barboach",
+    "dexNumber": 339
+  },
+  {
+    "name": "whiscash",
+    "dexNumber": 340
+  },
+  {
+    "name": "corphish",
+    "dexNumber": 341
+  },
+  {
+    "name": "crawdaunt",
+    "dexNumber": 342
+  },
+  {
+    "name": "baltoy",
+    "dexNumber": 343
+  },
+  {
+    "name": "claydol",
+    "dexNumber": 344
+  },
+  {
+    "name": "lileep",
+    "dexNumber": 345
+  },
+  {
+    "name": "cradily",
+    "dexNumber": 346
+  },
+  {
+    "name": "anorith",
+    "dexNumber": 347
+  },
+  {
+    "name": "armaldo",
+    "dexNumber": 348
+  },
+  {
+    "name": "feebas",
+    "dexNumber": 349
+  },
+  {
+    "name": "milotic",
+    "dexNumber": 350
+  },
+  {
+    "name": "castform",
+    "dexNumber": 351
+  },
+  {
+    "name": "kecleon",
+    "dexNumber": 352
+  },
+  {
+    "name": "shuppet",
+    "dexNumber": 353
+  },
+  {
+    "name": "banette",
+    "dexNumber": 354
+  },
+  {
+    "name": "duskull",
+    "dexNumber": 355
+  },
+  {
+    "name": "dusclops",
+    "dexNumber": 356
+  },
+  {
+    "name": "tropius",
+    "dexNumber": 357
+  },
+  {
+    "name": "chimecho",
+    "dexNumber": 358
+  },
+  {
+    "name": "absol",
+    "dexNumber": 359
+  },
+  {
+    "name": "wynaut",
+    "dexNumber": 360
+  },
+  {
+    "name": "snorunt",
+    "dexNumber": 361
+  },
+  {
+    "name": "glalie",
+    "dexNumber": 362
+  },
+  {
+    "name": "spheal",
+    "dexNumber": 363
+  },
+  {
+    "name": "sealeo",
+    "dexNumber": 364
+  },
+  {
+    "name": "walrein",
+    "dexNumber": 365
+  },
+  {
+    "name": "clamperl",
+    "dexNumber": 366
+  },
+  {
+    "name": "huntail",
+    "dexNumber": 367
+  },
+  {
+    "name": "gorebyss",
+    "dexNumber": 368
+  },
+  {
+    "name": "relicanth",
+    "dexNumber": 369
+  },
+  {
+    "name": "luvdisc",
+    "dexNumber": 370
+  },
+  {
+    "name": "bagon",
+    "dexNumber": 371
+  },
+  {
+    "name": "shelgon",
+    "dexNumber": 372
+  },
+  {
+    "name": "salamence",
+    "dexNumber": 373
+  },
+  {
+    "name": "beldum",
+    "dexNumber": 374
+  },
+  {
+    "name": "metang",
+    "dexNumber": 375
+  },
+  {
+    "name": "metagross",
+    "dexNumber": 376
+  },
+  {
+    "name": "regirock",
+    "dexNumber": 377
+  },
+  {
+    "name": "regice",
+    "dexNumber": 378
+  },
+  {
+    "name": "registeel",
+    "dexNumber": 379
+  },
+  {
+    "name": "latias",
+    "dexNumber": 380
+  },
+  {
+    "name": "latios",
+    "dexNumber": 381
+  },
+  {
+    "name": "kyogre",
+    "dexNumber": 382
+  },
+  {
+    "name": "groudon",
+    "dexNumber": 383
+  },
+  {
+    "name": "rayquaza",
+    "dexNumber": 384
+  },
+  {
+    "name": "jirachi",
+    "dexNumber": 385
+  },
+  {
+    "name": "deoxys",
+    "dexNumber": 386
+  },
+  {
+    "name": "turtwig",
+    "dexNumber": 387
+  },
+  {
+    "name": "grotle",
+    "dexNumber": 388
+  },
+  {
+    "name": "torterra",
+    "dexNumber": 389
+  },
+  {
+    "name": "chimchar",
+    "dexNumber": 390
+  },
+  {
+    "name": "monferno",
+    "dexNumber": 391
+  },
+  {
+    "name": "infernape",
+    "dexNumber": 392
+  },
+  {
+    "name": "piplup",
+    "dexNumber": 393
+  },
+  {
+    "name": "prinplup",
+    "dexNumber": 394
+  },
+  {
+    "name": "empoleon",
+    "dexNumber": 395
+  },
+  {
+    "name": "starly",
+    "dexNumber": 396
+  },
+  {
+    "name": "staravia",
+    "dexNumber": 397
+  },
+  {
+    "name": "staraptor",
+    "dexNumber": 398
+  },
+  {
+    "name": "bidoof",
+    "dexNumber": 399
+  },
+  {
+    "name": "bibarel",
+    "dexNumber": 400
+  },
+  {
+    "name": "kricketot",
+    "dexNumber": 401
+  },
+  {
+    "name": "kricketune",
+    "dexNumber": 402
+  },
+  {
+    "name": "shinx",
+    "dexNumber": 403
+  },
+  {
+    "name": "luxio",
+    "dexNumber": 404
+  },
+  {
+    "name": "luxray",
+    "dexNumber": 405
+  },
+  {
+    "name": "budew",
+    "dexNumber": 406
+  },
+  {
+    "name": "roserade",
+    "dexNumber": 407
+  },
+  {
+    "name": "cranidos",
+    "dexNumber": 408
+  },
+  {
+    "name": "rampardos",
+    "dexNumber": 409
+  },
+  {
+    "name": "shieldon",
+    "dexNumber": 410
+  },
+  {
+    "name": "bastiodon",
+    "dexNumber": 411
+  },
+  {
+    "name": "burmy",
+    "dexNumber": 412
+  },
+  {
+    "name": "wormadam",
+    "dexNumber": 413
+  },
+  {
+    "name": "mothim",
+    "dexNumber": 414
+  },
+  {
+    "name": "combee",
+    "dexNumber": 415
+  },
+  {
+    "name": "vespiquen",
+    "dexNumber": 416
+  },
+  {
+    "name": "pachirisu",
+    "dexNumber": 417
+  },
+  {
+    "name": "buizel",
+    "dexNumber": 418
+  },
+  {
+    "name": "floatzel",
+    "dexNumber": 419
+  },
+  {
+    "name": "cherubi",
+    "dexNumber": 420
+  },
+  {
+    "name": "cherrim",
+    "dexNumber": 421
+  },
+  {
+    "name": "shellos",
+    "dexNumber": 422
+  },
+  {
+    "name": "gastrodon",
+    "dexNumber": 423
+  },
+  {
+    "name": "ambipom",
+    "dexNumber": 424
+  },
+  {
+    "name": "drifloon",
+    "dexNumber": 425
+  },
+  {
+    "name": "drifblim",
+    "dexNumber": 426
+  },
+  {
+    "name": "buneary",
+    "dexNumber": 427
+  },
+  {
+    "name": "lopunny",
+    "dexNumber": 428
+  },
+  {
+    "name": "mismagius",
+    "dexNumber": 429
+  },
+  {
+    "name": "honchkrow",
+    "dexNumber": 430
+  },
+  {
+    "name": "glameow",
+    "dexNumber": 431
+  },
+  {
+    "name": "purugly",
+    "dexNumber": 432
+  },
+  {
+    "name": "chingling",
+    "dexNumber": 433
+  },
+  {
+    "name": "stunky",
+    "dexNumber": 434
+  },
+  {
+    "name": "skuntank",
+    "dexNumber": 435
+  },
+  {
+    "name": "bronzor",
+    "dexNumber": 436
+  },
+  {
+    "name": "bronzong",
+    "dexNumber": 437
+  },
+  {
+    "name": "bonsly",
+    "dexNumber": 438
+  },
+  {
+    "name": "mime-jr",
+    "dexNumber": 439
+  },
+  {
+    "name": "happiny",
+    "dexNumber": 440
+  },
+  {
+    "name": "chatot",
+    "dexNumber": 441
+  },
+  {
+    "name": "spiritomb",
+    "dexNumber": 442
+  },
+  {
+    "name": "gible",
+    "dexNumber": 443
+  },
+  {
+    "name": "gabite",
+    "dexNumber": 444
+  },
+  {
+    "name": "garchomp",
+    "dexNumber": 445
+  },
+  {
+    "name": "munchlax",
+    "dexNumber": 446
+  },
+  {
+    "name": "riolu",
+    "dexNumber": 447
+  },
+  {
+    "name": "lucario",
+    "dexNumber": 448
+  },
+  {
+    "name": "hippopotas",
+    "dexNumber": 449
+  },
+  {
+    "name": "hippowdon",
+    "dexNumber": 450
+  },
+  {
+    "name": "skorupi",
+    "dexNumber": 451
+  },
+  {
+    "name": "drapion",
+    "dexNumber": 452
+  },
+  {
+    "name": "croagunk",
+    "dexNumber": 453
+  },
+  {
+    "name": "toxicroak",
+    "dexNumber": 454
+  },
+  {
+    "name": "carnivine",
+    "dexNumber": 455
+  },
+  {
+    "name": "finneon",
+    "dexNumber": 456
+  },
+  {
+    "name": "lumineon",
+    "dexNumber": 457
+  },
+  {
+    "name": "mantyke",
+    "dexNumber": 458
+  },
+  {
+    "name": "snover",
+    "dexNumber": 459
+  },
+  {
+    "name": "abomasnow",
+    "dexNumber": 460
+  },
+  {
+    "name": "weavile",
+    "dexNumber": 461
+  },
+  {
+    "name": "magnezone",
+    "dexNumber": 462
+  },
+  {
+    "name": "lickilicky",
+    "dexNumber": 463
+  },
+  {
+    "name": "rhyperior",
+    "dexNumber": 464
+  },
+  {
+    "name": "tangrowth",
+    "dexNumber": 465
+  },
+  {
+    "name": "electivire",
+    "dexNumber": 466
+  },
+  {
+    "name": "magmortar",
+    "dexNumber": 467
+  },
+  {
+    "name": "togekiss",
+    "dexNumber": 468
+  },
+  {
+    "name": "yanmega",
+    "dexNumber": 469
+  },
+  {
+    "name": "leafeon",
+    "dexNumber": 470
+  },
+  {
+    "name": "glaceon",
+    "dexNumber": 471
+  },
+  {
+    "name": "gliscor",
+    "dexNumber": 472
+  },
+  {
+    "name": "mamoswine",
+    "dexNumber": 473
+  },
+  {
+    "name": "porygon-z",
+    "dexNumber": 474
+  },
+  {
+    "name": "gallade",
+    "dexNumber": 475
+  },
+  {
+    "name": "probopass",
+    "dexNumber": 476
+  },
+  {
+    "name": "dusknoir",
+    "dexNumber": 477
+  },
+  {
+    "name": "froslass",
+    "dexNumber": 478
+  },
+  {
+    "name": "rotom",
+    "dexNumber": 479
+  },
+  {
+    "name": "uxie",
+    "dexNumber": 480
+  },
+  {
+    "name": "mesprit",
+    "dexNumber": 481
+  },
+  {
+    "name": "azelf",
+    "dexNumber": 482
+  },
+  {
+    "name": "dialga",
+    "dexNumber": 483
+  },
+  {
+    "name": "palkia",
+    "dexNumber": 484
+  },
+  {
+    "name": "heatran",
+    "dexNumber": 485
+  },
+  {
+    "name": "regigigas",
+    "dexNumber": 486
+  },
+  {
+    "name": "giratina",
+    "dexNumber": 487
+  },
+  {
+    "name": "cresselia",
+    "dexNumber": 488
+  },
+  {
+    "name": "phione",
+    "dexNumber": 489
+  },
+  {
+    "name": "manaphy",
+    "dexNumber": 490
+  },
+  {
+    "name": "darkrai",
+    "dexNumber": 491
+  },
+  {
+    "name": "shaymin",
+    "dexNumber": 492
+  },
+  {
+    "name": "arceus",
+    "dexNumber": 493
+  },
+  {
+    "name": "victini",
+    "dexNumber": 494
+  },
+  {
+    "name": "snivy",
+    "dexNumber": 495
+  },
+  {
+    "name": "servine",
+    "dexNumber": 496
+  },
+  {
+    "name": "serperior",
+    "dexNumber": 497
+  },
+  {
+    "name": "tepig",
+    "dexNumber": 498
+  },
+  {
+    "name": "pignite",
+    "dexNumber": 499
+  },
+  {
+    "name": "emboar",
+    "dexNumber": 500
+  },
+  {
+    "name": "oshawott",
+    "dexNumber": 501
+  },
+  {
+    "name": "dewott",
+    "dexNumber": 502
+  },
+  {
+    "name": "samurott",
+    "dexNumber": 503
+  },
+  {
+    "name": "patrat",
+    "dexNumber": 504
+  },
+  {
+    "name": "watchog",
+    "dexNumber": 505
+  },
+  {
+    "name": "lillipup",
+    "dexNumber": 506
+  },
+  {
+    "name": "herdier",
+    "dexNumber": 507
+  },
+  {
+    "name": "stoutland",
+    "dexNumber": 508
+  },
+  {
+    "name": "purrloin",
+    "dexNumber": 509
+  },
+  {
+    "name": "liepard",
+    "dexNumber": 510
+  },
+  {
+    "name": "pansage",
+    "dexNumber": 511
+  },
+  {
+    "name": "simisage",
+    "dexNumber": 512
+  },
+  {
+    "name": "pansear",
+    "dexNumber": 513
+  },
+  {
+    "name": "simisear",
+    "dexNumber": 514
+  },
+  {
+    "name": "panpour",
+    "dexNumber": 515
+  },
+  {
+    "name": "simipour",
+    "dexNumber": 516
+  },
+  {
+    "name": "munna",
+    "dexNumber": 517
+  },
+  {
+    "name": "musharna",
+    "dexNumber": 518
+  },
+  {
+    "name": "pidove",
+    "dexNumber": 519
+  },
+  {
+    "name": "tranquill",
+    "dexNumber": 520
+  },
+  {
+    "name": "unfezant",
+    "dexNumber": 521
+  },
+  {
+    "name": "blitzle",
+    "dexNumber": 522
+  },
+  {
+    "name": "zebstrika",
+    "dexNumber": 523
+  },
+  {
+    "name": "roggenrola",
+    "dexNumber": 524
+  },
+  {
+    "name": "boldore",
+    "dexNumber": 525
+  },
+  {
+    "name": "gigalith",
+    "dexNumber": 526
+  },
+  {
+    "name": "woobat",
+    "dexNumber": 527
+  },
+  {
+    "name": "swoobat",
+    "dexNumber": 528
+  },
+  {
+    "name": "drilbur",
+    "dexNumber": 529
+  },
+  {
+    "name": "excadrill",
+    "dexNumber": 530
+  },
+  {
+    "name": "audino",
+    "dexNumber": 531
+  },
+  {
+    "name": "timburr",
+    "dexNumber": 532
+  },
+  {
+    "name": "gurdurr",
+    "dexNumber": 533
+  },
+  {
+    "name": "conkeldurr",
+    "dexNumber": 534
+  },
+  {
+    "name": "tympole",
+    "dexNumber": 535
+  },
+  {
+    "name": "palpitoad",
+    "dexNumber": 536
+  },
+  {
+    "name": "seismitoad",
+    "dexNumber": 537
+  },
+  {
+    "name": "throh",
+    "dexNumber": 538
+  },
+  {
+    "name": "sawk",
+    "dexNumber": 539
+  },
+  {
+    "name": "sewaddle",
+    "dexNumber": 540
+  },
+  {
+    "name": "swadloon",
+    "dexNumber": 541
+  },
+  {
+    "name": "leavanny",
+    "dexNumber": 542
+  },
+  {
+    "name": "venipede",
+    "dexNumber": 543
+  },
+  {
+    "name": "whirlipede",
+    "dexNumber": 544
+  },
+  {
+    "name": "scolipede",
+    "dexNumber": 545
+  },
+  {
+    "name": "cottonee",
+    "dexNumber": 546
+  },
+  {
+    "name": "whimsicott",
+    "dexNumber": 547
+  },
+  {
+    "name": "petilil",
+    "dexNumber": 548
+  },
+  {
+    "name": "lilligant",
+    "dexNumber": 549
+  },
+  {
+    "name": "basculin",
+    "dexNumber": 550
+  },
+  {
+    "name": "sandile",
+    "dexNumber": 551
+  },
+  {
+    "name": "krokorok",
+    "dexNumber": 552
+  },
+  {
+    "name": "krookodile",
+    "dexNumber": 553
+  },
+  {
+    "name": "darumaka",
+    "dexNumber": 554
+  },
+  {
+    "name": "darmanitan",
+    "dexNumber": 555
+  },
+  {
+    "name": "maractus",
+    "dexNumber": 556
+  },
+  {
+    "name": "dwebble",
+    "dexNumber": 557
+  },
+  {
+    "name": "crustle",
+    "dexNumber": 558
+  },
+  {
+    "name": "scraggy",
+    "dexNumber": 559
+  },
+  {
+    "name": "scrafty",
+    "dexNumber": 560
+  },
+  {
+    "name": "sigilyph",
+    "dexNumber": 561
+  },
+  {
+    "name": "yamask",
+    "dexNumber": 562
+  },
+  {
+    "name": "cofagrigus",
+    "dexNumber": 563
+  },
+  {
+    "name": "tirtouga",
+    "dexNumber": 564
+  },
+  {
+    "name": "carracosta",
+    "dexNumber": 565
+  },
+  {
+    "name": "archen",
+    "dexNumber": 566
+  },
+  {
+    "name": "archeops",
+    "dexNumber": 567
+  },
+  {
+    "name": "trubbish",
+    "dexNumber": 568
+  },
+  {
+    "name": "garbodor",
+    "dexNumber": 569
+  },
+  {
+    "name": "zorua",
+    "dexNumber": 570
+  },
+  {
+    "name": "zoroark",
+    "dexNumber": 571
+  },
+  {
+    "name": "minccino",
+    "dexNumber": 572
+  },
+  {
+    "name": "cinccino",
+    "dexNumber": 573
+  },
+  {
+    "name": "gothita",
+    "dexNumber": 574
+  },
+  {
+    "name": "gothorita",
+    "dexNumber": 575
+  },
+  {
+    "name": "gothitelle",
+    "dexNumber": 576
+  },
+  {
+    "name": "solosis",
+    "dexNumber": 577
+  },
+  {
+    "name": "duosion",
+    "dexNumber": 578
+  },
+  {
+    "name": "reuniclus",
+    "dexNumber": 579
+  },
+  {
+    "name": "ducklett",
+    "dexNumber": 580
+  },
+  {
+    "name": "swanna",
+    "dexNumber": 581
+  },
+  {
+    "name": "vanillite",
+    "dexNumber": 582
+  },
+  {
+    "name": "vanillish",
+    "dexNumber": 583
+  },
+  {
+    "name": "vanilluxe",
+    "dexNumber": 584
+  },
+  {
+    "name": "deerling",
+    "dexNumber": 585
+  },
+  {
+    "name": "sawsbuck",
+    "dexNumber": 586
+  },
+  {
+    "name": "emolga",
+    "dexNumber": 587
+  },
+  {
+    "name": "karrablast",
+    "dexNumber": 588
+  },
+  {
+    "name": "escavalier",
+    "dexNumber": 589
+  },
+  {
+    "name": "foongus",
+    "dexNumber": 590
+  },
+  {
+    "name": "amoonguss",
+    "dexNumber": 591
+  },
+  {
+    "name": "frillish",
+    "dexNumber": 592
+  },
+  {
+    "name": "jellicent",
+    "dexNumber": 593
+  },
+  {
+    "name": "alomomola",
+    "dexNumber": 594
+  },
+  {
+    "name": "joltik",
+    "dexNumber": 595
+  },
+  {
+    "name": "galvantula",
+    "dexNumber": 596
+  },
+  {
+    "name": "ferroseed",
+    "dexNumber": 597
+  },
+  {
+    "name": "ferrothorn",
+    "dexNumber": 598
+  },
+  {
+    "name": "klink",
+    "dexNumber": 599
+  },
+  {
+    "name": "klang",
+    "dexNumber": 600
+  },
+  {
+    "name": "klinklang",
+    "dexNumber": 601
+  },
+  {
+    "name": "tynamo",
+    "dexNumber": 602
+  },
+  {
+    "name": "eelektrik",
+    "dexNumber": 603
+  },
+  {
+    "name": "eelektross",
+    "dexNumber": 604
+  },
+  {
+    "name": "elgyem",
+    "dexNumber": 605
+  },
+  {
+    "name": "beheeyem",
+    "dexNumber": 606
+  },
+  {
+    "name": "litwick",
+    "dexNumber": 607
+  },
+  {
+    "name": "lampent",
+    "dexNumber": 608
+  },
+  {
+    "name": "chandelure",
+    "dexNumber": 609
+  },
+  {
+    "name": "axew",
+    "dexNumber": 610
+  },
+  {
+    "name": "fraxure",
+    "dexNumber": 611
+  },
+  {
+    "name": "haxorus",
+    "dexNumber": 612
+  },
+  {
+    "name": "cubchoo",
+    "dexNumber": 613
+  },
+  {
+    "name": "beartic",
+    "dexNumber": 614
+  },
+  {
+    "name": "cryogonal",
+    "dexNumber": 615
+  },
+  {
+    "name": "shelmet",
+    "dexNumber": 616
+  },
+  {
+    "name": "accelgor",
+    "dexNumber": 617
+  },
+  {
+    "name": "stunfisk",
+    "dexNumber": 618
+  },
+  {
+    "name": "mienfoo",
+    "dexNumber": 619
+  },
+  {
+    "name": "mienshao",
+    "dexNumber": 620
+  },
+  {
+    "name": "druddigon",
+    "dexNumber": 621
+  },
+  {
+    "name": "golett",
+    "dexNumber": 622
+  },
+  {
+    "name": "golurk",
+    "dexNumber": 623
+  },
+  {
+    "name": "pawniard",
+    "dexNumber": 624
+  },
+  {
+    "name": "bisharp",
+    "dexNumber": 625
+  },
+  {
+    "name": "bouffalant",
+    "dexNumber": 626
+  },
+  {
+    "name": "rufflet",
+    "dexNumber": 627
+  },
+  {
+    "name": "braviary",
+    "dexNumber": 628
+  },
+  {
+    "name": "vullaby",
+    "dexNumber": 629
+  },
+  {
+    "name": "mandibuzz",
+    "dexNumber": 630
+  },
+  {
+    "name": "heatmor",
+    "dexNumber": 631
+  },
+  {
+    "name": "durant",
+    "dexNumber": 632
+  },
+  {
+    "name": "deino",
+    "dexNumber": 633
+  },
+  {
+    "name": "zweilous",
+    "dexNumber": 634
+  },
+  {
+    "name": "hydreigon",
+    "dexNumber": 635
+  },
+  {
+    "name": "larvesta",
+    "dexNumber": 636
+  },
+  {
+    "name": "volcarona",
+    "dexNumber": 637
+  },
+  {
+    "name": "cobalion",
+    "dexNumber": 638
+  },
+  {
+    "name": "terrakion",
+    "dexNumber": 639
+  },
+  {
+    "name": "virizion",
+    "dexNumber": 640
+  },
+  {
+    "name": "tornadus",
+    "dexNumber": 641
+  },
+  {
+    "name": "thundurus",
+    "dexNumber": 642
+  },
+  {
+    "name": "reshiram",
+    "dexNumber": 643
+  },
+  {
+    "name": "zekrom",
+    "dexNumber": 644
+  },
+  {
+    "name": "landorus",
+    "dexNumber": 645
+  },
+  {
+    "name": "kyurem",
+    "dexNumber": 646
+  },
+  {
+    "name": "keldeo",
+    "dexNumber": 647
+  },
+  {
+    "name": "meloetta",
+    "dexNumber": 648
+  },
+  {
+    "name": "genesect",
+    "dexNumber": 649
+  },
+  {
+    "name": "chespin",
+    "dexNumber": 650
+  },
+  {
+    "name": "quilladin",
+    "dexNumber": 651
+  },
+  {
+    "name": "chesnaught",
+    "dexNumber": 652
+  },
+  {
+    "name": "fennekin",
+    "dexNumber": 653
+  },
+  {
+    "name": "braixen",
+    "dexNumber": 654
+  },
+  {
+    "name": "delphox",
+    "dexNumber": 655
+  },
+  {
+    "name": "froakie",
+    "dexNumber": 656
+  },
+  {
+    "name": "frogadier",
+    "dexNumber": 657
+  },
+  {
+    "name": "greninja",
+    "dexNumber": 658
+  },
+  {
+    "name": "bunnelby",
+    "dexNumber": 659
+  },
+  {
+    "name": "diggersby",
+    "dexNumber": 660
+  },
+  {
+    "name": "fletchling",
+    "dexNumber": 661
+  },
+  {
+    "name": "fletchinder",
+    "dexNumber": 662
+  },
+  {
+    "name": "talonflame",
+    "dexNumber": 663
+  },
+  {
+    "name": "scatterbug",
+    "dexNumber": 664
+  },
+  {
+    "name": "spewpa",
+    "dexNumber": 665
+  },
+  {
+    "name": "vivillon",
+    "dexNumber": 666
+  },
+  {
+    "name": "litleo",
+    "dexNumber": 667
+  },
+  {
+    "name": "pyroar",
+    "dexNumber": 668
+  },
+  {
+    "name": "flabebe",
+    "dexNumber": 669
+  },
+  {
+    "name": "floette",
+    "dexNumber": 670
+  },
+  {
+    "name": "florges",
+    "dexNumber": 671
+  },
+  {
+    "name": "skiddo",
+    "dexNumber": 672
+  },
+  {
+    "name": "gogoat",
+    "dexNumber": 673
+  },
+  {
+    "name": "pancham",
+    "dexNumber": 674
+  },
+  {
+    "name": "pangoro",
+    "dexNumber": 675
+  },
+  {
+    "name": "furfrou",
+    "dexNumber": 676
+  },
+  {
+    "name": "espurr",
+    "dexNumber": 677
+  },
+  {
+    "name": "meowstic",
+    "dexNumber": 678
+  },
+  {
+    "name": "honedge",
+    "dexNumber": 679
+  },
+  {
+    "name": "doublade",
+    "dexNumber": 680
+  },
+  {
+    "name": "aegislash",
+    "dexNumber": 681
+  },
+  {
+    "name": "spritzee",
+    "dexNumber": 682
+  },
+  {
+    "name": "aromatisse",
+    "dexNumber": 683
+  },
+  {
+    "name": "swirlix",
+    "dexNumber": 684
+  },
+  {
+    "name": "slurpuff",
+    "dexNumber": 685
+  },
+  {
+    "name": "inkay",
+    "dexNumber": 686
+  },
+  {
+    "name": "malamar",
+    "dexNumber": 687
+  },
+  {
+    "name": "binacle",
+    "dexNumber": 688
+  },
+  {
+    "name": "barbaracle",
+    "dexNumber": 689
+  },
+  {
+    "name": "skrelp",
+    "dexNumber": 690
+  },
+  {
+    "name": "dragalge",
+    "dexNumber": 691
+  },
+  {
+    "name": "clauncher",
+    "dexNumber": 692
+  },
+  {
+    "name": "clawitzer",
+    "dexNumber": 693
+  },
+  {
+    "name": "helioptile",
+    "dexNumber": 694
+  },
+  {
+    "name": "heliolisk",
+    "dexNumber": 695
+  },
+  {
+    "name": "tyrunt",
+    "dexNumber": 696
+  },
+  {
+    "name": "tyrantrum",
+    "dexNumber": 697
+  },
+  {
+    "name": "amaura",
+    "dexNumber": 698
+  },
+  {
+    "name": "aurorus",
+    "dexNumber": 699
+  },
+  {
+    "name": "sylveon",
+    "dexNumber": 700
+  },
+  {
+    "name": "hawlucha",
+    "dexNumber": 701
+  },
+  {
+    "name": "dedenne",
+    "dexNumber": 702
+  },
+  {
+    "name": "carbink",
+    "dexNumber": 703
+  },
+  {
+    "name": "goomy",
+    "dexNumber": 704
+  },
+  {
+    "name": "sliggoo",
+    "dexNumber": 705
+  },
+  {
+    "name": "goodra",
+    "dexNumber": 706
+  },
+  {
+    "name": "klefki",
+    "dexNumber": 707
+  },
+  {
+    "name": "phantump",
+    "dexNumber": 708
+  },
+  {
+    "name": "trevenant",
+    "dexNumber": 709
+  },
+  {
+    "name": "pumpkaboo",
+    "dexNumber": 710
+  },
+  {
+    "name": "gourgeist",
+    "dexNumber": 711
+  },
+  {
+    "name": "bergmite",
+    "dexNumber": 712
+  },
+  {
+    "name": "avalugg",
+    "dexNumber": 713
+  },
+  {
+    "name": "noibat",
+    "dexNumber": 714
+  },
+  {
+    "name": "noivern",
+    "dexNumber": 715
+  },
+  {
+    "name": "xerneas",
+    "dexNumber": 716
+  },
+  {
+    "name": "yveltal",
+    "dexNumber": 717
+  },
+  {
+    "name": "zygarde",
+    "dexNumber": 718
+  },
+  {
+    "name": "diancie",
+    "dexNumber": 719
+  },
+  {
+    "name": "hoopa",
+    "dexNumber": 720
+  },
+  {
+    "name": "volcanion",
+    "dexNumber": 721
+  },
+  {
+    "name": "rowlet",
+    "dexNumber": 722
+  },
+  {
+    "name": "dartrix",
+    "dexNumber": 723
+  },
+  {
+    "name": "decidueye",
+    "dexNumber": 724
+  },
+  {
+    "name": "litten",
+    "dexNumber": 725
+  },
+  {
+    "name": "torracat",
+    "dexNumber": 726
+  },
+  {
+    "name": "incineroar",
+    "dexNumber": 727
+  },
+  {
+    "name": "popplio",
+    "dexNumber": 728
+  },
+  {
+    "name": "brionne",
+    "dexNumber": 729
+  },
+  {
+    "name": "primarina",
+    "dexNumber": 730
+  },
+  {
+    "name": "pikipek",
+    "dexNumber": 731
+  },
+  {
+    "name": "trumbeak",
+    "dexNumber": 732
+  },
+  {
+    "name": "toucannon",
+    "dexNumber": 733
+  },
+  {
+    "name": "yungoos",
+    "dexNumber": 734
+  },
+  {
+    "name": "gumshoos",
+    "dexNumber": 735
+  },
+  {
+    "name": "grubbin",
+    "dexNumber": 736
+  },
+  {
+    "name": "charjabug",
+    "dexNumber": 737
+  },
+  {
+    "name": "vikavolt",
+    "dexNumber": 738
+  },
+  {
+    "name": "crabrawler",
+    "dexNumber": 739
+  },
+  {
+    "name": "crabominable",
+    "dexNumber": 740
+  },
+  {
+    "name": "oricorio",
+    "dexNumber": 741
+  },
+  {
+    "name": "cutiefly",
+    "dexNumber": 742
+  },
+  {
+    "name": "ribombee",
+    "dexNumber": 743
+  },
+  {
+    "name": "rockruff",
+    "dexNumber": 744
+  },
+  {
+    "name": "lycanroc",
+    "dexNumber": 745
+  },
+  {
+    "name": "wishiwashi",
+    "dexNumber": 746
+  },
+  {
+    "name": "mareanie",
+    "dexNumber": 747
+  },
+  {
+    "name": "toxapex",
+    "dexNumber": 748
+  },
+  {
+    "name": "mudbray",
+    "dexNumber": 749
+  },
+  {
+    "name": "mudsdale",
+    "dexNumber": 750
+  },
+  {
+    "name": "dewpider",
+    "dexNumber": 751
+  },
+  {
+    "name": "araquanid",
+    "dexNumber": 752
+  },
+  {
+    "name": "fomantis",
+    "dexNumber": 753
+  },
+  {
+    "name": "lurantis",
+    "dexNumber": 754
+  },
+  {
+    "name": "morelull",
+    "dexNumber": 755
+  },
+  {
+    "name": "shiinotic",
+    "dexNumber": 756
+  },
+  {
+    "name": "salandit",
+    "dexNumber": 757
+  },
+  {
+    "name": "salazzle",
+    "dexNumber": 758
+  },
+  {
+    "name": "stufful",
+    "dexNumber": 759
+  },
+  {
+    "name": "bewear",
+    "dexNumber": 760
+  },
+  {
+    "name": "bounsweet",
+    "dexNumber": 761
+  },
+  {
+    "name": "steenee",
+    "dexNumber": 762
+  },
+  {
+    "name": "tsareena",
+    "dexNumber": 763
+  },
+  {
+    "name": "comfey",
+    "dexNumber": 764
+  },
+  {
+    "name": "oranguru",
+    "dexNumber": 765
+  },
+  {
+    "name": "passimian",
+    "dexNumber": 766
+  },
+  {
+    "name": "wimpod",
+    "dexNumber": 767
+  },
+  {
+    "name": "golisopod",
+    "dexNumber": 768
+  },
+  {
+    "name": "sandygast",
+    "dexNumber": 769
+  },
+  {
+    "name": "palossand",
+    "dexNumber": 770
+  },
+  {
+    "name": "pyukumuku",
+    "dexNumber": 771
+  },
+  {
+    "name": "type-null",
+    "dexNumber": 772
+  },
+  {
+    "name": "silvally",
+    "dexNumber": 773
+  },
+  {
+    "name": "minior",
+    "dexNumber": 774
+  },
+  {
+    "name": "komala",
+    "dexNumber": 775
+  },
+  {
+    "name": "turtonator",
+    "dexNumber": 776
+  },
+  {
+    "name": "togedemaru",
+    "dexNumber": 777
+  },
+  {
+    "name": "mimikyu",
+    "dexNumber": 778
+  },
+  {
+    "name": "bruxish",
+    "dexNumber": 779
+  },
+  {
+    "name": "drampa",
+    "dexNumber": 780
+  },
+  {
+    "name": "dhelmise",
+    "dexNumber": 781
+  },
+  {
+    "name": "jangmo-o",
+    "dexNumber": 782
+  },
+  {
+    "name": "hakamo-o",
+    "dexNumber": 783
+  },
+  {
+    "name": "kommo-o",
+    "dexNumber": 784
+  },
+  {
+    "name": "tapu-koko",
+    "dexNumber": 785
+  },
+  {
+    "name": "tapu-lele",
+    "dexNumber": 786
+  },
+  {
+    "name": "tapu-bulu",
+    "dexNumber": 787
+  },
+  {
+    "name": "tapu-fini",
+    "dexNumber": 788
+  },
+  {
+    "name": "cosmog",
+    "dexNumber": 789
+  },
+  {
+    "name": "cosmoem",
+    "dexNumber": 790
+  },
+  {
+    "name": "solgaleo",
+    "dexNumber": 791
+  },
+  {
+    "name": "lunala",
+    "dexNumber": 792
+  },
+  {
+    "name": "nihilego",
+    "dexNumber": 793
+  },
+  {
+    "name": "buzzwole",
+    "dexNumber": 794
+  },
+  {
+    "name": "pheromosa",
+    "dexNumber": 795
+  },
+  {
+    "name": "xurkitree",
+    "dexNumber": 796
+  },
+  {
+    "name": "celesteela",
+    "dexNumber": 797
+  },
+  {
+    "name": "kartana",
+    "dexNumber": 798
+  },
+  {
+    "name": "guzzlord",
+    "dexNumber": 799
+  },
+  {
+    "name": "necrozma",
+    "dexNumber": 800
+  },
+  {
+    "name": "magearna",
+    "dexNumber": 801
+  },
+  {
+    "name": "marshadow",
+    "dexNumber": 802
+  },
+  {
+    "name": "poipole",
+    "dexNumber": 803
+  },
+  {
+    "name": "naganadel",
+    "dexNumber": 804
+  },
+  {
+    "name": "stakataka",
+    "dexNumber": 805
+  },
+  {
+    "name": "blacephalon",
+    "dexNumber": 806
+  },
+  {
+    "name": "zeraora",
+    "dexNumber": 807
+  },
+  {
+    "name": "meltan",
+    "dexNumber": 808
+  },
+  {
+    "name": "melmetal",
+    "dexNumber": 809
+  },
+  {
+    "name": "grookey",
+    "dexNumber": 810
+  },
+  {
+    "name": "thwackey",
+    "dexNumber": 811
+  },
+  {
+    "name": "rillaboom",
+    "dexNumber": 812
+  },
+  {
+    "name": "scorbunny",
+    "dexNumber": 813
+  },
+  {
+    "name": "raboot",
+    "dexNumber": 814
+  },
+  {
+    "name": "cinderace",
+    "dexNumber": 815
+  },
+  {
+    "name": "sobble",
+    "dexNumber": 816
+  },
+  {
+    "name": "drizzile",
+    "dexNumber": 817
+  },
+  {
+    "name": "inteleon",
+    "dexNumber": 818
+  },
+  {
+    "name": "skwovet",
+    "dexNumber": 819
+  },
+  {
+    "name": "greedent",
+    "dexNumber": 820
+  },
+  {
+    "name": "rookidee",
+    "dexNumber": 821
+  },
+  {
+    "name": "corvisquire",
+    "dexNumber": 822
+  },
+  {
+    "name": "corviknight",
+    "dexNumber": 823
+  },
+  {
+    "name": "blipbug",
+    "dexNumber": 824
+  },
+  {
+    "name": "dottler",
+    "dexNumber": 825
+  },
+  {
+    "name": "orbeetle",
+    "dexNumber": 826
+  },
+  {
+    "name": "nickit",
+    "dexNumber": 827
+  },
+  {
+    "name": "thievul",
+    "dexNumber": 828
+  },
+  {
+    "name": "gossifleur",
+    "dexNumber": 829
+  },
+  {
+    "name": "eldegoss",
+    "dexNumber": 830
+  },
+  {
+    "name": "wooloo",
+    "dexNumber": 831
+  },
+  {
+    "name": "dubwool",
+    "dexNumber": 832
+  },
+  {
+    "name": "chewtle",
+    "dexNumber": 833
+  },
+  {
+    "name": "drednaw",
+    "dexNumber": 834
+  },
+  {
+    "name": "yamper",
+    "dexNumber": 835
+  },
+  {
+    "name": "boltund",
+    "dexNumber": 836
+  },
+  {
+    "name": "rolycoly",
+    "dexNumber": 837
+  },
+  {
+    "name": "carkol",
+    "dexNumber": 838
+  },
+  {
+    "name": "coalossal",
+    "dexNumber": 839
+  },
+  {
+    "name": "applin",
+    "dexNumber": 840
+  },
+  {
+    "name": "flapple",
+    "dexNumber": 841
+  },
+  {
+    "name": "appletun",
+    "dexNumber": 842
+  },
+  {
+    "name": "silicobra",
+    "dexNumber": 843
+  },
+  {
+    "name": "sandaconda",
+    "dexNumber": 844
+  },
+  {
+    "name": "cramorant",
+    "dexNumber": 845
+  },
+  {
+    "name": "arrokuda",
+    "dexNumber": 846
+  },
+  {
+    "name": "barraskewda",
+    "dexNumber": 847
+  },
+  {
+    "name": "toxel",
+    "dexNumber": 848
+  },
+  {
+    "name": "toxtricity",
+    "dexNumber": 849
+  },
+  {
+    "name": "sizzlipede",
+    "dexNumber": 850
+  },
+  {
+    "name": "centiskorch",
+    "dexNumber": 851
+  },
+  {
+    "name": "clobbopus",
+    "dexNumber": 852
+  },
+  {
+    "name": "grapploct",
+    "dexNumber": 853
+  },
+  {
+    "name": "sinistea",
+    "dexNumber": 854
+  },
+  {
+    "name": "polteageist",
+    "dexNumber": 855
+  },
+  {
+    "name": "hatenna",
+    "dexNumber": 856
+  },
+  {
+    "name": "hattrem",
+    "dexNumber": 857
+  },
+  {
+    "name": "hatterene",
+    "dexNumber": 858
+  },
+  {
+    "name": "impidimp",
+    "dexNumber": 859
+  },
+  {
+    "name": "morgrem",
+    "dexNumber": 860
+  },
+  {
+    "name": "grimmsnarl",
+    "dexNumber": 861
+  },
+  {
+    "name": "obstagoon",
+    "dexNumber": 862
+  },
+  {
+    "name": "perrserker",
+    "dexNumber": 863
+  },
+  {
+    "name": "cursola",
+    "dexNumber": 864
+  },
+  {
+    "name": "sirfetchd",
+    "dexNumber": 865
+  },
+  {
+    "name": "mr-rime",
+    "dexNumber": 866
+  },
+  {
+    "name": "runerigus",
+    "dexNumber": 867
+  },
+  {
+    "name": "milcery",
+    "dexNumber": 868
+  },
+  {
+    "name": "alcremie",
+    "dexNumber": 869
+  },
+  {
+    "name": "falinks",
+    "dexNumber": 870
+  },
+  {
+    "name": "pincurchin",
+    "dexNumber": 871
+  },
+  {
+    "name": "snom",
+    "dexNumber": 872
+  },
+  {
+    "name": "frosmoth",
+    "dexNumber": 873
+  },
+  {
+    "name": "stonjourner",
+    "dexNumber": 874
+  },
+  {
+    "name": "eiscue",
+    "dexNumber": 875
+  },
+  {
+    "name": "indeedee",
+    "dexNumber": 876
+  },
+  {
+    "name": "morpeko",
+    "dexNumber": 877
+  },
+  {
+    "name": "cufant",
+    "dexNumber": 878
+  },
+  {
+    "name": "copperajah",
+    "dexNumber": 879
+  },
+  {
+    "name": "dracozolt",
+    "dexNumber": 880
+  },
+  {
+    "name": "arctozolt",
+    "dexNumber": 881
+  },
+  {
+    "name": "dracovish",
+    "dexNumber": 882
+  },
+  {
+    "name": "arctovish",
+    "dexNumber": 883
+  },
+  {
+    "name": "duraludon",
+    "dexNumber": 884
+  },
+  {
+    "name": "dreepy",
+    "dexNumber": 885
+  },
+  {
+    "name": "drakloak",
+    "dexNumber": 886
+  },
+  {
+    "name": "dragapult",
+    "dexNumber": 887
+  },
+  {
+    "name": "zacian",
+    "dexNumber": 888
+  },
+  {
+    "name": "zamazenta",
+    "dexNumber": 889
+  },
+  {
+    "name": "eternatus",
+    "dexNumber": 890
+  },
+  {
+    "name": "kubfu",
+    "dexNumber": 891
+  },
+  {
+    "name": "urshifu",
+    "dexNumber": 892
+  },
+  {
+    "name": "zarude",
+    "dexNumber": 893
+  },
+  {
+    "name": "regieleki",
+    "dexNumber": 894
+  },
+  {
+    "name": "regidrago",
+    "dexNumber": 895
+  },
+  {
+    "name": "glastrier",
+    "dexNumber": 896
+  },
+  {
+    "name": "spectrier",
+    "dexNumber": 897
+  },
+  {
+    "name": "calyrex",
+    "dexNumber": 898
+  },
+  {
+    "name": "wyrdeer",
+    "dexNumber": 899
+  },
+  {
+    "name": "kleavor",
+    "dexNumber": 900
+  },
+  {
+    "name": "ursaluna",
+    "dexNumber": 901
+  },
+  {
+    "name": "basculegion",
+    "dexNumber": 902
+  },
+  {
+    "name": "sneasler",
+    "dexNumber": 903
+  },
+  {
+    "name": "overqwil",
+    "dexNumber": 904
+  },
+  {
+    "name": "enamorus",
+    "dexNumber": 905
+  },
+  {
+    "name": "sprigatito",
+    "dexNumber": 906
+  },
+  {
+    "name": "floragato",
+    "dexNumber": 907
+  },
+  {
+    "name": "meowscarada",
+    "dexNumber": 908
+  },
+  {
+    "name": "fuecoco",
+    "dexNumber": 909
+  },
+  {
+    "name": "crocalor",
+    "dexNumber": 910
+  },
+  {
+    "name": "skeledirge",
+    "dexNumber": 911
+  },
+  {
+    "name": "quaxly",
+    "dexNumber": 912
+  },
+  {
+    "name": "quaxwell",
+    "dexNumber": 913
+  },
+  {
+    "name": "quaquaval",
+    "dexNumber": 914
+  },
+  {
+    "name": "lechonk",
+    "dexNumber": 915
+  },
+  {
+    "name": "oinkologne",
+    "dexNumber": 916
+  },
+  {
+    "name": "tarountula",
+    "dexNumber": 917
+  },
+  {
+    "name": "spidops",
+    "dexNumber": 918
+  },
+  {
+    "name": "nymble",
+    "dexNumber": 919
+  },
+  {
+    "name": "lokix",
+    "dexNumber": 920
+  },
+  {
+    "name": "pawmi",
+    "dexNumber": 921
+  },
+  {
+    "name": "pawmo",
+    "dexNumber": 922
+  },
+  {
+    "name": "pawmot",
+    "dexNumber": 923
+  },
+  {
+    "name": "tandemaus",
+    "dexNumber": 924
+  },
+  {
+    "name": "maushold",
+    "dexNumber": 925
+  },
+  {
+    "name": "fidough",
+    "dexNumber": 926
+  },
+  {
+    "name": "dachsbun",
+    "dexNumber": 927
+  },
+  {
+    "name": "smoliv",
+    "dexNumber": 928
+  },
+  {
+    "name": "dolliv",
+    "dexNumber": 929
+  },
+  {
+    "name": "arboliva",
+    "dexNumber": 930
+  },
+  {
+    "name": "squawkabilly",
+    "dexNumber": 931
+  },
+  {
+    "name": "nacli",
+    "dexNumber": 932
+  },
+  {
+    "name": "naclstack",
+    "dexNumber": 933
+  },
+  {
+    "name": "garganacl",
+    "dexNumber": 934
+  },
+  {
+    "name": "charcadet",
+    "dexNumber": 935
+  },
+  {
+    "name": "armarouge",
+    "dexNumber": 936
+  },
+  {
+    "name": "ceruledge",
+    "dexNumber": 937
+  },
+  {
+    "name": "tadbulb",
+    "dexNumber": 938
+  },
+  {
+    "name": "bellibolt",
+    "dexNumber": 939
+  },
+  {
+    "name": "wattrel",
+    "dexNumber": 940
+  },
+  {
+    "name": "kilowattrel",
+    "dexNumber": 941
+  },
+  {
+    "name": "maschiff",
+    "dexNumber": 942
+  },
+  {
+    "name": "mabosstiff",
+    "dexNumber": 943
+  },
+  {
+    "name": "shroodle",
+    "dexNumber": 944
+  },
+  {
+    "name": "grafaiai",
+    "dexNumber": 945
+  },
+  {
+    "name": "bramblin",
+    "dexNumber": 946
+  },
+  {
+    "name": "brambleghast",
+    "dexNumber": 947
+  },
+  {
+    "name": "toedscool",
+    "dexNumber": 948
+  },
+  {
+    "name": "toedscruel",
+    "dexNumber": 949
+  },
+  {
+    "name": "klawf",
+    "dexNumber": 950
+  },
+  {
+    "name": "capsakid",
+    "dexNumber": 951
+  },
+  {
+    "name": "scovillain",
+    "dexNumber": 952
+  },
+  {
+    "name": "rellor",
+    "dexNumber": 953
+  },
+  {
+    "name": "rabsca",
+    "dexNumber": 954
+  },
+  {
+    "name": "flittle",
+    "dexNumber": 955
+  },
+  {
+    "name": "espathra",
+    "dexNumber": 956
+  },
+  {
+    "name": "tinkatink",
+    "dexNumber": 957
+  },
+  {
+    "name": "tinkatuff",
+    "dexNumber": 958
+  },
+  {
+    "name": "tinkaton",
+    "dexNumber": 959
+  },
+  {
+    "name": "wiglett",
+    "dexNumber": 960
+  },
+  {
+    "name": "wugtrio",
+    "dexNumber": 961
+  },
+  {
+    "name": "bombirdier",
+    "dexNumber": 962
+  },
+  {
+    "name": "finizen",
+    "dexNumber": 963
+  },
+  {
+    "name": "palafin",
+    "dexNumber": 964
+  },
+  {
+    "name": "varoom",
+    "dexNumber": 965
+  },
+  {
+    "name": "revavroom",
+    "dexNumber": 966
+  },
+  {
+    "name": "cyclizar",
+    "dexNumber": 967
+  },
+  {
+    "name": "orthworm",
+    "dexNumber": 968
+  },
+  {
+    "name": "glimmet",
+    "dexNumber": 969
+  },
+  {
+    "name": "glimmora",
+    "dexNumber": 970
+  },
+  {
+    "name": "greavard",
+    "dexNumber": 971
+  },
+  {
+    "name": "houndstone",
+    "dexNumber": 972
+  },
+  {
+    "name": "flamigo",
+    "dexNumber": 973
+  },
+  {
+    "name": "cetoddle",
+    "dexNumber": 974
+  },
+  {
+    "name": "cetitan",
+    "dexNumber": 975
+  },
+  {
+    "name": "veluza",
+    "dexNumber": 976
+  },
+  {
+    "name": "dondozo",
+    "dexNumber": 977
+  },
+  {
+    "name": "tatsugiri",
+    "dexNumber": 978
+  },
+  {
+    "name": "annihilape",
+    "dexNumber": 979
+  },
+  {
+    "name": "clodsire",
+    "dexNumber": 980
+  },
+  {
+    "name": "farigiraf",
+    "dexNumber": 981
+  },
+  {
+    "name": "dudunsparce",
+    "dexNumber": 982
+  },
+  {
+    "name": "kingambit",
+    "dexNumber": 983
+  },
+  {
+    "name": "great-tusk",
+    "dexNumber": 984
+  },
+  {
+    "name": "scream-tail",
+    "dexNumber": 985
+  },
+  {
+    "name": "brute-bonnet",
+    "dexNumber": 986
+  },
+  {
+    "name": "flutter-mane",
+    "dexNumber": 987
+  },
+  {
+    "name": "slither-wing",
+    "dexNumber": 988
+  },
+  {
+    "name": "sandy-shocks",
+    "dexNumber": 989
+  },
+  {
+    "name": "iron-treads",
+    "dexNumber": 990
+  },
+  {
+    "name": "iron-bundle",
+    "dexNumber": 991
+  },
+  {
+    "name": "iron-hands",
+    "dexNumber": 992
+  },
+  {
+    "name": "iron-jugulis",
+    "dexNumber": 993
+  },
+  {
+    "name": "iron-moth",
+    "dexNumber": 994
+  },
+  {
+    "name": "iron-thorns",
+    "dexNumber": 995
+  },
+  {
+    "name": "frigibax",
+    "dexNumber": 996
+  },
+  {
+    "name": "arctibax",
+    "dexNumber": 997
+  },
+  {
+    "name": "baxcalibur",
+    "dexNumber": 998
+  },
+  {
+    "name": "gimmighoul",
+    "dexNumber": 999
+  },
+  {
+    "name": "gholdengo",
+    "dexNumber": 1000
+  },
+  {
+    "name": "wo-chien",
+    "dexNumber": 1001
+  },
+  {
+    "name": "chien-pao",
+    "dexNumber": 1002
+  },
+  {
+    "name": "ting-lu",
+    "dexNumber": 1003
+  },
+  {
+    "name": "chi-yu",
+    "dexNumber": 1004
+  },
+  {
+    "name": "roaring-moon",
+    "dexNumber": 1005
+  },
+  {
+    "name": "iron-valiant",
+    "dexNumber": 1006
+  },
+  {
+    "name": "koraidon",
+    "dexNumber": 1007
+  },
+  {
+    "name": "miraidon",
+    "dexNumber": 1008
+  },
+  {
+    "name": "walking-wake",
+    "dexNumber": 1009
+  },
+  {
+    "name": "iron-leaves",
+    "dexNumber": 1010
+  },
+  {
+    "name": "dipplin",
+    "dexNumber": 1011
+  },
+  {
+    "name": "poltchageist",
+    "dexNumber": 1012
+  },
+  {
+    "name": "sinistcha",
+    "dexNumber": 1013
+  },
+  {
+    "name": "okidogi",
+    "dexNumber": 1014
+  },
+  {
+    "name": "munkidori",
+    "dexNumber": 1015
+  },
+  {
+    "name": "fezandipiti",
+    "dexNumber": 1016
+  },
+  {
+    "name": "ogerpon",
+    "dexNumber": 1017
+  },
+  {
+    "name": "archaludon",
+    "dexNumber": 1018
+  },
+  {
+    "name": "hydrapple",
+    "dexNumber": 1019
+  },
+  {
+    "name": "gouging-fire",
+    "dexNumber": 1020
+  },
+  {
+    "name": "raging-bolt",
+    "dexNumber": 1021
+  },
+  {
+    "name": "iron-boulder",
+    "dexNumber": 1022
+  },
+  {
+    "name": "iron-crown",
+    "dexNumber": 1023
+  },
+  {
+    "name": "terapagos",
+    "dexNumber": 1024
+  },
+  {
+    "name": "pecharunt",
+    "dexNumber": 1025
+  }
+]

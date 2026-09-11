@@ -5,6 +5,9 @@ import PokemonSprite from "~/components/ui/pokemon-sprite";
 import { cn } from "~/lib/utils";
 import { getRankings } from "~/sdk/vote";
 
+const PAGE_SIZE = 50;
+const FIRST_PAGE_CHALLENGERS = PAGE_SIZE - 1;
+
 type RankedPokemon = Awaited<ReturnType<typeof getOrderedRankings>>[0];
 
 async function getOrderedRankings() {
@@ -56,7 +59,11 @@ function ChampionCard({ pokemon }: { pokemon: RankedPokemon }) {
         </p>
       </div>
       <div className="my-5 grid max-h-60 place-items-center overflow-hidden bg-[radial-gradient(circle,#31313b_0_2px,transparent_2px)] [background-size:18px_18px]">
-        <PokemonSprite pokemon={pokemon} className="h-64 w-64" lazy />
+        <PokemonSprite
+          pokemon={pokemon}
+          className="h-64 w-64"
+          priority="high"
+        />
       </div>
       <div className="grid grid-cols-3 gap-2">
         <StatBlock label="score" value={pokemon.score} />
@@ -74,7 +81,12 @@ function ChallengerRow({ pokemon }: { pokemon: RankedPokemon }) {
   return (
     <article className="grid items-center gap-4 border border-white/15 bg-white/[0.04] p-3 sm:grid-cols-[48px_72px_1fr_88px_88px_110px]">
       <p className="font-black text-[#ff5d8f]">#{pokemon.rank}</p>
-      <PokemonSprite pokemon={pokemon} className="h-16 w-16" lazy />
+      <PokemonSprite
+        pokemon={pokemon}
+        className="h-16 w-16"
+        lazy
+        priority="low"
+      />
       <div className="min-w-0">
         <h2 className="truncate text-2xl font-black uppercase">
           {pokemon.name}
@@ -114,45 +126,113 @@ function FillPanel({
   );
 }
 
-async function ResultsContent() {
+function Pager({ page, totalPages }: { page: number; totalPages: number }) {
+  const item =
+    "border border-white/20 px-4 py-2 text-sm font-bold uppercase tracking-[0.18em] text-white/70";
+  const enabled = "transition hover:border-[#3ef3c6] hover:text-[#3ef3c6]";
+  const disabled = "pointer-events-none opacity-30";
+
+  return (
+    <nav className="flex flex-wrap items-center justify-between gap-3">
+      {page > 1 ? (
+        <Link
+          href={page === 2 ? "/results" : `/results?page=${page - 1}`}
+          className={cn(item, enabled)}
+          rel="prev"
+        >
+          ← previous
+        </Link>
+      ) : (
+        <span className={cn(item, disabled)}>← previous</span>
+      )}
+      <p className="text-xs font-black uppercase tracking-[0.32em] text-white/45">
+        page {page} of {totalPages}
+      </p>
+      {page < totalPages ? (
+        <Link
+          href={`/results?page=${page + 1}`}
+          className={cn(item, enabled)}
+          rel="next"
+        >
+          next →
+        </Link>
+      ) : (
+        <span className={cn(item, disabled)}>next →</span>
+      )}
+    </nav>
+  );
+}
+
+async function ResultsContent({
+  searchParams,
+}: {
+  searchParams: Promise<Record<string, string | string[] | undefined>>;
+}) {
+  const params = await searchParams;
+  const requested = Number.parseInt(
+    typeof params.page === "string" ? params.page : "1",
+    10,
+  );
+
   const rankings = await getOrderedRankings();
   const champion = rankings[0];
   const challengers = rankings.slice(1);
+  const totalPages = Math.max(
+    1,
+    Math.ceil((challengers.length - FIRST_PAGE_CHALLENGERS) / PAGE_SIZE) + 1,
+  );
+  const page = Number.isFinite(requested)
+    ? Math.min(Math.max(requested, 1), totalPages)
+    : 1;
+  const firstPage = page === 1;
+  const start = firstPage ? 0 : FIRST_PAGE_CHALLENGERS + (page - 2) * PAGE_SIZE;
+  const visible = challengers.slice(
+    start,
+    firstPage ? FIRST_PAGE_CHALLENGERS : start + PAGE_SIZE,
+  );
 
   return (
     <div className="grid gap-6">
-      <div className="grid gap-4 lg:grid-cols-[minmax(0,0.95fr)_minmax(320px,0.55fr)] lg:items-stretch">
-        {champion && <ChampionCard pokemon={champion} />}
-        <FillPanel title="field summary" className="grid content-start">
-          <div className="grid gap-2">
-            <StatBlock label="entries" value={rankings.length} />
-            <StatBlock
-              label="wins"
-              value={rankings.reduce(
-                (sum, pokemon) => sum + pokemon.stats.wins,
-                0,
-              )}
-            />
-            <StatBlock
-              label="battles"
-              value={rankings.reduce(
-                (sum, pokemon) => sum + pokemon.battles,
-                0,
-              )}
-            />
-          </div>
-        </FillPanel>
-      </div>
-      <div className="grid content-start gap-3 xl:grid-cols-2">
-        {challengers.map((pokemon) => (
+      {firstPage ? (
+        <div className="grid gap-4 lg:grid-cols-[minmax(0,0.95fr)_minmax(320px,0.55fr)] lg:items-stretch">
+          {champion && <ChampionCard pokemon={champion} />}
+          <FillPanel title="field summary" className="grid content-start">
+            <div className="grid gap-2">
+              <StatBlock label="entries" value={rankings.length} />
+              <StatBlock
+                label="wins"
+                value={rankings.reduce(
+                  (sum, pokemon) => sum + pokemon.stats.wins,
+                  0,
+                )}
+              />
+              <StatBlock
+                label="battles"
+                value={rankings.reduce(
+                  (sum, pokemon) => sum + pokemon.battles,
+                  0,
+                )}
+              />
+            </div>
+          </FillPanel>
+        </div>
+      ) : null}
+      <Pager page={page} totalPages={totalPages} />
+      <div className="grid content-start gap-3 xl:grid-cols-2 [&>article]:[contain-intrinsic-size:auto_411px] [&>article]:[content-visibility:auto] sm:[&>article]:[contain-intrinsic-size:auto_65px]">
+        {visible.map((pokemon) => (
           <ChallengerRow key={pokemon.dexNumber} pokemon={pokemon} />
         ))}
       </div>
+      <Pager page={page} totalPages={totalPages} />
     </div>
   );
 }
 
-export default function ResultsPage() {
+export default function ResultsPage({
+  searchParams,
+}: {
+  searchParams: Promise<Record<string, string | string[] | undefined>>;
+}) {
   return (
     <section className="min-h-screen overflow-x-hidden bg-[#111018] px-5 py-10 text-white sm:px-8 lg:px-12">
       <div className="mx-auto max-w-7xl">
@@ -174,7 +254,7 @@ export default function ResultsPage() {
         </div>
 
         <Suspense fallback={<ResultsFallback />}>
-          <ResultsContent />
+          <ResultsContent searchParams={searchParams} />
         </Suspense>
       </div>
     </section>

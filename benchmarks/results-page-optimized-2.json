@@ -1,0 +1,187 @@
+{
+  "date": "2026-09-11T13:39:05.781Z",
+  "node": "v22.23.2",
+  "machine": "darwin arm64 Apple M4",
+  "url": "http://127.0.0.1:4314/results?page=2",
+  "label": "optimized-page-2",
+  "expectedArticles": 50,
+  "scenario": "local next start, warm ranking cache, fixture with zero added delay",
+  "samples": 15,
+  "medianHeadersMs": 2.3007080000000144,
+  "medianTotalMs": 10.459417000000002,
+  "p95TotalMs": 14.531125000000003,
+  "medianDecodedBytes": 192716,
+  "medianGzipBytes": 11330,
+  "articles": 50,
+  "images": 50,
+  "hosts": [
+    "cdn.jsdelivr.net"
+  ],
+  "raw": [
+    {
+      "headersMs": 2.6861670000000117,
+      "totalMs": 11.286417,
+      "decodedBytes": 192716,
+      "gzipBytes": 11330,
+      "articles": 50,
+      "images": 50,
+      "hosts": [
+        "cdn.jsdelivr.net"
+      ]
+    },
+    {
+      "headersMs": 2.536292000000003,
+      "totalMs": 11.129958000000016,
+      "decodedBytes": 192716,
+      "gzipBytes": 11330,
+      "articles": 50,
+      "images": 50,
+      "hosts": [
+        "cdn.jsdelivr.net"
+      ]
+    },
+    {
+      "headersMs": 2.333750000000009,
+      "totalMs": 10.383250000000004,
+      "decodedBytes": 192716,
+      "gzipBytes": 11330,
+      "articles": 50,
+      "images": 50,
+      "hosts": [
+        "cdn.jsdelivr.net"
+      ]
+    },
+    {
+      "headersMs": 2.4028749999999945,
+      "totalMs": 10.459417000000002,
+      "decodedBytes": 192716,
+      "gzipBytes": 11330,
+      "articles": 50,
+      "images": 50,
+      "hosts": [
+        "cdn.jsdelivr.net"
+      ]
+    },
+    {
+      "headersMs": 2.312083000000001,
+      "totalMs": 14.531125000000003,
+      "decodedBytes": 192716,
+      "gzipBytes": 11330,
+      "articles": 50,
+      "images": 50,
+      "hosts": [
+        "cdn.jsdelivr.net"
+      ]
+    },
+    {
+      "headersMs": 3.3836670000000026,
+      "totalMs": 12.756083999999987,
+      "decodedBytes": 192716,
+      "gzipBytes": 11330,
+      "articles": 50,
+      "images": 50,
+      "hosts": [
+        "cdn.jsdelivr.net"
+      ]
+    },
+    {
+      "headersMs": 2.5369169999999883,
+      "totalMs": 11.113916999999987,
+      "decodedBytes": 192716,
+      "gzipBytes": 11330,
+      "articles": 50,
+      "images": 50,
+      "hosts": [
+        "cdn.jsdelivr.net"
+      ]
+    },
+    {
+      "headersMs": 0.8898749999999893,
+      "totalMs": 9.173666999999995,
+      "decodedBytes": 192716,
+      "gzipBytes": 11330,
+      "articles": 50,
+      "images": 50,
+      "hosts": [
+        "cdn.jsdelivr.net"
+      ]
+    },
+    {
+      "headersMs": 2.2607500000000016,
+      "totalMs": 10.273042000000004,
+      "decodedBytes": 192716,
+      "gzipBytes": 11330,
+      "articles": 50,
+      "images": 50,
+      "hosts": [
+        "cdn.jsdelivr.net"
+      ]
+    },
+    {
+      "headersMs": 2.3007080000000144,
+      "totalMs": 10.179541999999998,
+      "decodedBytes": 192716,
+      "gzipBytes": 11330,
+      "articles": 50,
+      "images": 50,
+      "hosts": [
+        "cdn.jsdelivr.net"
+      ]
+    },
+    {
+      "headersMs": 2.1942080000000033,
+      "totalMs": 9.871082999999999,
+      "decodedBytes": 192716,
+      "gzipBytes": 11330,
+      "articles": 50,
+      "images": 50,
+      "hosts": [
+        "cdn.jsdelivr.net"
+      ]
+    },
+    {
+      "headersMs": 2.2320000000000277,
+      "totalMs": 10.258583000000044,
+      "decodedBytes": 192716,
+      "gzipBytes": 11330,
+      "articles": 50,
+      "images": 50,
+      "hosts": [
+        "cdn.jsdelivr.net"
+      ]
+    },
+    {
+      "headersMs": 2.1957500000000323,
+      "totalMs": 10.844417000000021,
+      "decodedBytes": 192716,
+      "gzipBytes": 11330,
+      "articles": 50,
+      "images": 50,
+      "hosts": [
+        "cdn.jsdelivr.net"
+      ]
+    },
+    {
+      "headersMs": 2.2201670000000036,
+      "totalMs": 10.159416999999962,
+      "decodedBytes": 192716,
+      "gzipBytes": 11330,
+      "articles": 50,
+      "images": 50,
+      "hosts": [
+        "cdn.jsdelivr.net"
+      ]
+    },
+    {
+      "headersMs": 2.2380829999999605,
+      "totalMs": 13.703332999999986,
+      "decodedBytes": 192716,
+      "gzipBytes": 11330,
+      "articles": 50,
+      "images": 50,
+      "hosts": [
+        "cdn.jsdelivr.net"
+      ]
+    }
+  ]
+}

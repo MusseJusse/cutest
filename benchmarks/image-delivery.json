@@ -1,0 +1,2063 @@
+{
+  "date": "2026-09-11T13:39:51.195Z",
+  "node": "v22.23.2",
+  "machine": "darwin arm64 Apple M4",
+  "methodology": "Sequential HTTPS GETs from this machine, 5 rounds of 28 sprites per host after an excluded warmup round; measures network delivery only, not browser rendering.",
+  "spriteIds": 28,
+  "raw": {
+    "requests": 140,
+    "statuses": [
+      200
+    ],
+    "bytes": [
+      543,
+      597,
+      492,
+      722,
+      802,
+      877,
+      582,
+      916,
+      929,
+      622,
+      1082,
+      1059,
+      859,
+      1115,
+      1119,
+      1423,
+      1261,
+      814,
+      656,
+      998,
+      1354,
+      789,
+      464,
+      1171,
+      621,
+      4162,
+      1715
+    ],
+    "cacheControl": [
+      "max-age=300"
+    ],
+    "medianHeadersMs": 16.87675050000007,
+    "medianTotalMs": 17.261395499999708,
+    "p90TotalMs": 18.432999999999993,
+    "p95TotalMs": 18.953457999999955,
+    "p99TotalMs": 22.67862500000001,
+    "maxTotalMs": 65.06137500000023,
+    "over100ms": 0
+  },
+  "jsdelivr": {
+    "requests": 140,
+    "statuses": [
+      200
+    ],
+    "bytes": [
+      543,
+      597,
+      492,
+      722,
+      802,
+      877,
+      582,
+      916,
+      929,
+      622,
+      1082,
+      1059,
+      859,
+      1115,
+      1119,
+      1423,
+      1261,
+      814,
+      656,
+      998,
+      1354,
+      789,
+      464,
+      1171,
+      621,
+      4162,
+      1715
+    ],
+    "cacheControl": [
+      "public, max-age=604800, s-maxage=43200"
+    ],
+    "medianHeadersMs": 16.55700049999996,
+    "medianTotalMs": 16.925124500000493,
+    "p90TotalMs": 17.873333000000002,
+    "p95TotalMs": 18.262541000000056,
+    "p99TotalMs": 18.81533300000001,
+    "maxTotalMs": 19.00720799999999,
+    "over100ms": 0
+  },
+  "samples": {
+    "raw": [
+      {
+        "status": 200,
+        "headersMs": 20.56666699999994,
+        "totalMs": 22.67862500000001,
+        "bytes": 543,
+        "cacheControl": "max-age=300"
+      },
+      {
+        "status": 200,
+        "headersMs": 19.307833999999957,
+        "totalMs": 20.00649999999996,
+        "bytes": 597,
+        "cacheControl": "max-age=300"
+      },
+      {
+        "status": 200,
+        "headersMs": 17.90862500000003,
+        "totalMs": 18.29291699999999,
+        "bytes": 492,
+        "cacheControl": "max-age=300"
+      },
+      {
+        "status": 200,
+        "headersMs": 16.27983299999994,
+        "totalMs": 16.71191699999997,
+        "bytes": 722,
+        "cacheControl": "max-age=300"
+      },
+      {
+        "status": 200,
+        "headersMs": 17.849833999999987,
+        "totalMs": 18.348541999999952,
+        "bytes": 802,
+        "cacheControl": "max-age=300"
+      },
+      {
+        "status": 200,
+        "headersMs": 19.112082999999984,
+        "totalMs": 19.57216600000004,
+        "bytes": 877,
+        "cacheControl": "max-age=300"
+      },
+      {
+        "status": 200,
+        "headersMs": 17.63604100000009,
+        "totalMs": 18.059750000000008,
+        "bytes": 582,
+        "cacheControl": "max-age=300"
+      },
+      {
+        "status": 200,
+        "headersMs": 18.273459000000003,
+        "totalMs": 18.679250000000025,
+        "bytes": 916,
+        "cacheControl": "max-age=300"
+      },
+      {
+        "status": 200,
+        "headersMs": 17.68679099999997,
+        "totalMs": 18.133083000000056,
+        "bytes": 929,
+        "cacheControl": "max-age=300"
+      },
+      {
+        "status": 200,
+        "headersMs": 16.827833000000055,
+        "totalMs": 17.19945800000005,
+        "bytes": 543,
+        "cacheControl": "max-age=300"
+      },
+      {
+        "status": 200,
+        "headersMs": 17.968458000000055,
+        "totalMs": 18.432999999999993,
+        "bytes": 622,
+        "cacheControl": "max-age=300"
+      },
+      {
+        "status": 200,
+        "headersMs": 17.819167000000107,
+        "totalMs": 18.237959000000046,
+        "bytes": 1082,
+        "cacheControl": "max-age=300"
+      },
+      {
+        "status": 200,
+        "headersMs": 16.4178330000002,
+        "totalMs": 16.808541000000105,
+        "bytes": 1059,
+        "cacheControl": "max-age=300"
+      },
+      {
+        "status": 200,
+        "headersMs": 20.030082999999877,
+        "totalMs": 20.471207999999933,
+        "bytes": 859,
+        "cacheControl": "max-age=300"
+      },
+      {
+        "status": 200,
+        "headersMs": 18.412250000000085,
+        "totalMs": 18.841499999999996,
+        "bytes": 1115,
+        "cacheControl": "max-age=300"
+      },
+      {
+        "status": 200,
+        "headersMs": 18.40800000000013,
+        "totalMs": 18.75516700000003,
+        "bytes": 1119,
+        "cacheControl": "max-age=300"
+      },
+      {
+        "status": 200,
+        "headersMs": 17.553957999999966,
+        "totalMs": 18.093457999999828,
+        "bytes": 1423,
+        "cacheControl": "max-age=300"
+      },
+      {
+        "status": 200,
+        "headersMs": 18.49158299999999,
+        "totalMs": 18.953457999999955,
+        "bytes": 1261,
+        "cacheControl": "max-age=300"
+      },
+      {
+        "status": 200,
+        "headersMs": 16.40491700000007,
+        "totalMs": 16.691083000000162,
+        "bytes": 814,
+        "cacheControl": "max-age=300"
+      },
+      {
+        "status": 200,
+        "headersMs": 18.15491699999984,
+        "totalMs": 18.548708999999917,
+        "bytes": 656,
+        "cacheControl": "max-age=300"
+      },
+      {
+        "status": 200,
+        "headersMs": 17.711667000000034,
+        "totalMs": 18.013500000000022,
+        "bytes": 998,
+        "cacheControl": "max-age=300"
+      },
+      {
+        "status": 200,
+        "headersMs": 18.08770800000002,
+        "totalMs": 18.414874999999938,
+        "bytes": 1354,
+        "cacheControl": "max-age=300"
+      },
+      {
+        "status": 200,
+        "headersMs": 16.98433299999988,
+        "totalMs": 17.266791000000012,
+        "bytes": 789,
+        "cacheControl": "max-age=300"
+      },
+      {
+        "status": 200,
+        "headersMs": 16.82400000000007,
+        "totalMs": 17.229916000000003,
+        "bytes": 464,
+        "cacheControl": "max-age=300"
+      },
+      {
+        "status": 200,
+        "headersMs": 17.728374999999915,
+        "totalMs": 18.174415999999837,
+        "bytes": 1171,
+        "cacheControl": "max-age=300"
+      },
+      {
+        "status": 200,
+        "headersMs": 18.60420799999997,
+        "totalMs": 18.994207999999844,
+        "bytes": 621,
+        "cacheControl": "max-age=300"
+      },
+      {
+        "status": 200,
+        "headersMs": 17.758542000000034,
+        "totalMs": 18.59370899999999,
+        "bytes": 4162,
+        "cacheControl": "max-age=300"
+      },
+      {
+        "status": 200,
+        "headersMs": 18.380042000000003,
+        "totalMs": 19.035916999999927,
+        "bytes": 1715,
+        "cacheControl": "max-age=300"
+      },
+      {
+        "status": 200,
+        "headersMs": 15.640915999999834,
+        "totalMs": 16.08895799999982,
+        "bytes": 543,
+        "cacheControl": "max-age=300"
+      },
+      {
+        "status": 200,
+        "headersMs": 16.239207999999962,
+        "totalMs": 16.598707999999988,
+        "bytes": 597,
+        "cacheControl": "max-age=300"
+      },
+      {
+        "status": 200,
+        "headersMs": 16.619459000000006,
+        "totalMs": 16.944874999999683,
+        "bytes": 492,
+        "cacheControl": "max-age=300"
+      },
+      {
+        "status": 200,
+        "headersMs": 17.191125000000284,
+        "totalMs": 17.624874999999975,
+        "bytes": 722,
+        "cacheControl": "max-age=300"
+      },
+      {
+        "status": 200,
+        "headersMs": 16.516791999999896,
+        "totalMs": 17.21329199999991,
+        "bytes": 802,
+        "cacheControl": "max-age=300"
+      },
+      {
+        "status": 200,
+        "headersMs": 17.138750000000073,
+        "totalMs": 17.525040999999874,
+        "bytes": 877,
+        "cacheControl": "max-age=300"
+      },
+      {
+        "status": 200,
+        "headersMs": 15.255290999999943,
+        "totalMs": 15.558582999999999,
+        "bytes": 582,
+        "cacheControl": "max-age=300"
+      },
+      {
+        "status": 200,
+        "headersMs": 16.843417000000045,
+        "totalMs": 17.031208999999762,
+        "bytes": 916,
+        "cacheControl": "max-age=300"
+      },
+      {
+        "status": 200,
+        "headersMs": 16.191416000000117,
+        "totalMs": 16.47229100000004,
+        "bytes": 929,
+        "cacheControl": "max-age=300"
+      },
+      {
+        "status": 200,
+        "headersMs": 15.519124999999804,
+        "totalMs": 15.774875000000065,
+        "bytes": 543,
+        "cacheControl": "max-age=300"
+      },
+      {
+        "status": 200,
+        "headersMs": 16.30708400000003,
+        "totalMs": 16.60891700000002,
+        "bytes": 622,
+        "cacheControl": "max-age=300"
+      },
+      {
+        "status": 200,
+        "headersMs": 16.75133300000016,
+        "totalMs": 16.939416000000165,
+        "bytes": 1082,
+        "cacheControl": "max-age=300"
+      },
+      {
+        "status": 200,
+        "headersMs": 16.33579200000031,
+        "totalMs": 16.651000000000295,
+        "bytes": 1059,
+        "cacheControl": "max-age=300"
+      },
+      {
+        "status": 200,
+        "headersMs": 16.8793340000002,
+        "totalMs": 17.211499999999887,
+        "bytes": 859,
+        "cacheControl": "max-age=300"
+      },
+      {
+        "status": 200,
+        "headersMs": 16.585915999999997,
+        "totalMs": 17.05962499999987,
+        "bytes": 1115,
+        "cacheControl": "max-age=300"
+      },
+      {
+        "status": 200,
+        "headersMs": 17.206500000000233,
+        "totalMs": 17.63466600000038,
+        "bytes": 1119,
+        "cacheControl": "max-age=300"
+      },
+      {
+        "status": 200,
+        "headersMs": 16.49920800000018,
+        "totalMs": 16.950041000000056,
+        "bytes": 1423,
+        "cacheControl": "max-age=300"
+      },
+      {
+        "status": 200,
+        "headersMs": 17.077166999999918,
+        "totalMs": 17.480999999999767,
+        "bytes": 1261,
+        "cacheControl": "max-age=300"
+      },
+      {
+        "status": 200,
+        "headersMs": 16.5612500000002,
+        "totalMs": 17.042167000000063,
+        "bytes": 814,
+        "cacheControl": "max-age=300"
+      },
+      {
+        "status": 200,
+        "headersMs": 17.226791999999932,
+        "totalMs": 17.633582999999817,
+        "bytes": 656,
+        "cacheControl": "max-age=300"
+      },
+      {
+        "status": 200,
+        "headersMs": 16.29620799999975,
+        "totalMs": 16.699416999999812,
+        "bytes": 998,
+        "cacheControl": "max-age=300"
+      },
+      {
+        "status": 200,
+        "headersMs": 17.0959170000001,
+        "totalMs": 17.478625000000193,
+        "bytes": 1354,
+        "cacheControl": "max-age=300"
+      },
+      {
+        "status": 200,
+        "headersMs": 16.310791000000336,
+        "totalMs": 16.643082999999933,
+        "bytes": 789,
+        "cacheControl": "max-age=300"
+      },
+      {
+        "status": 200,
+        "headersMs": 16.861541000000216,
+        "totalMs": 17.158707999999933,
+        "bytes": 464,
+        "cacheControl": "max-age=300"
+      },
+      {
+        "status": 200,
+        "headersMs": 16.582124999999905,
+        "totalMs": 17.075832999999875,
+        "bytes": 1171,
+        "cacheControl": "max-age=300"
+      },
+      {
+        "status": 200,
+        "headersMs": 15.858083999999963,
+        "totalMs": 16.23412499999995,
+        "bytes": 621,
+        "cacheControl": "max-age=300"
+      },
+      {
+        "status": 200,
+        "headersMs": 16.429208000000017,
+        "totalMs": 17.290750000000116,
+        "bytes": 4162,
+        "cacheControl": "max-age=300"
+      },
+      {
+        "status": 200,
+        "headersMs": 17.031708000000435,
+        "totalMs": 17.517125000000306,
+        "bytes": 1715,
+        "cacheControl": "max-age=300"
+      },
+      {
+        "status": 200,
+        "headersMs": 16.974749999999858,
+        "totalMs": 17.431749999999738,
+        "bytes": 543,
+        "cacheControl": "max-age=300"
+      },
+      {
+        "status": 200,
+        "headersMs": 17.592333000000053,
+        "totalMs": 18.01891599999999,
+        "bytes": 597,
+        "cacheControl": "max-age=300"
+      },
+      {
+        "status": 200,
+        "headersMs": 16.505083000000013,
+        "totalMs": 16.615332999999737,
+        "bytes": 492,
+        "cacheControl": "max-age=300"
+      },
+      {
+        "status": 200,
+        "headersMs": 15.097000000000207,
+        "totalMs": 15.20266700000002,
+        "bytes": 722,
+        "cacheControl": "max-age=300"
+      },
+      {
+        "status": 200,
+        "headersMs": 15.687792000000172,
+        "totalMs": 15.766125000000102,
+        "bytes": 802,
+        "cacheControl": "max-age=300"
+      },
+      {
+        "status": 200,
+        "headersMs": 16.242041999999856,
+        "totalMs": 16.347291999999925,
+        "bytes": 877,
+        "cacheControl": "max-age=300"
+      },
+      {
+        "status": 200,
+        "headersMs": 15.691707999999835,
+        "totalMs": 15.790124999999989,
+        "bytes": 582,
+        "cacheControl": "max-age=300"
+      },
+      {
+        "status": 200,
+        "headersMs": 16.811583000000155,
+        "totalMs": 17.114792000000307,
+        "bytes": 916,
+        "cacheControl": "max-age=300"
+      },
+      {
+        "status": 200,
+        "headersMs": 16.17929099999992,
+        "totalMs": 16.463708000000224,
+        "bytes": 929,
+        "cacheControl": "max-age=300"
+      },
+      {
+        "status": 200,
+        "headersMs": 17.013209000000188,
+        "totalMs": 17.35241700000006,
+        "bytes": 543,
+        "cacheControl": "max-age=300"
+      },
+      {
+        "status": 200,
+        "headersMs": 16.38004200000023,
+        "totalMs": 16.804167000000234,
+        "bytes": 622,
+        "cacheControl": "max-age=300"
+      },
+      {
+        "status": 200,
+        "headersMs": 17.381624999999985,
+        "totalMs": 17.814042000000427,
+        "bytes": 1082,
+        "cacheControl": "max-age=300"
+      },
+      {
+        "status": 200,
+        "headersMs": 15.30837500000007,
+        "totalMs": 15.739458000000013,
+        "bytes": 1059,
+        "cacheControl": "max-age=300"
+      },
+      {
+        "status": 200,
+        "headersMs": 17.541416000000027,
+        "totalMs": 17.90454099999988,
+        "bytes": 859,
+        "cacheControl": "max-age=300"
+      },
+      {
+        "status": 200,
+        "headersMs": 16.09829200000013,
+        "totalMs": 16.403124999999818,
+        "bytes": 1115,
+        "cacheControl": "max-age=300"
+      },
+      {
+        "status": 200,
+        "headersMs": 17.230583000000024,
+        "totalMs": 17.641791999999896,
+        "bytes": 1119,
+        "cacheControl": "max-age=300"
+      },
+      {
+        "status": 200,
+        "headersMs": 16.434083999999984,
+        "totalMs": 16.79404199999999,
+        "bytes": 1423,
+        "cacheControl": "max-age=300"
+      },
+      {
+        "status": 200,
+        "headersMs": 17.315250000000106,
+        "totalMs": 17.779042000000118,
+        "bytes": 1261,
+        "cacheControl": "max-age=300"
+      },
+      {
+        "status": 200,
+        "headersMs": 17.05020800000011,
+        "totalMs": 17.450124999999844,
+        "bytes": 814,
+        "cacheControl": "max-age=300"
+      },
+      {
+        "status": 200,
+        "headersMs": 17.210582999999588,
+        "totalMs": 17.594041999999718,
+        "bytes": 656,
+        "cacheControl": "max-age=300"
+      },
+      {
+        "status": 200,
+        "headersMs": 16.696332999999868,
+        "totalMs": 17.095832999999857,
+        "bytes": 998,
+        "cacheControl": "max-age=300"
+      },
+      {
+        "status": 200,
+        "headersMs": 17.252166000000216,
+        "totalMs": 17.701125000000047,
+        "bytes": 1354,
+        "cacheControl": "max-age=300"
+      },
+      {
+        "status": 200,
+        "headersMs": 17.015750000000025,
+        "totalMs": 17.30233300000009,
+        "bytes": 789,
+        "cacheControl": "max-age=300"
+      },
+      {
+        "status": 200,
+        "headersMs": 17.182667000000038,
+        "totalMs": 17.56683299999986,
+        "bytes": 464,
+        "cacheControl": "max-age=300"
+      },
+      {
+        "status": 200,
+        "headersMs": 16.54995800000006,
+        "totalMs": 16.98854100000017,
+        "bytes": 1171,
+        "cacheControl": "max-age=300"
+      },
+      {
+        "status": 200,
+        "headersMs": 17.099666999999954,
+        "totalMs": 17.457042,
+        "bytes": 621,
+        "cacheControl": "max-age=300"
+      },
+      {
+        "status": 200,
+        "headersMs": 16.49225000000024,
+        "totalMs": 17.194790999999896,
+        "bytes": 4162,
+        "cacheControl": "max-age=300"
+      },
+      {
+        "status": 200,
+        "headersMs": 15.946290999999746,
+        "totalMs": 16.3879579999998,
+        "bytes": 1715,
+        "cacheControl": "max-age=300"
+      },
+      {
+        "status": 200,
+        "headersMs": 16.871250000000146,
+        "totalMs": 17.280040999999983,
+        "bytes": 543,
+        "cacheControl": "max-age=300"
+      },
+      {
+        "status": 200,
+        "headersMs": 17.159625000000233,
+        "totalMs": 17.55212500000016,
+        "bytes": 597,
+        "cacheControl": "max-age=300"
+      },
+      {
+        "status": 200,
+        "headersMs": 15.190375000000131,
+        "totalMs": 15.54016700000011,
+        "bytes": 492,
+        "cacheControl": "max-age=300"
+      },
+      {
+        "status": 200,
+        "headersMs": 17.263750000000073,
+        "totalMs": 17.693750000000364,
+        "bytes": 722,
+        "cacheControl": "max-age=300"
+      },
+      {
+        "status": 200,
+        "headersMs": 16.191333000000668,
+        "totalMs": 16.506000000000313,
+        "bytes": 802,
+        "cacheControl": "max-age=300"
+      },
+      {
+        "status": 200,
+        "headersMs": 17.327958000000763,
+        "totalMs": 17.73383300000023,
+        "bytes": 877,
+        "cacheControl": "max-age=300"
+      },
+      {
+        "status": 200,
+        "headersMs": 16.52404200000001,
+        "totalMs": 17.079666999999972,
+        "bytes": 582,
+        "cacheControl": "max-age=300"
+      },
+      {
+        "status": 200,
+        "headersMs": 17.391708000000108,
+        "totalMs": 17.74345799999992,
+        "bytes": 916,
+        "cacheControl": "max-age=300"
+      },
+      {
+        "status": 200,
+        "headersMs": 16.690583000000515,
+        "totalMs": 17.123333000000457,
+        "bytes": 929,
+        "cacheControl": "max-age=300"
+      },
+      {
+        "status": 200,
+        "headersMs": 17.300792,
+        "totalMs": 17.732167000000118,
+        "bytes": 543,
+        "cacheControl": "max-age=300"
+      },
+      {
+        "status": 200,
+        "headersMs": 16.47179099999994,
+        "totalMs": 16.847375000000284,
+        "bytes": 622,
+        "cacheControl": "max-age=300"
+      },
+      {
+        "status": 200,
+        "headersMs": 17.007416000000376,
+        "totalMs": 17.379832999999962,
+        "bytes": 1082,
+        "cacheControl": "max-age=300"
+      },
+      {
+        "status": 200,
+        "headersMs": 16.411292000000685,
+        "totalMs": 16.77783400000044,
+        "bytes": 1059,
+        "cacheControl": "max-age=300"
+      },
+      {
+        "status": 200,
+        "headersMs": 16.91333299999951,
+        "totalMs": 17.255999999999403,
+        "bytes": 859,
+        "cacheControl": "max-age=300"
+      },
+      {
+        "status": 200,
+        "headersMs": 16.561374999999316,
+        "totalMs": 17.03245799999968,
+        "bytes": 1115,
+        "cacheControl": "max-age=300"
+      },
+      {
+        "status": 200,
+        "headersMs": 17.29704099999981,
+        "totalMs": 17.720040999999583,
+        "bytes": 1119,
+        "cacheControl": "max-age=300"
+      },
+      {
+        "status": 200,
+        "headersMs": 16.48004200000014,
+        "totalMs": 16.912459000000126,
+        "bytes": 1423,
+        "cacheControl": "max-age=300"
+      },
+      {
+        "status": 200,
+        "headersMs": 17.140666999999667,
+        "totalMs": 17.576583000000028,
+        "bytes": 1261,
+        "cacheControl": "max-age=300"
+      },
+      {
+        "status": 200,
+        "headersMs": 16.32566599999973,
+        "totalMs": 16.693082999999206,
+        "bytes": 814,
+        "cacheControl": "max-age=300"
+      },
+      {
+        "status": 200,
+        "headersMs": 17.13745800000015,
+        "totalMs": 17.496750000000247,
+        "bytes": 656,
+        "cacheControl": "max-age=300"
+      },
+      {
+        "status": 200,
+        "headersMs": 16.421041999999943,
+        "totalMs": 16.902750000000196,
+        "bytes": 998,
+        "cacheControl": "max-age=300"
+      },
+      {
+        "status": 200,
+        "headersMs": 17.2445000000007,
+        "totalMs": 17.67895800000042,
+        "bytes": 1354,
+        "cacheControl": "max-age=300"
+      },
+      {
+        "status": 200,
+        "headersMs": 15.257332999999562,
+        "totalMs": 15.597749999999905,
+        "bytes": 789,
+        "cacheControl": "max-age=300"
+      },
+      {
+        "status": 200,
+        "headersMs": 17.111291999999594,
+        "totalMs": 17.43804199999977,
+        "bytes": 464,
+        "cacheControl": "max-age=300"
+      },
+      {
+        "status": 200,
+        "headersMs": 14.965583000000152,
+        "totalMs": 15.345041999999921,
+        "bytes": 1171,
+        "cacheControl": "max-age=300"
+      },
+      {
+        "status": 200,
+        "headersMs": 17.071541000000252,
+        "totalMs": 17.470958000000792,
+        "bytes": 621,
+        "cacheControl": "max-age=300"
+      },
+      {
+        "status": 200,
+        "headersMs": 16.487500000000182,
+        "totalMs": 16.91699999999946,
+        "bytes": 4162,
+        "cacheControl": "max-age=300"
+      },
+      {
+        "status": 200,
+        "headersMs": 17.071083000000726,
+        "totalMs": 17.43066700000054,
+        "bytes": 1715,
+        "cacheControl": "max-age=300"
+      },
+      {
+        "status": 200,
+        "headersMs": 16.60179100000005,
+        "totalMs": 17.06670800000029,
+        "bytes": 543,
+        "cacheControl": "max-age=300"
+      },
+      {
+        "status": 200,
+        "headersMs": 17.21929199999977,
+        "totalMs": 17.582083999999668,
+        "bytes": 597,
+        "cacheControl": "max-age=300"
+      },
+      {
+        "status": 200,
+        "headersMs": 16.316249999999854,
+        "totalMs": 16.629624999999578,
+        "bytes": 492,
+        "cacheControl": "max-age=300"
+      },
+      {
+        "status": 200,
+        "headersMs": 15.791165999999976,
+        "totalMs": 16.142791000000216,
+        "bytes": 722,
+        "cacheControl": "max-age=300"
+      },
+      {
+        "status": 200,
+        "headersMs": 16.210374999999658,
+        "totalMs": 16.54187499999989,
+        "bytes": 802,
+        "cacheControl": "max-age=300"
+      },
+      {
+        "status": 200,
+        "headersMs": 17.03845899999942,
+        "totalMs": 17.415333999999348,
+        "bytes": 877,
+        "cacheControl": "max-age=300"
+      },
+      {
+        "status": 200,
+        "headersMs": 16.697916999999507,
+        "totalMs": 17.075667000000067,
+        "bytes": 582,
+        "cacheControl": "max-age=300"
+      },
+      {
+        "status": 200,
+        "headersMs": 17.095166999999492,
+        "totalMs": 17.465791999999965,
+        "bytes": 916,
+        "cacheControl": "max-age=300"
+      },
+      {
+        "status": 200,
+        "headersMs": 16.242957999999817,
+        "totalMs": 16.578582999999526,
+        "bytes": 929,
+        "cacheControl": "max-age=300"
+      },
+      {
+        "status": 200,
+        "headersMs": 16.874166999999943,
+        "totalMs": 17.19524999999976,
+        "bytes": 543,
+        "cacheControl": "max-age=300"
+      },
+      {
+        "status": 200,
+        "headersMs": 16.357999999999265,
+        "totalMs": 16.753499999999804,
+        "bytes": 622,
+        "cacheControl": "max-age=300"
+      },
+      {
+        "status": 200,
+        "headersMs": 17.017249999999876,
+        "totalMs": 17.38654200000019,
+        "bytes": 1082,
+        "cacheControl": "max-age=300"
+      },
+      {
+        "status": 200,
+        "headersMs": 16.40362499999992,
+        "totalMs": 16.731582999999773,
+        "bytes": 1059,
+        "cacheControl": "max-age=300"
+      },
+      {
+        "status": 200,
+        "headersMs": 17.238750000000437,
+        "totalMs": 17.64850000000024,
+        "bytes": 859,
+        "cacheControl": "max-age=300"
+      },
+      {
+        "status": 200,
+        "headersMs": 18.4717499999997,
+        "totalMs": 18.850999999999658,
+        "bytes": 1115,
+        "cacheControl": "max-age=300"
+      },
+      {
+        "status": 200,
+        "headersMs": 17.009374999999636,
+        "totalMs": 17.36449999999968,
+        "bytes": 1119,
+        "cacheControl": "max-age=300"
+      },
+      {
+        "status": 200,
+        "headersMs": 16.530415999999605,
+        "totalMs": 16.958290999999917,
+        "bytes": 1423,
+        "cacheControl": "max-age=300"
+      },
+      {
+        "status": 200,
+        "headersMs": 17.207917000000634,
+        "totalMs": 17.63616700000057,
+        "bytes": 1261,
+        "cacheControl": "max-age=300"
+      },
+      {
+        "status": 200,
+        "headersMs": 16.55554099999972,
+        "totalMs": 17.017291000000114,
+        "bytes": 814,
+        "cacheControl": "max-age=300"
+      },
+      {
+        "status": 200,
+        "headersMs": 16.860499999999774,
+        "totalMs": 17.208082999999533,
+        "bytes": 656,
+        "cacheControl": "max-age=300"
+      },
+      {
+        "status": 200,
+        "headersMs": 16.64520799999991,
+        "totalMs": 17.07891699999982,
+        "bytes": 998,
+        "cacheControl": "max-age=300"
+      },
+      {
+        "status": 200,
+        "headersMs": 64.80437499999971,
+        "totalMs": 65.06137500000023,
+        "bytes": 1354,
+        "cacheControl": "max-age=300"
+      },
+      {
+        "status": 200,
+        "headersMs": 16.33624999999938,
+        "totalMs": 16.779082999999446,
+        "bytes": 789,
+        "cacheControl": "max-age=300"
+      },
+      {
+        "status": 200,
+        "headersMs": 17.48199999999997,
+        "totalMs": 17.860791999999492,
+        "bytes": 464,
+        "cacheControl": "max-age=300"
+      },
+      {
+        "status": 200,
+        "headersMs": 16.548249999999825,
+        "totalMs": 16.87629199999992,
+        "bytes": 1171,
+        "cacheControl": "max-age=300"
+      },
+      {
+        "status": 200,
+        "headersMs": 17.398583000000144,
+        "totalMs": 17.83720799999992,
+        "bytes": 621,
+        "cacheControl": "max-age=300"
+      },
+      {
+        "status": 200,
+        "headersMs": 16.617417000000387,
+        "totalMs": 17.08758300000045,
+        "bytes": 4162,
+        "cacheControl": "max-age=300"
+      },
+      {
+        "status": 200,
+        "headersMs": 17.660625000000437,
+        "totalMs": 18.0512090000002,
+        "bytes": 1715,
+        "cacheControl": "max-age=300"
+      }
+    ],
+    "jsdelivr": [
+      {
+        "status": 200,
+        "headersMs": 17.380165999999917,
+        "totalMs": 17.839750000000095,
+        "bytes": 543,
+        "cacheControl": "public, max-age=604800, s-maxage=43200"
+      },
+      {
+        "status": 200,
+        "headersMs": 17.251666999999998,
+        "totalMs": 17.664250000000038,
+        "bytes": 597,
+        "cacheControl": "public, max-age=604800, s-maxage=43200"
+      },
+      {
+        "status": 200,
+        "headersMs": 17.038749999999936,
+        "totalMs": 17.423999999999978,
+        "bytes": 492,
+        "cacheControl": "public, max-age=604800, s-maxage=43200"
+      },
+      {
+        "status": 200,
+        "headersMs": 17.25108299999988,
+        "totalMs": 17.62324999999987,
+        "bytes": 722,
+        "cacheControl": "public, max-age=604800, s-maxage=43200"
+      },
+      {
+        "status": 200,
+        "headersMs": 17.744707999999946,
+        "totalMs": 18.152624999999944,
+        "bytes": 802,
+        "cacheControl": "public, max-age=604800, s-maxage=43200"
+      },
+      {
+        "status": 200,
+        "headersMs": 18.47874999999999,
+        "totalMs": 19.00720799999999,
+        "bytes": 877,
+        "cacheControl": "public, max-age=604800, s-maxage=43200"
+      },
+      {
+        "status": 200,
+        "headersMs": 18.13491699999986,
+        "totalMs": 18.583583999999973,
+        "bytes": 582,
+        "cacheControl": "public, max-age=604800, s-maxage=43200"
+      },
+      {
+        "status": 200,
+        "headersMs": 17.882083000000193,
+        "totalMs": 18.262541000000056,
+        "bytes": 916,
+        "cacheControl": "public, max-age=604800, s-maxage=43200"
+      },
+      {
+        "status": 200,
+        "headersMs": 17.87470899999994,
+        "totalMs": 18.564083999999866,
+        "bytes": 929,
+        "cacheControl": "public, max-age=604800, s-maxage=43200"
+      },
+      {
+        "status": 200,
+        "headersMs": 18.418292000000065,
+        "totalMs": 18.81533300000001,
+        "bytes": 543,
+        "cacheControl": "public, max-age=604800, s-maxage=43200"
+      },
+      {
+        "status": 200,
+        "headersMs": 16.51016699999991,
+        "totalMs": 16.953500000000076,
+        "bytes": 622,
+        "cacheControl": "public, max-age=604800, s-maxage=43200"
+      },
+      {
+        "status": 200,
+        "headersMs": 16.631208000000015,
+        "totalMs": 17.014042000000018,
+        "bytes": 1082,
+        "cacheControl": "public, max-age=604800, s-maxage=43200"
+      },
+      {
+        "status": 200,
+        "headersMs": 16.543499999999995,
+        "totalMs": 16.99741599999993,
+        "bytes": 1059,
+        "cacheControl": "public, max-age=604800, s-maxage=43200"
+      },
+      {
+        "status": 200,
+        "headersMs": 17.831583000000137,
+        "totalMs": 18.229417000000012,
+        "bytes": 859,
+        "cacheControl": "public, max-age=604800, s-maxage=43200"
+      },
+      {
+        "status": 200,
+        "headersMs": 17.154833999999937,
+        "totalMs": 17.612874999999804,
+        "bytes": 1115,
+        "cacheControl": "public, max-age=604800, s-maxage=43200"
+      },
+      {
+        "status": 200,
+        "headersMs": 16.76216599999998,
+        "totalMs": 17.167208000000073,
+        "bytes": 1119,
+        "cacheControl": "public, max-age=604800, s-maxage=43200"
+      },
+      {
+        "status": 200,
+        "headersMs": 17.246583999999984,
+        "totalMs": 17.797500000000127,
+        "bytes": 1423,
+        "cacheControl": "public, max-age=604800, s-maxage=43200"
+      },
+      {
+        "status": 200,
+        "headersMs": 16.445500000000038,
+        "totalMs": 16.85283400000003,
+        "bytes": 1261,
+        "cacheControl": "public, max-age=604800, s-maxage=43200"
+      },
+      {
+        "status": 200,
+        "headersMs": 17.160084000000097,
+        "totalMs": 17.555000000000064,
+        "bytes": 814,
+        "cacheControl": "public, max-age=604800, s-maxage=43200"
+      },
+      {
+        "status": 200,
+        "headersMs": 18.009958000000097,
+        "totalMs": 18.42758300000014,
+        "bytes": 656,
+        "cacheControl": "public, max-age=604800, s-maxage=43200"
+      },
+      {
+        "status": 200,
+        "headersMs": 15.592583000000104,
+        "totalMs": 15.950708000000077,
+        "bytes": 998,
+        "cacheControl": "public, max-age=604800, s-maxage=43200"
+      },
+      {
+        "status": 200,
+        "headersMs": 17.55250000000001,
+        "totalMs": 18.015375000000176,
+        "bytes": 1354,
+        "cacheControl": "public, max-age=604800, s-maxage=43200"
+      },
+      {
+        "status": 200,
+        "headersMs": 15.979125000000067,
+        "totalMs": 16.49004200000013,
+        "bytes": 789,
+        "cacheControl": "public, max-age=604800, s-maxage=43200"
+      },
+      {
+        "status": 200,
+        "headersMs": 17.86550000000011,
+        "totalMs": 18.276374999999916,
+        "bytes": 464,
+        "cacheControl": "public, max-age=604800, s-maxage=43200"
+      },
+      {
+        "status": 200,
+        "headersMs": 17.27520800000002,
+        "totalMs": 17.717707999999902,
+        "bytes": 1171,
+        "cacheControl": "public, max-age=604800, s-maxage=43200"
+      },
+      {
+        "status": 200,
+        "headersMs": 17.97587499999986,
+        "totalMs": 18.734666999999945,
+        "bytes": 621,
+        "cacheControl": "public, max-age=604800, s-maxage=43200"
+      },
+      {
+        "status": 200,
+        "headersMs": 17.326082999999926,
+        "totalMs": 18.085582999999815,
+        "bytes": 4162,
+        "cacheControl": "public, max-age=604800, s-maxage=43200"
+      },
+      {
+        "status": 200,
+        "headersMs": 17.728875000000016,
+        "totalMs": 18.222749999999905,
+        "bytes": 1715,
+        "cacheControl": "public, max-age=604800, s-maxage=43200"
+      },
+      {
+        "status": 200,
+        "headersMs": 16.78129200000012,
+        "totalMs": 17.202166999999918,
+        "bytes": 543,
+        "cacheControl": "public, max-age=604800, s-maxage=43200"
+      },
+      {
+        "status": 200,
+        "headersMs": 17.386250000000018,
+        "totalMs": 17.873333000000002,
+        "bytes": 597,
+        "cacheControl": "public, max-age=604800, s-maxage=43200"
+      },
+      {
+        "status": 200,
+        "headersMs": 16.76608299999998,
+        "totalMs": 17.173667000000023,
+        "bytes": 492,
+        "cacheControl": "public, max-age=604800, s-maxage=43200"
+      },
+      {
+        "status": 200,
+        "headersMs": 17.084917000000132,
+        "totalMs": 17.56275000000005,
+        "bytes": 722,
+        "cacheControl": "public, max-age=604800, s-maxage=43200"
+      },
+      {
+        "status": 200,
+        "headersMs": 15.529958999999963,
+        "totalMs": 15.90212500000007,
+        "bytes": 802,
+        "cacheControl": "public, max-age=604800, s-maxage=43200"
+      },
+      {
+        "status": 200,
+        "headersMs": 17.22458400000005,
+        "totalMs": 17.737084000000323,
+        "bytes": 877,
+        "cacheControl": "public, max-age=604800, s-maxage=43200"
+      },
+      {
+        "status": 200,
+        "headersMs": 16.511916999999812,
+        "totalMs": 16.917875000000095,
+        "bytes": 582,
+        "cacheControl": "public, max-age=604800, s-maxage=43200"
+      },
+      {
+        "status": 200,
+        "headersMs": 16.855458,
+        "totalMs": 17.261457999999948,
+        "bytes": 916,
+        "cacheControl": "public, max-age=604800, s-maxage=43200"
+      },
+      {
+        "status": 200,
+        "headersMs": 17.492666999999983,
+        "totalMs": 17.90337499999987,
+        "bytes": 929,
+        "cacheControl": "public, max-age=604800, s-maxage=43200"
+      },
+      {
+        "status": 200,
+        "headersMs": 17.079917000000023,
+        "totalMs": 17.508374999999887,
+        "bytes": 543,
+        "cacheControl": "public, max-age=604800, s-maxage=43200"
+      },
+      {
+        "status": 200,
+        "headersMs": 16.604874999999993,
+        "totalMs": 17.010999999999967,
+        "bytes": 622,
+        "cacheControl": "public, max-age=604800, s-maxage=43200"
+      },
+      {
+        "status": 200,
+        "headersMs": 16.574707999999646,
+        "totalMs": 16.97570799999994,
+        "bytes": 1082,
+        "cacheControl": "public, max-age=604800, s-maxage=43200"
+      },
+      {
+        "status": 200,
+        "headersMs": 16.364958000000115,
+        "totalMs": 16.774125000000367,
+        "bytes": 1059,
+        "cacheControl": "public, max-age=604800, s-maxage=43200"
+      },
+      {
+        "status": 200,
+        "headersMs": 16.49191699999983,
+        "totalMs": 16.882916999999907,
+        "bytes": 859,
+        "cacheControl": "public, max-age=604800, s-maxage=43200"
+      },
+      {
+        "status": 200,
+        "headersMs": 15.429458000000068,
+        "totalMs": 15.823957999999948,
+        "bytes": 1115,
+        "cacheControl": "public, max-age=604800, s-maxage=43200"
+      },
+      {
+        "status": 200,
+        "headersMs": 15.490999999999985,
+        "totalMs": 15.978249999999662,
+        "bytes": 1119,
+        "cacheControl": "public, max-age=604800, s-maxage=43200"
+      },
+      {
+        "status": 200,
+        "headersMs": 15.567915999999968,
+        "totalMs": 16.143625000000156,
+        "bytes": 1423,
+        "cacheControl": "public, max-age=604800, s-maxage=43200"
+      },
+      {
+        "status": 200,
+        "headersMs": 16.94545799999969,
+        "totalMs": 17.39254200000005,
+        "bytes": 1261,
+        "cacheControl": "public, max-age=604800, s-maxage=43200"
+      },
+      {
+        "status": 200,
+        "headersMs": 16.995124999999916,
+        "totalMs": 17.449082999999973,
+        "bytes": 814,
+        "cacheControl": "public, max-age=604800, s-maxage=43200"
+      },
+      {
+        "status": 200,
+        "headersMs": 17.004209000000174,
+        "totalMs": 17.405917000000045,
+        "bytes": 656,
+        "cacheControl": "public, max-age=604800, s-maxage=43200"
+      },
+      {
+        "status": 200,
+        "headersMs": 17.021291999999903,
+        "totalMs": 17.46737499999972,
+        "bytes": 998,
+        "cacheControl": "public, max-age=604800, s-maxage=43200"
+      },
+      {
+        "status": 200,
+        "headersMs": 15.232542000000194,
+        "totalMs": 15.625292000000172,
+        "bytes": 1354,
+        "cacheControl": "public, max-age=604800, s-maxage=43200"
+      },
+      {
+        "status": 200,
+        "headersMs": 16.466083000000253,
+        "totalMs": 16.87854100000004,
+        "bytes": 789,
+        "cacheControl": "public, max-age=604800, s-maxage=43200"
+      },
+      {
+        "status": 200,
+        "headersMs": 16.594499999999698,
+        "totalMs": 16.940374999999676,
+        "bytes": 464,
+        "cacheControl": "public, max-age=604800, s-maxage=43200"
+      },
+      {
+        "status": 200,
+        "headersMs": 16.21695899999986,
+        "totalMs": 16.55791700000009,
+        "bytes": 1171,
+        "cacheControl": "public, max-age=604800, s-maxage=43200"
+      },
+      {
+        "status": 200,
+        "headersMs": 15.40204199999971,
+        "totalMs": 15.773874999999862,
+        "bytes": 621,
+        "cacheControl": "public, max-age=604800, s-maxage=43200"
+      },
+      {
+        "status": 200,
+        "headersMs": 16.93941599999971,
+        "totalMs": 17.643125000000055,
+        "bytes": 4162,
+        "cacheControl": "public, max-age=604800, s-maxage=43200"
+      },
+      {
+        "status": 200,
+        "headersMs": 16.402541999999812,
+        "totalMs": 16.725541999999678,
+        "bytes": 1715,
+        "cacheControl": "public, max-age=604800, s-maxage=43200"
+      },
+      {
+        "status": 200,
+        "headersMs": 16.527541999999812,
+        "totalMs": 16.794167000000016,
+        "bytes": 543,
+        "cacheControl": "public, max-age=604800, s-maxage=43200"
+      },
+      {
+        "status": 200,
+        "headersMs": 16.63799999999992,
+        "totalMs": 17.067167000000154,
+        "bytes": 597,
+        "cacheControl": "public, max-age=604800, s-maxage=43200"
+      },
+      {
+        "status": 200,
+        "headersMs": 16.414958999999726,
+        "totalMs": 16.812333999999737,
+        "bytes": 492,
+        "cacheControl": "public, max-age=604800, s-maxage=43200"
+      },
+      {
+        "status": 200,
+        "headersMs": 16.491167000000132,
+        "totalMs": 16.793333000000075,
+        "bytes": 722,
+        "cacheControl": "public, max-age=604800, s-maxage=43200"
+      },
+      {
+        "status": 200,
+        "headersMs": 15.260000000000218,
+        "totalMs": 15.686375000000226,
+        "bytes": 802,
+        "cacheControl": "public, max-age=604800, s-maxage=43200"
+      },
+      {
+        "status": 200,
+        "headersMs": 16.808666999999787,
+        "totalMs": 17.327749999999924,
+        "bytes": 877,
+        "cacheControl": "public, max-age=604800, s-maxage=43200"
+      },
+      {
+        "status": 200,
+        "headersMs": 16.675874999999905,
+        "totalMs": 17.12804099999994,
+        "bytes": 582,
+        "cacheControl": "public, max-age=604800, s-maxage=43200"
+      },
+      {
+        "status": 200,
+        "headersMs": 16.802832999999737,
+        "totalMs": 17.18987500000003,
+        "bytes": 916,
+        "cacheControl": "public, max-age=604800, s-maxage=43200"
+      },
+      {
+        "status": 200,
+        "headersMs": 16.703457999999955,
+        "totalMs": 17.081290999999965,
+        "bytes": 929,
+        "cacheControl": "public, max-age=604800, s-maxage=43200"
+      },
+      {
+        "status": 200,
+        "headersMs": 16.61679099999992,
+        "totalMs": 16.95833300000004,
+        "bytes": 543,
+        "cacheControl": "public, max-age=604800, s-maxage=43200"
+      },
+      {
+        "status": 200,
+        "headersMs": 16.444124999999985,
+        "totalMs": 16.820459000000028,
+        "bytes": 622,
+        "cacheControl": "public, max-age=604800, s-maxage=43200"
+      },
+      {
+        "status": 200,
+        "headersMs": 16.686542000000372,
+        "totalMs": 17.160292000000027,
+        "bytes": 1082,
+        "cacheControl": "public, max-age=604800, s-maxage=43200"
+      },
+      {
+        "status": 200,
+        "headersMs": 16.46804099999963,
+        "totalMs": 16.839790999999877,
+        "bytes": 1059,
+        "cacheControl": "public, max-age=604800, s-maxage=43200"
+      },
+      {
+        "status": 200,
+        "headersMs": 16.41899999999987,
+        "totalMs": 16.75924999999961,
+        "bytes": 859,
+        "cacheControl": "public, max-age=604800, s-maxage=43200"
+      },
+      {
+        "status": 200,
+        "headersMs": 16.8715830000001,
+        "totalMs": 17.2795000000001,
+        "bytes": 1115,
+        "cacheControl": "public, max-age=604800, s-maxage=43200"
+      },
+      {
+        "status": 200,
+        "headersMs": 16.490375000000313,
+        "totalMs": 16.84829200000013,
+        "bytes": 1119,
+        "cacheControl": "public, max-age=604800, s-maxage=43200"
+      },
+      {
+        "status": 200,
+        "headersMs": 16.444041000000198,
+        "totalMs": 16.830457999999908,
+        "bytes": 1423,
+        "cacheControl": "public, max-age=604800, s-maxage=43200"
+      },
+      {
+        "status": 200,
+        "headersMs": 16.584749999999985,
+        "totalMs": 16.977208000000246,
+        "bytes": 1261,
+        "cacheControl": "public, max-age=604800, s-maxage=43200"
+      },
+      {
+        "status": 200,
+        "headersMs": 16.373791999999412,
+        "totalMs": 16.69745899999998,
+        "bytes": 814,
+        "cacheControl": "public, max-age=604800, s-maxage=43200"
+      },
+      {
+        "status": 200,
+        "headersMs": 16.89612500000021,
+        "totalMs": 17.307749999999942,
+        "bytes": 656,
+        "cacheControl": "public, max-age=604800, s-maxage=43200"
+      },
+      {
+        "status": 200,
+        "headersMs": 16.449375000000146,
+        "totalMs": 16.849417000000358,
+        "bytes": 998,
+        "cacheControl": "public, max-age=604800, s-maxage=43200"
+      },
+      {
+        "status": 200,
+        "headersMs": 16.642291999999543,
+        "totalMs": 17.043707999999242,
+        "bytes": 1354,
+        "cacheControl": "public, max-age=604800, s-maxage=43200"
+      },
+      {
+        "status": 200,
+        "headersMs": 16.382249999999658,
+        "totalMs": 16.76679199999944,
+        "bytes": 789,
+        "cacheControl": "public, max-age=604800, s-maxage=43200"
+      },
+      {
+        "status": 200,
+        "headersMs": 15.065083999999842,
+        "totalMs": 15.35400000000027,
+        "bytes": 464,
+        "cacheControl": "public, max-age=604800, s-maxage=43200"
+      },
+      {
+        "status": 200,
+        "headersMs": 16.492208000000574,
+        "totalMs": 16.926167000000532,
+        "bytes": 1171,
+        "cacheControl": "public, max-age=604800, s-maxage=43200"
+      },
+      {
+        "status": 200,
+        "headersMs": 16.43499999999949,
+        "totalMs": 16.79150000000027,
+        "bytes": 621,
+        "cacheControl": "public, max-age=604800, s-maxage=43200"
+      },
+      {
+        "status": 200,
+        "headersMs": 16.203166999999667,
+        "totalMs": 16.551000000000386,
+        "bytes": 4162,
+        "cacheControl": "public, max-age=604800, s-maxage=43200"
+      },
+      {
+        "status": 200,
+        "headersMs": 16.538125000000036,
+        "totalMs": 16.913708000000042,
+        "bytes": 1715,
+        "cacheControl": "public, max-age=604800, s-maxage=43200"
+      },
+      {
+        "status": 200,
+        "headersMs": 16.893334000000323,
+        "totalMs": 17.28754200000003,
+        "bytes": 543,
+        "cacheControl": "public, max-age=604800, s-maxage=43200"
+      },
+      {
+        "status": 200,
+        "headersMs": 16.496166999999332,
+        "totalMs": 16.87341699999979,
+        "bytes": 597,
+        "cacheControl": "public, max-age=604800, s-maxage=43200"
+      },
+      {
+        "status": 200,
+        "headersMs": 16.402125000000524,
+        "totalMs": 16.739583999999923,
+        "bytes": 492,
+        "cacheControl": "public, max-age=604800, s-maxage=43200"
+      },
+      {
+        "status": 200,
+        "headersMs": 16.39483299999938,
+        "totalMs": 16.7554999999993,
+        "bytes": 722,
+        "cacheControl": "public, max-age=604800, s-maxage=43200"
+      },
+      {
+        "status": 200,
+        "headersMs": 16.187208000000282,
+        "totalMs": 16.58050000000003,
+        "bytes": 802,
+        "cacheControl": "public, max-age=604800, s-maxage=43200"
+      },
+      {
+        "status": 200,
+        "headersMs": 16.63520900000003,
+        "totalMs": 16.945166999999856,
+        "bytes": 877,
+        "cacheControl": "public, max-age=604800, s-maxage=43200"
+      },
+      {
+        "status": 200,
+        "headersMs": 16.2313750000003,
+        "totalMs": 16.515957999999955,
+        "bytes": 582,
+        "cacheControl": "public, max-age=604800, s-maxage=43200"
+      },
+      {
+        "status": 200,
+        "headersMs": 16.17870800000037,
+        "totalMs": 16.563500000000204,
+        "bytes": 916,
+        "cacheControl": "public, max-age=604800, s-maxage=43200"
+      },
+      {
+        "status": 200,
+        "headersMs": 16.368666000000303,
+        "totalMs": 16.720916000000216,
+        "bytes": 929,
+        "cacheControl": "public, max-age=604800, s-maxage=43200"
+      },
+      {
+        "status": 200,
+        "headersMs": 16.38324999999986,
+        "totalMs": 16.65862500000003,
+        "bytes": 543,
+        "cacheControl": "public, max-age=604800, s-maxage=43200"
+      },
+      {
+        "status": 200,
+        "headersMs": 15.070290999999997,
+        "totalMs": 15.473415999999816,
+        "bytes": 622,
+        "cacheControl": "public, max-age=604800, s-maxage=43200"
+      },
+      {
+        "status": 200,
+        "headersMs": 16.53466600000047,
+        "totalMs": 16.921000000000276,
+        "bytes": 1082,
+        "cacheControl": "public, max-age=604800, s-maxage=43200"
+      },
+      {
+        "status": 200,
+        "headersMs": 16.60924999999952,
+        "totalMs": 16.939832999999453,
+        "bytes": 1059,
+        "cacheControl": "public, max-age=604800, s-maxage=43200"
+      },
+      {
+        "status": 200,
+        "headersMs": 16.431040999999823,
+        "totalMs": 16.772665999999845,
+        "bytes": 859,
+        "cacheControl": "public, max-age=604800, s-maxage=43200"
+      },
+      {
+        "status": 200,
+        "headersMs": 16.39495799999986,
+        "totalMs": 16.760207999999693,
+        "bytes": 1115,
+        "cacheControl": "public, max-age=604800, s-maxage=43200"
+      },
+      {
+        "status": 200,
+        "headersMs": 15.272541999999703,
+        "totalMs": 15.606457999999293,
+        "bytes": 1119,
+        "cacheControl": "public, max-age=604800, s-maxage=43200"
+      },
+      {
+        "status": 200,
+        "headersMs": 16.65399999999954,
+        "totalMs": 17.040874999999687,
+        "bytes": 1423,
+        "cacheControl": "public, max-age=604800, s-maxage=43200"
+      },
+      {
+        "status": 200,
+        "headersMs": 16.407874999999876,
+        "totalMs": 16.7529999999997,
+        "bytes": 1261,
+        "cacheControl": "public, max-age=604800, s-maxage=43200"
+      },
+      {
+        "status": 200,
+        "headersMs": 16.18187499999931,
+        "totalMs": 16.485499999999774,
+        "bytes": 814,
+        "cacheControl": "public, max-age=604800, s-maxage=43200"
+      },
+      {
+        "status": 200,
+        "headersMs": 15.090124999999716,
+        "totalMs": 15.475957999999991,
+        "bytes": 656,
+        "cacheControl": "public, max-age=604800, s-maxage=43200"
+      },
+      {
+        "status": 200,
+        "headersMs": 16.39020800000071,
+        "totalMs": 16.544333000000734,
+        "bytes": 998,
+        "cacheControl": "public, max-age=604800, s-maxage=43200"
+      },
+      {
+        "status": 200,
+        "headersMs": 16.022916999999325,
+        "totalMs": 16.138750000000073,
+        "bytes": 1354,
+        "cacheControl": "public, max-age=604800, s-maxage=43200"
+      },
+      {
+        "status": 200,
+        "headersMs": 14.831167000000278,
+        "totalMs": 15.035125000000335,
+        "bytes": 789,
+        "cacheControl": "public, max-age=604800, s-maxage=43200"
+      },
+      {
+        "status": 200,
+        "headersMs": 16.528791000000638,
+        "totalMs": 16.788416000000325,
+        "bytes": 464,
+        "cacheControl": "public, max-age=604800, s-maxage=43200"
+      },
+      {
+        "status": 200,
+        "headersMs": 15.10241700000006,
+        "totalMs": 15.461707999999817,
+        "bytes": 1171,
+        "cacheControl": "public, max-age=604800, s-maxage=43200"
+      },
+      {
+        "status": 200,
+        "headersMs": 16.53204099999948,
+        "totalMs": 16.98449999999957,
+        "bytes": 621,
+        "cacheControl": "public, max-age=604800, s-maxage=43200"
+      },
+      {
+        "status": 200,
+        "headersMs": 16.55908399999953,
+        "totalMs": 16.969333999999435,
+        "bytes": 4162,
+        "cacheControl": "public, max-age=604800, s-maxage=43200"
+      },
+      {
+        "status": 200,
+        "headersMs": 16.818707999999788,
+        "totalMs": 17.234292000000096,
+        "bytes": 1715,
+        "cacheControl": "public, max-age=604800, s-maxage=43200"
+      },
+      {
+        "status": 200,
+        "headersMs": 16.622875000000022,
+        "totalMs": 17.04162499999984,
+        "bytes": 543,
+        "cacheControl": "public, max-age=604800, s-maxage=43200"
+      },
+      {
+        "status": 200,
+        "headersMs": 16.63983400000052,
+        "totalMs": 17.033417000000554,
+        "bytes": 597,
+        "cacheControl": "public, max-age=604800, s-maxage=43200"
+      },
+      {
+        "status": 200,
+        "headersMs": 16.63258399999995,
+        "totalMs": 16.946084000000155,
+        "bytes": 492,
+        "cacheControl": "public, max-age=604800, s-maxage=43200"
+      },
+      {
+        "status": 200,
+        "headersMs": 16.520791000000827,
+        "totalMs": 16.924166000000696,
+        "bytes": 722,
+        "cacheControl": "public, max-age=604800, s-maxage=43200"
+      },
+      {
+        "status": 200,
+        "headersMs": 16.343791999999667,
+        "totalMs": 16.686999999999898,
+        "bytes": 802,
+        "cacheControl": "public, max-age=604800, s-maxage=43200"
+      },
+      {
+        "status": 200,
+        "headersMs": 16.527665999999954,
+        "totalMs": 16.958832999999686,
+        "bytes": 877,
+        "cacheControl": "public, max-age=604800, s-maxage=43200"
+      },
+      {
+        "status": 200,
+        "headersMs": 16.554917000000387,
+        "totalMs": 17.04595900000004,
+        "bytes": 582,
+        "cacheControl": "public, max-age=604800, s-maxage=43200"
+      },
+      {
+        "status": 200,
+        "headersMs": 16.693874999999935,
+        "totalMs": 16.911917000000358,
+        "bytes": 916,
+        "cacheControl": "public, max-age=604800, s-maxage=43200"
+      },
+      {
+        "status": 200,
+        "headersMs": 16.31916700000056,
+        "totalMs": 16.6976250000007,
+        "bytes": 929,
+        "cacheControl": "public, max-age=604800, s-maxage=43200"
+      },
+      {
+        "status": 200,
+        "headersMs": 16.60083399999985,
+        "totalMs": 16.762166999999863,
+        "bytes": 543,
+        "cacheControl": "public, max-age=604800, s-maxage=43200"
+      },
+      {
+        "status": 200,
+        "headersMs": 16.066165999999612,
+        "totalMs": 16.322832999999264,
+        "bytes": 622,
+        "cacheControl": "public, max-age=604800, s-maxage=43200"
+      },
+      {
+        "status": 200,
+        "headersMs": 16.612207999999555,
+        "totalMs": 16.8623749999997,
+        "bytes": 1082,
+        "cacheControl": "public, max-age=604800, s-maxage=43200"
+      },
+      {
+        "status": 200,
+        "headersMs": 15.29804200000035,
+        "totalMs": 15.620874999999614,
+        "bytes": 1059,
+        "cacheControl": "public, max-age=604800, s-maxage=43200"
+      },
+      {
+        "status": 200,
+        "headersMs": 16.733499999999367,
+        "totalMs": 17.105625000000146,
+        "bytes": 859,
+        "cacheControl": "public, max-age=604800, s-maxage=43200"
+      },
+      {
+        "status": 200,
+        "headersMs": 16.38050000000021,
+        "totalMs": 16.711457999999766,
+        "bytes": 1115,
+        "cacheControl": "public, max-age=604800, s-maxage=43200"
+      },
+      {
+        "status": 200,
+        "headersMs": 16.6075409999994,
+        "totalMs": 17.013457999999446,
+        "bytes": 1119,
+        "cacheControl": "public, max-age=604800, s-maxage=43200"
+      },
+      {
+        "status": 200,
+        "headersMs": 16.615042000000358,
+        "totalMs": 16.900666999999885,
+        "bytes": 1423,
+        "cacheControl": "public, max-age=604800, s-maxage=43200"
+      },
+      {
+        "status": 200,
+        "headersMs": 16.5668340000002,
+        "totalMs": 16.8623749999997,
+        "bytes": 1261,
+        "cacheControl": "public, max-age=604800, s-maxage=43200"
+      },
+      {
+        "status": 200,
+        "headersMs": 16.58416699999998,
+        "totalMs": 16.92608300000029,
+        "bytes": 814,
+        "cacheControl": "public, max-age=604800, s-maxage=43200"
+      },
+      {
+        "status": 200,
+        "headersMs": 16.689542000000074,
+        "totalMs": 16.97400000000016,
+        "bytes": 656,
+        "cacheControl": "public, max-age=604800, s-maxage=43200"
+      },
+      {
+        "status": 200,
+        "headersMs": 16.40899999999965,
+        "totalMs": 16.784499999999753,
+        "bytes": 998,
+        "cacheControl": "public, max-age=604800, s-maxage=43200"
+      },
+      {
+        "status": 200,
+        "headersMs": 16.53783300000032,
+        "totalMs": 16.9071670000003,
+        "bytes": 1354,
+        "cacheControl": "public, max-age=604800, s-maxage=43200"
+      },
+      {
+        "status": 200,
+        "headersMs": 16.39824999999928,
+        "totalMs": 16.734999999999673,
+        "bytes": 789,
+        "cacheControl": "public, max-age=604800, s-maxage=43200"
+      },
+      {
+        "status": 200,
+        "headersMs": 16.564417000000503,
+        "totalMs": 16.902458999999908,
+        "bytes": 464,
+        "cacheControl": "public, max-age=604800, s-maxage=43200"
+      },
+      {
+        "status": 200,
+        "headersMs": 16.508624999999483,
+        "totalMs": 16.882416999999805,
+        "bytes": 1171,
+        "cacheControl": "public, max-age=604800, s-maxage=43200"
+      },
+      {
+        "status": 200,
+        "headersMs": 15.597458000000188,
+        "totalMs": 16.032916999999543,
+        "bytes": 621,
+        "cacheControl": "public, max-age=604800, s-maxage=43200"
+      },
+      {
+        "status": 200,
+        "headersMs": 16.665083999999297,
+        "totalMs": 17.1192089999995,
+        "bytes": 4162,
+        "cacheControl": "public, max-age=604800, s-maxage=43200"
+      },
+      {
+        "status": 200,
+        "headersMs": 15.328499999999622,
+        "totalMs": 15.679707999999664,
+        "bytes": 1715,
+        "cacheControl": "public, max-age=604800, s-maxage=43200"
+      }
+    ]
+  }
+}

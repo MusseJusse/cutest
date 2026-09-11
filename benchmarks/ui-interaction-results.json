@@ -1,0 +1,51 @@
+{
+  "date": "2026-09-11",
+  "methodology": "Chromium at 1280x800 against local next start builds backed by a local KV fixture on the same machine. Click latency is the time from a button click to the pair headline text changing, measured with MutationObserver, 10 alternating left/right clicks per variant, 300 ms apart. DOM sizes are a single page load per build. Not production measurements.",
+  "baseline": {
+    "label": "c3d4d82 baseline: server action awaited, cookie refresh before UI advances",
+    "url": "http://127.0.0.1:4313/",
+    "clickToPairVisibleMs": [
+      25.100000023841858,
+      18.699999928474426,
+      6.799999952316284,
+      17.799999952316284,
+      19,
+      16.800000071525574,
+      15.699999928474426,
+      12.299999952316284,
+      18.5,
+      15.700000047683716
+    ],
+    "medianMs": 17.3
+  },
+  "optimistic": {
+    "label": "integrated: client queue advances immediately, server action runs in the background",
+    "url": "http://127.0.0.1:4314/",
+    "clickToPairVisibleMs": [
+      3.5,
+      3.100000023841858,
+      2.5,
+      2.600000023841858,
+      2.899999976158142,
+      2.399999976158142,
+      1.2999999523162842,
+      3.1999999284744263,
+      2.200000047683716,
+      2.700000047683716
+    ],
+    "medianMs": 2.65
+  },
+  "votesPersisted": {
+    "baseline": { "requests": 10, "commands": 30, "note": "waitUntil before response" },
+    "optimistic": { "requests": 10, "commands": 30, "note": "after() once the response is sent" }
+  },
+  "rapidBurst": {
+    "note": "12 synchronous clicks first exposed an index-batching bug that advanced past the queue and unmounted the arena. After tracking the index in a ref, 8 clicks 40 ms apart yielded 9 unique pairs, and a follow-up synchronous burst of 12 clicks left a rendered pair and a working button."
+  },
+  "dom": {
+    "resultsPage": {
+      "baseline": { "articles": 1025, "images": 1025, "domNodes": 16463, "innerHtmlChars": 3126109, "inlineScripts": 1044 },
+      "optimisticPage1": { "articles": 50, "images": 50, "domNodes": 876, "innerHtmlChars": 198121, "inlineScripts": 73 }
+    }
+  }
+}

@@ -1,0 +1,115 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Roundest Cache performance pass</title>
+<style>
+  :root { color-scheme: dark; }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    background: #000;
+    color: #fff;
+    font: 16px/1.65 system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  }
+  main { max-width: 880px; margin: 0 auto; padding: 52px 20px 96px; }
+  h1 { font-size: 32px; line-height: 1.15; margin: 0 0 10px; font-weight: 650; letter-spacing: -0.01em; }
+  .sub { color: #8f8f8f; font-size: 14px; margin: 0 0 44px; }
+  h2 { font-size: 20px; margin: 46px 0 14px; font-weight: 600; }
+  p { margin: 0 0 14px; color: #e6e6e6; }
+  ul { margin: 0 0 14px; padding-left: 20px; }
+  li { margin-bottom: 10px; color: #e6e6e6; }
+  .wrap { overflow-x: auto; }
+  table { width: 100%; min-width: 620px; border-collapse: collapse; margin: 16px 0 12px; font-size: 14px; }
+  th, td { border-bottom: 1px solid #232323; padding: 10px 12px; text-align: right; white-space: nowrap; }
+  th:first-child, td:first-child { text-align: left; white-space: normal; }
+  th { color: #8f8f8f; font-weight: 600; font-size: 12px; text-transform: uppercase; letter-spacing: 0.06em; }
+  td { color: #dcdcdc; font-variant-numeric: tabular-nums; font-family: ui-monospace, SFMono-Regular, Menlo, monospace; }
+  td:first-child { font-family: inherit; }
+  .delta { color: #fff; font-weight: 650; }
+  code {
+    background: #151515;
+    border: 1px solid #262626;
+    border-radius: 4px;
+    padding: 1px 5px;
+    font-size: 13px;
+    font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+  }
+  pre {
+    background: #0e0e0e;
+    border: 1px solid #242424;
+    border-radius: 6px;
+    padding: 14px 16px;
+    overflow-x: auto;
+    font-size: 13px;
+    line-height: 1.7;
+    font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+    color: #d8d8d8;
+  }
+  .note { color: #9a9a9a; font-size: 14px; }
+</style>
+</head>
+<body>
+<main>
+  <h1>Roundest Cache performance pass</h1>
+  <p class="sub">Local measurements from September 11, 2026. Baseline is commit c3d4d82, integrated is the current working tree. Both ran as production builds against a local KV fixture on the same machine. None of this is a production number.</p>
+
+  <h2>What changed</h2>
+  <p>The vote interaction and the results page were the slow parts. This pass fixed those two, then trimmed asset and bundle weight.</p>
+  <ul>
+    <li>Votes advance on the client. The server prepares six pairs and ships them with the page. A click swaps in the next pair right away and posts the vote in the background. The queue refills four at a time when it runs low, and a failed vote offers a retry from a toast.</li>
+    <li>Results paginate at 50 entries. Page one shows the champion plus 49 challengers, later pages show 50, and the last page shows 25. Each response contains only the rows on screen.</li>
+    <li>Sprites load from jsDelivr instead of raw.githubusercontent.com. Each one carries <code>width</code>, <code>height</code>, <code>decoding="async"</code>, and a fetch priority. The champion sprite loads eagerly at high priority. The rest stay lazy at low.</li>
+    <li>Sonner and next-themes left the first load. The Toaster mounts from a dynamic import, and the failure path imports sonner only when a vote fails. Dropping lucide-react and @vercel/functions paid for part of it.</li>
+    <li>Vote writes use <code>after()</code> from next/server instead of <code>waitUntil</code> from @vercel/functions. The write still happens after the response leaves. <code>ignoreBuildErrors</code> is gone from next.config.ts, and the build passes without it.</li>
+  </ul>
+
+  <h2>Numbers</h2>
+  <div class="wrap">
+    <table>
+      <thead>
+        <tr><th>Metric</th><th>Before</th><th>After</th><th>Change</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>Click to visible next pair, median of 10</td><td>17.3 ms</td><td>2.65 ms</td><td class="delta">-84.7%</td></tr>
+        <tr><td>Results page decoded bytes, median</td><td>3,219,532</td><td>195,498</td><td class="delta">-93.9%</td></tr>
+        <tr><td>Results page gzipped bytes, median</td><td>106,372</td><td>11,604</td><td class="delta">-89.1%</td></tr>
+        <tr><td>Results response time, median</td><td>111.1 ms</td><td>11.3 ms</td><td class="delta">-89.8%</td></tr>
+        <tr><td>Results page DOM nodes</td><td>16,463</td><td>876</td><td class="delta">-94.7%</td></tr>
+        <tr><td>Sprite requests per results view</td><td>1,025</td><td>50</td><td class="delta">-95.1%</td></tr>
+        <tr><td>First-load JS, home</td><td>580,177 B</td><td>550,804 B</td><td class="delta">-5.1%</td></tr>
+        <tr><td>First-load JS, results</td><td>558,947 B</td><td>527,312 B</td><td class="delta">-5.7%</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <p class="note">The click number comes from a local browser session where the baseline server action round trip was already only 17 ms. On a real network the baseline grows with RTT. The optimistic path does not.</p>
+
+  <h2>What the numbers miss</h2>
+  <p>The sprite change is partly a bet. Median delivery did not move, 17.3 ms for GitHub raw, 16.9 ms for jsDelivr, and the bytes are identical. What moved is cache lifetime, from <code>max-age=300</code> to <code>public, max-age=604800, s-maxage=43200</code>, and the tail. Across two runs GitHub raw hit a 228 ms p95 and a 65 ms max while jsDelivr stayed under 32 ms. Repeat visits should feel the cache difference. First visits will not.</p>
+  <p>A burst test caught a bug I would have shipped. Twelve synchronous clicks batched their state updates, advanced the index past the queue, and unmounted the arena. The index now lives in a ref, so each click reads the real position. Eight clicks 40 ms apart produce eight distinct pairs and the buttons keep working. Ten votes produced 30 database commands on both builds, so <code>after()</code> writes what <code>waitUntil</code> wrote.</p>
+
+  <h2>Method</h2>
+  <ul>
+    <li>Baseline c3d4d82 built in a separate worktree and served on port 4313. Integrated build served on port 4314.</li>
+    <li>A local KV fixture on port 4310 accepts MGET reads always and mutations only when a test turns them on.</li>
+    <li>Click latency runs from a MutationObserver that watches for the headline text to change, 10 alternating clicks per build, 300 ms apart, viewport 1280 by 800.</li>
+    <li>Page responses use three warmups and 15 samples, recording decoded bytes and gzip size.</li>
+    <li>Bundle numbers come from <code>.next/diagnostics/route-bundle-stats.json</code> because Next 16 no longer prints First Load JS.</li>
+    <li>Two image runs, 140 requests per host each, after a discarded warmup round.</li>
+  </ul>
+
+  <h2>Still open</h2>
+  <ul>
+    <li>The 15-second counter cache from the earlier pass is still a tradeoff. It cut 60 database commands across 30 warm results requests to zero, but local zero-delay responses were slightly slower than baseline. Keep it only if a real deployment shows the benefit it showed with a simulated 50 ms database delay.</li>
+    <li>Moving counters into one Redis hash would cut the cold read from two commands to one. Warm requests are already free, and the migration would risk existing votes, so the key layout stayed as it was.</li>
+  </ul>
+
+  <h2>Reproduce</h2>
+  <pre>node --experimental-strip-types scripts/performance/benchmark-page.ts URL 50 after out.json
+node scripts/benchmark-images.mjs
+node --experimental-strip-types scripts/performance/verify-results-cache.ts URL</pre>
+  <p class="note">Raw samples live in benchmarks/ui-interaction-results.json, bundle-js-results.json, image-delivery.json, and the results-page files. TypeScript, ESLint, the three selection tests, and the production build all pass on the integrated branch.</p>
+</main>
+</body>
+</html>
