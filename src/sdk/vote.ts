@@ -1,14 +1,33 @@
+import "server-only";
+
 import { Redis } from "@upstash/redis";
-import { getAllPokemon } from "./pokemon";
-import type { Pokemon } from "./pokemon";
 import { after } from "next/server";
 import { cacheLife } from "next/cache";
+import { env } from "~/env";
+import { getAllPokemon } from "./pokemon";
+import type { Pokemon } from "./pokemon";
 
-const kv = new Redis({
-  url: process.env.KV_REST_API_URL ?? process.env.UPSTASH_REDIS_REST_URL,
-  token: process.env.KV_REST_API_TOKEN ?? process.env.UPSTASH_REDIS_REST_TOKEN,
-  retry: { retries: 2, backoff: (retryCount) => Math.exp(retryCount) * 50 },
-});
+let redis: Redis | undefined;
+
+function getRedis(): Redis {
+  if (redis) return redis;
+
+  const url = env.KV_REST_API_URL ?? env.UPSTASH_REDIS_REST_URL;
+  const token = env.KV_REST_API_TOKEN ?? env.UPSTASH_REDIS_REST_TOKEN;
+
+  if (!url || !token) {
+    throw new Error(
+      "Redis credentials missing. Set KV_REST_API_URL and KV_REST_API_TOKEN, or UPSTASH_REDIS_REST_URL and UPSTASH_REDIS_REST_TOKEN.",
+    );
+  }
+
+  redis = new Redis({
+    url,
+    token,
+    retry: { retries: 2, backoff: (retryCount) => Math.exp(retryCount) * 50 },
+  });
+  return redis;
+}
 
 export type ContenderStats = {
   wins: number;
@@ -29,7 +48,7 @@ export function recordBattle(winner: number, loser: number) {
   };
 
   after(async () => {
-    await kv
+    await getRedis()
       .pipeline()
       .lpush("cute-battles:all", JSON.stringify(battle))
       .incr(`cute-pokemon:${winner}:wins`)
@@ -47,8 +66,8 @@ async function getBattleCounts(dexNumbers: number[]) {
   const lossKeys = dexNumbers.map((id) => `cite-pokemon:${id}:losses`);
 
   return Promise.all([
-    kv.mget<number[]>(...winKeys),
-    kv.mget<number[]>(...lossKeys),
+    getRedis().mget<number[]>(...winKeys),
+    getRedis().mget<number[]>(...lossKeys),
   ]);
 }
 
@@ -87,8 +106,12 @@ export async function getContenderStats(
 
   try {
     const [wins, losses] = await Promise.all([
-      kv.mget<number[]>(...dexNumbers.map((id) => `cute-pokemon:${id}:wins`)),
-      kv.mget<number[]>(...dexNumbers.map((id) => `cite-pokemon:${id}:losses`)),
+      getRedis().mget<number[]>(
+        ...dexNumbers.map((id) => `cute-pokemon:${id}:wins`),
+      ),
+      getRedis().mget<number[]>(
+        ...dexNumbers.map((id) => `cite-pokemon:${id}:losses`),
+      ),
     ]);
 
     const stats: Record<number, ContenderStats> = {};
@@ -132,7 +155,7 @@ export async function getRecentBattles(limit: number): Promise<RecentBattle[]> {
   cacheLife({ stale: 0, revalidate: 15, expire: 16 });
 
   try {
-    const entries = await kv.lrange<unknown>(
+    const entries = await getRedis().lrange<unknown>(
       "cute-battles:all",
       0,
       Math.max(Math.trunc(limit) - 1, 0),
