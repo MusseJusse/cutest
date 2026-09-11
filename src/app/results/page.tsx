@@ -55,7 +55,7 @@ function PokemonDetails({
             "rounded-[10px] border-broadcast-gold/35 bg-[linear-gradient(90deg,rgba(255,210,63,0.1),rgba(255,210,63,0.02))] open:bg-none",
         )}
       >
-        <summary className="relative cursor-pointer list-none rounded-[inherit] pr-7 group-open:static group-open:min-h-11 group-open:after:absolute group-open:after:inset-0 group-open:after:z-10 group-open:after:content-[''] hover:bg-white/[0.03] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-broadcast-gold [&::-webkit-details-marker]:hidden">
+        <summary className="relative cursor-pointer list-none rounded-[inherit] pr-7 group-open:static group-open:min-h-11 group-open:after:absolute group-open:after:inset-0 group-open:after:z-10 group-open:after:content-[''] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-broadcast-gold [&::-webkit-details-marker]:hidden [details:not([open])_&]:hover:bg-white/[0.03]">
           <span className="sr-only">{pokemon.name} details</span>
           <div className="group-open:hidden">{children}</div>
           <span
