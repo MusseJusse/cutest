@@ -51,6 +51,7 @@ export default function FinalHomepage() {
           slate="Vote open · new pair every vote"
           href="/results"
           linkLabel="Standings"
+          transitionTypes={["nav-forward"]}
         />
         <Suspense fallback={<VoteFallback />}>
           <FinalHomepageContent />

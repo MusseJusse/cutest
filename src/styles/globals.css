@@ -110,6 +110,10 @@
   * {
     @apply border-border;
   }
+  /* Reserve the scrollbar so short pages and long ones share a content width. */
+  html {
+    scrollbar-gutter: stable;
+  }
   body {
     @apply bg-background text-foreground;
   }
@@ -150,9 +154,104 @@
     transform: translateX(-50%);
   }
 }
+:root {
+  --vt-slide: 16px;
+  --vt-ease-out: cubic-bezier(0.23, 1, 0.32, 1);
+  --vt-ease-in-out: cubic-bezier(0.77, 0, 0.175, 1);
+}
+
+.broadcast-bar {
+  view-transition-name: broadcast-bar;
+}
+
+::view-transition {
+  pointer-events: none;
+}
+
+::view-transition-group(broadcast-bar) {
+  animation: none;
+  z-index: 100;
+}
+::view-transition-old(broadcast-bar) {
+  display: none;
+}
+::view-transition-new(broadcast-bar) {
+  animation: none;
+}
+
+@keyframes vt-fade {
+  from {
+    opacity: 0;
+  }
+}
+@keyframes vt-slide {
+  from {
+    translate: var(--vt-offset, 0);
+  }
+}
+
+::view-transition-old(.nav-forward) {
+  --vt-offset: calc(-1 * var(--vt-slide));
+  animation:
+    160ms var(--vt-ease-out) both vt-fade reverse,
+    240ms var(--vt-ease-in-out) both vt-slide reverse;
+}
+::view-transition-new(.nav-forward) {
+  --vt-offset: var(--vt-slide);
+  animation:
+    260ms var(--vt-ease-out) both vt-fade,
+    300ms var(--vt-ease-out) both vt-slide;
+}
+::view-transition-old(.nav-back) {
+  --vt-offset: var(--vt-slide);
+  animation:
+    160ms var(--vt-ease-out) both vt-fade reverse,
+    240ms var(--vt-ease-in-out) both vt-slide reverse;
+}
+::view-transition-new(.nav-back) {
+  --vt-offset: calc(-1 * var(--vt-slide));
+  animation:
+    260ms var(--vt-ease-out) both vt-fade,
+    300ms var(--vt-ease-out) both vt-slide;
+}
+::view-transition-old(.page-fade) {
+  animation: 140ms var(--vt-ease-out) both vt-fade reverse;
+}
+::view-transition-new(.page-fade) {
+  animation: 180ms var(--vt-ease-out) both vt-fade;
+}
+
+@supports (interpolate-size: allow-keywords) {
+  :root {
+    interpolate-size: allow-keywords;
+  }
+  details::details-content {
+    block-size: 0;
+    overflow: clip;
+    opacity: 0;
+    transition:
+      block-size 220ms var(--vt-ease-out),
+      opacity 220ms var(--vt-ease-out),
+      content-visibility 220ms allow-discrete;
+  }
+  details[open]::details-content {
+    block-size: auto;
+    opacity: 1;
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
   .live-dot,
   .ticker-track {
     animation: none;
+  }
+  details::details-content {
+    transition: opacity 120ms ease;
+  }
+  ::view-transition-old(*),
+  ::view-transition-new(*),
+  ::view-transition-group(*) {
+    animation-duration: 0.01ms !important;
+    animation-delay: 0ms !important;
   }
 }

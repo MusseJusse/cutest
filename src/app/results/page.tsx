@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { Suspense, type ReactNode } from "react";
+import { Suspense, ViewTransition, type ReactNode } from "react";
 import BroadcastBar from "~/components/broadcast-bar";
 import { ResultsFallback } from "~/components/ui/fallbacks";
 import PokemonSprite from "~/components/ui/pokemon-sprite";
@@ -55,7 +55,7 @@ function PokemonDetails({
             "rounded-[10px] border-broadcast-gold/35 bg-[linear-gradient(90deg,rgba(255,210,63,0.1),rgba(255,210,63,0.02))] open:bg-none",
         )}
       >
-        <summary className="relative cursor-pointer list-none rounded-[inherit] pr-7 group-open:static group-open:min-h-11 group-open:after:absolute group-open:after:inset-0 group-open:after:z-10 group-open:after:content-[''] hover:bg-white/[0.03] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-broadcast-gold [&::-webkit-details-marker]:hidden">
+        <summary className="relative cursor-pointer list-none rounded-[inherit] pr-7 group-open:static group-open:min-h-11 group-open:after:absolute group-open:after:inset-0 group-open:after:z-10 group-open:after:content-[''] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-broadcast-gold [&::-webkit-details-marker]:hidden [details:not([open])_&]:hover:bg-white/[0.03]">
           <span className="sr-only">{pokemon.name} details</span>
           <div className="group-open:hidden">{children}</div>
           <span
@@ -247,6 +247,7 @@ function Pager({ page, totalPages }: { page: number; totalPages: number }) {
           href={page === 2 ? "/results" : `/results?page=${page - 1}`}
           className={cn(item, enabled)}
           rel="prev"
+          transitionTypes={["nav-page"]}
         >
           ← previous
         </Link>
@@ -261,6 +262,7 @@ function Pager({ page, totalPages }: { page: number; totalPages: number }) {
           href={`/results?page=${page + 1}`}
           className={cn(item, enabled)}
           rel="next"
+          transitionTypes={["nav-page"]}
         >
           next →
         </Link>
@@ -322,18 +324,35 @@ export default function ResultsPage({
   searchParams: Promise<Record<string, string | string[] | undefined>>;
 }) {
   return (
-    <section className="broadcast-surface min-h-screen overflow-x-hidden px-4 py-5 text-broadcast-ink sm:px-6 lg:px-10">
-      <div className="mx-auto flex max-w-6xl flex-col gap-4">
-        <h1 className="sr-only">Live standings</h1>
-        <BroadcastBar
-          slate="Standings · refreshed every 15s"
-          href="/"
-          linkLabel="Battle"
-        />
-        <Suspense fallback={<ResultsFallback />}>
-          <ResultsContent searchParams={searchParams} />
-        </Suspense>
-      </div>
-    </section>
+    <ViewTransition
+      enter={{
+        "nav-forward": "nav-forward",
+        "nav-back": "nav-back",
+        "nav-page": "page-fade",
+        default: "none",
+      }}
+      exit={{
+        "nav-forward": "nav-forward",
+        "nav-back": "nav-back",
+        "nav-page": "page-fade",
+        default: "none",
+      }}
+      default="none"
+    >
+      <section className="broadcast-surface min-h-screen overflow-x-hidden px-4 py-5 text-broadcast-ink sm:px-6 lg:px-10">
+        <div className="mx-auto flex max-w-6xl flex-col gap-4">
+          <h1 className="sr-only">Live standings</h1>
+          <BroadcastBar
+            slate="Standings · refreshed every 15s"
+            href="/"
+            linkLabel="Battle"
+            transitionTypes={["nav-back"]}
+          />
+          <Suspense fallback={<ResultsFallback />}>
+            <ResultsContent searchParams={searchParams} />
+          </Suspense>
+        </div>
+      </section>
+    </ViewTransition>
   );
 }
