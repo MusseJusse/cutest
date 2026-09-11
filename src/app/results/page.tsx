@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { cacheLife } from "next/cache";
 import { Suspense } from "react";
 import { ResultsFallback } from "~/components/ui/fallbacks";
 import PokemonSprite from "~/components/ui/pokemon-sprite";
@@ -115,6 +116,11 @@ function FillPanel({
 }
 
 async function ResultsContent() {
+  "use cache";
+  // Share the database reads, ranking calculation, and rendered list between requests.
+  // Refresh on demand after 15 seconds; block for fresh data after 60 seconds.
+  cacheLife({ stale: 30, revalidate: 15, expire: 60 });
+
   const rankings = await getOrderedRankings();
   const champion = rankings[0];
   const challengers = rankings.slice(1);
