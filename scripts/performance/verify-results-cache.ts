@@ -7,6 +7,7 @@ const fixture = "http://127.0.0.1:4310";
 const resultsUrl = process.argv[2] ?? "http://127.0.0.1:4312/results";
 const schema = z.object({
   counters: z.record(
+    z.string(),
     z.object({ requests: z.number(), commands: z.number(), keys: z.number() }),
   ),
 });

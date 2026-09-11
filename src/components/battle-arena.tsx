@@ -48,18 +48,21 @@ function ContenderPanel({
   return (
     <article
       className={cn(
-        "relative flex flex-col items-center justify-center gap-2 overflow-hidden border-0 border-broadcast-dim/25 px-2.5 pb-3 pt-4 text-center",
+        "relative flex flex-col items-center justify-center gap-2 overflow-hidden border-0 border-broadcast-dim/25 px-2.5 pt-4 pb-3 text-center",
         "sm:items-stretch sm:justify-start sm:gap-3 sm:rounded-[10px] sm:border sm:bg-white/[0.04] sm:p-4 sm:pt-5 sm:text-left",
       )}
       style={{ "--team": tone.team, "--team-soft": tone.soft } as CSSProperties}
     >
-      <span aria-hidden="true" className="absolute inset-x-0 top-0 h-1 bg-[var(--team)]" />
-      <p className="m-0 text-[10px] font-bold uppercase tracking-[0.16em] text-[var(--team)] sm:text-[11px] sm:tracking-[0.2em]">
+      <span
+        aria-hidden="true"
+        className="absolute inset-x-0 top-0 h-1 bg-[var(--team)]"
+      />
+      <p className="m-0 text-[10px] font-bold tracking-[0.16em] text-[var(--team)] uppercase sm:text-[11px] sm:tracking-[0.2em]">
         {isHome ? "Home" : "Away"} · #{pokemon.dexNumber}
       </p>
       <h2
         className={cn(
-          "m-0 break-words font-display text-xl uppercase leading-none text-broadcast-ink min-[380px]:text-2xl",
+          "m-0 font-display text-xl leading-none break-words text-broadcast-ink uppercase min-[380px]:text-2xl",
           isLongName
             ? "sm:text-3xl lg:text-4xl xl:text-5xl"
             : "sm:text-4xl lg:text-5xl",
@@ -78,16 +81,20 @@ function ContenderPanel({
           priority="high"
         />
       </div>
-      <p className="m-0 font-mono text-[10px] text-broadcast-dim sm:hidden">{label}</p>
+      <p className="m-0 font-mono text-[10px] text-broadcast-dim sm:hidden">
+        {label}
+      </p>
       <div className="hidden sm:block">
-        <div className="flex items-baseline justify-between gap-3 font-mono text-[11px] uppercase tracking-[0.12em] text-broadcast-dim">
+        <div className="flex items-baseline justify-between gap-3 font-mono text-[11px] tracking-[0.12em] text-broadcast-dim uppercase">
           <span>win rate</span>
           <span>{label}</span>
         </div>
         <div className="mt-1.5 h-1.5 overflow-hidden rounded-full bg-white/10">
           <div
             className="h-full origin-left rounded-full bg-[var(--team)] transition-transform duration-200 ease-out-strong"
-            style={{ transform: `scaleX(${battles > 0 ? (stats?.winRate ?? 0) : 0})` }}
+            style={{
+              transform: `scaleX(${battles > 0 ? (stats?.winRate ?? 0) : 0})`,
+            }}
           />
         </div>
       </div>
@@ -186,7 +193,7 @@ export default function BattleArena({
         />
         <div
           aria-hidden="true"
-          className="absolute left-1/2 top-[44%] z-10 grid h-[42px] w-[42px] -translate-x-1/2 -translate-y-1/2 place-items-center rounded-full border border-broadcast-gold/60 bg-broadcast-night font-display text-sm text-broadcast-gold shadow-[0_0_24px_rgba(255,210,63,0.25)] sm:hidden"
+          className="absolute top-[44%] left-1/2 z-10 grid h-[42px] w-[42px] -translate-x-1/2 -translate-y-1/2 place-items-center rounded-full border border-broadcast-gold/60 bg-broadcast-night font-display text-sm text-broadcast-gold shadow-[0_0_24px_rgba(255,210,63,0.25)] sm:hidden"
         >
           VS
         </div>
@@ -194,7 +201,7 @@ export default function BattleArena({
           <span className="font-display text-5xl text-broadcast-gold [text-shadow:0_0_26px_rgba(255,210,63,0.45)]">
             VS
           </span>
-          <span className="font-mono text-[10px] uppercase tracking-[0.16em] text-broadcast-dim">
+          <span className="font-mono text-[10px] tracking-[0.16em] text-broadcast-dim uppercase">
             pick one
           </span>
         </div>
@@ -207,7 +214,7 @@ export default function BattleArena({
       </section>
       <p
         className={cn(
-          "m-0 text-center font-mono text-[11px] uppercase tracking-[0.14em] text-broadcast-dim",
+          "m-0 text-center font-mono text-[11px] tracking-[0.14em] text-broadcast-dim uppercase",
           queued === 0 && "opacity-0",
         )}
       >

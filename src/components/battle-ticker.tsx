@@ -34,7 +34,7 @@ export default async function BattleTicker() {
             {battles.map((battle, index) => (
               <span
                 key={index}
-                className="whitespace-nowrap text-xs uppercase tracking-[0.05em] text-broadcast-dim"
+                className="text-xs tracking-[0.05em] whitespace-nowrap text-broadcast-dim uppercase"
               >
                 <b className="font-semibold text-broadcast-ink">
                   {battle.winner.name}

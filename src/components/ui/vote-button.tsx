@@ -18,7 +18,7 @@ export default function VoteButton(props: {
       type="button"
       onClick={props.onVote}
       className={cn(
-        "w-full rounded-lg px-4 py-2.5 font-display text-lg uppercase tracking-[0.06em] text-white",
+        "w-full rounded-lg px-4 py-2.5 font-display text-lg tracking-[0.06em] text-white uppercase",
         "transition duration-150 ease-out-strong",
         "hover:brightness-110 active:scale-[0.97]",
         "focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-broadcast-ink",

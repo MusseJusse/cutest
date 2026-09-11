@@ -63,10 +63,10 @@ function ChampionBanner({ pokemon }: { pokemon: RankedPokemon }) {
         priority="high"
       />
       <div className="min-w-0">
-        <p className="m-0 text-[11px] font-bold uppercase tracking-[0.2em] text-broadcast-gold">
+        <p className="m-0 text-[11px] font-bold tracking-[0.2em] text-broadcast-gold uppercase">
           League leader
         </p>
-        <h2 className="m-0 truncate font-display text-4xl uppercase leading-none text-broadcast-ink sm:text-5xl">
+        <h2 className="m-0 truncate font-display text-4xl leading-none text-broadcast-ink uppercase sm:text-5xl">
           {pokemon.name}
         </h2>
       </div>
@@ -76,7 +76,8 @@ function ChampionBanner({ pokemon }: { pokemon: RankedPokemon }) {
 }
 
 function StandingsHeader() {
-  const cell = "font-mono text-[10px] uppercase tracking-[0.16em] text-broadcast-dim";
+  const cell =
+    "font-mono text-[10px] uppercase tracking-[0.16em] text-broadcast-dim";
 
   return (
     <div aria-hidden="true" className={cn(GRID, "px-3 pb-1")}>
@@ -109,7 +110,7 @@ function StandingsRow({ pokemon }: { pokemon: RankedPokemon }) {
         lazy
         priority="low"
       />
-      <h2 className="m-0 truncate font-display text-2xl uppercase leading-none text-broadcast-ink">
+      <h2 className="m-0 truncate font-display text-2xl leading-none text-broadcast-ink uppercase">
         {pokemon.name}
       </h2>
       <p className="m-0 hidden font-mono text-sm text-broadcast-ink/80 sm:block">
@@ -151,7 +152,7 @@ function Pager({ page, totalPages }: { page: number; totalPages: number }) {
       ) : (
         <span className={cn(item, disabled)}>← previous</span>
       )}
-      <p className="m-0 font-mono text-[11px] uppercase tracking-[0.16em] text-broadcast-dim">
+      <p className="m-0 font-mono text-[11px] tracking-[0.16em] text-broadcast-dim uppercase">
         page {page} of {totalPages}
       </p>
       {page < totalPages ? (
