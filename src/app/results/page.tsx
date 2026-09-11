@@ -9,6 +9,11 @@ import { getRankings } from "~/sdk/vote";
 type RankedPokemon = Awaited<ReturnType<typeof getOrderedRankings>>[0];
 
 async function getOrderedRankings() {
+  "use cache";
+  // Cache the calculated data, avoiding serialization of the full component tree.
+  // Keep rankings out of runtime prefetches so navigation requests the server snapshot.
+  cacheLife({ stale: 0, revalidate: 15, expire: 16 });
+
   const rankings = await getRankings();
 
   return rankings
@@ -116,12 +121,6 @@ function FillPanel({
 }
 
 async function ResultsContent() {
-  "use cache";
-  // Share the database reads, ranking calculation, and rendered list between requests.
-  // Keep this out of runtime prefetches so navigation requests the server snapshot.
-  // Revalidate after 15 seconds, with a 16-second hard expiry.
-  cacheLife({ stale: 0, revalidate: 15, expire: 16 });
-
   const rankings = await getOrderedRankings();
   const champion = rankings[0];
   const challengers = rankings.slice(1);
