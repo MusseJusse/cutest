@@ -28,7 +28,7 @@ async function getOrderedRankings() {
 const GRID =
   "grid grid-cols-[34px_44px_minmax(0,1fr)_auto] items-center gap-3 sm:grid-cols-[34px_44px_minmax(0,1fr)_65px_48px_60px_60px] lg:grid-cols-[48px_56px_minmax(0,1fr)_96px_76px_76px_84px]";
 
-// Native disclosures keep keyboard focus on the same control when the row changes.
+// The expanded summary hit area covers the details, so the whole row toggles natively.
 function PokemonDetails({
   pokemon,
   children,
@@ -55,11 +55,11 @@ function PokemonDetails({
             "rounded-[10px] border-broadcast-gold/35 bg-[linear-gradient(90deg,rgba(255,210,63,0.1),rgba(255,210,63,0.02))] open:bg-none",
         )}
       >
-        <summary className="relative cursor-pointer list-none rounded-[inherit] pr-7 group-open:min-h-11 hover:bg-white/[0.03] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-broadcast-gold [&::-webkit-details-marker]:hidden">
+        <summary className="relative cursor-pointer list-none rounded-[inherit] pr-7 group-open:static group-open:min-h-11 group-open:after:absolute group-open:after:inset-0 group-open:after:z-10 group-open:after:content-[''] hover:bg-white/[0.03] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-broadcast-gold [&::-webkit-details-marker]:hidden">
           <span className="sr-only">{pokemon.name} details</span>
           <div className="group-open:hidden">{children}</div>
           <span
-            className="absolute top-0 right-3 flex h-full items-center gap-1 text-xs text-broadcast-gold"
+            className="absolute top-0 right-3 flex h-full items-center gap-1 text-xs text-broadcast-gold group-open:h-11"
             aria-hidden="true"
           >
             <span className="hidden group-open:inline">Collapse</span>
