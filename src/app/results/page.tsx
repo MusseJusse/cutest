@@ -343,7 +343,6 @@ export default function ResultsPage({
         <div className="mx-auto flex max-w-6xl flex-col gap-4">
           <h1 className="sr-only">Live standings</h1>
           <BroadcastBar
-            slate="Standings · refreshed every 15s"
             href="/"
             linkLabel="Battle"
             transitionTypes={["nav-back"]}

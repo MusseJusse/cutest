@@ -1,12 +1,10 @@
 import Link from "next/link";
 
 export default function BroadcastBar({
-  slate,
   href,
   linkLabel,
   transitionTypes,
 }: {
-  slate?: string;
   href: string;
   linkLabel: string;
   transitionTypes?: string[];
@@ -35,11 +33,6 @@ export default function BroadcastBar({
       >
         {linkLabel}
       </Link>
-      {slate && (
-        <p className="m-0 w-full text-center text-[11px] tracking-[0.1em] text-broadcast-dim">
-          {slate}
-        </p>
-      )}
     </header>
   );
 }
