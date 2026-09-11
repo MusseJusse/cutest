@@ -1,6 +1,7 @@
 import { kv } from "@vercel/kv";
 import { getAllPokemon } from "./pokemon";
 import { waitUntil } from "@vercel/functions";
+import { cacheLife } from "next/cache";
 
 export async function recordBattle(winner: number, loser: number) {
   const battle = {
@@ -19,17 +20,23 @@ export async function recordBattle(winner: number, loser: number) {
   );
 }
 
-export async function getRankings() {
-  const pokemonList = await getAllPokemon();
+async function getBattleCounts(dexNumbers: number[]) {
+  "use cache";
+  // Cache compact counter arrays. Caching the full ranking objects adds serialization work.
+  // stale: 0 leaves a dynamic hole in prefetches, so navigation checks the server snapshot.
+  cacheLife({ stale: 0, revalidate: 15, expire: 16 });
+  const winKeys = dexNumbers.map((id) => `cute-pokemon:${id}:wins`);
+  const lossKeys = dexNumbers.map((id) => `cite-pokemon:${id}:losses`);
 
-  // Construct win/loss keys directly from pokemon list
-  const winKeys = pokemonList.map((p) => `cute-pokemon:${p.dexNumber}:wins`);
-  const lossKeys = pokemonList.map((p) => `cite-pokemon:${p.dexNumber}:losses`);
-
-  const [wins, losses] = await Promise.all([
+  return Promise.all([
     kv.mget<number[]>(...winKeys),
     kv.mget<number[]>(...lossKeys),
   ]);
+}
+
+export async function getRankings() {
+  const pokemonList = await getAllPokemon();
+  const [wins, losses] = await getBattleCounts(pokemonList.map((p) => p.dexNumber));
 
   const stats = pokemonList.map((pokemon, index) => {
     const totalWins = wins[index] ?? 0;

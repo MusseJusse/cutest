@@ -1,5 +1,4 @@
 import Link from "next/link";
-import { cacheLife } from "next/cache";
 import { Suspense } from "react";
 import { ResultsFallback } from "~/components/ui/fallbacks";
 import PokemonSprite from "~/components/ui/pokemon-sprite";
@@ -9,11 +8,6 @@ import { getRankings } from "~/sdk/vote";
 type RankedPokemon = Awaited<ReturnType<typeof getOrderedRankings>>[0];
 
 async function getOrderedRankings() {
-  "use cache";
-  // Cache the calculated data, avoiding serialization of the full component tree.
-  // Keep rankings out of runtime prefetches so navigation requests the server snapshot.
-  cacheLife({ stale: 0, revalidate: 15, expire: 16 });
-
   const rankings = await getRankings();
 
   return rankings
