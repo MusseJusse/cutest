@@ -116,14 +116,12 @@ export default function BattleArena({
 }) {
   const [pairs, setPairs] = useState(initialPairs);
   const [stats, setStats] = useState(initialStats);
-  const [index, setIndex] = useState(0);
-  const indexRef = useRef(0);
+  const pairsRef = useRef(initialPairs);
   const refillPending = useRef(false);
   const matchupRef = useRef<HTMLDivElement>(null);
   const mounted = useRef(false);
 
-  const current = pairs[index];
-  const next = pairs[index + 1];
+  const [current, next] = pairs;
 
   useEffect(() => {
     if (!mounted.current) {
@@ -141,7 +139,7 @@ export default function BattleArena({
       ],
       { duration: 180, easing: "cubic-bezier(0.23, 1, 0.32, 1)" },
     );
-  }, [index]);
+  }, [current]);
 
   function submit(currentPair: PokemonPair, nextPair: PokemonPair, pick: Pick) {
     void voteAction(currentPair, nextPair, pick).catch(() =>
@@ -151,17 +149,16 @@ export default function BattleArena({
 
   function vote(pick: Pick) {
     // A ref keeps rapid clicks safe even when React batches the state updates.
-    const value = indexRef.current;
-    const currentPair = pairs[value];
-    const nextPair = pairs[value + 1];
+    const [currentPair, nextPair] = pairsRef.current;
     if (!currentPair || !nextPair) {
       void refill();
       return;
     }
-    indexRef.current = value + 1;
-    setIndex(value + 1);
+    const remaining = pairsRef.current.slice(1);
+    pairsRef.current = remaining;
+    setPairs(remaining);
     submit(currentPair, nextPair, pick);
-    if (value + REFILL_THRESHOLD >= pairs.length) void refill();
+    if (remaining.length < REFILL_THRESHOLD) void refill();
   }
 
   async function refill() {
@@ -169,7 +166,9 @@ export default function BattleArena({
     refillPending.current = true;
     try {
       const more = await getMorePairsAction(REFILL_SIZE);
-      setPairs((previous) => [...previous, ...more.pairs]);
+      const refilled = [...pairsRef.current, ...more.pairs];
+      pairsRef.current = refilled;
+      setPairs(refilled);
       setStats((previous) => ({ ...previous, ...more.stats }));
     } catch {
       // The next vote tries the refill again.

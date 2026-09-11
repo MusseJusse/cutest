@@ -51,13 +51,7 @@ const nextConfig: NextConfig = {
     return [
       {
         source: "/:path*",
-        headers: [
-          {
-            key: "Link",
-            value: "<https://cdn.jsdelivr.net>; rel=preconnect",
-          },
-          ...securityHeaders,
-        ],
+        headers: securityHeaders,
       },
     ];
   },
