@@ -6,7 +6,7 @@ export default function BroadcastBar({
   linkLabel,
   transitionTypes,
 }: {
-  slate: string;
+  slate?: string;
   href: string;
   linkLabel: string;
   transitionTypes?: string[];
@@ -35,9 +35,11 @@ export default function BroadcastBar({
       >
         {linkLabel}
       </Link>
-      <p className="m-0 w-full text-center text-[11px] tracking-[0.1em] text-broadcast-dim">
-        {slate}
-      </p>
+      {slate && (
+        <p className="m-0 w-full text-center text-[11px] tracking-[0.1em] text-broadcast-dim">
+          {slate}
+        </p>
+      )}
     </header>
   );
 }

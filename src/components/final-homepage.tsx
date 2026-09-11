@@ -48,7 +48,6 @@ export default function FinalHomepage() {
       <div className="mx-auto flex max-w-6xl flex-col gap-4">
         <h1 className="sr-only">Which Pokémon is cutest?</h1>
         <BroadcastBar
-          slate="Pick the cutest. Climb the table."
           href="/results"
           linkLabel="Rankings"
           transitionTypes={["nav-forward"]}
