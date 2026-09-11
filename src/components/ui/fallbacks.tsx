@@ -14,7 +14,7 @@ function VoteFallbackPanel({ side }: { side: "home" | "away" }) {
       <div className="h-2.5 w-20 rounded bg-white/10 sm:h-3 sm:w-28" />
       <div className="h-6 w-32 rounded bg-white/10 sm:h-10 sm:w-56" />
       <div className="grid min-h-32 place-items-center py-2 sm:min-h-44 sm:py-3">
-        <div className="h-28 w-28 rounded-full bg-white/[0.07] min-[400px]:h-32 min-[400px]:w-32 sm:h-40 sm:w-40" />
+        <div className="h-28 w-28 rounded-full bg-white/[0.07] min-[360px]:h-32 min-[360px]:w-32 min-[400px]:h-36 min-[400px]:w-36 sm:h-40 sm:w-40" />
       </div>
       <div className="h-2.5 w-24 rounded bg-white/10 sm:hidden" />
       <div className="hidden h-1.5 w-full rounded-full bg-white/10 sm:block" />

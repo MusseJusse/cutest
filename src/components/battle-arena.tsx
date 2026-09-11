@@ -70,11 +70,11 @@ function ContenderPanel({
       <div className="relative grid place-items-center py-2 sm:py-3">
         <span
           aria-hidden="true"
-          className="absolute h-32 w-32 rounded-full bg-[radial-gradient(circle,var(--team-soft),transparent_65%)] min-[400px]:h-40 min-[400px]:w-40 sm:h-56 sm:w-56"
+          className="absolute h-32 w-32 rounded-full bg-[radial-gradient(circle,var(--team-soft),transparent_65%)] min-[360px]:h-36 min-[360px]:w-36 min-[400px]:h-44 min-[400px]:w-44 sm:h-56 sm:w-56"
         />
         <PokemonSprite
           pokemon={pokemon}
-          className="relative h-28 w-28 min-[400px]:h-32 min-[400px]:w-32 sm:h-40 sm:w-40"
+          className="relative h-28 w-28 min-[360px]:h-32 min-[360px]:w-32 min-[400px]:h-36 min-[400px]:w-36 sm:h-40 sm:w-40"
           priority="high"
         />
       </div>
