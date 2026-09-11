@@ -1,8 +1,10 @@
-import { kv } from "@vercel/kv";
+import { Redis } from "@upstash/redis";
 import { getAllPokemon } from "./pokemon";
 import type { Pokemon } from "./pokemon";
 import { after } from "next/server";
 import { cacheLife } from "next/cache";
+
+const kv = Redis.fromEnv();
 
 export type ContenderStats = {
   wins: number;
