@@ -80,48 +80,52 @@ function PokemonDetails({
             </svg>
           </span>
         </summary>
-        <div className="grid gap-5 px-4 pb-5 sm:grid-cols-[minmax(0,1.15fr)_minmax(0,1fr)] sm:items-center sm:gap-6 sm:px-6 sm:pb-6">
-          <div className="flex min-w-0 items-center gap-2 sm:gap-4">
-            <PokemonSprite
-              pokemon={pokemon}
-              className="h-32 w-32 shrink-0 scale-115 sm:h-40 sm:w-40"
-              lazy
-              priority="low"
-            />
-            <div className="min-w-0">
-              <p className="m-0 text-[10px] tracking-[0.12em] text-broadcast-dim uppercase">
-                #{pokemon.dexNumber.toString().padStart(4, "0")} · Rank{" "}
-                {pokemon.rank.toString().padStart(2, "0")}
-              </p>
-              <h2 className="my-2 font-display text-3xl leading-none break-words text-broadcast-ink uppercase sm:text-4xl">
-                {pokemon.name}
-              </h2>
-              <p className="m-0 font-mono text-3xl font-bold text-broadcast-gold">
-                {pokemon.score.toLocaleString("en-US")}{" "}
-                <span className="text-[10px] font-normal uppercase">pts</span>
-              </p>
-            </div>
-          </div>
-          <div className="border-t border-broadcast-dim/20 pt-4 sm:border-0 sm:pt-0">
-            <h3 className="mt-0 mb-3 text-[10px] font-normal tracking-[0.12em] text-broadcast-dim uppercase">
-              Voting statistics
-            </h3>
-            <dl className="m-0 grid grid-cols-2 gap-x-4 gap-y-3">
-              {statistics.map(({ label, value }) => (
-                <div key={label}>
-                  <dt className="text-xs text-broadcast-dim">{label}</dt>
-                  <dd className="m-0 font-mono text-2xl font-bold">{value}</dd>
-                </div>
-              ))}
-            </dl>
-            <div
-              aria-hidden="true"
-              className="mt-4 h-1.5 overflow-hidden bg-broadcast-dim/30"
-            >
-              <div
-                className="h-full bg-broadcast-gold"
-                style={{ width: `${pokemon.stats.winRate * 100}%` }}
+        <div>
+          <div className="grid gap-5 px-4 pb-5 sm:grid-cols-[minmax(0,1.15fr)_minmax(0,1fr)] sm:items-center sm:gap-6 sm:px-6 sm:pb-6">
+            <div className="flex min-w-0 items-center gap-2 sm:gap-4">
+              <PokemonSprite
+                pokemon={pokemon}
+                className="h-32 w-32 shrink-0 scale-115 sm:h-40 sm:w-40"
+                lazy
+                priority="low"
               />
+              <div className="min-w-0">
+                <p className="m-0 text-[10px] tracking-[0.12em] text-broadcast-dim uppercase">
+                  #{pokemon.dexNumber.toString().padStart(4, "0")} · Rank{" "}
+                  {pokemon.rank.toString().padStart(2, "0")}
+                </p>
+                <h2 className="my-2 font-display text-3xl leading-none break-words text-broadcast-ink uppercase sm:text-4xl">
+                  {pokemon.name}
+                </h2>
+                <p className="m-0 font-mono text-3xl font-bold text-broadcast-gold">
+                  {pokemon.score.toLocaleString("en-US")}{" "}
+                  <span className="text-[10px] font-normal uppercase">pts</span>
+                </p>
+              </div>
+            </div>
+            <div className="border-t border-broadcast-dim/20 pt-4 sm:border-0 sm:pt-0">
+              <h3 className="mt-0 mb-3 text-[10px] font-normal tracking-[0.12em] text-broadcast-dim uppercase">
+                Voting statistics
+              </h3>
+              <dl className="m-0 grid grid-cols-2 gap-x-4 gap-y-3">
+                {statistics.map(({ label, value }) => (
+                  <div key={label}>
+                    <dt className="text-xs text-broadcast-dim">{label}</dt>
+                    <dd className="m-0 font-mono text-2xl font-bold">
+                      {value}
+                    </dd>
+                  </div>
+                ))}
+              </dl>
+              <div
+                aria-hidden="true"
+                className="mt-4 h-1.5 overflow-hidden bg-broadcast-dim/30"
+              >
+                <div
+                  className="h-full bg-broadcast-gold"
+                  style={{ width: `${pokemon.stats.winRate * 100}%` }}
+                />
+              </div>
             </div>
           </div>
         </div>
@@ -307,7 +311,8 @@ async function ResultsContent({
       <Pager page={page} totalPages={totalPages} />
       <div className="flex flex-col gap-1.5">
         <StandingsHeader />
-        <div className="grid gap-1.5 [&>article:not(:has(details[open]))]:[contain-intrinsic-size:auto_64px] [&>article:not(:has(details[open]))]:[content-visibility:auto]">
+        {/* Keep content-visibility on open rows too. Flipping it on collapse leaves WebKit painting the stale expanded height. */}
+        <div className="grid gap-1.5 [&>article]:[contain-intrinsic-size:auto_64px] [&>article]:[content-visibility:auto]">
           {visible.map((pokemon) => (
             <StandingsRow key={pokemon.dexNumber} pokemon={pokemon} />
           ))}

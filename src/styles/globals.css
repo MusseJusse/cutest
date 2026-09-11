@@ -221,23 +221,28 @@
   animation: 180ms var(--vt-ease-out) both vt-fade;
 }
 
-@supports (interpolate-size: allow-keywords) {
-  :root {
-    interpolate-size: allow-keywords;
-  }
-  details::details-content {
-    block-size: 0;
-    overflow: clip;
-    opacity: 0;
-    transition:
-      block-size 220ms var(--vt-ease-out),
-      opacity 220ms var(--vt-ease-out),
-      content-visibility 220ms allow-discrete;
-  }
-  details[open]::details-content {
-    block-size: auto;
-    opacity: 1;
-  }
+/* Grid rows animate to the content height without interpolate-size, so Safari
+   gets the same unfold. visibility, not content-visibility, hides the closed
+   content because WebKit flips content-visibility before the collapse runs. */
+details::details-content {
+  content-visibility: visible;
+  display: grid;
+  grid-template-rows: 0fr;
+  visibility: hidden;
+  opacity: 0;
+  transition:
+    grid-template-rows 220ms var(--vt-ease-out),
+    opacity 220ms var(--vt-ease-out),
+    visibility 220ms linear;
+}
+details[open]::details-content {
+  grid-template-rows: 1fr;
+  visibility: visible;
+  opacity: 1;
+}
+details > :not(summary) {
+  min-block-size: 0;
+  overflow: clip;
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -246,7 +251,9 @@
     animation: none;
   }
   details::details-content {
-    transition: opacity 120ms ease;
+    transition:
+      opacity 120ms ease,
+      visibility 120ms linear;
   }
   ::view-transition-old(*),
   ::view-transition-new(*),
