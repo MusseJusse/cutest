@@ -59,7 +59,11 @@ function ChampionCard({ pokemon }: { pokemon: RankedPokemon }) {
         </p>
       </div>
       <div className="my-5 grid max-h-60 place-items-center overflow-hidden bg-[radial-gradient(circle,#31313b_0_2px,transparent_2px)] [background-size:18px_18px]">
-        <PokemonSprite pokemon={pokemon} className="h-64 w-64" priority="high" />
+        <PokemonSprite
+          pokemon={pokemon}
+          className="h-64 w-64"
+          priority="high"
+        />
       </div>
       <div className="grid grid-cols-3 gap-2">
         <StatBlock label="score" value={pokemon.score} />
@@ -214,7 +218,7 @@ async function ResultsContent({
         </div>
       ) : null}
       <Pager page={page} totalPages={totalPages} />
-      <div className="grid content-start gap-3 xl:grid-cols-2">
+      <div className="grid content-start gap-3 xl:grid-cols-2 [&>article]:[contain-intrinsic-size:auto_411px] [&>article]:[content-visibility:auto] sm:[&>article]:[contain-intrinsic-size:auto_65px]">
         {visible.map((pokemon) => (
           <ChallengerRow key={pokemon.dexNumber} pokemon={pokemon} />
         ))}

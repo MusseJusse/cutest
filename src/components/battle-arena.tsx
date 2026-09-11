@@ -109,6 +109,7 @@ export default function BattleArena({
                 <PokemonSprite
                   pokemon={pokemon}
                   className={cn("h-80 w-80", pick === 1 && "lg:scale-x-[-1]")}
+                  priority="high"
                 />
               </div>
               <VoteButton

@@ -13,6 +13,19 @@ const nextConfig: NextConfig = {
       revalidate: 999999999,
     },
   },
+  async headers() {
+    return [
+      {
+        source: "/:path*",
+        headers: [
+          {
+            key: "Link",
+            value: "<https://cdn.jsdelivr.net>; rel=preconnect",
+          },
+        ],
+      },
+    ];
+  },
 };
 
 export default nextConfig;

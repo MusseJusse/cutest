@@ -13,7 +13,9 @@ export async function getAllPokemon() {
   return [...catalogue];
 }
 
-export async function selectPokemonPairs(count: number): Promise<PokemonPair[]> {
+export async function selectPokemonPairs(
+  count: number,
+): Promise<PokemonPair[]> {
   const allPokemon = await getAllPokemon();
   return Array.from({ length: count }, () => selectTwoPokemon(allPokemon));
 }

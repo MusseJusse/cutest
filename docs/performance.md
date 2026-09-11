@@ -201,6 +201,50 @@ Not changed: the win/loss key layout. Moving counters into one hash would shave
 the cold path from two commands to one, but the 15-second cache already makes
 warm requests free and migrating keys would risk existing production votes.
 
+## Sprite hints and paint pass
+
+Measured September 11, 2026 on the same machine. Before is commit `9b03128`
+served from a `../roundest-prehints` worktree on port 4315; after is the current
+working tree on port 4316. Both are production builds backed by the local
+fixture with zero added delay. Raw samples:
+[paired server responses](../benchmarks/hints-paired.json),
+[page responses](../benchmarks/hints-home-before.json),
+[browser measurements](../benchmarks/hints-browser.json). The page-response
+medians below come from `benchmarks/hints-home-*.json` and
+`benchmarks/hints-results-*.json`, one set per variant and route.
+
+| Measurement | Before | After | Change |
+| --- | ---: | ---: | ---: |
+| Homepage response, median of 30 alternating | 3.76 ms | 3.61 ms | within noise |
+| Results response, median of 30 alternating | 10.42 ms | 10.50 ms | within noise |
+| Homepage decoded response, median | 16,978 B | 17,173 B | 195 B more |
+| Results decoded response, median | 195,498 B | 195,988 B | 490 B more |
+| Results forced full-document layout, median | 3.50 ms | 1.15 ms | 67% less |
+| Results DOM nodes | 877 | 878 | one more |
+| Vote click to visible next pair, median of 10 | 2.65 ms | 2.65 ms | unchanged |
+
+The changes: the current pair's sprites use `fetchpriority="high"` while the
+hidden next-pair prefetch stays `low`; a `Link: <https://cdn.jsdelivr.net>;
+rel=preconnect` response header plus a matching head link; and
+`content-visibility: auto` on results challenger rows with
+`contain-intrinsic-size: auto 65px` above the `sm` breakpoint and `auto 411px`
+below it. The intrinsic sizes match the measured 91 px desktop and 437 px mobile
+border-box row heights, and the document height is unchanged, so skipped
+offscreen rows do not cause scrollbar jitter.
+
+Honest limits. The preconnect could not be isolated locally because the shared
+browser profile already had a warm HTTP/3 connection to the CDN. On this machine
+results LCP is the headline text, not a sprite, so the priority hint does not
+move LCP here; its expected benefit is cold, high-latency sprite fetches. The
+layout probe is a forced full-document relayout, not a page-load trace, and
+paint entries varied with tab focus. The extra decoded bytes are 0.25% of the
+results response.
+
+Reproduce with the fixture and both builds from the app-comparison section,
+using ports 4315 and 4316 and distinct fixture paths, then run
+`benchmark-page.ts` against both origins; the paired spreadsheet run alternated
+the two origins request by request after three warmups.
+
 ## UI options artifact
 
 [performance-ui-options.html](performance-ui-options.html) retains the A/B/C

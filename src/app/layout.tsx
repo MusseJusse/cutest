@@ -18,6 +18,7 @@ export default function RootLayout({
       <body
         className={`flex min-h-screen flex-col justify-between text-gray-600 antialiased`}
       >
+        <link rel="preconnect" href="https://cdn.jsdelivr.net" />
         <main className="flex-1">{children}</main>
 
         <DeferredToaster richColors />

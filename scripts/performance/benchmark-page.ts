@@ -69,7 +69,8 @@ const report = {
   url,
   label,
   expectedArticles,
-  scenario: "local next start, warm ranking cache, fixture with zero added delay",
+  scenario:
+    "local next start, warm ranking cache, fixture with zero added delay",
   samples: samples.length,
   medianHeadersMs: median(samples.map((sample) => sample.headersMs)),
   medianTotalMs: median(samples.map((sample) => sample.totalMs)),
