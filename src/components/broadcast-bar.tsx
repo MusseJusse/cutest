@@ -10,16 +10,16 @@ export default function BroadcastBar({
   transitionTypes?: string[];
 }) {
   return (
-    <header className="broadcast-bar flex flex-wrap items-center gap-3 rounded-xl border border-broadcast-dim/25 bg-white/[0.03] px-4 py-3">
-      <p className="m-0 flex w-full items-center gap-3 font-display uppercase sm:w-auto sm:flex-1">
-        <b className="shrink-0 -skew-x-6 bg-broadcast-gold px-2 py-0.5 text-xl font-normal tracking-[0.04em] text-[#0a0e18]">
+    <header className="broadcast-bar flex flex-wrap items-center gap-x-1.5 gap-y-2 rounded-xl border border-broadcast-dim/25 bg-white/[0.03] px-4 py-3 sm:gap-3">
+      <p className="m-0 flex flex-1 items-center gap-2 font-display uppercase sm:gap-3">
+        <b className="shrink-0 -skew-x-6 bg-broadcast-gold px-2 py-0.5 text-base font-normal tracking-[0.04em] text-[#0a0e18] sm:text-xl">
           CSL
         </b>
-        <span className="text-base tracking-[0.07em] text-broadcast-ink sm:text-lg">
+        <span className="text-sm tracking-[0.03em] whitespace-nowrap text-broadcast-ink sm:text-lg sm:tracking-[0.07em]">
           Cuteness Super League
         </span>
       </p>
-      <p className="m-0 mr-auto flex shrink-0 items-center gap-1.5 text-[11px] tracking-[0.15em] text-broadcast-gold uppercase sm:mr-0">
+      <p className="m-0 mr-auto hidden shrink-0 items-center gap-1.5 text-[11px] tracking-[0.15em] text-broadcast-gold uppercase sm:mr-0 sm:flex">
         <i
           aria-hidden="true"
           className="live-dot h-[7px] w-[7px] rounded-full bg-broadcast-gold"
