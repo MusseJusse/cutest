@@ -118,8 +118,9 @@ function FillPanel({
 async function ResultsContent() {
   "use cache";
   // Share the database reads, ranking calculation, and rendered list between requests.
-  // Refresh on demand after 15 seconds; block for fresh data after 60 seconds.
-  cacheLife({ stale: 30, revalidate: 15, expire: 60 });
+  // Keep this out of runtime prefetches so navigation requests the server snapshot.
+  // Revalidate after 15 seconds, with a 16-second hard expiry.
+  cacheLife({ stale: 0, revalidate: 15, expire: 16 });
 
   const rankings = await getOrderedRankings();
   const champion = rankings[0];
