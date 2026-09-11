@@ -43,31 +43,43 @@ function ContenderPanel({
   const label = stats
     ? `${Math.round(stats.winRate * 100)}% · ${stats.wins}-${stats.losses}`
     : "no record";
+  const isLongName = pokemon.name.length >= 11;
 
   return (
     <article
-      className="relative flex flex-col gap-3 overflow-hidden rounded-[10px] border border-broadcast-dim/25 bg-white/[0.04] p-4 pt-5"
+      className={cn(
+        "relative flex flex-col items-center justify-center gap-2 overflow-hidden border-0 border-broadcast-dim/25 px-2.5 pb-3 pt-4 text-center",
+        "sm:items-stretch sm:justify-start sm:gap-3 sm:rounded-[10px] sm:border sm:bg-white/[0.04] sm:p-4 sm:pt-5 sm:text-left",
+      )}
       style={{ "--team": tone.team, "--team-soft": tone.soft } as CSSProperties}
     >
       <span aria-hidden="true" className="absolute inset-x-0 top-0 h-1 bg-[var(--team)]" />
-      <p className="m-0 text-[11px] font-bold uppercase tracking-[0.2em] text-[var(--team)]">
+      <p className="m-0 text-[10px] font-bold uppercase tracking-[0.16em] text-[var(--team)] sm:text-[11px] sm:tracking-[0.2em]">
         {isHome ? "Home" : "Away"} · #{pokemon.dexNumber}
       </p>
-      <h2 className="m-0 font-display text-4xl uppercase leading-none text-broadcast-ink sm:text-5xl">
+      <h2
+        className={cn(
+          "m-0 break-words font-display text-xl uppercase leading-none text-broadcast-ink min-[380px]:text-2xl",
+          isLongName
+            ? "sm:text-3xl lg:text-4xl xl:text-5xl"
+            : "sm:text-4xl lg:text-5xl",
+        )}
+      >
         {pokemon.name}
       </h2>
-      <div className="relative grid place-items-center py-3">
+      <div className="relative grid place-items-center py-2 sm:py-3">
         <span
           aria-hidden="true"
-          className="absolute h-44 w-44 rounded-full bg-[radial-gradient(circle,var(--team-soft),transparent_65%)] sm:h-56 sm:w-56"
+          className="absolute h-32 w-32 rounded-full bg-[radial-gradient(circle,var(--team-soft),transparent_65%)] min-[400px]:h-40 min-[400px]:w-40 sm:h-56 sm:w-56"
         />
         <PokemonSprite
           pokemon={pokemon}
-          className="relative h-36 w-36 sm:h-40 sm:w-40"
+          className="relative h-28 w-28 min-[400px]:h-32 min-[400px]:w-32 sm:h-40 sm:w-40"
           priority="high"
         />
       </div>
-      <div>
+      <p className="m-0 font-mono text-[10px] text-broadcast-dim sm:hidden">{label}</p>
+      <div className="hidden sm:block">
         <div className="flex items-baseline justify-between gap-3 font-mono text-[11px] uppercase tracking-[0.12em] text-broadcast-dim">
           <span>win rate</span>
           <span>{label}</span>
@@ -160,7 +172,7 @@ export default function BattleArena({
       ) : null}
       <section
         aria-label="Battle"
-        className="grid gap-3 sm:grid-cols-[minmax(0,1fr)_auto_minmax(0,1fr)]"
+        className="relative grid min-h-[440px] grid-cols-2 sm:min-h-0 sm:grid-cols-[minmax(0,1fr)_auto_minmax(0,1fr)] sm:gap-3"
       >
         <ContenderPanel
           side="home"
@@ -168,8 +180,18 @@ export default function BattleArena({
           stats={stats[home.dexNumber]}
           onVote={() => vote(0)}
         />
-        <div className="flex flex-row items-center justify-center gap-3 py-1 sm:flex-col sm:px-5 sm:py-0">
-          <span className="font-display text-4xl text-broadcast-gold [text-shadow:0_0_26px_rgba(255,210,63,0.45)] sm:text-5xl">
+        <span
+          aria-hidden="true"
+          className="absolute inset-y-0 left-1/2 w-px -translate-x-1/2 bg-broadcast-dim/20 sm:hidden"
+        />
+        <div
+          aria-hidden="true"
+          className="absolute left-1/2 top-[44%] z-10 grid h-[42px] w-[42px] -translate-x-1/2 -translate-y-1/2 place-items-center rounded-full border border-broadcast-gold/60 bg-broadcast-night font-display text-sm text-broadcast-gold shadow-[0_0_24px_rgba(255,210,63,0.25)] sm:hidden"
+        >
+          VS
+        </div>
+        <div className="hidden sm:flex sm:flex-col sm:items-center sm:justify-center sm:gap-3 sm:px-5">
+          <span className="font-display text-5xl text-broadcast-gold [text-shadow:0_0_26px_rgba(255,210,63,0.45)]">
             VS
           </span>
           <span className="font-mono text-[10px] uppercase tracking-[0.16em] text-broadcast-dim">
