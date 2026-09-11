@@ -15,7 +15,7 @@ export default function BroadcastBar({
     <header className="broadcast-bar flex flex-wrap items-center gap-3 rounded-xl border border-broadcast-dim/25 bg-white/[0.03] px-4 py-3">
       <p className="m-0 flex w-full items-center gap-3 font-display uppercase sm:w-auto sm:flex-1">
         <b className="shrink-0 -skew-x-6 bg-broadcast-gold px-2 py-0.5 text-xl font-normal tracking-[0.04em] text-[#0a0e18]">
-          Cutest
+          CSL
         </b>
         <span className="text-base tracking-[0.07em] text-broadcast-ink sm:text-lg">
           Cuteness Super League
