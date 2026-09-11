@@ -110,6 +110,10 @@
   * {
     @apply border-border;
   }
+  /* Reserve the scrollbar so short pages and long ones share a content width. */
+  html {
+    scrollbar-gutter: stable;
+  }
   body {
     @apply bg-background text-foreground;
   }
