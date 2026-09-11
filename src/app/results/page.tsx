@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { Suspense, type ReactNode } from "react";
+import { Suspense, ViewTransition, type ReactNode } from "react";
 import BroadcastBar from "~/components/broadcast-bar";
 import { ResultsFallback } from "~/components/ui/fallbacks";
 import PokemonSprite from "~/components/ui/pokemon-sprite";
@@ -247,6 +247,7 @@ function Pager({ page, totalPages }: { page: number; totalPages: number }) {
           href={page === 2 ? "/results" : `/results?page=${page - 1}`}
           className={cn(item, enabled)}
           rel="prev"
+          transitionTypes={["nav-page"]}
         >
           ← previous
         </Link>
@@ -261,6 +262,7 @@ function Pager({ page, totalPages }: { page: number; totalPages: number }) {
           href={`/results?page=${page + 1}`}
           className={cn(item, enabled)}
           rel="next"
+          transitionTypes={["nav-page"]}
         >
           next →
         </Link>
@@ -322,18 +324,35 @@ export default function ResultsPage({
   searchParams: Promise<Record<string, string | string[] | undefined>>;
 }) {
   return (
-    <section className="broadcast-surface min-h-screen overflow-x-hidden px-4 py-5 text-broadcast-ink sm:px-6 lg:px-10">
-      <div className="mx-auto flex max-w-6xl flex-col gap-4">
-        <h1 className="sr-only">Live standings</h1>
-        <BroadcastBar
-          slate="Standings · refreshed every 15s"
-          href="/"
-          linkLabel="Battle"
-        />
-        <Suspense fallback={<ResultsFallback />}>
-          <ResultsContent searchParams={searchParams} />
-        </Suspense>
-      </div>
-    </section>
+    <ViewTransition
+      enter={{
+        "nav-forward": "nav-forward",
+        "nav-back": "nav-back",
+        "nav-page": "page-fade",
+        default: "none",
+      }}
+      exit={{
+        "nav-forward": "nav-forward",
+        "nav-back": "nav-back",
+        "nav-page": "page-fade",
+        default: "none",
+      }}
+      default="none"
+    >
+      <section className="broadcast-surface min-h-screen overflow-x-hidden px-4 py-5 text-broadcast-ink sm:px-6 lg:px-10">
+        <div className="mx-auto flex max-w-6xl flex-col gap-4">
+          <h1 className="sr-only">Live standings</h1>
+          <BroadcastBar
+            slate="Standings · refreshed every 15s"
+            href="/"
+            linkLabel="Battle"
+            transitionTypes={["nav-back"]}
+          />
+          <Suspense fallback={<ResultsFallback />}>
+            <ResultsContent searchParams={searchParams} />
+          </Suspense>
+        </div>
+      </section>
+    </ViewTransition>
   );
 }

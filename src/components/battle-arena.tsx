@@ -1,6 +1,6 @@
 "use client";
 
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import type { CSSProperties } from "react";
 import { getMorePairsAction, voteAction } from "~/lib/action";
 import { cn } from "~/lib/utils";
@@ -119,10 +119,30 @@ export default function BattleArena({
   const [index, setIndex] = useState(0);
   const indexRef = useRef(0);
   const refillPending = useRef(false);
+  const matchupRef = useRef<HTMLDivElement>(null);
+  const mounted = useRef(false);
 
   const current = pairs[index];
   const next = pairs[index + 1];
   const queued = Math.max(pairs.length - index - 1, 0);
+
+  useEffect(() => {
+    if (!mounted.current) {
+      mounted.current = true;
+      return;
+    }
+    const node = matchupRef.current;
+    if (!node) return;
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+    node.getAnimations().forEach((animation) => animation.cancel());
+    node.animate(
+      [
+        { opacity: 0.35, filter: "blur(3px)", transform: "translateY(4px)" },
+        { opacity: 1, filter: "blur(0)", transform: "translateY(0)" },
+      ],
+      { duration: 180, easing: "cubic-bezier(0.23, 1, 0.32, 1)" },
+    );
+  }, [index]);
 
   function submit(currentPair: PokemonPair, nextPair: PokemonPair, pick: Pick) {
     void voteAction(currentPair, nextPair, pick).catch(() =>
@@ -177,49 +197,51 @@ export default function BattleArena({
           ))}
         </div>
       ) : null}
-      <section
-        aria-label="Battle"
-        className="relative grid min-h-[440px] grid-cols-2 sm:min-h-0 sm:grid-cols-[minmax(0,1fr)_auto_minmax(0,1fr)] sm:gap-3"
-      >
-        <ContenderPanel
-          side="home"
-          pokemon={home}
-          stats={stats[home.dexNumber]}
-          onVote={() => vote(0)}
-        />
-        <span
-          aria-hidden="true"
-          className="absolute inset-y-0 left-1/2 w-px -translate-x-1/2 bg-broadcast-dim/20 sm:hidden"
-        />
-        <div
-          aria-hidden="true"
-          className="absolute top-[44%] left-1/2 z-10 grid h-[42px] w-[42px] -translate-x-1/2 -translate-y-1/2 place-items-center rounded-full border border-broadcast-gold/60 bg-broadcast-night font-display text-sm text-broadcast-gold shadow-[0_0_24px_rgba(255,210,63,0.25)] sm:hidden"
+      <div ref={matchupRef} className="flex flex-col gap-4">
+        <section
+          aria-label="Battle"
+          className="relative grid min-h-[440px] grid-cols-2 sm:min-h-0 sm:grid-cols-[minmax(0,1fr)_auto_minmax(0,1fr)] sm:gap-3"
         >
-          VS
-        </div>
-        <div className="hidden sm:flex sm:flex-col sm:items-center sm:justify-center sm:gap-3 sm:px-5">
-          <span className="font-display text-5xl text-broadcast-gold [text-shadow:0_0_26px_rgba(255,210,63,0.45)]">
+          <ContenderPanel
+            side="home"
+            pokemon={home}
+            stats={stats[home.dexNumber]}
+            onVote={() => vote(0)}
+          />
+          <span
+            aria-hidden="true"
+            className="absolute inset-y-0 left-1/2 w-px -translate-x-1/2 bg-broadcast-dim/20 sm:hidden"
+          />
+          <div
+            aria-hidden="true"
+            className="absolute top-[44%] left-1/2 z-10 grid h-[42px] w-[42px] -translate-x-1/2 -translate-y-1/2 place-items-center rounded-full border border-broadcast-gold/60 bg-broadcast-night font-display text-sm text-broadcast-gold shadow-[0_0_24px_rgba(255,210,63,0.25)] sm:hidden"
+          >
             VS
-          </span>
-          <span className="font-mono text-[10px] tracking-[0.16em] text-broadcast-dim uppercase">
-            pick one
-          </span>
-        </div>
-        <ContenderPanel
-          side="away"
-          pokemon={away}
-          stats={stats[away.dexNumber]}
-          onVote={() => vote(1)}
-        />
-      </section>
-      <p
-        className={cn(
-          "m-0 text-center font-mono text-[11px] tracking-[0.14em] text-broadcast-dim uppercase",
-          queued === 0 && "opacity-0",
-        )}
-      >
-        {queued} {queued === 1 ? "pair" : "pairs"} queued
-      </p>
+          </div>
+          <div className="hidden sm:flex sm:flex-col sm:items-center sm:justify-center sm:gap-3 sm:px-5">
+            <span className="font-display text-5xl text-broadcast-gold [text-shadow:0_0_26px_rgba(255,210,63,0.45)]">
+              VS
+            </span>
+            <span className="font-mono text-[10px] tracking-[0.16em] text-broadcast-dim uppercase">
+              pick one
+            </span>
+          </div>
+          <ContenderPanel
+            side="away"
+            pokemon={away}
+            stats={stats[away.dexNumber]}
+            onVote={() => vote(1)}
+          />
+        </section>
+        <p
+          className={cn(
+            "m-0 text-center font-mono text-[11px] tracking-[0.14em] text-broadcast-dim uppercase",
+            queued === 0 && "opacity-0",
+          )}
+        >
+          {queued} {queued === 1 ? "pair" : "pairs"} queued
+        </p>
+      </div>
     </div>
   );
 }
