@@ -43,4 +43,11 @@ export default tseslint.config(
       ],
     },
   },
+  {
+    ...tseslint.configs.disableTypeChecked,
+    files: ["scripts/*.mjs"],
+    languageOptions: {
+      parserOptions: { project: false },
+    },
+  },
 );
