@@ -4,7 +4,11 @@ import type { Pokemon } from "./pokemon";
 import { after } from "next/server";
 import { cacheLife } from "next/cache";
 
-const kv = Redis.fromEnv();
+const kv = new Redis({
+  url: process.env.KV_REST_API_URL ?? process.env.UPSTASH_REDIS_REST_URL,
+  token: process.env.KV_REST_API_TOKEN ?? process.env.UPSTASH_REDIS_REST_TOKEN,
+  retry: { retries: 2, backoff: (retryCount) => Math.exp(retryCount) * 50 },
+});
 
 export type ContenderStats = {
   wins: number;
