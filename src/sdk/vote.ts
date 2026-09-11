@@ -1,7 +1,19 @@
 import { kv } from "@vercel/kv";
 import { getAllPokemon } from "./pokemon";
+import type { Pokemon } from "./pokemon";
 import { after } from "next/server";
 import { cacheLife } from "next/cache";
+
+export type ContenderStats = {
+  wins: number;
+  losses: number;
+  winRate: number;
+};
+
+export type RecentBattle = {
+  winner: Pokemon;
+  loser: Pokemon;
+};
 
 export function recordBattle(winner: number, loser: number) {
   const battle = {
@@ -57,4 +69,90 @@ export async function getRankings() {
     };
   });
   return stats;
+}
+
+export async function getContenderStats(
+  pokemon: Pokemon[],
+): Promise<Record<number, ContenderStats>> {
+  "use cache";
+  cacheLife({ stale: 0, revalidate: 15, expire: 16 });
+  const dexNumbers = [...new Set(pokemon.map((entry) => entry.dexNumber))];
+  if (dexNumbers.length === 0) return {};
+
+  try {
+    const [wins, losses] = await Promise.all([
+      kv.mget<number[]>(...dexNumbers.map((id) => `cute-pokemon:${id}:wins`)),
+      kv.mget<number[]>(...dexNumbers.map((id) => `cite-pokemon:${id}:losses`)),
+    ]);
+
+    const stats: Record<number, ContenderStats> = {};
+    dexNumbers.forEach((dexNumber, index) => {
+      const totalWins = wins?.[index] ?? 0;
+      const totalLosses = losses?.[index] ?? 0;
+      const battles = totalWins + totalLosses;
+      stats[dexNumber] = {
+        wins: totalWins,
+        losses: totalLosses,
+        winRate: battles > 0 ? totalWins / battles : 0,
+      };
+    });
+    return stats;
+  } catch {
+    return {};
+  }
+}
+
+function parseBattle(
+  value: unknown,
+): { winner: number; loser: number } | undefined {
+  let candidate = value;
+  if (typeof value === "string") {
+    try {
+      candidate = JSON.parse(value) as unknown;
+    } catch {
+      return undefined;
+    }
+  }
+  if (typeof candidate !== "object" || candidate === null) return undefined;
+  const record = candidate as Record<string, unknown>;
+  if (typeof record.winner !== "number" || typeof record.loser !== "number") {
+    return undefined;
+  }
+  return { winner: record.winner, loser: record.loser };
+}
+
+export async function getRecentBattles(limit: number): Promise<RecentBattle[]> {
+  "use cache";
+  cacheLife({ stale: 0, revalidate: 15, expire: 16 });
+
+  try {
+    const entries = await kv.lrange<unknown>(
+      "cute-battles:all",
+      0,
+      Math.max(Math.trunc(limit) - 1, 0),
+    );
+    const byDexNumber = new Map(
+      (await getAllPokemon()).map((pokemon) => [pokemon.dexNumber, pokemon]),
+    );
+
+    const battles: RecentBattle[] = [];
+    for (const entry of entries) {
+      const record = parseBattle(entry);
+      if (!record) continue;
+      const winner = byDexNumber.get(record.winner);
+      const loser = byDexNumber.get(record.loser);
+      if (!winner || !loser) continue;
+      const previous = battles.at(-1);
+      if (
+        previous?.winner.dexNumber === winner.dexNumber &&
+        previous.loser.dexNumber === loser.dexNumber
+      ) {
+        continue;
+      }
+      battles.push({ winner, loser });
+    }
+    return battles;
+  } catch {
+    return [];
+  }
 }

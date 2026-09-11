@@ -1,6 +1,6 @@
 "use server";
 
-import { recordBattle } from "~/sdk/vote";
+import { getContenderStats, recordBattle } from "~/sdk/vote";
 import { cookies } from "next/headers";
 import { selectPokemonPairs } from "~/sdk/pokemon";
 import type { PokemonPair } from "~/sdk/pokemon";
@@ -27,5 +27,7 @@ export async function voteAction(
 
 export async function getMorePairsAction(count: number) {
   const size = Math.min(Math.max(Math.trunc(count) || 1, 1), 10);
-  return selectPokemonPairs(size);
+  const pairs = await selectPokemonPairs(size);
+  const stats = await getContenderStats(pairs.flat());
+  return { pairs, stats };
 }

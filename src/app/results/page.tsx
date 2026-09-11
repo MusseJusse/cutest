@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { Suspense } from "react";
+import BroadcastBar from "~/components/broadcast-bar";
 import { ResultsFallback } from "~/components/ui/fallbacks";
 import PokemonSprite from "~/components/ui/pokemon-sprite";
 import { cn } from "~/lib/utils";
@@ -24,112 +25,117 @@ async function getOrderedRankings() {
     }));
 }
 
-function StatBlock({
-  label,
-  value,
-}: {
-  label: string;
-  value: string | number;
-}) {
+const GRID =
+  "grid grid-cols-[34px_44px_minmax(0,1fr)_auto] items-center gap-3 sm:grid-cols-[48px_56px_minmax(0,1fr)_96px_76px_76px_84px]";
+
+function ScoreBug({ pokemon }: { pokemon: RankedPokemon }) {
+  const cell = "flex flex-col items-end";
+  const label = "text-[10px] uppercase tracking-[0.16em] text-broadcast-dim";
+  const value =
+    "m-0 font-mono text-xl font-bold text-broadcast-gold sm:text-2xl";
+
   return (
-    <div className="border border-white/10 bg-white/[0.04] px-3 py-2">
-      <p className="text-[10px] font-black uppercase tracking-[0.2em] text-white/40">
-        {label}
-      </p>
-      <p className="mt-1 text-lg font-black text-white">{value}</p>
+    <dl className="col-span-2 m-0 flex gap-5 sm:col-span-1 sm:gap-6">
+      <div className={cell}>
+        <dt className={label}>pts</dt>
+        <dd className={value}>{pokemon.score}</dd>
+      </div>
+      <div className={cell}>
+        <dt className={label}>win</dt>
+        <dd className={value}>{pokemon.winRate}%</dd>
+      </div>
+      <div className={cell}>
+        <dt className={label}>record</dt>
+        <dd className={value}>
+          {pokemon.stats.wins}-{pokemon.stats.losses}
+        </dd>
+      </div>
+    </dl>
+  );
+}
+
+function ChampionBanner({ pokemon }: { pokemon: RankedPokemon }) {
+  return (
+    <article className="grid grid-cols-[auto_minmax(0,1fr)] items-center gap-x-4 gap-y-3 rounded-[10px] border border-broadcast-gold/35 bg-[linear-gradient(90deg,rgba(255,210,63,0.1),rgba(255,210,63,0.02))] p-4 sm:grid-cols-[auto_minmax(0,1fr)_auto]">
+      <PokemonSprite
+        pokemon={pokemon}
+        className="h-16 w-16 sm:h-20 sm:w-20"
+        priority="high"
+      />
+      <div className="min-w-0">
+        <p className="m-0 text-[11px] font-bold uppercase tracking-[0.2em] text-broadcast-gold">
+          League leader
+        </p>
+        <h2 className="m-0 truncate font-display text-4xl uppercase leading-none text-broadcast-ink sm:text-5xl">
+          {pokemon.name}
+        </h2>
+      </div>
+      <ScoreBug pokemon={pokemon} />
+    </article>
+  );
+}
+
+function StandingsHeader() {
+  const cell = "font-mono text-[10px] uppercase tracking-[0.16em] text-broadcast-dim";
+
+  return (
+    <div aria-hidden="true" className={cn(GRID, "px-3 pb-1")}>
+      <span className={cell}>#</span>
+      <span />
+      <span className={cell}>Pokémon</span>
+      <span className={cn(cell, "sm:hidden")}>Pts</span>
+      <span className={cn(cell, "hidden sm:block")}>W-L</span>
+      <span className={cn(cell, "hidden sm:block")}>Win</span>
+      <span className={cn(cell, "hidden sm:block")}>Pts</span>
+      <span className={cn(cell, "hidden sm:block")}>Battles</span>
     </div>
   );
 }
 
-function ChampionCard({ pokemon }: { pokemon: RankedPokemon }) {
+function StandingsRow({ pokemon }: { pokemon: RankedPokemon }) {
   return (
-    <article className="relative overflow-hidden border border-[#3ef3c6]/50 bg-white/[0.05] p-5">
-      <div className="absolute inset-x-0 top-0 h-1 bg-[#3ef3c6]" />
-      <div className="flex items-start justify-between gap-4">
-        <div className="min-w-0">
-          <p className="text-xs font-black uppercase tracking-[0.35em] text-[#ff5d8f]">
-            rank {pokemon.rank}
-          </p>
-          <h2 className="mt-2 truncate text-5xl font-black uppercase leading-none">
-            {pokemon.name}
-          </h2>
-        </div>
-        <p className="font-mono text-sm text-[#3ef3c6]">
-          #{pokemon.dexNumber.toString().padStart(3, "0")}
-        </p>
-      </div>
-      <div className="my-5 grid max-h-60 place-items-center overflow-hidden bg-[radial-gradient(circle,#31313b_0_2px,transparent_2px)] [background-size:18px_18px]">
-        <PokemonSprite
-          pokemon={pokemon}
-          className="h-64 w-64"
-          priority="high"
-        />
-      </div>
-      <div className="grid grid-cols-3 gap-2">
-        <StatBlock label="score" value={pokemon.score} />
-        <StatBlock label="win" value={`${pokemon.winRate}%`} />
-        <StatBlock
-          label="record"
-          value={`${pokemon.stats.wins}-${pokemon.stats.losses}`}
-        />
-      </div>
-    </article>
-  );
-}
-
-function ChallengerRow({ pokemon }: { pokemon: RankedPokemon }) {
-  return (
-    <article className="grid items-center gap-4 border border-white/15 bg-white/[0.04] p-3 sm:grid-cols-[48px_72px_1fr_88px_88px_110px]">
-      <p className="font-black text-[#ff5d8f]">#{pokemon.rank}</p>
+    <article
+      className={cn(
+        GRID,
+        "rounded-lg border border-broadcast-dim/15 bg-white/[0.03] px-3 py-2.5 transition-colors duration-150 ease-out hover:bg-white/[0.06]",
+      )}
+    >
+      <p className="m-0 font-mono text-xs text-broadcast-dim">
+        {pokemon.rank.toString().padStart(2, "0")}
+      </p>
       <PokemonSprite
         pokemon={pokemon}
-        className="h-16 w-16"
+        className="h-11 w-11"
         lazy
         priority="low"
       />
-      <div className="min-w-0">
-        <h2 className="truncate text-2xl font-black uppercase">
-          {pokemon.name}
-        </h2>
-        <p className="text-xs font-bold uppercase tracking-[0.18em] text-white/45">
-          dex {pokemon.dexNumber.toString().padStart(3, "0")}
-        </p>
-      </div>
-      <StatBlock label="score" value={pokemon.score} />
-      <StatBlock label="win" value={`${pokemon.winRate}%`} />
-      <StatBlock
-        label="record"
-        value={`${pokemon.stats.wins}-${pokemon.stats.losses}`}
-      />
-    </article>
-  );
-}
-
-function FillPanel({
-  title,
-  children,
-  className,
-}: {
-  title: string;
-  children: React.ReactNode;
-  className?: string;
-}) {
-  return (
-    <aside
-      className={cn("border border-white/15 bg-white/[0.04] p-4", className)}
-    >
-      <p className="text-xs font-black uppercase tracking-[0.32em] text-white/45">
-        {title}
+      <h2 className="m-0 truncate font-display text-2xl uppercase leading-none text-broadcast-ink">
+        {pokemon.name}
+      </h2>
+      <p className="m-0 hidden font-mono text-sm text-broadcast-ink/80 sm:block">
+        {pokemon.stats.wins}-{pokemon.stats.losses}
+        <span className="sr-only"> win-loss record</span>
       </p>
-      <div className="mt-4">{children}</div>
-    </aside>
+      <p className="m-0 hidden font-mono text-sm text-broadcast-ink/80 sm:block">
+        {pokemon.winRate}%<span className="sr-only"> win rate</span>
+      </p>
+      <p className="m-0 font-mono text-sm font-bold text-broadcast-gold sm:text-base">
+        {pokemon.score}
+        <span className="sr-only"> points</span>
+      </p>
+      <p className="m-0 hidden font-mono text-sm text-broadcast-ink/80 sm:block">
+        {pokemon.battles}
+        <span className="sr-only"> battles</span>
+      </p>
+    </article>
   );
 }
 
 function Pager({ page, totalPages }: { page: number; totalPages: number }) {
   const item =
-    "border border-white/20 px-4 py-2 text-sm font-bold uppercase tracking-[0.18em] text-white/70";
-  const enabled = "transition hover:border-[#3ef3c6] hover:text-[#3ef3c6]";
+    "rounded-md border border-broadcast-ink/25 px-3.5 py-2 text-[11px] uppercase tracking-[0.15em] text-broadcast-ink/70 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-broadcast-gold";
+  const enabled =
+    "transition-colors duration-150 ease-out hover:border-broadcast-gold hover:bg-broadcast-gold/10 hover:text-broadcast-gold";
   const disabled = "pointer-events-none opacity-30";
 
   return (
@@ -145,7 +151,7 @@ function Pager({ page, totalPages }: { page: number; totalPages: number }) {
       ) : (
         <span className={cn(item, disabled)}>← previous</span>
       )}
-      <p className="text-xs font-black uppercase tracking-[0.32em] text-white/45">
+      <p className="m-0 font-mono text-[11px] uppercase tracking-[0.16em] text-broadcast-dim">
         page {page} of {totalPages}
       </p>
       {page < totalPages ? (
@@ -192,36 +198,16 @@ async function ResultsContent({
   );
 
   return (
-    <div className="grid gap-6">
-      {firstPage ? (
-        <div className="grid gap-4 lg:grid-cols-[minmax(0,0.95fr)_minmax(320px,0.55fr)] lg:items-stretch">
-          {champion && <ChampionCard pokemon={champion} />}
-          <FillPanel title="field summary" className="grid content-start">
-            <div className="grid gap-2">
-              <StatBlock label="entries" value={rankings.length} />
-              <StatBlock
-                label="wins"
-                value={rankings.reduce(
-                  (sum, pokemon) => sum + pokemon.stats.wins,
-                  0,
-                )}
-              />
-              <StatBlock
-                label="battles"
-                value={rankings.reduce(
-                  (sum, pokemon) => sum + pokemon.battles,
-                  0,
-                )}
-              />
-            </div>
-          </FillPanel>
-        </div>
-      ) : null}
+    <div className="flex flex-col gap-4">
+      {firstPage && champion ? <ChampionBanner pokemon={champion} /> : null}
       <Pager page={page} totalPages={totalPages} />
-      <div className="grid content-start gap-3 xl:grid-cols-2 [&>article]:[contain-intrinsic-size:auto_411px] [&>article]:[content-visibility:auto] sm:[&>article]:[contain-intrinsic-size:auto_65px]">
-        {visible.map((pokemon) => (
-          <ChallengerRow key={pokemon.dexNumber} pokemon={pokemon} />
-        ))}
+      <div className="flex flex-col gap-1.5">
+        <StandingsHeader />
+        <div className="grid gap-1.5 [&>article]:[contain-intrinsic-size:auto_64px] [&>article]:[content-visibility:auto]">
+          {visible.map((pokemon) => (
+            <StandingsRow key={pokemon.dexNumber} pokemon={pokemon} />
+          ))}
+        </div>
       </div>
       <Pager page={page} totalPages={totalPages} />
     </div>
@@ -234,25 +220,14 @@ export default function ResultsPage({
   searchParams: Promise<Record<string, string | string[] | undefined>>;
 }) {
   return (
-    <section className="min-h-screen overflow-x-hidden bg-[#111018] px-5 py-10 text-white sm:px-8 lg:px-12">
-      <div className="mx-auto max-w-7xl">
-        <div className="mb-8 grid gap-4 lg:grid-cols-[1fr_auto] lg:items-end">
-          <div>
-            <p className="text-xs font-black uppercase tracking-[0.35em] text-[#3ef3c6]">
-              roundest cache
-            </p>
-            <h1 className="mt-3 text-5xl font-black uppercase leading-none text-white sm:text-7xl">
-              LIVE RESULTS
-            </h1>
-          </div>
-          <Link
-            href="/"
-            className="border border-white/20 px-4 py-3 text-right text-sm font-bold uppercase tracking-[0.18em] text-white/70 transition hover:border-[#3ef3c6] hover:text-[#3ef3c6]"
-          >
-            battle
-          </Link>
-        </div>
-
+    <section className="broadcast-surface min-h-screen overflow-x-hidden px-4 py-5 text-broadcast-ink sm:px-6 lg:px-10">
+      <div className="mx-auto flex max-w-6xl flex-col gap-4">
+        <h1 className="sr-only">Live standings</h1>
+        <BroadcastBar
+          slate="Standings · refreshed every 15s"
+          href="/"
+          linkLabel="Battle"
+        />
         <Suspense fallback={<ResultsFallback />}>
           <ResultsContent searchParams={searchParams} />
         </Suspense>

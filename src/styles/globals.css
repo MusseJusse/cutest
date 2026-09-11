@@ -64,3 +64,44 @@
     @apply bg-background text-foreground;
   }
 }
+.broadcast-surface {
+  background:
+    radial-gradient(
+      90% 60% at 50% -10%,
+      rgb(59 130 246 / 0.16),
+      transparent 60%
+    ),
+    radial-gradient(
+      70% 50% at 12% 110%,
+      rgb(255 75 62 / 0.13),
+      transparent 60%
+    ),
+    #070c16;
+}
+.live-dot {
+  animation: broadcast-blink 1.6s ease-in-out infinite;
+}
+.ticker-track {
+  display: flex;
+  width: max-content;
+  animation: broadcast-ticker var(--ticker-duration, 38s) linear infinite;
+}
+.ticker-track:hover {
+  animation-play-state: paused;
+}
+@keyframes broadcast-blink {
+  50% {
+    opacity: 0.3;
+  }
+}
+@keyframes broadcast-ticker {
+  to {
+    transform: translateX(-50%);
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .live-dot,
+  .ticker-track {
+    animation: none;
+  }
+}

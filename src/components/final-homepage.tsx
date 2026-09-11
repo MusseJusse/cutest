@@ -1,9 +1,11 @@
 import { cookies } from "next/headers";
-import Link from "next/link";
 import { Suspense } from "react";
 import BattleArena from "~/components/battle-arena";
+import BattleTicker from "~/components/battle-ticker";
+import BroadcastBar from "~/components/broadcast-bar";
 import { VoteFallback } from "~/components/ui/fallbacks";
 import { selectPokemonPairs } from "~/sdk/pokemon";
+import { getContenderStats } from "~/sdk/vote";
 import type { PokemonPair } from "~/sdk/pokemon";
 
 const QUEUE_SIZE = 6;
@@ -35,32 +37,26 @@ async function FinalHomepageContent() {
   const cookiePair = parsePair(currentPairCookie);
   if (cookiePair) pairs[0] = cookiePair;
 
-  return <BattleArena initialPairs={pairs} />;
+  const stats = await getContenderStats(pairs.flat());
+
+  return <BattleArena initialPairs={pairs} initialStats={stats} />;
 }
 
 export default function FinalHomepage() {
   return (
-    <section className="min-h-screen overflow-x-hidden bg-[#111018] px-5 py-10 text-white sm:px-8 lg:px-12">
-      <div className="mx-auto max-w-7xl">
-        <div className="mb-8 grid gap-4 lg:grid-cols-[1fr_auto] lg:items-end">
-          <div>
-            <p className="text-xs font-black uppercase tracking-[0.35em] text-[#3ef3c6]">
-              Roundest Cache
-            </p>
-            <h1 className="mt-3 text-5xl font-black uppercase leading-none text-white sm:text-7xl">
-              BATTLE
-            </h1>
-          </div>
-          <Link
-            href="/results"
-            className="border border-white/20 px-4 py-3 text-right text-sm font-bold uppercase tracking-[0.18em] text-white/70 transition hover:border-[#3ef3c6] hover:text-[#3ef3c6]"
-          >
-            results
-          </Link>
-        </div>
-
+    <section className="broadcast-surface min-h-screen overflow-x-hidden px-4 py-5 text-broadcast-ink sm:px-6 lg:px-10">
+      <div className="mx-auto flex max-w-6xl flex-col gap-4">
+        <h1 className="sr-only">Which Pokémon is rounder?</h1>
+        <BroadcastBar
+          slate="Vote open · new pair every vote"
+          href="/results"
+          linkLabel="Standings"
+        />
         <Suspense fallback={<VoteFallback />}>
           <FinalHomepageContent />
+        </Suspense>
+        <Suspense fallback={null}>
+          <BattleTicker />
         </Suspense>
       </div>
     </section>
