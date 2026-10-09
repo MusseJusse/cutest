@@ -40,9 +40,6 @@ export default function FinalHomepage() {
           <h1 className="font-display text-[clamp(1.75rem,5.8cqi,2.875rem)] leading-tight font-extrabold tracking-[-0.045em]">
             Which is cutest?
           </h1>
-          <p className="mt-2.5 text-xs text-studio-muted">
-            Tap your favourite. The next pair appears right away.
-          </p>
         </div>
         <Suspense fallback={<VoteFallback />}>
           <FinalHomepageContent />

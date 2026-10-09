@@ -330,9 +330,6 @@ export default function ResultsPage({
             <h1 className="font-display text-[clamp(1.75rem,5cqi,2.5rem)] leading-tight font-extrabold tracking-tight">
               Cutest Pokémon
             </h1>
-            <p className="mt-2 text-xs text-studio-muted">
-              Ranked by your votes
-            </p>
           </div>
           <Suspense fallback={<ResultsFallback />}>
             <ResultsContent searchParams={searchParams} />
