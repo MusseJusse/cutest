@@ -28,14 +28,11 @@ async function getOrderedRankings() {
 const GRID =
   "grid grid-cols-[24px_44px_minmax(0,1fr)_auto] items-center gap-2 sm:grid-cols-[32px_44px_minmax(0,1fr)_72px_72px_88px] sm:gap-3";
 
-// The expanded summary hit area covers the details, so the whole row toggles natively.
-function PokemonDetails({
+function VotingStatistics({
   pokemon,
-  children,
   champion = false,
 }: {
   pokemon: RankedPokemon;
-  children: ReactNode;
   champion?: boolean;
 }) {
   const statistics = [
@@ -46,13 +43,54 @@ function PokemonDetails({
   ];
 
   return (
+    <div
+      className={cn(
+        "border-t border-studio-line pt-4",
+        !champion && "sm:border-0 sm:pt-0",
+      )}
+    >
+      <h3 className="mt-0 mb-3 text-xs font-medium text-studio-muted">
+        Voting statistics
+      </h3>
+      <dl
+        className={cn(
+          "m-0 grid grid-cols-2 gap-x-4 gap-y-3",
+          champion && "sm:grid-cols-4",
+        )}
+      >
+        {statistics.map(({ label, value }) => (
+          <div key={label}>
+            <dt className="text-xs text-studio-muted">{label}</dt>
+            <dd className="m-0 text-2xl font-semibold tabular-nums">{value}</dd>
+          </div>
+        ))}
+      </dl>
+      <div
+        aria-hidden="true"
+        className="mt-4 h-1.5 overflow-hidden bg-studio-line"
+      >
+        <div
+          className="h-full bg-studio-accent"
+          style={{ width: `${pokemon.stats.winRate * 100}%` }}
+        />
+      </div>
+    </div>
+  );
+}
+
+// The expanded summary hit area lets the whole standings row toggle natively.
+function PokemonDetails({
+  pokemon,
+  children,
+}: {
+  pokemon: RankedPokemon;
+  children: ReactNode;
+}) {
+  return (
     <article>
       <details
         name="pokemon-details"
-        className={cn(
-          "group relative border-b border-studio-line open:rounded-xl open:border-studio-accent/40 open:bg-studio-lavender/50",
-          champion && "rounded-2xl border-0 bg-studio-lavender/70",
-        )}
+        className="group relative border-b border-studio-line open:rounded-xl open:border-studio-accent/40 open:bg-studio-lavender/50"
       >
         <summary className="relative cursor-pointer list-none rounded-[inherit] pr-7 group-open:static group-open:min-h-11 group-open:after:absolute group-open:after:inset-0 group-open:after:z-10 group-open:after:content-[''] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-studio-accent [&::-webkit-details-marker]:hidden [details:not([open])_&]:hover:bg-studio-lavender/40">
           <span className="sr-only">{pokemon.name} details</span>
@@ -104,30 +142,7 @@ function PokemonDetails({
                 </p>
               </div>
             </div>
-            <div className="border-t border-studio-line pt-4 sm:border-0 sm:pt-0">
-              <h3 className="mt-0 mb-3 text-xs font-medium text-studio-muted">
-                Voting statistics
-              </h3>
-              <dl className="m-0 grid grid-cols-2 gap-x-4 gap-y-3">
-                {statistics.map(({ label, value }) => (
-                  <div key={label}>
-                    <dt className="text-xs text-studio-muted">{label}</dt>
-                    <dd className="m-0 text-2xl font-semibold tabular-nums">
-                      {value}
-                    </dd>
-                  </div>
-                ))}
-              </dl>
-              <div
-                aria-hidden="true"
-                className="mt-4 h-1.5 overflow-hidden bg-studio-line"
-              >
-                <div
-                  className="h-full bg-studio-accent"
-                  style={{ width: `${pokemon.stats.winRate * 100}%` }}
-                />
-              </div>
-            </div>
+            <VotingStatistics pokemon={pokemon} />
           </div>
         </div>
       </details>
@@ -137,27 +152,64 @@ function PokemonDetails({
 
 function ChampionBanner({ pokemon }: { pokemon: RankedPokemon }) {
   return (
-    <PokemonDetails pokemon={pokemon} champion>
-      <div className="flex items-center gap-3 p-3 sm:gap-6 sm:px-6 sm:py-2">
-        <div className="grid h-28 w-28 shrink-0 grid-cols-[minmax(0,1fr)] grid-rows-[minmax(0,1fr)] place-items-center overflow-clip sm:h-36 sm:w-36">
-          <PokemonSprite
-            pokemon={pokemon}
-            className="h-44 w-44 max-w-none sm:h-52 sm:w-52"
-            priority="high"
-          />
+    <article>
+      <details
+        name="pokemon-details"
+        className="champion-details rounded-2xl bg-studio-lavender/70"
+      >
+        <summary className="relative cursor-pointer list-none rounded-2xl pr-7 hover:bg-studio-lavender/40 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-studio-accent [&::-webkit-details-marker]:hidden">
+          <span className="sr-only">{pokemon.name} voting statistics</span>
+          <span
+            className="absolute top-3 right-3 flex items-center gap-1 text-xs text-studio-muted sm:top-4 sm:right-6"
+            aria-hidden="true"
+          >
+            <span className="hidden sm:inline">Statistics</span>
+            <svg
+              className="champion-chevron"
+              width="12"
+              height="12"
+              viewBox="0 0 12 12"
+              fill="none"
+            >
+              <path
+                d="m3 4.5 3 3 3-3"
+                stroke="currentColor"
+                strokeWidth="1.5"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                vectorEffect="non-scaling-stroke"
+              />
+            </svg>
+          </span>
+          <div className="flex items-center gap-3 p-3 sm:gap-6 sm:px-6 sm:py-2">
+            <div className="grid h-28 w-28 shrink-0 grid-cols-[minmax(0,1fr)] grid-rows-[minmax(0,1fr)] place-items-center overflow-clip sm:h-36 sm:w-36">
+              <PokemonSprite
+                pokemon={pokemon}
+                className="h-44 w-44 max-w-none sm:h-52 sm:w-52"
+                priority="high"
+              />
+            </div>
+            <div className="min-w-0">
+              <p className="text-[11px] text-studio-muted">
+                #{pokemon.dexNumber.toString().padStart(4, "0")} · Rank 01
+              </p>
+              <h2 className="my-1 font-display text-3xl leading-tight font-extrabold tracking-tight break-words capitalize sm:text-4xl">
+                {pokemon.name}
+              </h2>
+              <p className="text-lg tabular-nums">
+                {pokemon.score.toLocaleString("en-US")}{" "}
+                <span className="text-xs text-studio-muted">points</span>
+              </p>
+            </div>
+          </div>
+        </summary>
+        <div>
+          <div className="px-4 pb-5 sm:px-6 sm:pb-6">
+            <VotingStatistics pokemon={pokemon} champion />
+          </div>
         </div>
-        <div className="min-w-0">
-          <p className="text-[11px] text-studio-muted">Rank 01</p>
-          <h2 className="my-1 font-display text-3xl leading-tight font-extrabold tracking-tight break-words capitalize sm:text-4xl">
-            {pokemon.name}
-          </h2>
-          <p className="text-lg tabular-nums">
-            {pokemon.score.toLocaleString("en-US")}{" "}
-            <span className="text-xs text-studio-muted">points</span>
-          </p>
-        </div>
-      </div>
-    </PokemonDetails>
+      </details>
+    </article>
   );
 }
 

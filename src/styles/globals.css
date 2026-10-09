@@ -201,11 +201,28 @@ details > :not(summary) {
   overflow: clip;
 }
 
+.champion-details::details-content {
+  transition:
+    grid-template-rows 200ms var(--vt-ease-out),
+    opacity 140ms var(--vt-ease-out),
+    visibility 200ms linear;
+}
+.champion-chevron {
+  transition: transform 180ms var(--vt-ease-out);
+}
+.champion-details[open] .champion-chevron {
+  transform: scaleY(-1);
+}
+
 @media (prefers-reduced-motion: reduce) {
   details::details-content {
     transition:
       opacity 120ms ease,
       visibility 120ms linear;
+  }
+  .champion-details::details-content,
+  .champion-chevron {
+    transition: none;
   }
   ::view-transition-old(*),
   ::view-transition-new(*),
