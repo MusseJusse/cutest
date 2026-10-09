@@ -1,8 +1,8 @@
 import { cookies } from "next/headers";
 import { Suspense } from "react";
 import BattleArena from "~/components/battle-arena";
-import BattleTicker from "~/components/battle-ticker";
-import BroadcastBar from "~/components/broadcast-bar";
+import RecentVotes from "~/components/recent-votes";
+import SiteHeader from "~/components/site-header";
 import { VoteFallback } from "~/components/ui/fallbacks";
 import { parsePokemonPair, selectPokemonPairs } from "~/sdk/pokemon";
 import { getContenderStats } from "~/sdk/vote";
@@ -33,19 +33,22 @@ async function FinalHomepageContent() {
 
 export default function FinalHomepage() {
   return (
-    <section className="broadcast-surface min-h-screen overflow-x-hidden px-4 py-5 text-broadcast-ink sm:px-6 lg:px-10">
-      <div className="mx-auto flex max-w-6xl flex-col gap-4">
-        <h1 className="sr-only">Which Pokémon is cutest?</h1>
-        <BroadcastBar
-          href="/results"
-          linkLabel="Rankings"
-          transitionTypes={["nav-forward"]}
-        />
+    <section className="px-4 py-5 sm:px-6 sm:py-8">
+      <div className="@container mx-auto max-w-[1040px]">
+        <SiteHeader page="vote" />
+        <div className="pt-7 pb-6">
+          <h1 className="font-display text-[clamp(1.75rem,5.8cqi,2.875rem)] leading-tight font-extrabold tracking-[-0.045em]">
+            Which is cutest?
+          </h1>
+          <p className="mt-2.5 text-xs text-studio-muted">
+            Tap your favourite. The next pair appears right away.
+          </p>
+        </div>
         <Suspense fallback={<VoteFallback />}>
           <FinalHomepageContent />
         </Suspense>
         <Suspense fallback={null}>
-          <BattleTicker />
+          <RecentVotes />
         </Suspense>
       </div>
     </section>

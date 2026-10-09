@@ -1,12 +1,12 @@
 # cutest
 
-A cuteness contest for all 1,025 Pokémon. Two contenders enter, you pick the cuter one, and the winner climbs a live leaderboard. The UI plays it like a sports broadcast under the name Cuteness Super League, or CSL.
+A cuteness contest for all 1,025 Pokémon. Two contenders enter, you pick the cuter one, and the winner climbs a live leaderboard. The voting studio puts the Pokémon side by side on lavender and blue panels.
 
 The project started as a Next.js App Router test bed for server components and the `"use cache"` directive, so the data path is deliberately small and the caching behavior is measured instead of guessed. Numbers and reproduction commands are in [docs/performance.md](docs/performance.md).
 
 ## How it works
 
-The homepage shows a Home and Away contender. Voting is split in two:
+The homepage shows two contenders with named vote buttons. Voting is split in two:
 
 - The client advances to the next pair from a queue the server prepared, so the next matchup appears immediately.
 - A server action records the result in Redis in the background. If it fails, a toast offers a retry.
@@ -20,7 +20,7 @@ The results page ranks every Pokémon by an Elo-style score, `wins * 0.3 + winRa
 - Next.js 16 App Router with `cacheComponents` enabled, React 19, and View Transitions.
 - Server actions live in `src/lib/action.ts`. Every argument is validated against the bundled catalogue before it reaches Redis.
 - Upstash Redis stores wins, losses, and a recent-battles list. Counter reads use `cacheLife({ stale: 0, revalidate: 15, expire: 16 })`.
-- Tailwind CSS 4 with a custom broadcast theme.
+- Tailwind CSS 4 with a voting studio theme and Bricolage Grotesque display type.
 - Sprites come from the PokeAPI sprites repository on `raw.githubusercontent.com`.
 
 ## Getting started
@@ -44,22 +44,22 @@ Then open [http://localhost:3000](http://localhost:3000).
 
 ## Commands
 
-| Command | What it does |
-| --- | --- |
-| `pnpm dev` | Dev server with Turbopack |
-| `pnpm build` | Production build |
-| `pnpm start` | Serve the production build |
-| `pnpm check` | ESLint and `tsc --noEmit`, run before committing |
-| `pnpm lint` / `pnpm typecheck` | The two checks on their own |
-| `pnpm format:check` / `pnpm format:write` | Prettier |
-| `node --test scripts/selection.test.mjs scripts/battle-queue.test.mjs` | Pair sampler and vote queue tests |
+| Command                                                                | What it does                                     |
+| ---------------------------------------------------------------------- | ------------------------------------------------ |
+| `pnpm dev`                                                             | Dev server with Turbopack                        |
+| `pnpm build`                                                           | Production build                                 |
+| `pnpm start`                                                           | Serve the production build                       |
+| `pnpm check`                                                           | ESLint and `tsc --noEmit`, run before committing |
+| `pnpm lint` / `pnpm typecheck`                                         | The two checks on their own                      |
+| `pnpm format:check` / `pnpm format:write`                              | Prettier                                         |
+| `node --test scripts/selection.test.mjs scripts/battle-queue.test.mjs` | Pair sampler and vote queue tests                |
 
 ## Project layout
 
 ```
 src/
   app/            routes: / (battle) and /results (standings)
-  components/     broadcast UI, battle arena, ticker
+  components/     site header, voting studio, recent votes
   sdk/            catalogue, pair selection, Redis vote store
   lib/action.ts   server actions
   data/           bundled National Dex catalogue

@@ -7,18 +7,18 @@ type ToasterProps = React.ComponentProps<typeof Sonner>;
 const Toaster = ({ ...props }: ToasterProps) => {
   return (
     <Sonner
-      theme="dark"
+      theme="light"
       className="toaster group"
       toastOptions={{
         classNames: {
           toast:
-            "group toast group-[.toaster]:border-broadcast-dim/30 group-[.toaster]:bg-[#0b1220] group-[.toaster]:text-broadcast-ink group-[.toaster]:shadow-lg",
-          description: "group-[.toast]:text-broadcast-dim",
+            "group toast group-[.toaster]:border-studio-line group-[.toaster]:bg-studio-paper group-[.toaster]:text-studio-ink group-[.toaster]:shadow-lg",
+          description: "group-[.toast]:text-studio-muted",
           actionButton:
-            "group-[.toast]:bg-broadcast-gold group-[.toast]:font-bold group-[.toast]:text-[#0a0e18]",
+            "group-[.toast]:bg-studio-accent group-[.toast]:font-bold group-[.toast]:text-white",
           cancelButton:
-            "group-[.toast]:bg-white/10 group-[.toast]:text-broadcast-ink",
-          error: "group-[.toaster]:border-broadcast-home/50",
+            "group-[.toast]:bg-studio-lavender group-[.toast]:text-studio-ink",
+          error: "group-[.toaster]:border-destructive/50",
         },
       }}
       {...props}

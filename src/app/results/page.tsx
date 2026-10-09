@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { Suspense, ViewTransition, type ReactNode } from "react";
-import BroadcastBar from "~/components/broadcast-bar";
+import SiteHeader from "~/components/site-header";
 import { ResultsFallback } from "~/components/ui/fallbacks";
 import PokemonSprite from "~/components/ui/pokemon-sprite";
 import { cn } from "~/lib/utils";
@@ -26,7 +26,7 @@ async function getOrderedRankings() {
 }
 
 const GRID =
-  "grid grid-cols-[34px_44px_minmax(0,1fr)_auto] items-center gap-3 sm:grid-cols-[34px_44px_minmax(0,1fr)_65px_48px_60px_60px] lg:grid-cols-[48px_56px_minmax(0,1fr)_96px_76px_76px_84px]";
+  "grid grid-cols-[24px_44px_minmax(0,1fr)_auto] items-center gap-2 sm:grid-cols-[32px_44px_minmax(0,1fr)_72px_72px_88px] sm:gap-3";
 
 // The expanded summary hit area covers the details, so the whole row toggles natively.
 function PokemonDetails({
@@ -40,7 +40,7 @@ function PokemonDetails({
 }) {
   const statistics = [
     { label: "Win rate", value: `${pokemon.winRate}%` },
-    { label: "Battles", value: pokemon.battles.toLocaleString("en-US") },
+    { label: "Votes", value: pokemon.battles.toLocaleString("en-US") },
     { label: "Wins", value: pokemon.stats.wins.toLocaleString("en-US") },
     { label: "Losses", value: pokemon.stats.losses.toLocaleString("en-US") },
   ];
@@ -50,16 +50,15 @@ function PokemonDetails({
       <details
         name="pokemon-details"
         className={cn(
-          "group relative rounded-lg border border-broadcast-dim/15 bg-white/[0.03] open:border-broadcast-gold/60 open:bg-[#101c2c]",
-          champion &&
-            "rounded-[10px] border-broadcast-gold/35 bg-[linear-gradient(90deg,rgba(255,210,63,0.1),rgba(255,210,63,0.02))] open:bg-none",
+          "group relative border-b border-studio-line open:rounded-xl open:border-studio-accent/40 open:bg-studio-lavender/50",
+          champion && "rounded-2xl border-0 bg-studio-lavender/70",
         )}
       >
-        <summary className="relative cursor-pointer list-none rounded-[inherit] pr-7 group-open:static group-open:min-h-11 group-open:after:absolute group-open:after:inset-0 group-open:after:z-10 group-open:after:content-[''] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-broadcast-gold [&::-webkit-details-marker]:hidden [details:not([open])_&]:hover:bg-white/[0.03]">
+        <summary className="relative cursor-pointer list-none rounded-[inherit] pr-7 group-open:static group-open:min-h-11 group-open:after:absolute group-open:after:inset-0 group-open:after:z-10 group-open:after:content-[''] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-studio-accent [&::-webkit-details-marker]:hidden [details:not([open])_&]:hover:bg-studio-lavender/40">
           <span className="sr-only">{pokemon.name} details</span>
           <div className="group-open:hidden">{children}</div>
           <span
-            className="absolute top-0 right-3 flex h-full items-center gap-1 text-xs text-broadcast-gold group-open:h-11"
+            className="absolute top-0 right-3 flex h-full items-center gap-1 text-xs text-studio-muted group-open:h-11"
             aria-hidden="true"
           >
             <span className="hidden group-open:inline">Collapse</span>
@@ -85,33 +84,35 @@ function PokemonDetails({
             <div className="flex min-w-0 items-center gap-2 sm:gap-4">
               <PokemonSprite
                 pokemon={pokemon}
-                className="h-32 w-32 shrink-0 scale-115 sm:h-40 sm:w-40"
+                className="h-28 w-28 shrink-0 sm:h-40 sm:w-40"
                 lazy
                 priority="low"
               />
               <div className="min-w-0">
-                <p className="m-0 text-[10px] tracking-[0.12em] text-broadcast-dim uppercase">
+                <p className="m-0 text-[11px] text-studio-muted">
                   #{pokemon.dexNumber.toString().padStart(4, "0")} · Rank{" "}
                   {pokemon.rank.toString().padStart(2, "0")}
                 </p>
-                <h2 className="my-2 font-display text-3xl leading-none break-words text-broadcast-ink uppercase sm:text-4xl">
+                <h2 className="my-2 font-display text-3xl leading-tight font-extrabold tracking-tight break-words text-studio-ink capitalize sm:text-4xl">
                   {pokemon.name}
                 </h2>
-                <p className="m-0 font-mono text-3xl font-bold text-broadcast-gold">
+                <p className="m-0 text-2xl font-semibold text-studio-ink tabular-nums">
                   {pokemon.score.toLocaleString("en-US")}{" "}
-                  <span className="text-[10px] font-normal uppercase">pts</span>
+                  <span className="text-xs font-normal text-studio-muted">
+                    points
+                  </span>
                 </p>
               </div>
             </div>
-            <div className="border-t border-broadcast-dim/20 pt-4 sm:border-0 sm:pt-0">
-              <h3 className="mt-0 mb-3 text-[10px] font-normal tracking-[0.12em] text-broadcast-dim uppercase">
+            <div className="border-t border-studio-line pt-4 sm:border-0 sm:pt-0">
+              <h3 className="mt-0 mb-3 text-xs font-medium text-studio-muted">
                 Voting statistics
               </h3>
               <dl className="m-0 grid grid-cols-2 gap-x-4 gap-y-3">
                 {statistics.map(({ label, value }) => (
                   <div key={label}>
-                    <dt className="text-xs text-broadcast-dim">{label}</dt>
-                    <dd className="m-0 font-mono text-2xl font-bold">
+                    <dt className="text-xs text-studio-muted">{label}</dt>
+                    <dd className="m-0 text-2xl font-semibold tabular-nums">
                       {value}
                     </dd>
                   </div>
@@ -119,10 +120,10 @@ function PokemonDetails({
               </dl>
               <div
                 aria-hidden="true"
-                className="mt-4 h-1.5 overflow-hidden bg-broadcast-dim/30"
+                className="mt-4 h-1.5 overflow-hidden bg-studio-line"
               >
                 <div
-                  className="h-full bg-broadcast-gold"
+                  className="h-full bg-studio-accent"
                   style={{ width: `${pokemon.stats.winRate * 100}%` }}
                 />
               </div>
@@ -134,69 +135,43 @@ function PokemonDetails({
   );
 }
 
-function ScoreBug({ pokemon }: { pokemon: RankedPokemon }) {
-  const cell = "flex flex-col items-end";
-  const label = "text-[10px] uppercase tracking-[0.16em] text-broadcast-dim";
-  const value =
-    "m-0 font-mono text-xl font-bold text-broadcast-gold sm:text-2xl";
-
-  return (
-    <dl className="col-span-2 m-0 flex gap-5 sm:col-span-1 sm:gap-6">
-      <div className={cell}>
-        <dt className={label}>pts</dt>
-        <dd className={value}>{pokemon.score}</dd>
-      </div>
-      <div className={cell}>
-        <dt className={label}>win</dt>
-        <dd className={value}>{pokemon.winRate}%</dd>
-      </div>
-      <div className={cell}>
-        <dt className={label}>record</dt>
-        <dd className={value}>
-          {pokemon.stats.wins}-{pokemon.stats.losses}
-        </dd>
-      </div>
-    </dl>
-  );
-}
-
 function ChampionBanner({ pokemon }: { pokemon: RankedPokemon }) {
   return (
     <PokemonDetails pokemon={pokemon} champion>
-      <div className="grid grid-cols-[auto_minmax(0,1fr)] items-center gap-x-4 gap-y-3 p-4 sm:grid-cols-[auto_minmax(0,1fr)_auto]">
-        <PokemonSprite
-          pokemon={pokemon}
-          className="h-16 w-16 sm:h-20 sm:w-20"
-          priority="high"
-        />
+      <div className="flex items-center gap-3 p-3 sm:gap-6 sm:px-6 sm:py-2">
+        <div className="grid h-28 w-28 shrink-0 grid-cols-[minmax(0,1fr)] grid-rows-[minmax(0,1fr)] place-items-center overflow-clip sm:h-36 sm:w-36">
+          <PokemonSprite
+            pokemon={pokemon}
+            className="h-44 w-44 max-w-none sm:h-52 sm:w-52"
+            priority="high"
+          />
+        </div>
         <div className="min-w-0">
-          <p className="m-0 text-[11px] font-bold tracking-[0.2em] text-broadcast-gold uppercase">
-            League leader
-          </p>
-          <h2 className="m-0 truncate font-display text-4xl leading-none text-broadcast-ink uppercase sm:text-5xl">
+          <p className="text-[11px] text-studio-muted">Rank 01</p>
+          <h2 className="my-1 font-display text-3xl leading-tight font-extrabold tracking-tight break-words capitalize sm:text-4xl">
             {pokemon.name}
           </h2>
+          <p className="text-lg tabular-nums">
+            {pokemon.score.toLocaleString("en-US")}{" "}
+            <span className="text-xs text-studio-muted">points</span>
+          </p>
         </div>
-        <ScoreBug pokemon={pokemon} />
       </div>
     </PokemonDetails>
   );
 }
 
 function StandingsHeader() {
-  const cell =
-    "font-mono text-[10px] uppercase tracking-[0.16em] text-broadcast-dim";
+  const cell = "text-[10px] text-studio-muted";
 
   return (
-    <div aria-hidden="true" className={cn(GRID, "pr-10 pb-1 pl-3")}>
-      <span className={cell}>#</span>
+    <div aria-hidden="true" className={cn(GRID, "pr-7 pb-2 pl-1 sm:pl-2")}>
+      <span className={cell}>Rank</span>
       <span />
       <span className={cell}>Pokémon</span>
-      <span className={cn(cell, "sm:hidden")}>Pts</span>
-      <span className={cn(cell, "hidden sm:block")}>W-L</span>
-      <span className={cn(cell, "hidden sm:block")}>Win</span>
-      <span className={cn(cell, "hidden sm:block")}>Pts</span>
-      <span className={cn(cell, "hidden sm:block")}>Battles</span>
+      <span className={cn(cell, "hidden text-right sm:block")}>Win rate</span>
+      <span className={cn(cell, "hidden text-right sm:block")}>Votes</span>
+      <span className={cn(cell, "text-right")}>Points</span>
     </div>
   );
 }
@@ -204,8 +179,8 @@ function StandingsHeader() {
 function StandingsRow({ pokemon }: { pokemon: RankedPokemon }) {
   return (
     <PokemonDetails pokemon={pokemon}>
-      <div className={cn(GRID, "px-3 py-2.5")}>
-        <p className="m-0 font-mono text-xs text-broadcast-dim">
+      <div className={cn(GRID, "px-1 py-2 sm:px-2")}>
+        <p className="text-[11px] text-studio-muted tabular-nums">
           {pokemon.rank.toString().padStart(2, "0")}
         </p>
         <PokemonSprite
@@ -214,23 +189,19 @@ function StandingsRow({ pokemon }: { pokemon: RankedPokemon }) {
           lazy
           priority="low"
         />
-        <h2 className="m-0 truncate font-display text-2xl leading-none text-broadcast-ink uppercase">
+        <h2 className="text-xs font-semibold break-words capitalize sm:text-sm">
           {pokemon.name}
         </h2>
-        <p className="m-0 hidden font-mono text-sm text-broadcast-ink/80 sm:block">
-          {pokemon.stats.wins}-{pokemon.stats.losses}
-          <span className="sr-only"> win-loss record</span>
-        </p>
-        <p className="m-0 hidden font-mono text-sm text-broadcast-ink/80 sm:block">
+        <p className="hidden text-right text-xs text-studio-muted tabular-nums sm:block">
           {pokemon.winRate}%<span className="sr-only"> win rate</span>
         </p>
-        <p className="m-0 font-mono text-sm font-bold text-broadcast-gold sm:text-base">
-          {pokemon.score}
-          <span className="sr-only"> points</span>
+        <p className="hidden text-right text-xs text-studio-muted tabular-nums sm:block">
+          {pokemon.battles.toLocaleString("en-US")}
+          <span className="sr-only"> votes</span>
         </p>
-        <p className="m-0 hidden font-mono text-sm text-broadcast-ink/80 sm:block">
-          {pokemon.battles}
-          <span className="sr-only"> battles</span>
+        <p className="text-right text-xs font-semibold tabular-nums sm:text-sm">
+          {pokemon.score.toLocaleString("en-US")}
+          <span className="sr-only"> points</span>
         </p>
       </div>
     </PokemonDetails>
@@ -239,13 +210,16 @@ function StandingsRow({ pokemon }: { pokemon: RankedPokemon }) {
 
 function Pager({ page, totalPages }: { page: number; totalPages: number }) {
   const item =
-    "rounded-md border border-broadcast-ink/25 px-3.5 py-2 text-[11px] uppercase tracking-[0.15em] text-broadcast-ink/70 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-broadcast-gold";
+    "inline-flex min-h-11 items-center py-2 text-xs text-studio-muted";
   const enabled =
-    "transition-colors duration-150 ease-out hover:border-broadcast-gold hover:bg-broadcast-gold/10 hover:text-broadcast-gold";
-  const disabled = "pointer-events-none opacity-30";
+    "hover:text-studio-ink hover:underline hover:underline-offset-4";
+  const disabled = "opacity-50";
 
   return (
-    <nav className="flex flex-wrap items-center justify-between gap-3">
+    <nav
+      aria-label="Rankings pages"
+      className="flex flex-wrap items-center justify-between gap-3"
+    >
       {page > 1 ? (
         <Link
           href={page === 2 ? "/results" : `/results?page=${page - 1}`}
@@ -253,13 +227,13 @@ function Pager({ page, totalPages }: { page: number; totalPages: number }) {
           rel="prev"
           transitionTypes={["nav-page"]}
         >
-          ← previous
+          ← Previous
         </Link>
       ) : (
-        <span className={cn(item, disabled)}>← previous</span>
+        <span className={cn(item, disabled)}>← Previous</span>
       )}
-      <p className="m-0 font-mono text-[11px] tracking-[0.16em] text-broadcast-dim uppercase">
-        page {page} of {totalPages}
+      <p className="m-0 text-[11px] text-studio-muted tabular-nums">
+        Page {page} of {totalPages}
       </p>
       {page < totalPages ? (
         <Link
@@ -268,10 +242,10 @@ function Pager({ page, totalPages }: { page: number; totalPages: number }) {
           rel="next"
           transitionTypes={["nav-page"]}
         >
-          next →
+          Next →
         </Link>
       ) : (
-        <span className={cn(item, disabled)}>next →</span>
+        <span className={cn(item, disabled)}>Next →</span>
       )}
     </nav>
   );
@@ -309,14 +283,19 @@ async function ResultsContent({
     <div className="flex flex-col gap-4">
       {firstPage && champion ? <ChampionBanner pokemon={champion} /> : null}
       <Pager page={page} totalPages={totalPages} />
-      <div className="flex flex-col gap-1.5">
+      <div>
         <StandingsHeader />
         {/* Keep content-visibility on open rows too. Flipping it on collapse leaves WebKit painting the stale expanded height. */}
-        <div className="grid gap-1.5 [&>article]:[contain-intrinsic-size:auto_64px] [&>article]:[content-visibility:auto]">
+        <ol
+          start={firstPage ? 2 : start + 2}
+          className="[&>li]:[contain-intrinsic-size:auto_61px] [&>li]:[content-visibility:auto]"
+        >
           {visible.map((pokemon) => (
-            <StandingsRow key={pokemon.dexNumber} pokemon={pokemon} />
+            <li key={pokemon.dexNumber}>
+              <StandingsRow pokemon={pokemon} />
+            </li>
           ))}
-        </div>
+        </ol>
       </div>
       <Pager page={page} totalPages={totalPages} />
     </div>
@@ -344,14 +323,17 @@ export default function ResultsPage({
       }}
       default="none"
     >
-      <section className="broadcast-surface min-h-screen overflow-x-hidden px-4 py-5 text-broadcast-ink sm:px-6 lg:px-10">
-        <div className="mx-auto flex max-w-6xl flex-col gap-4">
-          <h1 className="sr-only">Live standings</h1>
-          <BroadcastBar
-            href="/"
-            linkLabel="Battle"
-            transitionTypes={["nav-back"]}
-          />
+      <section className="px-4 py-5 sm:px-6 sm:py-8">
+        <div className="@container mx-auto max-w-[1040px]">
+          <SiteHeader page="rankings" />
+          <div className="pt-7 pb-5">
+            <h1 className="font-display text-[clamp(1.75rem,5cqi,2.5rem)] leading-tight font-extrabold tracking-tight">
+              Cutest Pokémon
+            </h1>
+            <p className="mt-2 text-xs text-studio-muted">
+              Ranked by your votes
+            </p>
+          </div>
           <Suspense fallback={<ResultsFallback />}>
             <ResultsContent searchParams={searchParams} />
           </Suspense>

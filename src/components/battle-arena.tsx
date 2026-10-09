@@ -1,7 +1,6 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
-import type { CSSProperties } from "react";
+import { useRef, useState } from "react";
 import { getMorePairsAction, voteAction } from "~/lib/action";
 import { cn } from "~/lib/utils";
 import type { Pokemon, PokemonPair } from "~/sdk/pokemon";
@@ -35,74 +34,53 @@ function ContenderPanel({
   stats?: ContenderStats;
   onVote: () => void;
 }) {
-  const isHome = side === "home";
-  const tone = isHome
-    ? { team: "#ff4b3e", soft: "rgba(255,75,62,0.2)" }
-    : { team: "#3b82f6", soft: "rgba(59,130,246,0.22)" };
   const battles = stats ? stats.wins + stats.losses : 0;
-  const label = stats
-    ? `${Math.round(stats.winRate * 100)}% · ${stats.wins}-${stats.losses}`
-    : "no record";
-  const isLongName = pokemon.name.length >= 11;
 
   return (
     <article
       className={cn(
-        "relative flex flex-col items-center justify-center gap-2 overflow-hidden border-0 border-broadcast-dim/25 px-2.5 pt-4 pb-3 text-center",
-        "sm:items-stretch sm:justify-start sm:gap-3 sm:rounded-[10px] sm:border sm:bg-white/[0.04] sm:p-4 sm:pt-5 sm:text-left",
+        "row-span-4 grid min-w-0 grid-cols-[minmax(0,1fr)] grid-rows-subgrid gap-3 p-3.5 sm:p-6",
+        side === "home" ? "bg-studio-lavender" : "bg-studio-sky",
       )}
-      style={{ "--team": tone.team, "--team-soft": tone.soft } as CSSProperties}
     >
-      <span
-        aria-hidden="true"
-        className="absolute inset-x-0 top-0 h-1 bg-[var(--team)]"
-      />
-      <p className="m-0 text-[10px] font-bold tracking-[0.16em] text-[var(--team)] uppercase sm:text-[11px] sm:tracking-[0.2em]">
-        {isHome ? "Home" : "Away"} · #{pokemon.dexNumber}
-      </p>
-      <h2
-        className={cn(
-          "m-0 font-display text-xl leading-none break-words text-broadcast-ink uppercase min-[380px]:text-2xl",
-          isLongName
-            ? "sm:text-3xl lg:text-4xl xl:text-5xl"
-            : "sm:text-4xl lg:text-5xl",
-        )}
-      >
-        {pokemon.name}
-      </h2>
-      <div className="relative grid place-items-center py-2 sm:py-3">
-        <span
-          aria-hidden="true"
-          className="absolute h-32 w-32 rounded-full bg-[radial-gradient(circle,var(--team-soft),transparent_65%)] min-[360px]:h-36 min-[360px]:w-36 min-[400px]:h-44 min-[400px]:w-44 sm:h-56 sm:w-56"
-        />
+      <div className="flex flex-col-reverse gap-2 sm:flex-row sm:items-baseline sm:justify-between">
+        <h2
+          className={cn(
+            "font-display leading-tight font-extrabold tracking-tight break-words capitalize",
+            pokemon.name.length >= 11
+              ? "text-[clamp(1.125rem,3cqi,2rem)]"
+              : "text-[clamp(1.5rem,4cqi,2rem)]",
+          )}
+        >
+          {pokemon.name}
+        </h2>
+        <span className="font-mono text-[11px] text-studio-muted">
+          #{pokemon.dexNumber.toString().padStart(4, "0")}
+        </span>
+      </div>
+      <div className="-mx-3.5 grid h-[170px] min-w-0 grid-cols-[minmax(0,1fr)] grid-rows-[minmax(0,1fr)] place-items-center overflow-clip sm:mx-0 sm:h-[220px]">
         <PokemonSprite
           pokemon={pokemon}
-          className="relative h-28 w-28 min-[360px]:h-32 min-[360px]:w-32 min-[400px]:h-36 min-[400px]:w-36 sm:h-40 sm:w-40"
+          className="h-auto w-[235px] max-w-full sm:w-[300px]"
           priority="high"
         />
       </div>
-      <p className="m-0 font-mono text-[10px] text-broadcast-dim sm:hidden">
-        {label}
+      <p className="flex flex-wrap gap-x-3 gap-y-1 text-[10px] text-studio-muted tabular-nums">
+        <span>
+          {battles > 0 && stats
+            ? `${Math.round(stats.winRate * 100)}% win rate`
+            : stats
+              ? "No votes yet"
+              : "Record unavailable"}
+        </span>
+        {battles > 0 && stats ? (
+          <span className="hidden @min-[32rem]:inline">
+            {stats.wins.toLocaleString("en-US")} wins ·{" "}
+            {stats.losses.toLocaleString("en-US")} losses
+          </span>
+        ) : null}
       </p>
-      <div className="hidden sm:block">
-        <div className="flex items-baseline justify-between gap-3 font-mono text-[11px] tracking-[0.12em] text-broadcast-dim uppercase">
-          <span>win rate</span>
-          <span>{label}</span>
-        </div>
-        <div className="mt-1.5 h-1.5 overflow-hidden rounded-full bg-white/10">
-          <div
-            className="h-full origin-left rounded-full bg-[var(--team)] transition-transform duration-200 ease-out-strong"
-            style={{
-              transform: `scaleX(${battles > 0 ? (stats?.winRate ?? 0) : 0})`,
-            }}
-          />
-        </div>
-      </div>
-      <VoteButton
-        onVote={onVote}
-        tone={side}
-        label={isHome ? "Vote home" : "Vote away"}
-      />
+      <VoteButton onVote={onVote} name={pokemon.name} />
     </article>
   );
 }
@@ -118,28 +96,7 @@ export default function BattleArena({
   const [stats, setStats] = useState(initialStats);
   const pairsRef = useRef(initialPairs);
   const refillPending = useRef(false);
-  const matchupRef = useRef<HTMLDivElement>(null);
-  const mounted = useRef(false);
-
   const [current, next] = pairs;
-
-  useEffect(() => {
-    if (!mounted.current) {
-      mounted.current = true;
-      return;
-    }
-    const node = matchupRef.current;
-    if (!node) return;
-    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
-    node.getAnimations().forEach((animation) => animation.cancel());
-    node.animate(
-      [
-        { opacity: 0.35, filter: "blur(3px)", transform: "translateY(4px)" },
-        { opacity: 1, filter: "blur(0)", transform: "translateY(0)" },
-      ],
-      { duration: 180, easing: "cubic-bezier(0.23, 1, 0.32, 1)" },
-    );
-  }, [current]);
 
   function submit(currentPair: PokemonPair, nextPair: PokemonPair, pick: Pick) {
     void voteAction(currentPair, nextPair, pick).catch(() =>
@@ -195,43 +152,23 @@ export default function BattleArena({
           ))}
         </div>
       ) : null}
-      <div ref={matchupRef} className="flex flex-col gap-4">
-        <section
-          aria-label="Battle"
-          className="relative grid min-h-[440px] grid-cols-2 sm:min-h-0 sm:grid-cols-[minmax(0,1fr)_auto_minmax(0,1fr)] sm:gap-3"
-        >
-          <ContenderPanel
-            side="home"
-            pokemon={home}
-            stats={stats[home.dexNumber]}
-            onVote={() => vote(0)}
-          />
-          <span
-            aria-hidden="true"
-            className="absolute inset-y-0 left-1/2 w-px -translate-x-1/2 bg-broadcast-dim/20 sm:hidden"
-          />
-          <div
-            aria-hidden="true"
-            className="absolute top-[44%] left-1/2 z-10 grid h-[42px] w-[42px] -translate-x-1/2 -translate-y-1/2 place-items-center rounded-full border border-broadcast-gold/60 bg-broadcast-night font-display text-sm text-broadcast-gold shadow-[0_0_24px_rgba(255,210,63,0.25)] sm:hidden"
-          >
-            VS
-          </div>
-          <div className="hidden sm:flex sm:flex-col sm:items-center sm:justify-center sm:gap-3 sm:px-5">
-            <span className="font-display text-5xl text-broadcast-gold [text-shadow:0_0_26px_rgba(255,210,63,0.45)]">
-              VS
-            </span>
-            <span className="font-mono text-[10px] tracking-[0.16em] text-broadcast-dim uppercase">
-              pick one
-            </span>
-          </div>
-          <ContenderPanel
-            side="away"
-            pokemon={away}
-            stats={stats[away.dexNumber]}
-            onVote={() => vote(1)}
-          />
-        </section>
-      </div>
+      <section
+        aria-label="Choose the cutest Pokémon"
+        className="grid grid-cols-2 gap-y-3 overflow-clip rounded-2xl"
+      >
+        <ContenderPanel
+          side="home"
+          pokemon={home}
+          stats={stats[home.dexNumber]}
+          onVote={() => vote(0)}
+        />
+        <ContenderPanel
+          side="away"
+          pokemon={away}
+          stats={stats[away.dexNumber]}
+          onVote={() => vote(1)}
+        />
+      </section>
     </div>
   );
 }
