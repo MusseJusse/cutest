@@ -2,13 +2,13 @@ import "~/styles/globals.css";
 
 import { GeistSans } from "geist/font/sans";
 import { type Metadata } from "next";
-import { Bricolage_Grotesque } from "next/font/google";
+import { Fredoka } from "next/font/google";
 import { preconnect } from "react-dom";
 
-const display = Bricolage_Grotesque({
+const display = Fredoka({
   subsets: ["latin"],
-  weight: "800",
-  variable: "--font-bricolage",
+  weight: ["600", "700"],
+  variable: "--font-fredoka",
   display: "swap",
 });
 
@@ -25,7 +25,7 @@ export default function RootLayout({
 
   return (
     <html lang="en" className={`${GeistSans.variable} ${display.variable}`}>
-      <body className="flex min-h-screen flex-col justify-between bg-studio-paper font-sans text-studio-ink antialiased">
+      <body className="flex min-h-screen flex-col justify-between bg-ring-butter font-sans text-ring-ink antialiased">
         <main className="flex-1">{children}</main>
       </body>
     </html>

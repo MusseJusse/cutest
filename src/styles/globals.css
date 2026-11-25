@@ -12,16 +12,26 @@
     var(--font-geist-sans), ui-sans-serif, system-ui, sans-serif,
     "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
   --font-display:
-    var(--font-bricolage), var(--font-geist-sans), ui-sans-serif, sans-serif;
+    var(--font-fredoka), ui-rounded, var(--font-geist-sans), system-ui,
+    sans-serif;
 
-  --color-studio-paper: #fcfbff;
-  --color-studio-ink: #30273f;
-  --color-studio-muted: #6b617b;
-  --color-studio-line: #ddd9e8;
-  --color-studio-accent: #6f50b0;
-  --color-studio-lavender: #efebf8;
-  --color-studio-sky: #e8eff9;
-  --color-studio-danger: #c63636;
+  --color-ring-butter: #fff7d6;
+  --color-ring-paper: #ffffff;
+  --color-ring-cream: #fffbf0;
+  --color-ring-ink: #19183b;
+  --color-ring-muted: #525077;
+  --color-ring-line: #e5dfc5;
+  --color-ring-peach: #ffe4ea;
+  --color-ring-peach-hover: #ffd6e0;
+  --color-ring-coral: #e83e62;
+  --color-ring-sky: #dfeeff;
+  --color-ring-sky-hover: #cee5ff;
+  --color-ring-cobalt: #1f6feb;
+  --color-ring-gold: #ffd84d;
+  --color-ring-mint: #16a36e;
+  --color-ring-mint-soft: #e4f7ec;
+  --color-ring-mint-ink: #0e6b47;
+  --color-ring-danger: #c63636;
 }
 
 @layer base {
@@ -38,8 +48,8 @@
     text-wrap: balance;
   }
   :focus-visible {
-    outline: 2px solid var(--color-studio-accent);
-    outline-offset: 4px;
+    outline: 2.5px solid var(--color-ring-coral);
+    outline-offset: 3px;
   }
   button,
   a,
@@ -133,17 +143,11 @@ details > :not(summary) {
   overflow: clip;
 }
 
-.champion-details::details-content {
+.podium-details::details-content {
   transition:
     grid-template-rows 200ms var(--vt-ease-out),
     opacity 140ms var(--vt-ease-out),
     visibility 200ms linear;
-}
-.champion-chevron {
-  transition: transform 180ms var(--vt-ease-out);
-}
-.champion-details[open] .champion-chevron {
-  transform: scaleY(-1);
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -152,8 +156,7 @@ details > :not(summary) {
       opacity 120ms ease,
       visibility 120ms linear;
   }
-  .champion-details::details-content,
-  .champion-chevron {
+  .podium-details::details-content {
     transition: none;
   }
   ::view-transition-old(*),
