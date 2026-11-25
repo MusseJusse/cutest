@@ -149,11 +149,15 @@ function PokemonDetails({
         <div>
           <div className="grid gap-4 px-4 pt-0 pb-4 sm:grid-cols-[minmax(0,1fr)_minmax(0,1.25fr)] sm:items-center sm:gap-6 sm:px-6 sm:pt-0 sm:pb-5">
             <div className="flex min-w-0 items-center gap-3.5 sm:gap-4">
-              <div className="flex h-24 w-24 shrink-0 items-center justify-center overflow-hidden rounded-full border-2 border-ring-ink bg-ring-butter sm:h-28 sm:w-28">
+              <div className="relative flex h-24 w-24 shrink-0 items-center justify-center sm:h-28 sm:w-28">
+                <span
+                  aria-hidden="true"
+                  className="absolute inset-1.5 rounded-full border-2 border-ring-ink bg-ring-butter"
+                />
                 <PokemonSprite
                   pokemon={pokemon}
                   decorative
-                  className="h-[132px] w-[132px] max-w-none shrink-0 sm:h-[154px] sm:w-[154px]"
+                  className="relative z-10 h-24 w-24 max-w-none shrink-0 object-contain sm:h-28 sm:w-28"
                   lazy
                   priority="low"
                 />
@@ -232,20 +236,24 @@ function PodiumCard({
           </span>
           <span
             className={cn(
-              "my-2 flex items-center justify-center overflow-hidden rounded-full border-2 border-ring-ink bg-ring-paper shadow-[0_3px_0_rgb(25_24_59/0.12)]",
+              "relative my-2 flex items-center justify-center",
               isFirst
                 ? "h-24 w-24 sm:h-28 sm:w-28"
                 : "h-20 w-20 sm:h-24 sm:w-24",
             )}
           >
+            <span
+              aria-hidden="true"
+              className="absolute inset-1.5 rounded-full border-2 border-ring-ink bg-ring-paper shadow-[0_3px_0_rgb(25_24_59/0.12)]"
+            />
             <PokemonSprite
               pokemon={pokemon}
               decorative
               className={cn(
-                "max-w-none shrink-0",
+                "relative z-10 max-w-none shrink-0 object-contain",
                 isFirst
-                  ? "h-[132px] w-[132px] sm:h-[154px] sm:w-[154px]"
-                  : "h-[112px] w-[112px] sm:h-[130px] sm:w-[130px]",
+                  ? "h-[104px] w-[104px] sm:h-[124px] sm:w-[124px]"
+                  : "h-[88px] w-[88px] sm:h-[104px] sm:w-[104px]",
               )}
               priority="high"
             />
@@ -311,11 +319,15 @@ function StandingsRow({
         <span className="font-display text-xs font-bold text-ring-muted tabular-nums sm:text-sm">
           #{pokemon.rank}
         </span>
-        <span className="flex h-10 w-10 items-center justify-center overflow-hidden rounded-full border-[1.5px] border-ring-ink bg-ring-butter sm:h-11 sm:w-11">
+        <span className="relative flex h-10 w-10 items-center justify-center sm:h-11 sm:w-11">
+          <span
+            aria-hidden="true"
+            className="absolute inset-0 rounded-full border-[1.5px] border-ring-ink bg-ring-butter"
+          />
           <PokemonSprite
             pokemon={pokemon}
             decorative
-            className="h-[54px] w-[54px] max-w-none shrink-0 sm:h-[60px] sm:w-[60px]"
+            className="relative z-10 h-11 w-11 max-w-none shrink-0 object-contain sm:h-12 sm:w-12"
             lazy={!eager}
             priority={eager ? undefined : "low"}
           />

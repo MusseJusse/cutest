@@ -12,7 +12,9 @@ function VoteFallbackPanel({ side }: { side: "home" | "away" }) {
       )}
     >
       <div className="h-6 w-14 rounded-full border-[1.5px] border-ring-ink/25 bg-ring-paper/80" />
-      <div className="my-1 h-24 w-24 rounded-full border-2 border-ring-ink/20 bg-ring-paper min-[360px]:h-28 min-[360px]:w-28 sm:h-40 sm:w-40" />
+      <div className="relative my-1 flex h-28 w-28 items-center justify-center min-[360px]:h-32 min-[360px]:w-32 sm:h-44 sm:w-44">
+        <div className="h-full w-full scale-[0.86] rounded-full border-2 border-ring-ink/20 bg-ring-paper" />
+      </div>
       <div className="h-7 w-28 max-w-full rounded-lg bg-ring-ink/10 sm:h-10" />
       <div className="h-4 w-24 rounded bg-ring-ink/10" />
       <div className="mt-1 h-11 w-full max-w-[230px] rounded-full border-2 border-ring-ink/20 bg-ring-ink/10" />
@@ -28,7 +30,7 @@ export function VoteFallback() {
         aria-hidden="true"
         className="relative grid grid-cols-2 gap-[2.5px] overflow-hidden rounded-[22px] border-[2.5px] border-ring-ink bg-ring-ink shadow-[0_4px_0_var(--color-ring-ink)]"
       >
-        <span className="pointer-events-none absolute top-[105px] left-1/2 z-10 grid h-9 w-9 -translate-x-1/2 -translate-y-1/2 -rotate-6 place-items-center rounded-full border-[2.5px] border-ring-ink bg-ring-gold font-display text-[11px] font-bold text-ring-ink shadow-[0_3px_0_var(--color-ring-ink)] min-[360px]:top-[113px] min-[360px]:h-10 min-[360px]:w-10 min-[360px]:text-xs sm:top-[147px] sm:h-12 sm:w-12 sm:text-sm">
+        <span className="pointer-events-none absolute top-[113px] left-1/2 z-10 grid h-9 w-9 -translate-x-1/2 -translate-y-1/2 -rotate-6 place-items-center rounded-full border-[2.5px] border-ring-ink bg-ring-gold font-display text-[11px] font-bold text-ring-ink shadow-[0_3px_0_var(--color-ring-ink)] min-[360px]:top-[121px] min-[360px]:h-10 min-[360px]:w-10 min-[360px]:text-xs sm:top-[155px] sm:h-12 sm:w-12 sm:text-sm">
           VS
         </span>
         <VoteFallbackPanel side="home" />
