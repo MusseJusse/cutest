@@ -13,14 +13,14 @@ export type SpriteTileSize =
 // integer multiple of the 96x96 PokeAPI sprites so nearest-neighbor scaling stays crisp.
 export const SPRITE_TILE_CLASS: Record<SpriteTileSize, string> = {
   arena:
-    "my-1 flex h-[104px] w-[104px] items-center justify-center rounded-2xl bg-ring-paper/85 p-1 ring-1 ring-ring-ink/12 min-[420px]:h-28 min-[420px]:w-28 min-[420px]:p-2 sm:h-[208px] sm:w-[208px] sm:rounded-[18px] sm:p-2",
+    "my-1 flex h-[108px] w-[108px] items-center justify-center rounded-2xl border-2 border-ring-ink bg-ring-paper p-1 shadow-[0_3px_0_rgb(25_24_59/0.14)] min-[420px]:h-[116px] min-[420px]:w-[116px] min-[420px]:p-2 sm:h-[212px] sm:w-[212px] sm:rounded-[18px] sm:p-2",
   podiumFirst:
-    "my-2 flex h-28 w-28 items-center justify-center rounded-xl bg-ring-paper/85 p-2 ring-1 ring-ring-ink/12",
+    "my-2 flex h-[116px] w-[116px] items-center justify-center rounded-xl border-2 border-ring-ink bg-ring-paper p-2 shadow-[0_3px_0_rgb(25_24_59/0.12)]",
   podium:
-    "my-2 flex h-[104px] w-[104px] items-center justify-center rounded-xl bg-ring-paper/85 p-1 ring-1 ring-ring-ink/12 sm:h-28 sm:w-28 sm:p-2",
+    "my-2 flex h-[108px] w-[108px] items-center justify-center rounded-xl border-2 border-ring-ink bg-ring-paper p-1 shadow-[0_3px_0_rgb(25_24_59/0.12)] sm:h-[116px] sm:w-[116px] sm:p-2",
   detail:
-    "flex h-28 w-28 shrink-0 items-center justify-center rounded-xl bg-ring-butter p-2 ring-1 ring-ring-ink/12",
-  row: "flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-ring-butter p-0.5 ring-1 ring-ring-ink/12 sm:h-12 sm:w-12 sm:rounded-xl sm:p-0",
+    "flex h-[116px] w-[116px] shrink-0 items-center justify-center rounded-xl border-2 border-ring-ink bg-ring-butter p-2",
+  row: "flex h-10 w-10 shrink-0 items-center justify-center rounded-lg border-[1.5px] border-ring-ink bg-ring-butter p-0.5 sm:h-12 sm:w-12 sm:rounded-xl sm:p-0",
 };
 
 export default function PokemonSprite(props: {

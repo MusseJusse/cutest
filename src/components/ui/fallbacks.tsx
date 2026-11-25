@@ -18,7 +18,12 @@ function VoteFallbackPanel({ side }: { side: "home" | "away" }) {
       )}
     >
       <div className="h-[23px] w-14 rounded-full border-[1.5px] border-ring-ink/25 bg-ring-paper/80" />
-      <div className={SPRITE_TILE_CLASS.arena} />
+      <div
+        className={cn(
+          SPRITE_TILE_CLASS.arena,
+          "border-ring-ink/20 shadow-none",
+        )}
+      />
       <div className="h-6 w-28 max-w-full rounded-lg bg-ring-ink/10 sm:h-9" />
       <div className="h-4 w-24 rounded bg-ring-ink/10" />
       <div className="mt-1 h-11 w-full max-w-[220px] rounded-full border-2 border-ring-ink/20 bg-ring-ink/10" />
@@ -70,9 +75,10 @@ function PodiumFallbackCard({ place }: { place: 1 | 2 | 3 }) {
         )}
       />
       <div
-        className={
-          isFirst ? SPRITE_TILE_CLASS.podiumFirst : SPRITE_TILE_CLASS.podium
-        }
+        className={cn(
+          isFirst ? SPRITE_TILE_CLASS.podiumFirst : SPRITE_TILE_CLASS.podium,
+          "border-ring-ink/20 shadow-none",
+        )}
       />
       <div
         className={cn(
@@ -109,7 +115,9 @@ export function ResultsFallback() {
               className="flex h-16 items-center gap-3 rounded-2xl border-2 border-ring-ink/25 bg-ring-paper px-3 sm:h-[72px] sm:px-4"
             >
               <div className="h-3.5 w-8 rounded bg-ring-ink/10" />
-              <div className={SPRITE_TILE_CLASS.row} />
+              <div
+                className={cn(SPRITE_TILE_CLASS.row, "border-ring-ink/20")}
+              />
               <div className="h-4 w-24 rounded bg-ring-ink/10" />
               <div className="ml-auto h-4 w-12 rounded bg-ring-ink/10" />
             </div>
