@@ -133,7 +133,7 @@ function PokemonDetails({
         name="pokemon-details"
         className="group relative overflow-hidden rounded-2xl border-2 border-ring-ink bg-ring-paper shadow-[0_2px_0_rgb(25_24_59/0.12)] open:bg-ring-cream"
       >
-        <summary className="relative cursor-pointer list-none rounded-[inherit] pr-8 group-open:static group-open:min-h-11 group-open:after:absolute group-open:after:inset-0 group-open:after:z-10 group-open:after:content-[''] focus-visible:-outline-offset-4 [&::-webkit-details-marker]:hidden [details:not([open])_&]:hover:bg-ring-cream">
+        <summary className="relative cursor-pointer list-none rounded-[14px] pr-8 group-open:static group-open:min-h-11 group-open:rounded-b-none group-open:after:absolute group-open:after:inset-0 group-open:after:z-10 group-open:after:content-[''] focus-visible:-outline-offset-4 [&::-webkit-details-marker]:hidden [details:not([open])_&]:hover:bg-ring-cream">
           <span className="sr-only hidden group-open:inline">
             Collapse {pokemon.name} details
           </span>
@@ -199,8 +199,10 @@ function PodiumCard({
       className={cn(
         "min-w-0",
         isFirst
-          ? "order-first col-span-2 sm:order-none sm:col-span-1"
-          : "sm:mt-6",
+          ? "col-span-2 sm:col-span-1"
+          : place === 2
+            ? "sm:order-first sm:mt-6"
+            : "sm:mt-6",
       )}
     >
       <details
@@ -212,7 +214,7 @@ function PodiumCard({
       >
         <summary
           className={cn(
-            "relative flex cursor-pointer list-none flex-col items-center rounded-[inherit] text-center focus-visible:-outline-offset-4 [&::-webkit-details-marker]:hidden",
+            "relative flex cursor-pointer list-none flex-col items-center rounded-[14px] text-center group-open:rounded-b-none focus-visible:-outline-offset-4 [&::-webkit-details-marker]:hidden",
             isFirst
               ? "px-3 pt-4 pb-3.5 sm:px-4 sm:pt-5 sm:pb-4"
               : "px-2.5 py-3 sm:px-4 sm:py-4",
@@ -289,8 +291,8 @@ function TopPodium({ items }: { items: readonly RankedPokemon[] }) {
       aria-label="Top 3 cutest Pokémon"
       className="grid grid-cols-2 items-start gap-2.5 sm:grid-cols-3 sm:gap-4"
     >
-      <PodiumCard pokemon={second} place={2} />
       <PodiumCard pokemon={first} place={1} />
+      <PodiumCard pokemon={second} place={2} />
       <PodiumCard pokemon={third} place={3} />
     </section>
   );
@@ -318,9 +320,9 @@ function StandingsRow({
             priority={eager ? undefined : "low"}
           />
         </span>
-        <h2 className="m-0 font-display text-sm font-bold break-words text-ring-ink capitalize sm:text-base">
+        <span className="font-display text-sm font-bold break-words text-ring-ink capitalize sm:text-base">
           {pokemon.name}
-        </h2>
+        </span>
         <span
           className={cn(
             "hidden rounded-full px-2.5 py-0.5 text-xs font-bold tabular-nums sm:inline-block",
@@ -409,7 +411,7 @@ async function ResultsContent({
       {/* Keep content-visibility on open rows too. Flipping it on collapse leaves WebKit painting the stale expanded height. */}
       <ol
         start={showPodium ? 4 : pageStart + 1}
-        className="flex flex-col gap-1.5 [&>li]:pb-0.5 [&>li]:[contain-intrinsic-size:auto_66px] [&>li]:[content-visibility:auto]"
+        className="flex flex-col gap-1.5 [&>li]:pb-0.5 [&>li]:[contain-intrinsic-size:auto_66px] [&>li]:[content-visibility:auto] sm:[&>li]:[contain-intrinsic-size:auto_70px]"
       >
         {visible.map((pokemon, index) => (
           <li key={pokemon.dexNumber}>

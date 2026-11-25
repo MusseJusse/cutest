@@ -28,7 +28,7 @@ export function VoteFallback() {
         aria-hidden="true"
         className="relative grid grid-cols-2 gap-[2.5px] overflow-hidden rounded-[22px] border-[2.5px] border-ring-ink bg-ring-ink shadow-[0_4px_0_var(--color-ring-ink)]"
       >
-        <span className="pointer-events-none absolute top-[102px] left-1/2 z-10 grid h-9 w-9 -translate-x-1/2 -translate-y-1/2 -rotate-6 place-items-center rounded-full border-[2.5px] border-ring-ink bg-ring-gold font-display text-[11px] font-bold text-ring-ink shadow-[0_3px_0_var(--color-ring-ink)] min-[360px]:top-[110px] min-[360px]:h-10 min-[360px]:w-10 min-[360px]:text-xs sm:top-[148px] sm:h-12 sm:w-12 sm:text-sm">
+        <span className="pointer-events-none absolute top-[105px] left-1/2 z-10 grid h-9 w-9 -translate-x-1/2 -translate-y-1/2 -rotate-6 place-items-center rounded-full border-[2.5px] border-ring-ink bg-ring-gold font-display text-[11px] font-bold text-ring-ink shadow-[0_3px_0_var(--color-ring-ink)] min-[360px]:top-[113px] min-[360px]:h-10 min-[360px]:w-10 min-[360px]:text-xs sm:top-[147px] sm:h-12 sm:w-12 sm:text-sm">
           VS
         </span>
         <VoteFallbackPanel side="home" />
@@ -53,8 +53,10 @@ function PodiumFallbackCard({ place }: { place: 1 | 2 | 3 }) {
         "flex flex-col items-center rounded-2xl border-2 border-ring-ink shadow-[0_3px_0_var(--color-ring-ink)]",
         surface,
         isFirst
-          ? "order-first col-span-2 px-3 pt-4 pb-3.5 sm:order-none sm:col-span-1 sm:px-4 sm:pt-5 sm:pb-4"
-          : "px-2.5 py-3 sm:mt-6 sm:px-4 sm:py-4",
+          ? "col-span-2 px-3 pt-4 pb-3.5 sm:col-span-1 sm:px-4 sm:pt-5 sm:pb-4"
+          : place === 2
+            ? "px-2.5 py-3 sm:order-first sm:mt-6 sm:px-4 sm:py-4"
+            : "px-2.5 py-3 sm:mt-6 sm:px-4 sm:py-4",
       )}
     >
       <div
@@ -88,8 +90,8 @@ export function ResultsFallback() {
       <span className="sr-only">Loading rankings</span>
       <div aria-hidden="true" className="flex flex-col gap-5">
         <div className="grid grid-cols-2 items-start gap-2.5 sm:grid-cols-3 sm:gap-4">
-          <PodiumFallbackCard place={2} />
           <PodiumFallbackCard place={1} />
+          <PodiumFallbackCard place={2} />
           <PodiumFallbackCard place={3} />
         </div>
         <div className="flex h-11 items-center justify-between">

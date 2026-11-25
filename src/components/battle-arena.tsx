@@ -47,28 +47,37 @@ function ContenderCorner({
   return (
     <button
       type="button"
-      onClick={onVote}
-      disabled={disabled}
+      onClick={() => {
+        if (!disabled) onVote();
+      }}
+      aria-disabled={disabled ? true : undefined}
       aria-label={`Pick ${pokemon.name}`}
       aria-describedby={detailsId}
       className={cn(
         CONTENDER_PANEL_CLASS,
-        "group cursor-pointer text-center text-ring-ink focus-visible:-outline-offset-4 disabled:cursor-not-allowed disabled:opacity-65 motion-safe:transition-colors motion-safe:duration-150",
+        "group text-center text-ring-ink focus-visible:-outline-offset-4 aria-disabled:cursor-not-allowed aria-disabled:opacity-65 motion-safe:transition-colors motion-safe:duration-150",
+        disabled ? "" : "cursor-pointer",
         isHome
-          ? "rounded-l-[19.5px] bg-ring-peach hover:bg-ring-peach-hover"
-          : "rounded-r-[19.5px] bg-ring-sky hover:bg-ring-sky-hover",
+          ? disabled
+            ? "rounded-l-[19.5px] bg-ring-peach"
+            : "rounded-l-[19.5px] bg-ring-peach hover:bg-ring-peach-hover"
+          : disabled
+            ? "rounded-r-[19.5px] bg-ring-sky"
+            : "rounded-r-[19.5px] bg-ring-sky hover:bg-ring-sky-hover",
       )}
     >
-      <span className="justify-self-center rounded-full border-[1.5px] border-ring-ink bg-ring-paper px-2.5 py-0.5 text-[11px] font-bold text-ring-ink tabular-nums">
+      <span className="justify-self-center rounded-full border-[1.5px] border-ring-ink bg-ring-paper px-2.5 py-0.5 text-[11px] leading-4 font-bold text-ring-ink tabular-nums">
         {dexLabel}
       </span>
 
       <span
         className={cn(
           "my-1 flex h-24 w-24 items-center justify-center justify-self-center overflow-hidden rounded-full border-2 border-ring-ink bg-ring-paper shadow-[0_4px_0_rgb(25_24_59/0.14)] motion-safe:transition-transform motion-safe:duration-150 min-[360px]:h-28 min-[360px]:w-28 sm:h-40 sm:w-40",
-          isHome
-            ? "motion-safe:group-hover:scale-105 motion-safe:group-hover:-rotate-2"
-            : "motion-safe:group-hover:scale-105 motion-safe:group-hover:rotate-2",
+          disabled
+            ? ""
+            : isHome
+              ? "motion-safe:group-hover:scale-105 motion-safe:group-hover:-rotate-2"
+              : "motion-safe:group-hover:scale-105 motion-safe:group-hover:rotate-2",
         )}
       >
         <PokemonSprite
@@ -105,8 +114,10 @@ function ContenderCorner({
               {stats.losses.toLocaleString("en-US")}L)
             </span>
             <span className="sr-only">
-              , {stats.wins.toLocaleString("en-US")} wins,{" "}
-              {stats.losses.toLocaleString("en-US")} losses
+              , {stats.wins.toLocaleString("en-US")}{" "}
+              {stats.wins === 1 ? "win" : "wins"},{" "}
+              {stats.losses.toLocaleString("en-US")}{" "}
+              {stats.losses === 1 ? "loss" : "losses"}
             </span>
           </>
         ) : stats ? (
@@ -119,7 +130,10 @@ function ContenderCorner({
       <span
         aria-hidden="true"
         className={cn(
-          "mt-1 inline-flex min-h-11 w-full max-w-[230px] items-center justify-center justify-self-center rounded-full border-2 border-ring-ink px-3 py-2 font-display text-xs leading-tight font-bold text-white shadow-[0_3px_0_var(--color-ring-ink)] motion-safe:transition-transform motion-safe:duration-100 motion-safe:group-active:translate-y-0.5 motion-safe:group-active:shadow-[0_1px_0_var(--color-ring-ink)] sm:px-5 sm:text-sm",
+          "mt-1 inline-flex min-h-11 w-full max-w-[230px] items-center justify-center justify-self-center rounded-full border-2 border-ring-ink px-3 py-2 font-display text-xs leading-tight font-bold text-white shadow-[0_3px_0_var(--color-ring-ink)] motion-safe:transition-transform motion-safe:duration-100 sm:px-5 sm:text-sm",
+          disabled
+            ? ""
+            : "motion-safe:group-active:translate-y-0.5 motion-safe:group-active:shadow-[0_1px_0_var(--color-ring-ink)]",
           isHome ? "bg-ring-coral" : "bg-ring-cobalt",
         )}
       >
@@ -191,7 +205,7 @@ export default function BattleArena({
       >
         <span
           aria-hidden="true"
-          className="pointer-events-none absolute top-[102px] left-1/2 z-10 grid h-9 w-9 -translate-x-1/2 -translate-y-1/2 -rotate-6 place-items-center rounded-full border-[2.5px] border-ring-ink bg-ring-gold font-display text-[11px] font-bold tracking-tight text-ring-ink shadow-[0_3px_0_var(--color-ring-ink)] min-[360px]:top-[110px] min-[360px]:h-10 min-[360px]:w-10 min-[360px]:text-xs sm:top-[148px] sm:h-12 sm:w-12 sm:text-sm"
+          className="pointer-events-none absolute top-[105px] left-1/2 z-10 grid h-9 w-9 -translate-x-1/2 -translate-y-1/2 -rotate-6 place-items-center rounded-full border-[2.5px] border-ring-ink bg-ring-gold font-display text-[11px] font-bold tracking-tight text-ring-ink shadow-[0_3px_0_var(--color-ring-ink)] min-[360px]:top-[113px] min-[360px]:h-10 min-[360px]:w-10 min-[360px]:text-xs sm:top-[147px] sm:h-12 sm:w-12 sm:text-sm"
         >
           VS
         </span>
