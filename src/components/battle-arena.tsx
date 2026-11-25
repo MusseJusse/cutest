@@ -72,23 +72,19 @@ function ContenderCorner({
 
       <span
         className={cn(
-          "relative my-1 flex h-28 w-28 items-center justify-center justify-self-center motion-safe:transition-transform motion-safe:duration-150 min-[360px]:h-32 min-[360px]:w-32 sm:h-44 sm:w-44",
+          "my-1 flex h-[100px] w-[100px] items-center justify-center justify-self-center rounded-[22px] border-2 border-ring-ink bg-ring-paper p-1.5 shadow-[0_4px_0_rgb(25_24_59/0.14)] motion-safe:transition-transform motion-safe:duration-150 min-[360px]:h-[120px] min-[360px]:w-[120px] min-[360px]:rounded-[26px] min-[360px]:p-2 sm:h-[220px] sm:w-[220px] sm:rounded-[36px] sm:p-3",
           disabled
             ? ""
             : isHome
-              ? "motion-safe:group-hover:scale-105 motion-safe:group-hover:-rotate-2"
-              : "motion-safe:group-hover:scale-105 motion-safe:group-hover:rotate-2",
+              ? "motion-safe:group-hover:scale-[1.04] motion-safe:group-hover:-rotate-2"
+              : "motion-safe:group-hover:scale-[1.04] motion-safe:group-hover:rotate-2",
         )}
       >
-        <span
-          aria-hidden="true"
-          className="absolute inset-2 rounded-full border-2 border-ring-ink bg-ring-paper shadow-[0_4px_0_rgb(25_24_59/0.14)]"
-        />
         <PokemonSprite
           key={pokemon.dexNumber}
           pokemon={pokemon}
           decorative
-          className="relative z-10 h-[120px] w-[120px] max-w-none shrink-0 object-contain drop-shadow-[0_2px_0_rgb(25_24_59/0.18)] min-[360px]:h-[136px] min-[360px]:w-[136px] sm:h-48 sm:w-48"
+          className="h-full w-full object-contain drop-shadow-[0_2px_0_rgb(25_24_59/0.16)]"
           priority="high"
         />
       </span>
@@ -209,7 +205,7 @@ export default function BattleArena({
       >
         <span
           aria-hidden="true"
-          className="pointer-events-none absolute top-[113px] left-1/2 z-10 grid h-9 w-9 -translate-x-1/2 -translate-y-1/2 -rotate-6 place-items-center rounded-full border-[2.5px] border-ring-ink bg-ring-gold font-display text-[11px] font-bold tracking-tight text-ring-ink shadow-[0_3px_0_var(--color-ring-ink)] min-[360px]:top-[121px] min-[360px]:h-10 min-[360px]:w-10 min-[360px]:text-xs sm:top-[155px] sm:h-12 sm:w-12 sm:text-sm"
+          className="pointer-events-none absolute top-[107px] left-1/2 z-10 grid h-9 w-9 -translate-x-1/2 -translate-y-1/2 -rotate-6 place-items-center rounded-full border-[2.5px] border-ring-ink bg-ring-gold font-display text-[11px] font-bold tracking-tight text-ring-ink shadow-[0_3px_0_var(--color-ring-ink)] min-[360px]:top-[117px] min-[360px]:h-10 min-[360px]:w-10 min-[360px]:text-xs sm:top-[177px] sm:h-12 sm:w-12 sm:text-sm"
         >
           VS
         </span>

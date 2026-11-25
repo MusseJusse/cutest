@@ -10,7 +10,7 @@ const PAGE_SIZE = 50;
 const EAGER_CHALLENGERS = 6;
 
 const ROW_GRID =
-  "grid grid-cols-[minmax(40px,auto)_40px_minmax(0,1fr)_auto] items-center gap-2.5 sm:grid-cols-[minmax(50px,auto)_44px_minmax(0,1fr)_auto_86px] sm:gap-3";
+  "grid grid-cols-[minmax(40px,auto)_44px_minmax(0,1fr)_auto] items-center gap-2.5 sm:grid-cols-[minmax(50px,auto)_48px_minmax(0,1fr)_auto_86px] sm:gap-3";
 
 function Chevron({ className }: { className?: string }) {
   return (
@@ -149,15 +149,11 @@ function PokemonDetails({
         <div>
           <div className="grid gap-4 px-4 pt-0 pb-4 sm:grid-cols-[minmax(0,1fr)_minmax(0,1.25fr)] sm:items-center sm:gap-6 sm:px-6 sm:pt-0 sm:pb-5">
             <div className="flex min-w-0 items-center gap-3.5 sm:gap-4">
-              <div className="relative flex h-24 w-24 shrink-0 items-center justify-center sm:h-28 sm:w-28">
-                <span
-                  aria-hidden="true"
-                  className="absolute inset-1.5 rounded-full border-2 border-ring-ink bg-ring-butter"
-                />
+              <div className="flex h-28 w-28 shrink-0 items-center justify-center rounded-[24px] border-2 border-ring-ink bg-ring-butter p-2 sm:h-32 sm:w-32 sm:rounded-[28px]">
                 <PokemonSprite
                   pokemon={pokemon}
                   decorative
-                  className="relative z-10 h-24 w-24 max-w-none shrink-0 object-contain sm:h-28 sm:w-28"
+                  className="h-full w-full object-contain"
                   lazy
                   priority="low"
                 />
@@ -236,25 +232,16 @@ function PodiumCard({
           </span>
           <span
             className={cn(
-              "relative my-2 flex items-center justify-center",
+              "my-2 flex items-center justify-center border-2 border-ring-ink bg-ring-paper shadow-[0_3px_0_rgb(25_24_59/0.12)]",
               isFirst
-                ? "h-24 w-24 sm:h-28 sm:w-28"
-                : "h-20 w-20 sm:h-24 sm:w-24",
+                ? "h-28 w-28 rounded-[24px] p-2 sm:h-32 sm:w-32 sm:rounded-[28px] sm:p-2.5"
+                : "h-24 w-24 rounded-[20px] p-1.5 sm:h-28 sm:w-28 sm:rounded-[24px] sm:p-2",
             )}
           >
-            <span
-              aria-hidden="true"
-              className="absolute inset-1.5 rounded-full border-2 border-ring-ink bg-ring-paper shadow-[0_3px_0_rgb(25_24_59/0.12)]"
-            />
             <PokemonSprite
               pokemon={pokemon}
               decorative
-              className={cn(
-                "relative z-10 max-w-none shrink-0 object-contain",
-                isFirst
-                  ? "h-[104px] w-[104px] sm:h-[124px] sm:w-[124px]"
-                  : "h-[88px] w-[88px] sm:h-[104px] sm:w-[104px]",
-              )}
+              className="h-full w-full object-contain"
               priority="high"
             />
           </span>
@@ -319,15 +306,11 @@ function StandingsRow({
         <span className="font-display text-xs font-bold text-ring-muted tabular-nums sm:text-sm">
           #{pokemon.rank}
         </span>
-        <span className="relative flex h-10 w-10 items-center justify-center sm:h-11 sm:w-11">
-          <span
-            aria-hidden="true"
-            className="absolute inset-0 rounded-full border-[1.5px] border-ring-ink bg-ring-butter"
-          />
+        <span className="flex h-11 w-11 items-center justify-center rounded-xl border-[1.5px] border-ring-ink bg-ring-butter p-0.5 sm:h-12 sm:w-12">
           <PokemonSprite
             pokemon={pokemon}
             decorative
-            className="relative z-10 h-11 w-11 max-w-none shrink-0 object-contain sm:h-12 sm:w-12"
+            className="h-full w-full object-contain"
             lazy={!eager}
             priority={eager ? undefined : "low"}
           />
@@ -423,7 +406,7 @@ async function ResultsContent({
       {/* Keep content-visibility on open rows too. Flipping it on collapse leaves WebKit painting the stale expanded height. */}
       <ol
         start={showPodium ? 4 : pageStart + 1}
-        className="flex flex-col gap-1.5 [&>li]:pb-0.5 [&>li]:[contain-intrinsic-size:auto_66px] [&>li]:[content-visibility:auto] sm:[&>li]:[contain-intrinsic-size:auto_70px]"
+        className="flex flex-col gap-1.5 [&>li]:pb-0.5 [&>li]:[contain-intrinsic-size:auto_70px] [&>li]:[content-visibility:auto] sm:[&>li]:[contain-intrinsic-size:auto_74px]"
       >
         {visible.map((pokemon, index) => (
           <li key={pokemon.dexNumber}>
