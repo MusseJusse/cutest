@@ -32,7 +32,7 @@ export default function SiteHeader({ page }: { page: "vote" | "rankings" }) {
             transitionTypes={[item.transition]}
             aria-current={page === item.page ? "page" : undefined}
             className={cn(
-              "inline-flex min-h-9 items-center rounded-full px-3.5 text-xs font-bold sm:px-4 sm:text-sm",
+              "inline-flex min-h-10 items-center rounded-full px-3.5 text-xs font-bold sm:px-4 sm:text-sm",
               page === item.page
                 ? "bg-ring-ink text-ring-butter"
                 : "text-ring-muted hover:text-ring-ink",

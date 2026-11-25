@@ -10,12 +10,14 @@ export default function PokemonSprite(props: {
   className?: string;
   lazy?: boolean;
   priority?: SpritePriority;
+  decorative?: boolean;
 }) {
   return (
     // eslint-disable-next-line @next/next/no-img-element
     <img
       src={spriteUrl(props.pokemon.dexNumber)}
-      alt={props.pokemon.name}
+      alt={props.decorative ? "" : props.pokemon.name}
+      aria-hidden={props.decorative ? true : undefined}
       width={96}
       height={96}
       className={props.className}

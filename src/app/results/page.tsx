@@ -10,7 +10,7 @@ const PAGE_SIZE = 50;
 const EAGER_CHALLENGERS = 6;
 
 const ROW_GRID =
-  "grid grid-cols-[34px_40px_minmax(0,1fr)_auto] items-center gap-2.5 sm:grid-cols-[44px_44px_minmax(0,1fr)_auto_86px] sm:gap-3";
+  "grid grid-cols-[minmax(40px,auto)_40px_minmax(0,1fr)_auto] items-center gap-2.5 sm:grid-cols-[minmax(50px,auto)_44px_minmax(0,1fr)_auto_86px] sm:gap-3";
 
 function Chevron({ className }: { className?: string }) {
   return (
@@ -33,6 +33,32 @@ function Chevron({ className }: { className?: string }) {
   );
 }
 
+function PointsValue({
+  score,
+  className,
+}: {
+  score: number;
+  className?: string;
+}) {
+  return (
+    <span
+      className={cn(
+        "font-display font-bold text-ring-ink tabular-nums",
+        className,
+      )}
+    >
+      {score.toLocaleString("en-US")}{" "}
+      <span
+        aria-hidden="true"
+        className="font-sans text-[11px] font-semibold text-ring-muted"
+      >
+        pts
+      </span>
+      <span className="sr-only"> points</span>
+    </span>
+  );
+}
+
 function VotingStatistics({
   pokemon,
   compact = false,
@@ -41,7 +67,10 @@ function VotingStatistics({
   compact?: boolean;
 }) {
   const statistics = [
-    { label: "Win rate", value: `${pokemon.winRate}%` },
+    {
+      label: "Win rate",
+      value: pokemon.battles > 0 ? `${pokemon.winRate}%` : "No votes",
+    },
     { label: "Votes", value: pokemon.battles.toLocaleString("en-US") },
     { label: "Wins", value: pokemon.stats.wins.toLocaleString("en-US") },
     { label: "Losses", value: pokemon.stats.losses.toLocaleString("en-US") },
@@ -59,14 +88,19 @@ function VotingStatistics({
       </h3>
       <dl
         className={cn(
-          "m-0 grid gap-x-4 gap-y-2.5",
-          compact ? "grid-cols-1 sm:grid-cols-2" : "grid-cols-2 sm:grid-cols-4",
+          "m-0 grid gap-x-3 gap-y-2.5",
+          compact ? "grid-cols-2" : "grid-cols-2 sm:grid-cols-4",
         )}
       >
         {statistics.map(({ label, value }) => (
-          <div key={label}>
+          <div key={label} className="min-w-0">
             <dt className="text-[11px] font-medium text-ring-muted">{label}</dt>
-            <dd className="m-0 font-display text-lg font-bold text-ring-ink tabular-nums sm:text-xl">
+            <dd
+              className={cn(
+                "m-0 font-display font-bold text-ring-ink tabular-nums",
+                compact ? "text-base sm:text-lg" : "text-lg sm:text-xl",
+              )}
+            >
               {value}
             </dd>
           </div>
@@ -99,9 +133,11 @@ function PokemonDetails({
         name="pokemon-details"
         className="group relative overflow-hidden rounded-2xl border-2 border-ring-ink bg-ring-paper shadow-[0_2px_0_rgb(25_24_59/0.12)] open:bg-ring-cream"
       >
-        <summary className="relative cursor-pointer list-none rounded-[inherit] pr-8 group-open:static group-open:min-h-11 group-open:after:absolute group-open:after:inset-0 group-open:after:z-10 group-open:after:content-[''] focus-visible:-outline-offset-2 [&::-webkit-details-marker]:hidden [details:not([open])_&]:hover:bg-ring-cream">
-          <span className="sr-only">{pokemon.name} details</span>
-          <div className="group-open:hidden">{children}</div>
+        <summary className="relative cursor-pointer list-none rounded-[inherit] pr-8 group-open:static group-open:min-h-11 group-open:after:absolute group-open:after:inset-0 group-open:after:z-10 group-open:after:content-[''] focus-visible:-outline-offset-4 [&::-webkit-details-marker]:hidden [details:not([open])_&]:hover:bg-ring-cream">
+          <span className="sr-only hidden group-open:inline">
+            Collapse {pokemon.name} details
+          </span>
+          <span className="block group-open:hidden">{children}</span>
           <span
             className="absolute top-0 right-3 flex h-full items-center gap-1 text-xs font-bold text-ring-muted group-open:h-11"
             aria-hidden="true"
@@ -111,11 +147,12 @@ function PokemonDetails({
           </span>
         </summary>
         <div>
-          <div className="grid gap-4 border-t border-ring-line px-4 py-4 sm:grid-cols-[minmax(0,1fr)_minmax(0,1.25fr)] sm:items-center sm:gap-6 sm:px-6 sm:py-5">
+          <div className="grid gap-4 px-4 pt-0 pb-4 sm:grid-cols-[minmax(0,1fr)_minmax(0,1.25fr)] sm:items-center sm:gap-6 sm:px-6 sm:pt-0 sm:pb-5">
             <div className="flex min-w-0 items-center gap-3.5 sm:gap-4">
               <div className="flex h-24 w-24 shrink-0 items-center justify-center overflow-hidden rounded-full border-2 border-ring-ink bg-ring-butter sm:h-28 sm:w-28">
                 <PokemonSprite
                   pokemon={pokemon}
+                  decorative
                   className="h-[132px] w-[132px] max-w-none shrink-0 sm:h-[154px] sm:w-[154px]"
                   lazy
                   priority="low"
@@ -129,11 +166,8 @@ function PokemonDetails({
                 <h2 className="my-1 font-display text-2xl leading-tight font-bold tracking-tight break-words text-ring-ink capitalize sm:text-3xl">
                   {pokemon.name}
                 </h2>
-                <p className="m-0 font-display text-xl font-bold text-ring-ink tabular-nums">
-                  {pokemon.score.toLocaleString("en-US")}{" "}
-                  <span className="font-sans text-xs font-semibold text-ring-muted">
-                    pts
-                  </span>
+                <p className="m-0">
+                  <PointsValue score={pokemon.score} className="text-xl" />
                 </p>
               </div>
             </div>
@@ -161,7 +195,14 @@ function PodiumCard({
         : "bg-ring-mint-soft";
 
   return (
-    <article className="min-w-0">
+    <article
+      className={cn(
+        "min-w-0",
+        isFirst
+          ? "order-first col-span-2 sm:order-none sm:col-span-1"
+          : "sm:mt-6",
+      )}
+    >
       <details
         name="pokemon-details"
         className={cn(
@@ -171,13 +212,12 @@ function PodiumCard({
       >
         <summary
           className={cn(
-            "relative flex cursor-pointer list-none flex-col items-center text-center focus-visible:-outline-offset-2 [&::-webkit-details-marker]:hidden",
+            "relative flex cursor-pointer list-none flex-col items-center rounded-[inherit] text-center focus-visible:-outline-offset-4 [&::-webkit-details-marker]:hidden",
             isFirst
-              ? "px-2 pt-4 pb-3.5 sm:px-4 sm:pt-5 sm:pb-4"
-              : "px-2 py-3 sm:px-4 sm:py-4",
+              ? "px-3 pt-4 pb-3.5 sm:px-4 sm:pt-5 sm:pb-4"
+              : "px-2.5 py-3 sm:px-4 sm:py-4",
           )}
         >
-          <span className="sr-only">{pokemon.name} voting statistics</span>
           <span
             className={cn(
               "inline-flex items-center rounded-full px-2.5 py-0.5 font-display text-xs font-bold tabular-nums",
@@ -186,49 +226,48 @@ function PodiumCard({
                 : "bg-ring-ink text-ring-butter",
             )}
           >
-            #{pokemon.rank}
+            <span className="sr-only">Rank </span>#{pokemon.rank}
           </span>
-          <div
+          <span
             className={cn(
               "my-2 flex items-center justify-center overflow-hidden rounded-full border-2 border-ring-ink bg-ring-paper shadow-[0_3px_0_rgb(25_24_59/0.12)]",
               isFirst
-                ? "h-20 w-20 sm:h-28 sm:w-28"
-                : "h-16 w-16 sm:h-24 sm:w-24",
+                ? "h-24 w-24 sm:h-28 sm:w-28"
+                : "h-20 w-20 sm:h-24 sm:w-24",
             )}
           >
             <PokemonSprite
               pokemon={pokemon}
+              decorative
               className={cn(
                 "max-w-none shrink-0",
                 isFirst
-                  ? "h-[112px] w-[112px] sm:h-[154px] sm:w-[154px]"
-                  : "h-[88px] w-[88px] sm:h-[130px] sm:w-[130px]",
+                  ? "h-[132px] w-[132px] sm:h-[154px] sm:w-[154px]"
+                  : "h-[112px] w-[112px] sm:h-[130px] sm:w-[130px]",
               )}
               priority="high"
             />
-          </div>
+          </span>
           <h2
             className={cn(
-              "m-0 max-w-full font-display leading-tight font-bold tracking-tight break-words text-ring-ink capitalize",
-              isFirst ? "text-base sm:text-2xl" : "text-sm sm:text-xl",
+              "m-0 max-w-full font-display leading-tight font-bold tracking-tight break-words hyphens-auto text-ring-ink capitalize",
+              isFirst ? "text-xl sm:text-2xl" : "text-base sm:text-xl",
             )}
           >
             {pokemon.name}
           </h2>
-          <p className="mt-0.5 mb-0 font-display text-sm font-bold text-ring-ink tabular-nums sm:text-base">
-            {pokemon.score.toLocaleString("en-US")}{" "}
-            <span className="font-sans text-[11px] font-semibold text-ring-muted">
-              pts
-            </span>
-          </p>
-          <p className="m-0 text-[11px] font-semibold text-ring-muted tabular-nums">
-            {pokemon.winRate}% win
-          </p>
+          <PointsValue
+            score={pokemon.score}
+            className="mt-0.5 block text-sm sm:text-base"
+          />
+          <span className="block text-[11px] font-semibold text-ring-muted tabular-nums">
+            {pokemon.battles > 0 ? `${pokemon.winRate}% win` : "No votes yet"}
+          </span>
           <span
             aria-hidden="true"
             className="mt-1 inline-flex items-center gap-0.5 text-[11px] font-semibold text-ring-muted"
           >
-            <Chevron className="transition-transform duration-150 group-open:rotate-180" />
+            <Chevron className="group-open:rotate-180 motion-safe:transition-transform motion-safe:duration-150" />
           </span>
         </summary>
         <div>
@@ -248,7 +287,7 @@ function TopPodium({ items }: { items: readonly RankedPokemon[] }) {
   return (
     <section
       aria-label="Top 3 cutest Pokémon"
-      className="grid grid-cols-3 items-end gap-2 sm:gap-4"
+      className="grid grid-cols-2 items-start gap-2.5 sm:grid-cols-3 sm:gap-4"
     >
       <PodiumCard pokemon={second} place={2} />
       <PodiumCard pokemon={first} place={1} />
@@ -266,32 +305,37 @@ function StandingsRow({
 }) {
   return (
     <PokemonDetails pokemon={pokemon}>
-      <div className={cn(ROW_GRID, "px-3 py-2.5 sm:px-4")}>
-        <p className="m-0 font-display text-xs font-bold text-ring-muted tabular-nums sm:text-sm">
+      <span className={cn(ROW_GRID, "py-2.5 pr-1 pl-3 sm:pr-2 sm:pl-4")}>
+        <span className="font-display text-xs font-bold text-ring-muted tabular-nums sm:text-sm">
           #{pokemon.rank}
-        </p>
-        <div className="flex h-10 w-10 items-center justify-center overflow-hidden rounded-full border-[1.5px] border-ring-ink bg-ring-butter sm:h-11 sm:w-11">
+        </span>
+        <span className="flex h-10 w-10 items-center justify-center overflow-hidden rounded-full border-[1.5px] border-ring-ink bg-ring-butter sm:h-11 sm:w-11">
           <PokemonSprite
             pokemon={pokemon}
+            decorative
             className="h-[54px] w-[54px] max-w-none shrink-0 sm:h-[60px] sm:w-[60px]"
             lazy={!eager}
             priority={eager ? undefined : "low"}
           />
-        </div>
+        </span>
         <h2 className="m-0 font-display text-sm font-bold break-words text-ring-ink capitalize sm:text-base">
           {pokemon.name}
         </h2>
-        <span className="hidden rounded-full bg-ring-mint-soft px-2.5 py-0.5 text-xs font-bold text-ring-mint-ink tabular-nums sm:inline-block">
-          {pokemon.winRate}% win
+        <span
+          className={cn(
+            "hidden rounded-full px-2.5 py-0.5 text-xs font-bold tabular-nums sm:inline-block",
+            pokemon.battles > 0
+              ? "bg-ring-mint-soft text-ring-mint-ink"
+              : "bg-ring-butter text-ring-muted",
+          )}
+        >
+          {pokemon.battles > 0 ? `${pokemon.winRate}% win` : "No votes yet"}
         </span>
-        <p className="m-0 text-right font-display text-xs font-bold text-ring-ink tabular-nums sm:text-sm">
-          {pokemon.score.toLocaleString("en-US")}{" "}
-          <span className="font-sans text-[11px] font-semibold text-ring-muted">
-            pts
-          </span>
-          <span className="sr-only"> points</span>
-        </p>
-      </div>
+        <PointsValue
+          score={pokemon.score}
+          className="text-right text-xs sm:text-sm"
+        />
+      </span>
     </PokemonDetails>
   );
 }
@@ -365,7 +409,7 @@ async function ResultsContent({
       {/* Keep content-visibility on open rows too. Flipping it on collapse leaves WebKit painting the stale expanded height. */}
       <ol
         start={showPodium ? 4 : pageStart + 1}
-        className="flex flex-col gap-2 [&>li]:[contain-intrinsic-size:auto_64px] [&>li]:[content-visibility:auto]"
+        className="flex flex-col gap-1.5 [&>li]:pb-0.5 [&>li]:[contain-intrinsic-size:auto_66px] [&>li]:[content-visibility:auto]"
       >
         {visible.map((pokemon, index) => (
           <li key={pokemon.dexNumber}>
