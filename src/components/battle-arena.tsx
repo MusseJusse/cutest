@@ -12,7 +12,11 @@ import { cn } from "~/lib/utils";
 import type { Pokemon, PokemonPair } from "~/sdk/pokemon";
 import type { ContenderStats, RecentBattle } from "~/sdk/vote";
 import RecentVotes from "./recent-votes";
-import { CONTENDER_PANEL_CLASS, VS_BADGE_CLASS } from "./ui/fallbacks";
+import {
+  ARENA_RING_CLASS,
+  CONTENDER_PANEL_CLASS,
+  VS_BADGE_CLASS,
+} from "./ui/fallbacks";
 import { SpriteTile, spriteUrl } from "./ui/pokemon-sprite";
 
 const COOKIE_MAX_AGE_SECONDS = 60 * 60 * 24 * 7;
@@ -62,16 +66,52 @@ function ContenderCorner({
         "group text-center text-ring-ink focus-visible:-outline-offset-4 aria-disabled:cursor-not-allowed aria-disabled:opacity-65 motion-safe:transition-colors motion-safe:duration-150",
         disabled ? "" : "cursor-pointer",
         isHome
-          ? disabled
-            ? "col-start-1 rounded-l-[19.5px] bg-ring-peach"
-            : "col-start-1 rounded-l-[19.5px] bg-ring-peach hover:bg-ring-peach-hover"
-          : disabled
-            ? "col-start-2 rounded-r-[19.5px] bg-ring-sky"
-            : "col-start-2 rounded-r-[19.5px] bg-ring-sky hover:bg-ring-sky-hover",
+          ? cn(
+              "row-start-1 rounded-t-[19.5px] pt-2.5 pb-4 sm:col-start-1 sm:row-span-5 sm:row-start-1 sm:rounded-t-none sm:rounded-l-[19.5px] sm:py-6",
+              disabled
+                ? "bg-ring-peach"
+                : "bg-ring-peach hover:bg-ring-peach-hover",
+            )
+          : cn(
+              "row-start-2 rounded-b-[19.5px] pt-4 pb-3 sm:col-start-2 sm:row-span-5 sm:row-start-1 sm:rounded-r-[19.5px] sm:rounded-b-none sm:py-6",
+              disabled ? "bg-ring-sky" : "bg-ring-sky hover:bg-ring-sky-hover",
+            ),
       )}
     >
-      <span className="justify-self-center rounded-full border-[1.5px] border-ring-ink bg-ring-paper px-2.5 py-0.5 text-[11px] leading-4 font-bold text-ring-ink tabular-nums">
-        {dexLabel}
+      <span className="flex w-full items-center justify-between gap-2 sm:contents">
+        <span className="rounded-full border-[1.5px] border-ring-ink bg-ring-paper px-2.5 py-0.5 text-[11px] leading-4 font-bold text-ring-ink tabular-nums sm:row-start-1 sm:justify-self-center">
+          {dexLabel}
+        </span>
+
+        <span
+          id={detailsId}
+          className="text-right text-[11px] font-semibold text-ring-muted tabular-nums sm:row-start-4 sm:text-center sm:text-xs"
+        >
+          <span className="sr-only">Pokédex {dexLabel}, </span>
+          {battles > 0 && stats ? (
+            <>
+              <span>
+                {Math.round(stats.winRate * 100)}% win
+                <span className="hidden sm:inline"> rate</span>
+              </span>
+              <span aria-hidden="true" className="hidden min-[340px]:inline">
+                {" "}
+                ({stats.wins.toLocaleString("en-US")}W{" "}
+                {stats.losses.toLocaleString("en-US")}L)
+              </span>
+              <span className="sr-only">
+                , {stats.wins.toLocaleString("en-US")}{" "}
+                {stats.wins === 1 ? "win" : "wins"},{" "}
+                {stats.losses.toLocaleString("en-US")}{" "}
+                {stats.losses === 1 ? "loss" : "losses"}
+              </span>
+            </>
+          ) : stats ? (
+            "No votes yet"
+          ) : (
+            "Record unavailable"
+          )}
+        </span>
       </span>
 
       <SpriteTile
@@ -79,54 +119,30 @@ function ContenderCorner({
         size="arena"
         priority="high"
         className={cn(
-          "justify-self-center motion-safe:transition-transform motion-safe:duration-150",
+          "motion-safe:transition-transform motion-safe:duration-150 sm:row-start-2 sm:justify-self-center",
           disabled ? "" : "motion-safe:group-hover:-translate-y-0.5",
         )}
       />
 
-      <span className="block min-w-0 font-display text-[clamp(1.125rem,3.4cqi,1.875rem)] leading-tight font-bold tracking-tight break-words hyphens-auto text-ring-ink capitalize">
-        {pokemon.name}
-      </span>
+      <span className="flex w-full items-center justify-between gap-3 sm:contents">
+        <span className="block min-w-0 text-left font-display text-[clamp(1.25rem,3.4cqi,1.875rem)] leading-tight font-bold tracking-tight break-words hyphens-auto text-ring-ink capitalize sm:row-start-3 sm:text-center">
+          {pokemon.name}
+        </span>
 
-      <span
-        id={detailsId}
-        className="block text-[11px] font-semibold text-ring-muted tabular-nums sm:text-xs"
-      >
-        <span className="sr-only">Pokédex {dexLabel}, </span>
-        {battles > 0 && stats ? (
-          <>
-            <span>{Math.round(stats.winRate * 100)}% win rate</span>
-            <span aria-hidden="true" className="hidden @min-[32rem]:inline">
-              {" "}
-              ({stats.wins.toLocaleString("en-US")}W{" "}
-              {stats.losses.toLocaleString("en-US")}L)
-            </span>
-            <span className="sr-only">
-              , {stats.wins.toLocaleString("en-US")}{" "}
-              {stats.wins === 1 ? "win" : "wins"},{" "}
-              {stats.losses.toLocaleString("en-US")}{" "}
-              {stats.losses === 1 ? "loss" : "losses"}
-            </span>
-          </>
-        ) : stats ? (
-          "No votes yet"
-        ) : (
-          "Record unavailable"
-        )}
-      </span>
-
-      <span
-        aria-hidden="true"
-        className={cn(
-          "mt-1 inline-flex min-h-11 w-full max-w-[220px] items-center justify-center self-stretch justify-self-center rounded-full border-2 border-ring-ink px-3 py-2 font-display text-xs leading-tight font-bold text-white shadow-[0_3px_0_var(--color-ring-ink)] motion-safe:transition-transform motion-safe:duration-100 sm:px-5 sm:text-sm",
-          disabled
-            ? ""
-            : "motion-safe:group-active:translate-y-0.5 motion-safe:group-active:shadow-[0_1px_0_var(--color-ring-ink)]",
-          isHome ? "bg-ring-coral" : "bg-ring-cobalt",
-        )}
-      >
-        <span className="min-w-0 break-words">
-          Pick <span className="capitalize">{pokemon.name}</span>
+        <span
+          aria-hidden="true"
+          className={cn(
+            "inline-flex min-h-10 shrink-0 items-center justify-center rounded-full border-2 border-ring-ink px-4 py-1.5 font-display text-xs leading-tight font-bold text-white shadow-[0_3px_0_var(--color-ring-ink)] motion-safe:transition-transform motion-safe:duration-100 sm:row-start-5 sm:mt-1 sm:min-h-11 sm:w-full sm:max-w-[220px] sm:self-stretch sm:justify-self-center sm:px-5 sm:py-2 sm:text-sm",
+            disabled
+              ? ""
+              : "motion-safe:group-active:translate-y-0.5 motion-safe:group-active:shadow-[0_1px_0_var(--color-ring-ink)]",
+            isHome ? "bg-ring-coral" : "bg-ring-cobalt",
+          )}
+        >
+          <span className="min-w-0 break-words">
+            Pick
+            <span className="hidden capitalize sm:inline"> {pokemon.name}</span>
+          </span>
         </span>
       </span>
     </button>
@@ -214,7 +230,7 @@ export default function BattleArena({
       </p>
       <section
         aria-label="Choose the cutest Pokémon"
-        className="relative grid grid-cols-2 grid-rows-[auto_auto_auto_auto_auto] gap-x-[2.5px] overflow-hidden rounded-[22px] border-[2.5px] border-ring-ink bg-ring-ink shadow-[0_4px_0_var(--color-ring-ink)]"
+        className={ARENA_RING_CLASS}
       >
         <ContenderCorner
           side="home"

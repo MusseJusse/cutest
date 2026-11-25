@@ -13,7 +13,7 @@ export type SpriteTileSize =
 // integer multiple of the 96x96 PokeAPI sprites so nearest-neighbor scaling stays crisp.
 export const SPRITE_TILE_CLASS: Record<SpriteTileSize, string> = {
   arena:
-    "my-1 flex h-[108px] w-[108px] items-center justify-center rounded-2xl border-2 border-ring-ink bg-ring-paper p-1 shadow-[0_3px_0_rgb(25_24_59/0.14)] min-[420px]:h-[116px] min-[420px]:w-[116px] min-[420px]:p-2 sm:h-[212px] sm:w-[212px] sm:rounded-[18px] sm:p-2",
+    "flex h-[204px] w-[204px] items-center justify-center rounded-[20px] border-2 border-ring-ink bg-ring-paper p-1 shadow-[0_3px_0_rgb(25_24_59/0.14)] sm:my-1 sm:h-[212px] sm:w-[212px] sm:rounded-[18px] sm:p-2",
   podiumFirst:
     "my-2 flex h-[116px] w-[116px] items-center justify-center rounded-xl border-2 border-ring-ink bg-ring-paper p-2 shadow-[0_3px_0_rgb(25_24_59/0.12)]",
   podium:

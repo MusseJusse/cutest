@@ -52,8 +52,8 @@ export default function HomePage() {
     <PageShell
       page="vote"
       title="Which is cutest?"
-      titleClassName="text-[clamp(1.85rem,5.5cqi,2.75rem)] tracking-[-0.03em]"
-      headingSpacingClassName="pt-6 pb-5 sm:pt-7 sm:pb-6"
+      titleClassName="text-[clamp(1.375rem,5.5cqi,2.75rem)] tracking-[-0.03em]"
+      headingSpacingClassName="pt-3 pb-2.5 sm:pt-7 sm:pb-6"
     >
       <Suspense fallback={<VoteFallback />}>
         <HomeContent />
