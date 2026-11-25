@@ -9,7 +9,7 @@ Next.js 16 App Router project. Votes are recorded in Upstash Redis; the Pokémon
 - `pnpm lint` and `pnpm typecheck` run them separately.
 - `pnpm build` produces a production build.
 - `pnpm format:check` and `pnpm format:write` run Prettier.
-- `node --test scripts/selection.test.mjs` checks the pair-selection sampler.
+- `pnpm test` runs the battle-queue and pair-selection tests (`node --test scripts/*.test.mjs`).
 
 ## Environment
 

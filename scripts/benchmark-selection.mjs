@@ -5,7 +5,7 @@ import { cpus, platform, release } from "node:os";
 import { performance } from "node:perf_hooks";
 import { fileURLToPath } from "node:url";
 import ts from "typescript";
-import { selectTwoPokemon } from "./selection-source.mjs";
+import { selectTwoPokemon } from "../src/sdk/pokemon-pair.ts";
 
 const root = fileURLToPath(new URL("..", import.meta.url));
 const baselineCommit =

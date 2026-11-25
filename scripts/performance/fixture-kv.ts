@@ -57,10 +57,24 @@ async function handleRequest(
           }),
         };
       }
-      if (!mutationsAllowed) {
-        throw new Error("Only MGET is allowed in this fixture");
+      if (verb === "lrange") {
+        count.commands++;
+        const start = Number(command[2] ?? 0);
+        const stop = Number(command[3] ?? -1);
+        const recent = [
+          JSON.stringify({ winner: 25, loser: 1, timestamp: 1 }),
+          JSON.stringify({ winner: 133, loser: 4, timestamp: 2 }),
+          JSON.stringify({ winner: 39, loser: 7, timestamp: 3 }),
+        ];
+        return {
+          result:
+            stop < 0 ? recent.slice(start) : recent.slice(start, stop + 1),
+        };
       }
-      if (verb === "lpush" || verb === "incr") {
+      if (!mutationsAllowed) {
+        throw new Error("Only MGET and LRANGE are allowed in this fixture");
+      }
+      if (verb === "lpush" || verb === "incr" || verb === "eval") {
         count.commands++;
         return { result: 1 };
       }

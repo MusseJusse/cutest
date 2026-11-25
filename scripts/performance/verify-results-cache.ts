@@ -19,7 +19,7 @@ async function results() {
   const response = await fetch(resultsUrl);
   const html = await response.text();
   assert.equal(response.status, 200);
-  assert.ok(html.includes("LIVE RESULTS"));
+  assert.ok(html.includes("Cutest Pokémon"));
   assert.ok(!html.includes('"digest"'));
 }
 
