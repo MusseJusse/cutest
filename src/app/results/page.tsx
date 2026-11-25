@@ -140,10 +140,10 @@ function PokemonDetails({
         name="pokemon-details"
         className="group relative overflow-hidden rounded-2xl border-2 border-ring-ink bg-ring-paper shadow-[0_2px_0_rgb(25_24_59/0.12)] open:bg-ring-cream"
       >
-        <summary className="relative cursor-pointer list-none rounded-[14px] pr-8 group-open:flex group-open:min-h-11 group-open:items-center group-open:justify-between group-open:rounded-b-none group-open:border-b group-open:border-ring-line group-open:px-4 group-open:py-2 focus-visible:-outline-offset-4 sm:group-open:px-6 [&::-webkit-details-marker]:hidden [details:not([open])_&]:hover:bg-ring-cream">
+        <summary className="relative cursor-pointer list-none rounded-[14px] pr-8 group-open:flex group-open:min-h-11 group-open:items-center group-open:justify-between group-open:rounded-b-none group-open:border-b group-open:border-ring-line group-open:px-4 group-open:py-2 group-open:hover:bg-ring-butter/50 focus-visible:-outline-offset-4 sm:group-open:px-6 [&::-webkit-details-marker]:hidden [details:not([open])_&]:hover:bg-ring-cream">
           <span className="hidden text-xs font-bold text-ring-muted tabular-nums group-open:inline">
             {dexLabel} Rank {pokemon.rank}
-            <span className="sr-only"> — Collapse {pokemon.name} details</span>
+            <span className="sr-only">, collapse {pokemon.name} details</span>
           </span>
           <span className="block group-open:hidden">{children}</span>
           <span

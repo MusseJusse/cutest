@@ -9,7 +9,9 @@ export default async function RecentVotes() {
       aria-label="Recent votes"
       className="flex flex-col items-center gap-2 py-5"
     >
-      <h2 className="sr-only">Recent votes</h2>
+      <h2 className="m-0 text-[11px] font-bold text-ring-muted">
+        Recent votes
+      </h2>
       <ul className="flex flex-wrap items-center justify-center gap-2">
         {battles.map((battle, index) => (
           <li

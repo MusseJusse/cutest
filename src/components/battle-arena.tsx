@@ -1,6 +1,6 @@
 "use client";
 
-import { useId, useState } from "react";
+import { useId, useRef, useState } from "react";
 import { preload } from "react-dom";
 import { getMorePairsAction, voteAction } from "~/lib/action";
 import {
@@ -15,6 +15,7 @@ import { CONTENDER_PANEL_CLASS, VS_BADGE_CLASS } from "./ui/fallbacks";
 import { SpriteTile, spriteUrl } from "./ui/pokemon-sprite";
 
 const COOKIE_MAX_AGE_SECONDS = 60 * 60 * 24 * 7;
+const ACCIDENTAL_DOUBLE_TAP_MS = 180;
 
 // Use a distinct name from the legacy HttpOnly "currentPair" cookie so browsers do not ignore writes.
 function persistPairCookie(pair: PokemonPair) {
@@ -47,8 +48,8 @@ function ContenderCorner({
   return (
     <button
       type="button"
-      onClick={(event) => {
-        if (disabled || event.detail > 1) return;
+      onClick={() => {
+        if (disabled) return;
         onVote();
       }}
       aria-disabled={disabled ? true : undefined}
@@ -137,6 +138,7 @@ export default function BattleArena({
   initialPairs: PokemonPair[];
   initialStats: StatsMap;
 }) {
+  const lastVoteAtRef = useRef(-Infinity);
   const [announcement, setAnnouncement] = useState("");
   const [snapshot, setSnapshot] = useState<BattleQueueSnapshot>(() => ({
     pairs: initialPairs,
@@ -179,6 +181,13 @@ export default function BattleArena({
   const blockedByRefillError = !next && snapshot.refillFailed;
   const votingDisabled = !next;
 
+  function handleVote(pick: 0 | 1) {
+    const now = performance.now();
+    if (now - lastVoteAtRef.current < ACCIDENTAL_DOUBLE_TAP_MS) return;
+    lastVoteAtRef.current = now;
+    queue.vote(pick);
+  }
+
   return (
     <div className="flex flex-col gap-3">
       <p role="status" aria-live="polite" className="sr-only">
@@ -193,14 +202,14 @@ export default function BattleArena({
           pokemon={home}
           stats={snapshot.stats[home.dexNumber]}
           disabled={votingDisabled}
-          onVote={() => queue.vote(0)}
+          onVote={() => handleVote(0)}
         />
         <ContenderCorner
           side="away"
           pokemon={away}
           stats={snapshot.stats[away.dexNumber]}
           disabled={votingDisabled}
-          onVote={() => queue.vote(1)}
+          onVote={() => handleVote(1)}
         />
         <span aria-hidden="true" className={VS_BADGE_CLASS}>
           VS
