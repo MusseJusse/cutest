@@ -1,6 +1,6 @@
 import assert from "node:assert/strict";
 import test from "node:test";
-import { selectTwoPokemon } from "./selection-source.mjs";
+import { selectTwoPokemon } from "../src/sdk/pokemon-pair.ts";
 
 const catalogue = (length) =>
   Array.from({ length }, (_, index) => ({

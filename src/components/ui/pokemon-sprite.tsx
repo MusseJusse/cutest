@@ -1,6 +1,6 @@
 import type { Pokemon } from "~/sdk/pokemon";
 
-const spriteUrl = (dexNumber: number) =>
+export const spriteUrl = (dexNumber: number) =>
   `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${dexNumber}.png`;
 
 type SpritePriority = "high" | "low";

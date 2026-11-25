@@ -1,7 +1,15 @@
+import { cn } from "~/lib/utils";
+
+export const CONTENDER_PANEL_CLASS =
+  "row-span-4 grid min-w-0 grid-cols-[minmax(0,1fr)] grid-rows-subgrid gap-3 p-3.5 sm:p-6";
+
 function VoteFallbackPanel({ side }: { side: "home" | "away" }) {
   return (
     <div
-      className={`row-span-4 grid min-w-0 grid-cols-[minmax(0,1fr)] grid-rows-subgrid gap-3 p-3.5 sm:p-6 ${side === "home" ? "bg-studio-lavender" : "bg-studio-sky"}`}
+      className={cn(
+        CONTENDER_PANEL_CLASS,
+        side === "home" ? "bg-studio-lavender" : "bg-studio-sky",
+      )}
     >
       <div className="flex flex-col-reverse gap-2 sm:flex-row sm:items-baseline sm:justify-between">
         <div className="h-8 w-24 max-w-full rounded bg-studio-ink/10" />

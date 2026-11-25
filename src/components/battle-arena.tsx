@@ -1,26 +1,56 @@
 "use client";
 
 import { useRef, useState } from "react";
+import { preload } from "react-dom";
 import { getMorePairsAction, voteAction } from "~/lib/action";
+import {
+  createBattleQueue,
+  type BattleQueueSnapshot,
+  type StatsMap,
+} from "~/lib/battle-queue";
 import { cn } from "~/lib/utils";
 import type { Pokemon, PokemonPair } from "~/sdk/pokemon";
 import type { ContenderStats } from "~/sdk/vote";
-import PokemonSprite from "./ui/pokemon-sprite";
-import VoteButton from "./ui/vote-button";
+import { CONTENDER_PANEL_CLASS } from "./ui/fallbacks";
+import PokemonSprite, { spriteUrl } from "./ui/pokemon-sprite";
 
-const REFILL_THRESHOLD = 3;
-const REFILL_SIZE = 4;
+const COOKIE_MAX_AGE_SECONDS = 60 * 60 * 24 * 7;
 
-type Pick = 0 | 1;
-type StatsMap = Record<number, ContenderStats>;
+function persistCurrentPairCookie(pair: PokemonPair) {
+  if (typeof document === "undefined") return;
+  const secure =
+    typeof location !== "undefined" && location.protocol === "https:"
+      ? "; Secure"
+      : "";
+  document.cookie = `currentPair=${encodeURIComponent(JSON.stringify(pair))}; Path=/; Max-Age=${COOKIE_MAX_AGE_SECONDS}; SameSite=Lax${secure}`;
+}
 
-function surfaceVoteError(retry: () => void) {
-  void import("sonner").then(({ toast }) => {
-    toast.error("Vote not saved", {
-      description: "The vote did not reach the server.",
-      action: { label: "Retry", onClick: retry },
-    });
-  });
+function VoteButton({ onVote, name }: { onVote: () => void; name: string }) {
+  return (
+    <button
+      type="button"
+      onClick={onVote}
+      className="flex min-h-12 w-full items-center justify-between gap-2 rounded-lg border border-studio-ink/25 px-3 py-2.5 text-left text-xs font-medium hover:bg-studio-ink/5 motion-safe:transition-[background-color,transform] motion-safe:duration-150 motion-safe:active:scale-[0.96] sm:px-4 sm:text-sm"
+    >
+      <span className="min-w-0 break-words">
+        Vote <span className="capitalize">{name}</span>
+      </span>
+      <svg
+        aria-hidden="true"
+        viewBox="0 0 20 20"
+        fill="none"
+        className="h-[1.2cap] w-[1.2cap] shrink-0"
+      >
+        <path
+          d="M5 15 15 5M5 5h10v10"
+          stroke="currentColor"
+          strokeWidth="1.5"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+        />
+      </svg>
+    </button>
+  );
 }
 
 function ContenderPanel({
@@ -39,7 +69,7 @@ function ContenderPanel({
   return (
     <article
       className={cn(
-        "row-span-4 grid min-w-0 grid-cols-[minmax(0,1fr)] grid-rows-subgrid gap-3 p-3.5 sm:p-6",
+        CONTENDER_PANEL_CLASS,
         side === "home" ? "bg-studio-lavender" : "bg-studio-sky",
       )}
     >
@@ -54,12 +84,13 @@ function ContenderPanel({
         >
           {pokemon.name}
         </h2>
-        <span className="font-mono text-[11px] text-studio-muted">
+        <span className="text-[11px] text-studio-muted tabular-nums">
           #{pokemon.dexNumber.toString().padStart(4, "0")}
         </span>
       </div>
       <div className="-mx-3.5 grid h-[170px] min-w-0 grid-cols-[minmax(0,1fr)] grid-rows-[minmax(0,1fr)] place-items-center overflow-clip sm:mx-0 sm:h-[220px]">
         <PokemonSprite
+          key={pokemon.dexNumber}
           pokemon={pokemon}
           className="h-auto w-[235px] max-w-full sm:w-[300px]"
           priority="high"
@@ -92,66 +123,38 @@ export default function BattleArena({
   initialPairs: PokemonPair[];
   initialStats: StatsMap;
 }) {
-  const [pairs, setPairs] = useState(initialPairs);
-  const [stats, setStats] = useState(initialStats);
-  const pairsRef = useRef(initialPairs);
-  const refillPending = useRef(false);
-  const [current, next] = pairs;
+  const [snapshot, setSnapshot] = useState<BattleQueueSnapshot>(() => ({
+    pairs: initialPairs,
+    stats: initialStats,
+    failedVotes: [],
+  }));
+  const queueRef = useRef<ReturnType<typeof createBattleQueue> | null>(null);
+  queueRef.current ??= createBattleQueue({
+    initialPairs,
+    initialStats,
+    submitVote: (pair, pick) => voteAction(pair, pick),
+    fetchMorePairs: () => getMorePairsAction(),
+    onNextPair: persistCurrentPairCookie,
+    onChange: setSnapshot,
+  });
 
-  function submit(currentPair: PokemonPair, nextPair: PokemonPair, pick: Pick) {
-    void voteAction(currentPair, nextPair, pick).catch(() =>
-      surfaceVoteError(() => submit(currentPair, nextPair, pick)),
-    );
-  }
-
-  function vote(pick: Pick) {
-    // A ref keeps rapid clicks safe even when React batches the state updates.
-    const [currentPair, nextPair] = pairsRef.current;
-    if (!currentPair || !nextPair) {
-      void refill();
-      return;
-    }
-    const remaining = pairsRef.current.slice(1);
-    pairsRef.current = remaining;
-    setPairs(remaining);
-    submit(currentPair, nextPair, pick);
-    if (remaining.length < REFILL_THRESHOLD) void refill();
-  }
-
-  async function refill() {
-    if (refillPending.current) return;
-    refillPending.current = true;
-    try {
-      const more = await getMorePairsAction(REFILL_SIZE);
-      const refilled = [...pairsRef.current, ...more.pairs];
-      pairsRef.current = refilled;
-      setPairs(refilled);
-      setStats((previous) => ({ ...previous, ...more.stats }));
-    } catch {
-      // The next vote tries the refill again.
-    } finally {
-      refillPending.current = false;
+  const [current, next] = snapshot.pairs;
+  if (next) {
+    for (const pokemon of next) {
+      preload(spriteUrl(pokemon.dexNumber), {
+        as: "image",
+        fetchPriority: "low",
+      });
     }
   }
 
   if (!current) return null;
 
   const [home, away] = current;
+  const failedCount = snapshot.failedVotes.length;
 
   return (
-    <div className="flex flex-col gap-4">
-      {next ? (
-        <div className="hidden" aria-hidden="true">
-          {next.map((pokemon) => (
-            <PokemonSprite
-              key={pokemon.dexNumber}
-              pokemon={pokemon}
-              className="h-64 w-64"
-              priority="low"
-            />
-          ))}
-        </div>
-      ) : null}
+    <div className="flex flex-col gap-3">
       <section
         aria-label="Choose the cutest Pokémon"
         className="grid grid-cols-2 gap-y-3 overflow-clip rounded-2xl"
@@ -159,16 +162,49 @@ export default function BattleArena({
         <ContenderPanel
           side="home"
           pokemon={home}
-          stats={stats[home.dexNumber]}
-          onVote={() => vote(0)}
+          stats={snapshot.stats[home.dexNumber]}
+          onVote={() => queueRef.current?.vote(0)}
         />
         <ContenderPanel
           side="away"
           pokemon={away}
-          stats={stats[away.dexNumber]}
-          onVote={() => vote(1)}
+          stats={snapshot.stats[away.dexNumber]}
+          onVote={() => queueRef.current?.vote(1)}
         />
       </section>
+      {failedCount > 0 ? (
+        <div
+          role="alert"
+          className="flex flex-wrap items-center justify-between gap-3 rounded-xl border border-studio-danger/40 bg-studio-paper px-4 py-3 text-xs text-studio-ink"
+        >
+          <p className="m-0">
+            <strong className="font-semibold">
+              {failedCount === 1
+                ? "Vote not saved."
+                : `${failedCount} votes not saved.`}
+            </strong>{" "}
+            <span className="text-studio-muted">
+              The server could not record your vote.
+            </span>
+          </p>
+          <div className="flex items-center gap-2">
+            <button
+              type="button"
+              onClick={() => queueRef.current?.retryFailedVotes()}
+              className="min-h-9 rounded-md bg-studio-accent px-3 py-1.5 text-xs font-semibold text-white hover:opacity-90"
+            >
+              Retry
+            </button>
+            <button
+              type="button"
+              onClick={() => queueRef.current?.dismissFailedVotes()}
+              className="min-h-9 rounded-md px-2.5 py-1.5 text-xs text-studio-muted hover:text-studio-ink"
+            >
+              Dismiss
+            </button>
+          </div>
+        </div>
+      ) : null}
     </div>
   );
 }

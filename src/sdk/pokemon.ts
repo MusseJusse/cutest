@@ -1,3 +1,5 @@
+import "server-only";
+
 import catalogue from "~/data/pokemon.json";
 import { z } from "zod";
 import { selectTwoPokemon } from "./pokemon-pair";
@@ -9,21 +11,21 @@ export type Pokemon = {
 
 export type PokemonPair = [Pokemon, Pokemon];
 
-export async function getAllPokemon() {
-  // Keep callers free to sort the list without changing the bundled catalogue.
-  return [...catalogue];
-}
+export const POKEMON_CATALOGUE: readonly Pokemon[] = catalogue;
 
-export async function selectPokemonPairs(
-  count: number,
-): Promise<PokemonPair[]> {
-  const allPokemon = await getAllPokemon();
-  return Array.from({ length: count }, () => selectTwoPokemon(allPokemon));
-}
-
-const catalogueByName = new Map(
-  catalogue.map((pokemon) => [pokemon.dexNumber, pokemon.name] as const),
+const catalogueByDex = new Map<number, Pokemon>(
+  catalogue.map((pokemon) => [pokemon.dexNumber, pokemon]),
 );
+
+export function getPokemonByDexNumber(dexNumber: number): Pokemon | undefined {
+  return catalogueByDex.get(dexNumber);
+}
+
+export function selectPokemonPairs(count: number): PokemonPair[] {
+  return Array.from({ length: count }, () =>
+    selectTwoPokemon(POKEMON_CATALOGUE),
+  );
+}
 
 const pokemonSchema = z.object({
   name: z.string().min(1).max(100),
@@ -43,8 +45,12 @@ export function parsePokemonPair(value: unknown): PokemonPair | undefined {
 
   const [first, second] = parsed.data;
   if (first.dexNumber === second.dexNumber) return undefined;
-  if (catalogueByName.get(first.dexNumber) !== first.name) return undefined;
-  if (catalogueByName.get(second.dexNumber) !== second.name) return undefined;
+  if (catalogueByDex.get(first.dexNumber)?.name !== first.name) {
+    return undefined;
+  }
+  if (catalogueByDex.get(second.dexNumber)?.name !== second.name) {
+    return undefined;
+  }
 
   return [first, second];
 }

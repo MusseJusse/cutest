@@ -1,32 +1,37 @@
 import Link from "next/link";
-import { Suspense, ViewTransition, type ReactNode } from "react";
-import SiteHeader from "~/components/site-header";
+import { Suspense, type ReactNode } from "react";
+import PageShell from "~/components/page-shell";
 import { ResultsFallback } from "~/components/ui/fallbacks";
 import PokemonSprite from "~/components/ui/pokemon-sprite";
 import { cn } from "~/lib/utils";
-import { getRankings } from "~/sdk/vote";
+import { getRankingsPage, type RankedPokemon } from "~/sdk/vote";
 
 const PAGE_SIZE = 50;
-const FIRST_PAGE_CHALLENGERS = PAGE_SIZE - 1;
-
-type RankedPokemon = Awaited<ReturnType<typeof getOrderedRankings>>[0];
-
-async function getOrderedRankings() {
-  const rankings = await getRankings();
-
-  return rankings
-    .sort((a, b) => b.stats.elo - a.stats.elo)
-    .map((pokemon, index) => ({
-      ...pokemon,
-      rank: index + 1,
-      score: Math.round(pokemon.stats.elo * 10),
-      winRate: Math.round(pokemon.stats.winRate * 100),
-      battles: pokemon.stats.wins + pokemon.stats.losses,
-    }));
-}
+const EAGER_CHALLENGERS = 6;
 
 const GRID =
   "grid grid-cols-[24px_44px_minmax(0,1fr)_auto] items-center gap-2 sm:grid-cols-[32px_44px_minmax(0,1fr)_72px_72px_88px] sm:gap-3";
+
+function Chevron({ className }: { className?: string }) {
+  return (
+    <svg
+      width="12"
+      height="12"
+      viewBox="0 0 12 12"
+      fill="none"
+      className={className}
+    >
+      <path
+        d="m3 4.5 3 3 3-3"
+        stroke="currentColor"
+        strokeWidth="1.5"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        vectorEffect="non-scaling-stroke"
+      />
+    </svg>
+  );
+}
 
 function VotingStatistics({
   pokemon,
@@ -100,21 +105,7 @@ function PokemonDetails({
             aria-hidden="true"
           >
             <span className="hidden group-open:inline">Collapse</span>
-            <svg
-              width="12"
-              height="12"
-              viewBox="0 0 12 12"
-              fill="none"
-              className="group-open:rotate-180"
-            >
-              <path
-                d="m3 4.5 3 3 3-3"
-                stroke="currentColor"
-                strokeWidth="1.5"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-              />
-            </svg>
+            <Chevron className="group-open:rotate-180" />
           </span>
         </summary>
         <div>
@@ -164,22 +155,7 @@ function ChampionBanner({ pokemon }: { pokemon: RankedPokemon }) {
             aria-hidden="true"
           >
             <span className="hidden sm:inline">Statistics</span>
-            <svg
-              className="champion-chevron"
-              width="12"
-              height="12"
-              viewBox="0 0 12 12"
-              fill="none"
-            >
-              <path
-                d="m3 4.5 3 3 3-3"
-                stroke="currentColor"
-                strokeWidth="1.5"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                vectorEffect="non-scaling-stroke"
-              />
-            </svg>
+            <Chevron className="champion-chevron" />
           </span>
           <div className="flex items-center gap-3 p-3 sm:gap-6 sm:px-6 sm:py-2">
             <div className="grid h-28 w-28 shrink-0 grid-cols-[minmax(0,1fr)] grid-rows-[minmax(0,1fr)] place-items-center overflow-clip sm:h-36 sm:w-36">
@@ -228,7 +204,13 @@ function StandingsHeader() {
   );
 }
 
-function StandingsRow({ pokemon }: { pokemon: RankedPokemon }) {
+function StandingsRow({
+  pokemon,
+  eager = false,
+}: {
+  pokemon: RankedPokemon;
+  eager?: boolean;
+}) {
   return (
     <PokemonDetails pokemon={pokemon}>
       <div className={cn(GRID, "px-1 py-2 sm:px-2")}>
@@ -238,8 +220,8 @@ function StandingsRow({ pokemon }: { pokemon: RankedPokemon }) {
         <PokemonSprite
           pokemon={pokemon}
           className="h-11 w-11"
-          lazy
-          priority="low"
+          lazy={!eager}
+          priority={eager ? undefined : "low"}
         />
         <h2 className="text-xs font-semibold break-words capitalize sm:text-sm">
           {pokemon.name}
@@ -314,37 +296,31 @@ async function ResultsContent({
     10,
   );
 
-  const rankings = await getOrderedRankings();
-  const champion = rankings[0];
-  const challengers = rankings.slice(1);
-  const totalPages = Math.max(
-    1,
-    Math.ceil((challengers.length - FIRST_PAGE_CHALLENGERS) / PAGE_SIZE) + 1,
+  const { page, totalPages, pageStart, items } = await getRankingsPage(
+    requested,
+    PAGE_SIZE,
   );
-  const page = Number.isFinite(requested)
-    ? Math.min(Math.max(requested, 1), totalPages)
-    : 1;
   const firstPage = page === 1;
-  const start = firstPage ? 0 : FIRST_PAGE_CHALLENGERS + (page - 2) * PAGE_SIZE;
-  const visible = challengers.slice(
-    start,
-    firstPage ? FIRST_PAGE_CHALLENGERS : start + PAGE_SIZE,
-  );
+  const champion = firstPage ? items[0] : undefined;
+  const visible = firstPage ? items.slice(1) : items;
 
   return (
     <div className="flex flex-col gap-4">
-      {firstPage && champion ? <ChampionBanner pokemon={champion} /> : null}
+      {champion ? <ChampionBanner pokemon={champion} /> : null}
       <Pager page={page} totalPages={totalPages} />
       <div>
         <StandingsHeader />
         {/* Keep content-visibility on open rows too. Flipping it on collapse leaves WebKit painting the stale expanded height. */}
         <ol
-          start={firstPage ? 2 : start + 2}
+          start={firstPage ? 2 : pageStart + 1}
           className="[&>li]:[contain-intrinsic-size:auto_61px] [&>li]:[content-visibility:auto]"
         >
-          {visible.map((pokemon) => (
+          {visible.map((pokemon, index) => (
             <li key={pokemon.dexNumber}>
-              <StandingsRow pokemon={pokemon} />
+              <StandingsRow
+                pokemon={pokemon}
+                eager={firstPage && index < EAGER_CHALLENGERS}
+              />
             </li>
           ))}
         </ol>
@@ -360,34 +336,16 @@ export default function ResultsPage({
   searchParams: Promise<Record<string, string | string[] | undefined>>;
 }) {
   return (
-    <ViewTransition
-      enter={{
-        "nav-forward": "nav-forward",
-        "nav-back": "nav-back",
-        "nav-page": "page-fade",
-        default: "none",
-      }}
-      exit={{
-        "nav-forward": "nav-forward",
-        "nav-back": "nav-back",
-        "nav-page": "page-fade",
-        default: "none",
-      }}
-      default="none"
+    <PageShell
+      page="rankings"
+      title="Cutest Pokémon"
+      titleClassName="text-[clamp(1.75rem,5cqi,2.5rem)] tracking-tight"
+      headingSpacingClassName="pt-7 pb-5"
+      pageFade
     >
-      <section className="px-4 py-5 sm:px-6 sm:py-8">
-        <div className="@container mx-auto max-w-[1040px]">
-          <SiteHeader page="rankings" />
-          <div className="pt-7 pb-5">
-            <h1 className="font-display text-[clamp(1.75rem,5cqi,2.5rem)] leading-tight font-extrabold tracking-tight">
-              Cutest Pokémon
-            </h1>
-          </div>
-          <Suspense fallback={<ResultsFallback />}>
-            <ResultsContent searchParams={searchParams} />
-          </Suspense>
-        </div>
-      </section>
-    </ViewTransition>
+      <Suspense fallback={<ResultsFallback />}>
+        <ResultsContent searchParams={searchParams} />
+      </Suspense>
+    </PageShell>
   );
 }
