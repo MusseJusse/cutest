@@ -11,8 +11,8 @@ import {
 import { cn } from "~/lib/utils";
 import type { Pokemon, PokemonPair } from "~/sdk/pokemon";
 import type { ContenderStats } from "~/sdk/vote";
-import { CONTENDER_PANEL_CLASS } from "./ui/fallbacks";
-import PokemonSprite, { spriteUrl } from "./ui/pokemon-sprite";
+import { CONTENDER_PANEL_CLASS, VS_BADGE_CLASS } from "./ui/fallbacks";
+import { SpriteTile, spriteUrl } from "./ui/pokemon-sprite";
 
 const COOKIE_MAX_AGE_SECONDS = 60 * 60 * 24 * 7;
 
@@ -47,8 +47,9 @@ function ContenderCorner({
   return (
     <button
       type="button"
-      onClick={() => {
-        if (!disabled) onVote();
+      onClick={(event) => {
+        if (disabled || event.detail > 1) return;
+        onVote();
       }}
       aria-disabled={disabled ? true : undefined}
       aria-label={`Pick ${pokemon.name}`}
@@ -59,44 +60,28 @@ function ContenderCorner({
         disabled ? "" : "cursor-pointer",
         isHome
           ? disabled
-            ? "rounded-l-[19.5px] bg-ring-peach"
-            : "rounded-l-[19.5px] bg-ring-peach hover:bg-ring-peach-hover"
+            ? "col-start-1 rounded-l-[19.5px] bg-ring-peach"
+            : "col-start-1 rounded-l-[19.5px] bg-ring-peach hover:bg-ring-peach-hover"
           : disabled
-            ? "rounded-r-[19.5px] bg-ring-sky"
-            : "rounded-r-[19.5px] bg-ring-sky hover:bg-ring-sky-hover",
+            ? "col-start-2 rounded-r-[19.5px] bg-ring-sky"
+            : "col-start-2 rounded-r-[19.5px] bg-ring-sky hover:bg-ring-sky-hover",
       )}
     >
       <span className="justify-self-center rounded-full border-[1.5px] border-ring-ink bg-ring-paper px-2.5 py-0.5 text-[11px] leading-4 font-bold text-ring-ink tabular-nums">
         {dexLabel}
       </span>
 
-      <span
+      <SpriteTile
+        pokemon={pokemon}
+        size="arena"
+        priority="high"
         className={cn(
-          "my-1 flex h-[100px] w-[100px] items-center justify-center justify-self-center rounded-[22px] border-2 border-ring-ink bg-ring-paper p-1.5 shadow-[0_4px_0_rgb(25_24_59/0.14)] motion-safe:transition-transform motion-safe:duration-150 min-[360px]:h-[120px] min-[360px]:w-[120px] min-[360px]:rounded-[26px] min-[360px]:p-2 sm:h-[220px] sm:w-[220px] sm:rounded-[36px] sm:p-3",
-          disabled
-            ? ""
-            : isHome
-              ? "motion-safe:group-hover:scale-[1.04] motion-safe:group-hover:-rotate-2"
-              : "motion-safe:group-hover:scale-[1.04] motion-safe:group-hover:rotate-2",
+          "justify-self-center motion-safe:transition-transform motion-safe:duration-150",
+          disabled ? "" : "motion-safe:group-hover:-translate-y-0.5",
         )}
-      >
-        <PokemonSprite
-          key={pokemon.dexNumber}
-          pokemon={pokemon}
-          decorative
-          className="h-full w-full object-contain drop-shadow-[0_2px_0_rgb(25_24_59/0.16)]"
-          priority="high"
-        />
-      </span>
+      />
 
-      <span
-        className={cn(
-          "block min-w-0 font-display leading-tight font-bold tracking-tight break-words hyphens-auto text-ring-ink capitalize",
-          pokemon.name.length >= 10
-            ? "text-[clamp(1rem,3cqi,1.875rem)]"
-            : "text-[clamp(1.25rem,4cqi,2rem)]",
-        )}
-      >
+      <span className="block min-w-0 font-display text-[clamp(1.125rem,3.4cqi,1.875rem)] leading-tight font-bold tracking-tight break-words hyphens-auto text-ring-ink capitalize">
         {pokemon.name}
       </span>
 
@@ -130,7 +115,7 @@ function ContenderCorner({
       <span
         aria-hidden="true"
         className={cn(
-          "mt-1 inline-flex min-h-11 w-full max-w-[230px] items-center justify-center justify-self-center rounded-full border-2 border-ring-ink px-3 py-2 font-display text-xs leading-tight font-bold text-white shadow-[0_3px_0_var(--color-ring-ink)] motion-safe:transition-transform motion-safe:duration-100 sm:px-5 sm:text-sm",
+          "mt-1 inline-flex min-h-11 w-full max-w-[220px] items-center justify-center self-stretch justify-self-center rounded-full border-2 border-ring-ink px-3 py-2 font-display text-xs leading-tight font-bold text-white shadow-[0_3px_0_var(--color-ring-ink)] motion-safe:transition-transform motion-safe:duration-100 sm:px-5 sm:text-sm",
           disabled
             ? ""
             : "motion-safe:group-active:translate-y-0.5 motion-safe:group-active:shadow-[0_1px_0_var(--color-ring-ink)]",
@@ -201,14 +186,8 @@ export default function BattleArena({
       </p>
       <section
         aria-label="Choose the cutest Pokémon"
-        className="relative grid grid-cols-2 gap-[2.5px] overflow-hidden rounded-[22px] border-[2.5px] border-ring-ink bg-ring-ink shadow-[0_4px_0_var(--color-ring-ink)]"
+        className="relative grid grid-cols-2 grid-rows-[auto_auto_auto_auto_auto] gap-x-[2.5px] overflow-hidden rounded-[22px] border-[2.5px] border-ring-ink bg-ring-ink shadow-[0_4px_0_var(--color-ring-ink)]"
       >
-        <span
-          aria-hidden="true"
-          className="pointer-events-none absolute top-[107px] left-1/2 z-10 grid h-9 w-9 -translate-x-1/2 -translate-y-1/2 -rotate-6 place-items-center rounded-full border-[2.5px] border-ring-ink bg-ring-gold font-display text-[11px] font-bold tracking-tight text-ring-ink shadow-[0_3px_0_var(--color-ring-ink)] min-[360px]:top-[117px] min-[360px]:h-10 min-[360px]:w-10 min-[360px]:text-xs sm:top-[177px] sm:h-12 sm:w-12 sm:text-sm"
-        >
-          VS
-        </span>
         <ContenderCorner
           side="home"
           pokemon={home}
@@ -223,6 +202,9 @@ export default function BattleArena({
           disabled={votingDisabled}
           onVote={() => queue.vote(1)}
         />
+        <span aria-hidden="true" className={VS_BADGE_CLASS}>
+          VS
+        </span>
       </section>
       {waitingForNext ? (
         <p

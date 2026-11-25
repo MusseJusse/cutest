@@ -151,13 +151,11 @@ details > :not(summary) {
 }
 
 @media (prefers-reduced-motion: reduce) {
-  details::details-content {
+  details::details-content,
+  .podium-details::details-content {
     transition:
       opacity 120ms ease,
       visibility 120ms linear;
-  }
-  .podium-details::details-content {
-    transition: none;
   }
   ::view-transition-old(*),
   ::view-transition-new(*),

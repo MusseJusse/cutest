@@ -36,8 +36,8 @@ export default function PageShell({
 
   return (
     <ViewTransition enter={transition} exit={transition} default="none">
-      <section className="px-4 py-5 sm:px-6 sm:py-8">
-        <div className="@container mx-auto max-w-[960px]">
+      <section className="px-4 py-4 sm:px-6 sm:py-7">
+        <div className="@container mx-auto max-w-[840px]">
           <SiteHeader page={page} />
           <div className={cn("text-center", headingSpacingClassName)}>
             <h1

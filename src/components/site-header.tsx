@@ -17,13 +17,13 @@ export default function SiteHeader({ page }: { page: "vote" | "rankings" }) {
       <Link
         href="/"
         transitionTypes={["nav-back"]}
-        className="inline-flex min-h-11 items-center rounded-full border-2 border-ring-ink bg-ring-coral px-4 font-display text-[22px] leading-none font-bold tracking-[-0.03em] text-white shadow-[0_3px_0_var(--color-ring-ink)] motion-safe:transition-transform motion-safe:duration-100 motion-safe:active:translate-y-0.5 motion-safe:active:shadow-[0_1px_0_var(--color-ring-ink)]"
+        className="inline-flex min-h-12 items-center rounded-full border-2 border-ring-ink bg-ring-coral px-4 font-display text-[22px] leading-none font-bold tracking-[-0.03em] text-white shadow-[0_3px_0_var(--color-ring-ink)] motion-safe:transition-transform motion-safe:duration-100 motion-safe:active:translate-y-0.5 motion-safe:active:shadow-[0_1px_0_var(--color-ring-ink)]"
       >
         cutest.
       </Link>
       <nav
         aria-label="Main navigation"
-        className="inline-flex items-center gap-1 rounded-full border-2 border-ring-ink bg-ring-paper p-1 shadow-[0_2px_0_var(--color-ring-ink)]"
+        className="inline-flex items-center gap-1 rounded-full border-2 border-ring-ink bg-ring-paper p-0.5 shadow-[0_3px_0_var(--color-ring-ink)]"
       >
         {NAV_ITEMS.map((item) => (
           <Link
