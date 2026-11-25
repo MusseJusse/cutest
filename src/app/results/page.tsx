@@ -2,15 +2,15 @@ import Link from "next/link";
 import { Suspense, type ReactNode } from "react";
 import PageShell from "~/components/page-shell";
 import { ResultsFallback } from "~/components/ui/fallbacks";
-import PokemonSprite from "~/components/ui/pokemon-sprite";
+import { SpriteTile } from "~/components/ui/pokemon-sprite";
 import { cn } from "~/lib/utils";
 import { getRankingsPage, type RankedPokemon } from "~/sdk/vote";
 
 const PAGE_SIZE = 50;
 const EAGER_CHALLENGERS = 6;
 
-const GRID =
-  "grid grid-cols-[24px_44px_minmax(0,1fr)_auto] items-center gap-2 sm:grid-cols-[32px_44px_minmax(0,1fr)_72px_72px_88px] sm:gap-3";
+const ROW_GRID =
+  "grid grid-cols-[minmax(40px,auto)_40px_minmax(0,1fr)_auto] items-center gap-2.5 sm:grid-cols-[minmax(50px,auto)_48px_minmax(0,1fr)_auto_minmax(86px,auto)] sm:gap-3";
 
 function Chevron({ className }: { className?: string }) {
   return (
@@ -24,7 +24,7 @@ function Chevron({ className }: { className?: string }) {
       <path
         d="m3 4.5 3 3 3-3"
         stroke="currentColor"
-        strokeWidth="1.5"
+        strokeWidth="1.75"
         strokeLinecap="round"
         strokeLinejoin="round"
         vectorEffect="non-scaling-stroke"
@@ -33,15 +33,44 @@ function Chevron({ className }: { className?: string }) {
   );
 }
 
+function PointsValue({
+  score,
+  className,
+}: {
+  score: number;
+  className?: string;
+}) {
+  return (
+    <span
+      className={cn(
+        "font-display font-bold text-ring-ink tabular-nums",
+        className,
+      )}
+    >
+      {score.toLocaleString("en-US")}{" "}
+      <span
+        aria-hidden="true"
+        className="font-sans text-[11px] font-semibold text-ring-muted"
+      >
+        pts
+      </span>
+      <span className="sr-only"> points</span>
+    </span>
+  );
+}
+
 function VotingStatistics({
   pokemon,
-  champion = false,
+  compact = false,
 }: {
   pokemon: RankedPokemon;
-  champion?: boolean;
+  compact?: boolean;
 }) {
   const statistics = [
-    { label: "Win rate", value: `${pokemon.winRate}%` },
+    {
+      label: "Win rate",
+      value: pokemon.battles > 0 ? `${pokemon.winRate}%` : "No votes",
+    },
     { label: "Votes", value: pokemon.battles.toLocaleString("en-US") },
     { label: "Wins", value: pokemon.stats.wins.toLocaleString("en-US") },
     { label: "Losses", value: pokemon.stats.losses.toLocaleString("en-US") },
@@ -50,32 +79,45 @@ function VotingStatistics({
   return (
     <div
       className={cn(
-        "border-t border-studio-line pt-4",
-        !champion && "sm:border-0 sm:pt-0",
+        "border-t border-ring-line pt-3",
+        !compact && "md:border-0 md:pt-0",
       )}
     >
-      <h3 className="mt-0 mb-3 text-xs font-medium text-studio-muted">
-        Voting statistics
-      </h3>
+      {compact ? (
+        <p className="mt-0 mb-2.5 text-xs font-bold text-ring-muted">
+          Voting statistics
+        </p>
+      ) : (
+        <h3 className="mt-0 mb-2.5 text-xs font-bold text-ring-muted">
+          Voting statistics
+        </h3>
+      )}
       <dl
         className={cn(
-          "m-0 grid grid-cols-2 gap-x-4 gap-y-3",
-          champion && "sm:grid-cols-4",
+          "m-0 grid gap-x-3 gap-y-2.5",
+          compact ? "grid-cols-2" : "grid-cols-2 md:grid-cols-4",
         )}
       >
         {statistics.map(({ label, value }) => (
-          <div key={label}>
-            <dt className="text-xs text-studio-muted">{label}</dt>
-            <dd className="m-0 text-2xl font-semibold tabular-nums">{value}</dd>
+          <div key={label} className="min-w-0">
+            <dt className="text-[11px] font-medium text-ring-muted">{label}</dt>
+            <dd
+              className={cn(
+                "m-0 font-display font-bold text-ring-ink tabular-nums",
+                compact ? "text-sm sm:text-base" : "text-lg md:text-xl",
+              )}
+            >
+              {value}
+            </dd>
           </div>
         ))}
       </dl>
       <div
         aria-hidden="true"
-        className="mt-4 h-1.5 overflow-hidden bg-studio-line"
+        className="mt-3 h-2 overflow-hidden rounded-full bg-ring-line"
       >
         <div
-          className="h-full bg-studio-accent"
+          className="h-full rounded-full bg-ring-mint"
           style={{ width: `${pokemon.stats.winRate * 100}%` }}
         />
       </div>
@@ -83,7 +125,6 @@ function VotingStatistics({
   );
 }
 
-// The expanded summary hit area lets the whole standings row toggle natively.
 function PokemonDetails({
   pokemon,
   children,
@@ -91,45 +132,38 @@ function PokemonDetails({
   pokemon: RankedPokemon;
   children: ReactNode;
 }) {
+  const dexLabel = `#${pokemon.dexNumber.toString().padStart(4, "0")}`;
+
   return (
     <article>
       <details
         name="pokemon-details"
-        className="group relative border-b border-studio-line open:rounded-xl open:border-studio-accent/40 open:bg-studio-lavender/50"
+        className="group relative overflow-hidden rounded-2xl border-2 border-ring-ink bg-ring-paper shadow-[0_2px_0_rgb(25_24_59/0.12)] open:bg-ring-cream"
       >
-        <summary className="relative cursor-pointer list-none rounded-[inherit] pr-7 group-open:static group-open:min-h-11 group-open:after:absolute group-open:after:inset-0 group-open:after:z-10 group-open:after:content-[''] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-studio-accent [&::-webkit-details-marker]:hidden [details:not([open])_&]:hover:bg-studio-lavender/40">
-          <span className="sr-only">{pokemon.name} details</span>
-          <div className="group-open:hidden">{children}</div>
+        <summary className="relative cursor-pointer list-none rounded-[14px] pr-8 group-open:flex group-open:min-h-11 group-open:items-center group-open:justify-between group-open:rounded-b-none group-open:border-b group-open:border-ring-line group-open:px-4 group-open:py-2 group-open:hover:bg-ring-butter/50 focus-visible:-outline-offset-4 sm:group-open:px-6 [&::-webkit-details-marker]:hidden [details:not([open])_&]:hover:bg-ring-cream">
+          <span className="hidden text-xs font-bold text-ring-muted tabular-nums group-open:inline">
+            {dexLabel} Rank {pokemon.rank}
+            <span className="sr-only">, collapse {pokemon.name} details</span>
+          </span>
+          <span className="block group-open:hidden">{children}</span>
           <span
-            className="absolute top-0 right-3 flex h-full items-center gap-1 text-xs text-studio-muted group-open:h-11"
+            className="absolute top-0 right-3 flex h-full items-center gap-1 text-xs font-bold text-ring-muted group-open:static group-open:h-auto"
             aria-hidden="true"
           >
             <span className="hidden group-open:inline">Collapse</span>
-            <Chevron className="group-open:rotate-180" />
+            <Chevron className="group-open:rotate-180 motion-safe:transition-transform motion-safe:duration-150" />
           </span>
         </summary>
         <div>
-          <div className="grid gap-5 px-4 pb-5 sm:grid-cols-[minmax(0,1.15fr)_minmax(0,1fr)] sm:items-center sm:gap-6 sm:px-6 sm:pb-6">
-            <div className="flex min-w-0 items-center gap-2 sm:gap-4">
-              <PokemonSprite
-                pokemon={pokemon}
-                className="h-28 w-28 shrink-0 sm:h-40 sm:w-40"
-                lazy
-                priority="low"
-              />
+          <div className="grid gap-4 px-4 py-4 sm:px-6 sm:py-5 md:grid-cols-[minmax(0,1fr)_minmax(0,1.25fr)] md:items-center md:gap-6">
+            <div className="flex min-w-0 items-center gap-3.5 sm:gap-4">
+              <SpriteTile pokemon={pokemon} size="detail" lazy priority="low" />
               <div className="min-w-0">
-                <p className="m-0 text-[11px] text-studio-muted">
-                  #{pokemon.dexNumber.toString().padStart(4, "0")} · Rank{" "}
-                  {pokemon.rank.toString().padStart(2, "0")}
-                </p>
-                <h2 className="my-2 font-display text-3xl leading-tight font-extrabold tracking-tight break-words text-studio-ink capitalize sm:text-4xl">
+                <h2 className="mt-0 mb-1 font-display text-[clamp(1.375rem,3.5cqi,1.875rem)] leading-tight font-bold tracking-tight break-words hyphens-auto text-ring-ink capitalize">
                   {pokemon.name}
                 </h2>
-                <p className="m-0 text-2xl font-semibold text-studio-ink tabular-nums">
-                  {pokemon.score.toLocaleString("en-US")}{" "}
-                  <span className="text-xs font-normal text-studio-muted">
-                    points
-                  </span>
+                <p className="m-0">
+                  <PointsValue score={pokemon.score} className="text-xl" />
                 </p>
               </div>
             </div>
@@ -141,47 +175,87 @@ function PokemonDetails({
   );
 }
 
-function ChampionBanner({ pokemon }: { pokemon: RankedPokemon }) {
+function PodiumCard({
+  pokemon,
+  place,
+}: {
+  pokemon: RankedPokemon;
+  place: 1 | 2 | 3;
+}) {
+  const isFirst = place === 1;
+  const surface =
+    place === 1
+      ? "bg-ring-peach"
+      : place === 2
+        ? "bg-ring-sky"
+        : "bg-ring-mint-soft";
+
   return (
-    <article>
+    <article
+      className={cn(
+        "min-w-0",
+        isFirst
+          ? "col-span-2 sm:col-span-1"
+          : place === 2
+            ? "sm:order-first sm:mt-6"
+            : "sm:mt-6",
+      )}
+    >
       <details
         name="pokemon-details"
-        className="champion-details rounded-2xl bg-studio-lavender/70"
+        className={cn(
+          "podium-details group overflow-hidden rounded-2xl border-2 border-ring-ink shadow-[0_3px_0_var(--color-ring-ink)]",
+          surface,
+        )}
       >
-        <summary className="relative cursor-pointer list-none rounded-2xl pr-7 hover:bg-studio-lavender/40 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-studio-accent [&::-webkit-details-marker]:hidden">
-          <span className="sr-only">{pokemon.name} voting statistics</span>
+        <summary
+          className={cn(
+            "relative flex cursor-pointer list-none flex-col items-center rounded-[14px] text-center group-open:rounded-b-none focus-visible:-outline-offset-4 [&::-webkit-details-marker]:hidden",
+            isFirst
+              ? "px-3 pt-4 pb-3.5 sm:px-4 sm:pt-5 sm:pb-4"
+              : "px-2.5 py-3 sm:px-4 sm:py-4",
+          )}
+        >
           <span
-            className="absolute top-3 right-3 flex items-center gap-1 text-xs text-studio-muted sm:top-4 sm:right-6"
-            aria-hidden="true"
+            className={cn(
+              "inline-flex items-center rounded-full px-2.5 py-0.5 font-display text-xs font-bold tabular-nums",
+              isFirst
+                ? "bg-ring-coral text-white"
+                : "bg-ring-ink text-ring-butter",
+            )}
           >
-            <span className="hidden sm:inline">Statistics</span>
-            <Chevron className="champion-chevron" />
+            <span className="sr-only">Rank </span>#{pokemon.rank}
           </span>
-          <div className="flex items-center gap-3 p-3 sm:gap-6 sm:px-6 sm:py-2">
-            <div className="grid h-28 w-28 shrink-0 grid-cols-[minmax(0,1fr)] grid-rows-[minmax(0,1fr)] place-items-center overflow-clip sm:h-36 sm:w-36">
-              <PokemonSprite
-                pokemon={pokemon}
-                className="h-44 w-44 max-w-none sm:h-52 sm:w-52"
-                priority="high"
-              />
-            </div>
-            <div className="min-w-0">
-              <p className="text-[11px] text-studio-muted">
-                #{pokemon.dexNumber.toString().padStart(4, "0")} · Rank 01
-              </p>
-              <h2 className="my-1 font-display text-3xl leading-tight font-extrabold tracking-tight break-words capitalize sm:text-4xl">
-                {pokemon.name}
-              </h2>
-              <p className="text-lg tabular-nums">
-                {pokemon.score.toLocaleString("en-US")}{" "}
-                <span className="text-xs text-studio-muted">points</span>
-              </p>
-            </div>
-          </div>
+          <SpriteTile
+            pokemon={pokemon}
+            size={isFirst ? "podiumFirst" : "podium"}
+            priority="high"
+          />
+          <span
+            className={cn(
+              "block max-w-full font-display leading-tight font-bold tracking-tight break-words hyphens-auto text-ring-ink capitalize",
+              isFirst ? "text-xl sm:text-2xl" : "text-base sm:text-xl",
+            )}
+          >
+            {pokemon.name}
+          </span>
+          <PointsValue
+            score={pokemon.score}
+            className="mt-0.5 block text-sm sm:text-base"
+          />
+          <span className="block text-[11px] font-semibold text-ring-muted tabular-nums">
+            {pokemon.battles > 0 ? `${pokemon.winRate}% win` : "No votes yet"}
+          </span>
+          <span
+            aria-hidden="true"
+            className="mt-1 inline-flex items-center gap-0.5 text-[11px] font-semibold text-ring-muted"
+          >
+            <Chevron className="group-open:rotate-180 motion-safe:transition-transform motion-safe:duration-150" />
+          </span>
         </summary>
         <div>
-          <div className="px-4 pb-5 sm:px-6 sm:pb-6">
-            <VotingStatistics pokemon={pokemon} champion />
+          <div className="bg-ring-paper/85 px-3 pb-3.5 sm:px-4 sm:pb-4">
+            <VotingStatistics pokemon={pokemon} compact />
           </div>
         </div>
       </details>
@@ -189,18 +263,19 @@ function ChampionBanner({ pokemon }: { pokemon: RankedPokemon }) {
   );
 }
 
-function StandingsHeader() {
-  const cell = "text-[10px] text-studio-muted";
+function TopPodium({ items }: { items: readonly RankedPokemon[] }) {
+  const [first, second, third] = items;
+  if (!first || !second || !third) return null;
 
   return (
-    <div aria-hidden="true" className={cn(GRID, "pr-7 pb-2 pl-1 sm:pl-2")}>
-      <span className={cell}>Rank</span>
-      <span />
-      <span className={cell}>Pokémon</span>
-      <span className={cn(cell, "hidden text-right sm:block")}>Win rate</span>
-      <span className={cn(cell, "hidden text-right sm:block")}>Votes</span>
-      <span className={cn(cell, "text-right")}>Points</span>
-    </div>
+    <section
+      aria-label="Top 3 cutest Pokémon"
+      className="grid grid-cols-2 items-start gap-2.5 sm:grid-cols-3 sm:gap-4"
+    >
+      <PodiumCard pokemon={first} place={1} />
+      <PodiumCard pokemon={second} place={2} />
+      <PodiumCard pokemon={third} place={3} />
+    </section>
   );
 }
 
@@ -213,41 +288,44 @@ function StandingsRow({
 }) {
   return (
     <PokemonDetails pokemon={pokemon}>
-      <div className={cn(GRID, "px-1 py-2 sm:px-2")}>
-        <p className="text-[11px] text-studio-muted tabular-nums">
-          {pokemon.rank.toString().padStart(2, "0")}
-        </p>
-        <PokemonSprite
+      <span className={cn(ROW_GRID, "py-2.5 pr-1 pl-3 sm:pr-2 sm:pl-4")}>
+        <span className="font-display text-xs font-bold text-ring-muted tabular-nums sm:text-sm">
+          <span className="sr-only">Rank </span>#{pokemon.rank}
+        </span>
+        <SpriteTile
           pokemon={pokemon}
-          className="h-11 w-11"
+          size="row"
           lazy={!eager}
           priority={eager ? undefined : "low"}
         />
-        <h2 className="text-xs font-semibold break-words capitalize sm:text-sm">
+        <span className="font-display text-sm font-bold break-words hyphens-auto text-ring-ink capitalize sm:text-base">
           {pokemon.name}
-        </h2>
-        <p className="hidden text-right text-xs text-studio-muted tabular-nums sm:block">
-          {pokemon.winRate}%<span className="sr-only"> win rate</span>
-        </p>
-        <p className="hidden text-right text-xs text-studio-muted tabular-nums sm:block">
-          {pokemon.battles.toLocaleString("en-US")}
-          <span className="sr-only"> votes</span>
-        </p>
-        <p className="text-right text-xs font-semibold tabular-nums sm:text-sm">
-          {pokemon.score.toLocaleString("en-US")}
-          <span className="sr-only"> points</span>
-        </p>
-      </div>
+        </span>
+        <span
+          className={cn(
+            "hidden rounded-full px-2.5 py-0.5 text-xs font-bold tabular-nums sm:inline-block",
+            pokemon.battles > 0
+              ? "bg-ring-mint-soft text-ring-mint-ink"
+              : "bg-ring-butter text-ring-muted",
+          )}
+        >
+          {pokemon.battles > 0 ? `${pokemon.winRate}% win` : "No votes yet"}
+        </span>
+        <PointsValue
+          score={pokemon.score}
+          className="text-right text-xs sm:text-sm"
+        />
+      </span>
     </PokemonDetails>
   );
 }
 
 function Pager({ page, totalPages }: { page: number; totalPages: number }) {
-  const item =
-    "inline-flex min-h-11 items-center py-2 text-xs text-studio-muted";
+  const base =
+    "inline-flex min-h-11 items-center rounded-full border-2 border-ring-ink bg-ring-paper px-4 text-xs font-bold text-ring-ink";
   const enabled =
-    "hover:text-studio-ink hover:underline hover:underline-offset-4";
-  const disabled = "opacity-50";
+    "shadow-[0_2px_0_var(--color-ring-ink)] hover:bg-ring-cream motion-safe:transition-transform motion-safe:duration-100 motion-safe:active:translate-y-0.5 motion-safe:active:shadow-none";
+  const disabled = "opacity-45";
 
   return (
     <nav
@@ -257,29 +335,29 @@ function Pager({ page, totalPages }: { page: number; totalPages: number }) {
       {page > 1 ? (
         <Link
           href={page === 2 ? "/results" : `/results?page=${page - 1}`}
-          className={cn(item, enabled)}
+          className={cn(base, enabled)}
           rel="prev"
           transitionTypes={["nav-page"]}
         >
-          ← Previous
+          Previous
         </Link>
       ) : (
-        <span className={cn(item, disabled)}>← Previous</span>
+        <span className={cn(base, disabled)}>Previous</span>
       )}
-      <p className="m-0 text-[11px] text-studio-muted tabular-nums">
+      <p className="m-0 text-xs font-bold text-ring-muted tabular-nums">
         Page {page} of {totalPages}
       </p>
       {page < totalPages ? (
         <Link
           href={`/results?page=${page + 1}`}
-          className={cn(item, enabled)}
+          className={cn(base, enabled)}
           rel="next"
           transitionTypes={["nav-page"]}
         >
-          Next →
+          Next
         </Link>
       ) : (
-        <span className={cn(item, disabled)}>Next →</span>
+        <span className={cn(base, disabled)}>Next</span>
       )}
     </nav>
   );
@@ -300,31 +378,25 @@ async function ResultsContent({
     requested,
     PAGE_SIZE,
   );
-  const firstPage = page === 1;
-  const champion = firstPage ? items[0] : undefined;
-  const visible = firstPage ? items.slice(1) : items;
+  const showPodium = page === 1 && items.length >= 3;
+  const podium = showPodium ? items.slice(0, 3) : [];
+  const visible = showPodium ? items.slice(3) : items;
 
   return (
-    <div className="flex flex-col gap-4">
-      {champion ? <ChampionBanner pokemon={champion} /> : null}
+    <div className="flex flex-col gap-5">
+      {showPodium ? <TopPodium items={podium} /> : null}
       <Pager page={page} totalPages={totalPages} />
-      <div>
-        <StandingsHeader />
-        {/* Keep content-visibility on open rows too. Flipping it on collapse leaves WebKit painting the stale expanded height. */}
-        <ol
-          start={firstPage ? 2 : pageStart + 1}
-          className="[&>li]:[contain-intrinsic-size:auto_61px] [&>li]:[content-visibility:auto]"
-        >
-          {visible.map((pokemon, index) => (
-            <li key={pokemon.dexNumber}>
-              <StandingsRow
-                pokemon={pokemon}
-                eager={index < EAGER_CHALLENGERS}
-              />
-            </li>
-          ))}
-        </ol>
-      </div>
+      {/* Keep content-visibility on open rows too. Flipping it on collapse leaves WebKit painting the stale expanded height. */}
+      <ol
+        start={showPodium ? 4 : pageStart + 1}
+        className="flex flex-col gap-1.5 [&>li]:pb-0.5 [&>li]:[contain-intrinsic-size:auto_64px] [&>li]:[content-visibility:auto] sm:[&>li]:[contain-intrinsic-size:auto_72px]"
+      >
+        {visible.map((pokemon, index) => (
+          <li key={pokemon.dexNumber}>
+            <StandingsRow pokemon={pokemon} eager={index < EAGER_CHALLENGERS} />
+          </li>
+        ))}
+      </ol>
       <Pager page={page} totalPages={totalPages} />
     </div>
   );
@@ -339,8 +411,8 @@ export default function ResultsPage({
     <PageShell
       page="rankings"
       title="Cutest Pokémon"
-      titleClassName="text-[clamp(1.75rem,5cqi,2.5rem)] tracking-tight"
-      headingSpacingClassName="pt-7 pb-5"
+      titleClassName="text-[clamp(1.85rem,5cqi,2.5rem)] tracking-[-0.03em]"
+      headingSpacingClassName="pt-5 pb-4 sm:pt-6 sm:pb-5"
       pageFade
     >
       <Suspense fallback={<ResultsFallback />}>

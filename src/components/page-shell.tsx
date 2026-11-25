@@ -36,13 +36,13 @@ export default function PageShell({
 
   return (
     <ViewTransition enter={transition} exit={transition} default="none">
-      <section className="px-4 py-5 sm:px-6 sm:py-8">
-        <div className="@container mx-auto max-w-[1040px]">
+      <section className="px-4 py-4 sm:px-6 sm:py-7">
+        <div className="@container mx-auto max-w-[840px]">
           <SiteHeader page={page} />
-          <div className={headingSpacingClassName}>
+          <div className={cn("text-center", headingSpacingClassName)}>
             <h1
               className={cn(
-                "font-display leading-tight font-extrabold",
+                "font-display leading-tight font-bold text-ring-ink",
                 titleClassName,
               )}
             >

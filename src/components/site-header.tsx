@@ -12,19 +12,19 @@ const NAV_ITEMS = [
 ] as const;
 
 export default function SiteHeader({ page }: { page: "vote" | "rankings" }) {
-  const link =
-    "inline-flex min-h-11 items-center border-b-2 px-0.5 text-xs hover:text-studio-ink";
-
   return (
-    <header className="site-header flex items-center justify-between gap-3 border-b border-studio-line pb-2.5">
+    <header className="site-header flex items-center justify-between gap-3 pb-1">
       <Link
         href="/"
         transitionTypes={["nav-back"]}
-        className="inline-flex min-h-11 items-center font-display text-[27px] font-extrabold tracking-[-0.05em] text-studio-accent"
+        className="inline-flex min-h-12 items-center rounded-full border-2 border-ring-ink bg-ring-coral px-4 font-display text-[22px] leading-none font-bold tracking-[-0.03em] text-white shadow-[0_3px_0_var(--color-ring-ink)] motion-safe:transition-transform motion-safe:duration-100 motion-safe:active:translate-y-0.5 motion-safe:active:shadow-[0_1px_0_var(--color-ring-ink)]"
       >
         cutest.
       </Link>
-      <nav aria-label="Main navigation" className="flex gap-4">
+      <nav
+        aria-label="Main navigation"
+        className="inline-flex items-center gap-1 rounded-full border-2 border-ring-ink bg-ring-paper p-0.5 shadow-[0_3px_0_var(--color-ring-ink)]"
+      >
         {NAV_ITEMS.map((item) => (
           <Link
             key={item.page}
@@ -32,10 +32,10 @@ export default function SiteHeader({ page }: { page: "vote" | "rankings" }) {
             transitionTypes={[item.transition]}
             aria-current={page === item.page ? "page" : undefined}
             className={cn(
-              link,
+              "inline-flex min-h-10 items-center rounded-full px-3.5 text-xs font-bold sm:px-4 sm:text-sm",
               page === item.page
-                ? "border-studio-ink text-studio-ink"
-                : "border-transparent text-studio-muted",
+                ? "bg-ring-ink text-ring-butter"
+                : "text-ring-muted hover:text-ring-ink",
             )}
           >
             {item.label}
