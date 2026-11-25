@@ -11,10 +11,23 @@ import {
 } from "./pokemon";
 
 const LIVE_SNAPSHOT_CACHE = { stale: 0, revalidate: 15, expire: 16 } as const;
+const VOTE_ID_TTL_SECONDS = 60 * 60 * 24;
 
 // Preserve the historical "cite-pokemon" prefix used by production loss counters.
 const winKey = (dexNumber: number) => `cute-pokemon:${dexNumber}:wins`;
 const lossKey = (dexNumber: number) => `cite-pokemon:${dexNumber}:losses`;
+const voteSeenKey = (voteId: string) => `cute-votes:seen:${voteId}`;
+
+// Atomic + idempotent write so Upstash SDK retries and client Retry clicks never double-count.
+const RECORD_BATTLE_SCRIPT = `
+if redis.call('SET', KEYS[1], '1', 'EX', ARGV[1], 'NX') then
+  redis.call('LPUSH', KEYS[2], ARGV[2])
+  redis.call('INCR', KEYS[3])
+  redis.call('INCR', KEYS[4])
+  return 1
+end
+return 0
+`;
 
 const WIN_KEYS = POKEMON_CATALOGUE.map((pokemon) => winKey(pokemon.dexNumber));
 const LOSS_KEYS = POKEMON_CATALOGUE.map((pokemon) =>
@@ -93,19 +106,22 @@ function computeStats(
   };
 }
 
-export async function recordBattle(winner: number, loser: number) {
+export async function recordBattle(
+  winner: number,
+  loser: number,
+  voteId: string,
+) {
   const battle = {
     winner,
     loser,
     timestamp: Date.now(),
   };
 
-  await getRedis()
-    .multi()
-    .lpush("cute-battles:all", JSON.stringify(battle))
-    .incr(winKey(winner))
-    .incr(lossKey(loser))
-    .exec();
+  await getRedis().eval<string[], number>(
+    RECORD_BATTLE_SCRIPT,
+    [voteSeenKey(voteId), "cute-battles:all", winKey(winner), lossKey(loser)],
+    [String(VOTE_ID_TTL_SECONDS), JSON.stringify(battle)],
+  );
 }
 
 async function getAllBattleCounts() {
@@ -115,8 +131,8 @@ async function getAllBattleCounts() {
   cacheLife(LIVE_SNAPSHOT_CACHE);
 
   return Promise.all([
-    getRedis().mget<number[]>(...WIN_KEYS),
-    getRedis().mget<number[]>(...LOSS_KEYS),
+    getRedis().mget<(number | null)[]>(...WIN_KEYS),
+    getRedis().mget<(number | null)[]>(...LOSS_KEYS),
   ]);
 }
 

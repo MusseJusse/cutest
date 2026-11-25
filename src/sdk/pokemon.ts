@@ -33,6 +33,12 @@ const pokemonSchema = z.object({
 });
 
 const pokemonPairSchema = z.tuple([pokemonSchema, pokemonSchema]);
+const voteIdSchema = z.uuid();
+
+export function parseVoteId(value: unknown): string | undefined {
+  const parsed = voteIdSchema.safeParse(value);
+  return parsed.success ? parsed.data : undefined;
+}
 
 /**
  * Validate untrusted input against the bundled catalogue. Server action

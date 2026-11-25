@@ -319,7 +319,7 @@ async function ResultsContent({
             <li key={pokemon.dexNumber}>
               <StandingsRow
                 pokemon={pokemon}
-                eager={firstPage && index < EAGER_CHALLENGERS}
+                eager={index < EAGER_CHALLENGERS}
               />
             </li>
           ))}

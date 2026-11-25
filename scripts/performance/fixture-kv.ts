@@ -74,7 +74,7 @@ async function handleRequest(
       if (!mutationsAllowed) {
         throw new Error("Only MGET and LRANGE are allowed in this fixture");
       }
-      if (verb === "lpush" || verb === "incr") {
+      if (verb === "lpush" || verb === "incr" || verb === "eval") {
         count.commands++;
         return { result: 1 };
       }

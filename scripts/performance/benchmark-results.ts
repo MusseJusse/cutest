@@ -22,10 +22,13 @@ async function measure(url: string) {
   const articles = [...html.matchAll(/<article\b[^>]*>[\s\S]*?<\/article>/g)]
     .map((match) => match[0])
     .filter((article) => article.includes("<img"));
-  assert.equal(articles.length, 50, "Page 1 must render 50 ranked Pokémon");
+  assert.ok(
+    articles.length === 50 || articles.length === 1025,
+    "Page 1 must render 50 ranked Pokémon (or all 1025 on the unpaginated baseline)",
+  );
   // React can stream stat blocks through placeholders at different chunk boundaries.
-  // Compare the ordered identities, not the transient raw HTML placeholders.
-  const identities = articles.map((article) => ({
+  // Compare the first 50 ordered identities so paginated builds match unpaginated baselines.
+  const identities = articles.slice(0, 50).map((article) => ({
     name: /<h2[^>]*>(.*?)<\/h2>/.exec(article)?.[1],
     sprite: /<img[^>]*src="([^"]+)"/.exec(article)?.[1],
   }));

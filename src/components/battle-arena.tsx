@@ -1,6 +1,6 @@
 "use client";
 
-import { useRef, useState } from "react";
+import { useState } from "react";
 import { preload } from "react-dom";
 import { getMorePairsAction, voteAction } from "~/lib/action";
 import {
@@ -16,21 +16,31 @@ import PokemonSprite, { spriteUrl } from "./ui/pokemon-sprite";
 
 const COOKIE_MAX_AGE_SECONDS = 60 * 60 * 24 * 7;
 
-function persistCurrentPairCookie(pair: PokemonPair) {
+// Use a distinct name from the legacy HttpOnly "currentPair" cookie so browsers do not ignore writes.
+function persistPairCookie(pair: PokemonPair) {
   if (typeof document === "undefined") return;
   const secure =
     typeof location !== "undefined" && location.protocol === "https:"
       ? "; Secure"
       : "";
-  document.cookie = `currentPair=${encodeURIComponent(JSON.stringify(pair))}; Path=/; Max-Age=${COOKIE_MAX_AGE_SECONDS}; SameSite=Lax${secure}`;
+  document.cookie = `battlePair=${encodeURIComponent(JSON.stringify(pair))}; Path=/; Max-Age=${COOKIE_MAX_AGE_SECONDS}; SameSite=Lax${secure}`;
 }
 
-function VoteButton({ onVote, name }: { onVote: () => void; name: string }) {
+function VoteButton({
+  onVote,
+  name,
+  disabled,
+}: {
+  onVote: () => void;
+  name: string;
+  disabled?: boolean;
+}) {
   return (
     <button
       type="button"
       onClick={onVote}
-      className="flex min-h-12 w-full items-center justify-between gap-2 rounded-lg border border-studio-ink/25 px-3 py-2.5 text-left text-xs font-medium hover:bg-studio-ink/5 motion-safe:transition-[background-color,transform] motion-safe:duration-150 motion-safe:active:scale-[0.96] sm:px-4 sm:text-sm"
+      disabled={disabled}
+      className="flex min-h-12 w-full items-center justify-between gap-2 rounded-lg border border-studio-ink/25 px-3 py-2.5 text-left text-xs font-medium hover:bg-studio-ink/5 disabled:cursor-wait disabled:opacity-60 motion-safe:transition-[background-color,transform] motion-safe:duration-150 motion-safe:active:scale-[0.96] sm:px-4 sm:text-sm"
     >
       <span className="min-w-0 break-words">
         Vote <span className="capitalize">{name}</span>
@@ -57,11 +67,13 @@ function ContenderPanel({
   side,
   pokemon,
   stats,
+  disabled,
   onVote,
 }: {
   side: "home" | "away";
   pokemon: Pokemon;
   stats?: ContenderStats;
+  disabled?: boolean;
   onVote: () => void;
 }) {
   const battles = stats ? stats.wins + stats.losses : 0;
@@ -111,7 +123,7 @@ function ContenderPanel({
           </span>
         ) : null}
       </p>
-      <VoteButton onVote={onVote} name={pokemon.name} />
+      <VoteButton onVote={onVote} name={pokemon.name} disabled={disabled} />
     </article>
   );
 }
@@ -127,16 +139,19 @@ export default function BattleArena({
     pairs: initialPairs,
     stats: initialStats,
     failedVotes: [],
+    refilling: false,
+    refillFailed: false,
   }));
-  const queueRef = useRef<ReturnType<typeof createBattleQueue> | null>(null);
-  queueRef.current ??= createBattleQueue({
-    initialPairs,
-    initialStats,
-    submitVote: (pair, pick) => voteAction(pair, pick),
-    fetchMorePairs: () => getMorePairsAction(),
-    onNextPair: persistCurrentPairCookie,
-    onChange: setSnapshot,
-  });
+  const [queue] = useState(() =>
+    createBattleQueue({
+      initialPairs,
+      initialStats,
+      submitVote: (pair, pick, voteId) => voteAction(pair, pick, voteId),
+      fetchMorePairs: () => getMorePairsAction(),
+      onNextPair: persistPairCookie,
+      onChange: setSnapshot,
+    }),
+  );
 
   const [current, next] = snapshot.pairs;
   if (next) {
@@ -152,6 +167,8 @@ export default function BattleArena({
 
   const [home, away] = current;
   const failedCount = snapshot.failedVotes.length;
+  const waitingForNext = !next && snapshot.refilling;
+  const blockedByRefillError = !next && snapshot.refillFailed;
 
   return (
     <div className="flex flex-col gap-3">
@@ -163,15 +180,46 @@ export default function BattleArena({
           side="home"
           pokemon={home}
           stats={snapshot.stats[home.dexNumber]}
-          onVote={() => queueRef.current?.vote(0)}
+          disabled={waitingForNext}
+          onVote={() => queue.vote(0)}
         />
         <ContenderPanel
           side="away"
           pokemon={away}
           stats={snapshot.stats[away.dexNumber]}
-          onVote={() => queueRef.current?.vote(1)}
+          disabled={waitingForNext}
+          onVote={() => queue.vote(1)}
         />
       </section>
+      {waitingForNext ? (
+        <p
+          role="status"
+          aria-live="polite"
+          className="m-0 text-xs text-studio-muted"
+        >
+          Loading next matchup…
+        </p>
+      ) : null}
+      {blockedByRefillError ? (
+        <div
+          role="alert"
+          className="flex flex-wrap items-center justify-between gap-3 rounded-xl border border-studio-danger/40 bg-studio-paper px-4 py-3 text-xs text-studio-ink"
+        >
+          <p className="m-0">
+            <strong className="font-semibold">
+              Could not load the next matchup.
+            </strong>{" "}
+            <span className="text-studio-muted">Try again to keep voting.</span>
+          </p>
+          <button
+            type="button"
+            onClick={() => void queue.refill()}
+            className="min-h-9 rounded-md bg-studio-accent px-3 py-1.5 text-xs font-semibold text-white hover:opacity-90"
+          >
+            Load matchups
+          </button>
+        </div>
+      ) : null}
       {failedCount > 0 ? (
         <div
           role="alert"
@@ -184,20 +232,22 @@ export default function BattleArena({
                 : `${failedCount} votes not saved.`}
             </strong>{" "}
             <span className="text-studio-muted">
-              The server could not record your vote.
+              {failedCount === 1
+                ? "The server could not record your vote."
+                : "The server could not record your votes."}
             </span>
           </p>
           <div className="flex items-center gap-2">
             <button
               type="button"
-              onClick={() => queueRef.current?.retryFailedVotes()}
+              onClick={() => queue.retryFailedVotes()}
               className="min-h-9 rounded-md bg-studio-accent px-3 py-1.5 text-xs font-semibold text-white hover:opacity-90"
             >
               Retry
             </button>
             <button
               type="button"
-              onClick={() => queueRef.current?.dismissFailedVotes()}
+              onClick={() => queue.dismissFailedVotes()}
               className="min-h-9 rounded-md px-2.5 py-1.5 text-xs text-studio-muted hover:text-studio-ink"
             >
               Dismiss

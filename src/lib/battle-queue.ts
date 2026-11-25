@@ -7,7 +7,7 @@ export type Pick = 0 | 1;
 export type StatsMap = Record<number, ContenderStats>;
 
 export type FailedVote = {
-  id: number;
+  voteId: string;
   pair: PokemonPair;
   pick: Pick;
 };
@@ -16,6 +16,8 @@ export type BattleQueueSnapshot = {
   pairs: PokemonPair[];
   stats: StatsMap;
   failedVotes: FailedVote[];
+  refilling: boolean;
+  refillFailed: boolean;
 };
 
 export function pruneStats(
@@ -37,45 +39,57 @@ export function createBattleQueue({
   initialStats,
   submitVote,
   fetchMorePairs,
+  createVoteId = () => crypto.randomUUID(),
   onNextPair,
   onChange,
 }: {
   initialPairs: PokemonPair[];
   initialStats: StatsMap;
-  submitVote: (pair: PokemonPair, pick: Pick) => Promise<void>;
+  submitVote: (pair: PokemonPair, pick: Pick, voteId: string) => Promise<void>;
   fetchMorePairs: () => Promise<{ pairs: PokemonPair[]; stats: StatsMap }>;
+  createVoteId?: () => string;
   onNextPair?: (nextPair: PokemonPair) => void;
   onChange: (snapshot: BattleQueueSnapshot) => void;
 }) {
   let pairs = [...initialPairs];
   let stats = pruneStats(pairs, initialStats);
   let failedVotes: FailedVote[] = [];
-  let nextFailureId = 1;
-  let refillPending = false;
+  let refilling = false;
+  let refillFailed = false;
+
+  const getSnapshot = (): BattleQueueSnapshot => ({
+    pairs,
+    stats,
+    failedVotes,
+    refilling,
+    refillFailed,
+  });
 
   const notify = () => {
-    onChange({ pairs, stats, failedVotes });
+    onChange(getSnapshot());
   };
 
-  function dispatchVote(pair: PokemonPair, pick: Pick) {
-    void submitVote(pair, pick).catch(() => {
-      failedVotes = [...failedVotes, { id: nextFailureId++, pair, pick }];
+  function dispatchVote(pair: PokemonPair, pick: Pick, voteId: string) {
+    void submitVote(pair, pick, voteId).catch(() => {
+      failedVotes = [...failedVotes, { voteId, pair, pick }];
       notify();
     });
   }
 
   async function refill() {
-    if (refillPending) return;
-    refillPending = true;
+    if (refilling) return;
+    refilling = true;
+    refillFailed = false;
+    notify();
     try {
       const more = await fetchMorePairs();
       pairs = [...pairs, ...more.pairs];
       stats = pruneStats(pairs, { ...stats, ...more.stats });
-      notify();
     } catch {
-      // The next vote tries the refill again.
+      refillFailed = true;
     } finally {
-      refillPending = false;
+      refilling = false;
+      notify();
     }
   }
 
@@ -85,12 +99,15 @@ export function createBattleQueue({
       void refill();
       return;
     }
+    const voteId = createVoteId();
     pairs = pairs.slice(1);
     stats = pruneStats(pairs, stats);
     onNextPair?.(nextPair);
     notify();
-    dispatchVote(currentPair, pick);
+    // Start refill before submitting the vote so it does not wait behind the vote write
+    // in Next.js's serial Server Action queue.
     if (pairs.length < REFILL_THRESHOLD) void refill();
+    dispatchVote(currentPair, pick, voteId);
   }
 
   function retryFailedVotes() {
@@ -99,7 +116,7 @@ export function createBattleQueue({
     failedVotes = [];
     notify();
     for (const entry of toRetry) {
-      dispatchVote(entry.pair, entry.pick);
+      dispatchVote(entry.pair, entry.pick, entry.voteId);
     }
   }
 
@@ -111,8 +128,9 @@ export function createBattleQueue({
 
   return {
     vote,
+    refill,
     retryFailedVotes,
     dismissFailedVotes,
-    getSnapshot: (): BattleQueueSnapshot => ({ pairs, stats, failedVotes }),
+    getSnapshot,
   };
 }

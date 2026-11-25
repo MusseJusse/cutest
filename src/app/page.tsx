@@ -15,24 +15,22 @@ const QUEUE_SIZE = 6;
 
 function parsePairCookie(value: string | undefined): PokemonPair | undefined {
   if (!value) return undefined;
-  let decoded = value;
   try {
-    decoded = decodeURIComponent(value);
-  } catch {
-    // Fall back to the raw value for legacy unencoded cookies.
-  }
-  try {
-    return parsePokemonPair(JSON.parse(decoded) as unknown);
+    return parsePokemonPair(JSON.parse(value) as unknown);
   } catch {
     return undefined;
   }
 }
 
 async function HomeContent() {
-  const currentPairCookie = (await cookies()).get("currentPair")?.value;
+  const cookieStore = await cookies();
+  // Prefer the client-managed cookie, falling back to the legacy HttpOnly cookie until first vote.
+  const storedPair =
+    cookieStore.get("battlePair")?.value ??
+    cookieStore.get("currentPair")?.value;
 
   const pairs = selectPokemonPairs(QUEUE_SIZE);
-  const cookiePair = parsePairCookie(currentPairCookie);
+  const cookiePair = parsePairCookie(storedPair);
   if (cookiePair) pairs[0] = cookiePair;
 
   const stats = await getContenderStats(pairs.flat());
