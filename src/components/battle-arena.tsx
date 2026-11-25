@@ -10,12 +10,14 @@ import {
 } from "~/lib/battle-queue";
 import { cn } from "~/lib/utils";
 import type { Pokemon, PokemonPair } from "~/sdk/pokemon";
-import type { ContenderStats } from "~/sdk/vote";
+import type { ContenderStats, RecentBattle } from "~/sdk/vote";
+import RecentVotes from "./recent-votes";
 import { CONTENDER_PANEL_CLASS, VS_BADGE_CLASS } from "./ui/fallbacks";
 import { SpriteTile, spriteUrl } from "./ui/pokemon-sprite";
 
 const COOKIE_MAX_AGE_SECONDS = 60 * 60 * 24 * 7;
 const ACCIDENTAL_DOUBLE_TAP_MS = 180;
+const RECENT_VOTES_LIMIT = 3;
 
 // Use a distinct name from the legacy HttpOnly "currentPair" cookie so browsers do not ignore writes.
 function persistPairCookie(pair: PokemonPair) {
@@ -134,12 +136,16 @@ function ContenderCorner({
 export default function BattleArena({
   initialPairs,
   initialStats,
+  initialRecentBattles,
 }: {
   initialPairs: PokemonPair[];
   initialStats: StatsMap;
+  initialRecentBattles: RecentBattle[];
 }) {
   const lastVoteAtRef = useRef(-Infinity);
   const [announcement, setAnnouncement] = useState("");
+  const [recentBattles, setRecentBattles] =
+    useState<RecentBattle[]>(initialRecentBattles);
   const [snapshot, setSnapshot] = useState<BattleQueueSnapshot>(() => ({
     pairs: initialPairs,
     stats: initialStats,
@@ -182,9 +188,22 @@ export default function BattleArena({
   const votingDisabled = !next;
 
   function handleVote(pick: 0 | 1) {
+    if (!next) return;
     const now = performance.now();
     if (now - lastVoteAtRef.current < ACCIDENTAL_DOUBLE_TAP_MS) return;
     lastVoteAtRef.current = now;
+    const winner = pick === 0 ? home : away;
+    const loser = pick === 0 ? away : home;
+    setRecentBattles((previous) => {
+      const first = previous[0];
+      if (
+        first?.winner.dexNumber === winner.dexNumber &&
+        first.loser.dexNumber === loser.dexNumber
+      ) {
+        return previous;
+      }
+      return [{ winner, loser }, ...previous].slice(0, RECENT_VOTES_LIMIT);
+    });
     queue.vote(pick);
   }
 
@@ -279,6 +298,7 @@ export default function BattleArena({
           </div>
         </div>
       ) : null}
+      <RecentVotes battles={recentBattles} />
     </div>
   );
 }
